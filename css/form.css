@@ -29,6 +29,13 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
     box-shadow: 0 1px 1px #DDDDDD inset;
 }
 
+textarea {
+    display: block;
+    height: 8rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
 button, .button, input[type="button"], input[type="submit"] {
     border: 1px solid transparent;
     border-radius: 2px;
