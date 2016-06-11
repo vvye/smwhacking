@@ -1,6 +1,6 @@
 <h2>Forum</h2>
 
-<table class="forum-category">
+<table class="forum forum-category">
 	<thead>
 	<tr>
 		<th class="category-name" colspan="2">Die Seite</th>
@@ -41,7 +41,7 @@
 	</tbody>
 </table>
 
-<table class="forum-category">
+<table class="forum forum-category">
 	<thead>
 	<tr>
 		<th class="category-name" colspan="2">SMW-Hacken</th>

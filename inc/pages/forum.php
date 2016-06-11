@@ -1,9 +1,9 @@
 <h2>SMW-Hacking</h2>
 <p class="breadcrumbs">
-	<a href="?p=forums">Foren-Übersicht</a> &rarr; <a href="?p=forum&id=1">SMW-Hacking</a>
+	<a href="?p=forums">Foren-Übersicht</a> &rarr; <strong>SMW-Hacking</strong>
 </p>
 
-<table class="thread-list">
+<table class="forum thread-list">
 	<thead>
 	<tr>
 		<th colspan="2">Thema</th>
@@ -93,3 +93,13 @@
 	</tr>
 	</tbody>
 </table>
+
+
+
+<ul class="pagination">
+	<li><a href="page/1">1</a></li>
+	<li><a href="page/2">2</a></li>
+	<li class="selected"><a href="page/3">3</a></li>
+	<li><a href="page/4">4</a></li>
+	<li><a href="page/5">5</a></li>
+</ul>

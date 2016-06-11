@@ -111,3 +111,7 @@ h2 {
     float: right;
     margin-left: 1rem;
 }
+
+.clearfix {
+    clear: both;
+}
