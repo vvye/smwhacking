@@ -13,7 +13,7 @@
 				'page'    => 'about',
 				'caption' => 'Was ist SMW-Hacken?'
 			], [
-				'page'    => 'forum',
+				'page'    => 'forums',
 				'caption' => 'Forum'
 			], [
 				'page'    => 'chat',
