@@ -1,12 +1,19 @@
 <h2>SMW-Hacking</h2>
-<p class="breadcrumbs">
-	<a href="?p=forums">Foren-Übersicht</a> &rarr; <strong>SMW-Hacking</strong>
-</p>
+
+<div class="grid">
+	<p class="column breadcrumbs">
+		<a href="?p=forums">Foren-Übersicht</a> &rarr; <strong>SMW-Hacking</strong>
+	</p>
+	<form class="column">
+		<button class="pseudo">Alle Themen als gelesen markieren</button>
+		<button class="primary">Neues Thema erstellen</button>
+	</form>
+</div>
 
 <table class="forum thread-list">
 	<thead>
 	<tr>
-		<th colspan="2">Thema</th>
+		<th class="thread" colspan="2">Thema</th>
 		<th class="num-replies">Antworten</th>
 		<th class="num-views">Zugriffe</th>
 		<th class="last-post">letzter Beitrag</th>
@@ -93,7 +100,6 @@
 	</tr>
 	</tbody>
 </table>
-
 
 
 <ul class="pagination">

@@ -2,6 +2,10 @@ form {
     margin: 1rem 0;
 }
 
+form.right {
+    text-align: right;
+}
+
 form table td {
     padding: 0.5rem 1rem 0.5rem 0;
 }
@@ -31,6 +35,10 @@ button, .button, input[type="button"], input[type="submit"] {
     background-color: #DDDDDD;
     padding: 0.5rem 1rem;
     cursor: pointer;
+}
+
+button.pseudo, .button.pseudo, input[type="button"].pseudo, input[type="submit"].pseudo {
+    background: none;
 }
 
 button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover {

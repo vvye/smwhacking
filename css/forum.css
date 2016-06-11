@@ -108,6 +108,10 @@
 
 /* thread list */
 
+.thread-list .thread {
+    text-align: left;
+}
+
 .thread-list .num-replies,
 .thread-list .num-views {
     width: 5rem;
@@ -118,7 +122,7 @@
     font-size: 1rem;
 }
 
-.thread-list .last.sticky{
+.thread-list .last.sticky {
     border-bottom: 3px solid #AAAAAA;
 }
 

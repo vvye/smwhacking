@@ -1,16 +1,14 @@
 <h2>Test-Thread</h2>
-<p class="breadcrumbs">
-	<a href="?p=forums">Foren-Übersicht</a> &rarr; <a href="?p=forum&id=1">SMW-Hacking</a> &rarr;
-	<strong>Test-Thread</strong>
-</p>
 
-<ul class="pagination">
-	<li><a href="page/1">1</a></li>
-	<li><a href="page/2">2</a></li>
-	<li class="selected"><a href="page/3">3</a></li>
-	<li><a href="page/4">4</a></li>
-	<li><a href="page/5">5</a></li>
-</ul>
+<div class="grid">
+	<p class="column breadcrumbs">
+		<a href="?p=forums">Foren-Übersicht</a> &rarr; <a href="?p=forum&id=1">SMW-Hacking</a> &rarr;
+		<strong>Test-Thread</strong>
+	</p>
+	<form class="column">
+		<button class="primary">Antworten</button>
+	</form>
+</div>
 
 <div class="post">
 	<div class="sidebar">
@@ -51,3 +49,15 @@
 	</div>
 	<div class="clearfix"></div>
 </div>
+
+<form class="right">
+	<button class="primary">Antworten</button>
+</form>
+
+<ul class="pagination">
+	<li><a href="page/1">1</a></li>
+	<li><a href="page/2">2</a></li>
+	<li class="selected"><a href="page/3">3</a></li>
+	<li><a href="page/4">4</a></li>
+	<li><a href="page/5">5</a></li>
+</ul>
