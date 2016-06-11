@@ -31,7 +31,7 @@
 }
 
 .pagination li a:hover {
-    background-color: #d5e8ff;
+    background-color: #D5E8FF;
 }
 
 .pagination li.selected a,
@@ -45,7 +45,7 @@
 
 .forum {
     width: 100%;
-    margin-top: 2rem;
+    margin: 2rem 0 3rem;
     border-collapse: collapse;
 }
 
@@ -89,6 +89,7 @@
 
 .forum .num-threads,
 .forum .num-posts {
+    width: 5rem;
     text-align: center;
 }
 

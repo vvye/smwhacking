@@ -22,6 +22,8 @@
 		<link rel="stylesheet" type="text/css" href="css/form.css" />
 		<link rel="stylesheet" type="text/css" href="css/forum.css" />
 
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+
 	</head>
 
 	<body>
