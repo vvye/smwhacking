@@ -1,0 +1,49 @@
+form {
+    margin: 1rem 0;
+}
+
+form table td {
+    padding: 0.5rem 1rem 0.5rem 0;
+}
+
+form .final-action {
+    text-align: right;
+}
+
+input[type="text"], input[type="password"], textarea {
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    padding: 0.4rem 0.5rem;
+}
+
+input[type="text"]:hover, input[type="password"]:hover, textarea:hover {
+    border: 1px solid #B0B0B0;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    border: 1px solid #999999;
+    box-shadow: 0 1px 1px #DDDDDD inset;
+}
+
+button, .button, input[type="button"], input[type="submit"] {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: #DDDDDD;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    border: 1px solid #AAAAAA;
+    background-color: #E4E4E4;
+}
+
+button.primary, .button.primary, input[type="button"].primary, input[type="submit"].primary {
+    background-color: #096AC9;
+    color: white;
+}
+
+button.primary:hover, .button.primary:hover, input[type="button"].primary:hover, input[type="submit"].primary:hover {
+    background-color: #097EDF;
+    border: 1px solid transparent;
+}

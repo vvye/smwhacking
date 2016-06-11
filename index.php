@@ -19,6 +19,7 @@
 		      type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/normalize.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/form.css" />
 		<link rel="stylesheet" type="text/css" href="css/forum.css" />
 
 	</head>
@@ -38,7 +39,7 @@
 			?>
 			<nav class="user-menu">
 				<ul>
-					<li><a href="#">Einloggen</a></li>
+					<li><a href="?p=login">Einloggen</a></li>
 				</ul>
 			</nav>
 		</header>
