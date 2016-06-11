@@ -8,6 +8,14 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.main a:link, .main a:visited {
+    color: #096AC9;
+}
+.main a:hover, .main a:active {
+    color: #096AC9;
+    background-color: rgba(9, 106, 201, 0.1);
+}
+
 .banner {
     display: flex;
     margin: 0;

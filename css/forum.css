@@ -1,0 +1,62 @@
+.forum-category {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+
+.forum-category tr {
+    background-color: white;
+}
+
+.forum-category th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.forum-category th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.forum-category th {
+    background-color: #096AC9;
+    padding: 0.2rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.forum-category td {
+    padding: 0.5rem 0.2rem;
+}
+
+.forum-category td {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.forum-category .category-name {
+    text-align: left;
+}
+
+.forum-category .new {
+    width: 3rem;
+    text-align: center;
+    font-weight: bold;
+    color: #FF6528;
+}
+
+.forum-category .num-threads,
+.forum-category .num-posts {
+    text-align: center;
+}
+
+.forum-category .last-post {
+    width: 10rem;
+    text-align: center;
+}
+
+.forum-category .forum-description h3 {
+    margin: 0;
+}
+
+.forum-category p {
+    margin: 0;
+    font-size: 0.9rem;
+}

@@ -19,6 +19,7 @@
 		      type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/normalize.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/forum.css" />
 
 	</head>
 
@@ -26,7 +27,7 @@
 
 		<header>
 			<div class="banner">
-				<h1><img src="img/logo.png" alt="smwhacking.de" /></h1>
+				<h1><a href="/"><img src="img/logo.png" alt="smwhacking.de" /></a></h1>
 				<p>die deutschsprachige Seite übers SMW-Hacken</p>
 			</div>
 			<?php
