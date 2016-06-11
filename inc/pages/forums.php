@@ -13,7 +13,7 @@
 	<tr>
 		<td class="new">NEU</td>
 		<td class="forum-description">
-			<h3><a href="#">Test-Forum</a></h3>
+			<h3><a href="?p=forum&id=1">Test-Forum</a></h3>
 			<p>Est nobilis onus, cesaris. Solitudo cresceres, tanquam gratis animalis. Cum abactus peregrinationes,
 				omnes navises reperire nobilis, pius rationees. Resistentia cantares, tanquam azureus fluctus.</p>
 		</td>

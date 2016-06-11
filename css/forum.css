@@ -60,3 +60,70 @@
     margin: 0;
     font-size: 0.9rem;
 }
+
+/* thread list */
+
+.thread-list {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+
+.thread-list tr {
+    background-color: white;
+}
+
+.thread-list th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.thread-list th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.thread-list th {
+    background-color: #096AC9;
+    padding: 0.2rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.thread-list td {
+    padding: 0.5rem 0.2rem;
+}
+
+.thread-list td {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.thread-list .num-replies,
+.thread-list .num-views {
+    width: 5rem;
+    text-align: center;
+}
+
+.thread-list .last-post {
+    width: 10rem;
+    text-align: center;
+}
+
+.thread-list p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.thread-list h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.thread-list .new {
+    width: 3rem;
+    text-align: center;
+    font-weight: bold;
+    color: #FF6528;
+}
+
+.thread-list .last.sticky{
+    border-bottom: 3px solid #AAAAAA;
+}
