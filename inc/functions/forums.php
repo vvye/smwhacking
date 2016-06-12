@@ -1,18 +1,24 @@
 <?php
 
+	require_once __DIR__ . '/../config/misc.php';
+
 	require_once __DIR__ . '/database.php';
 
 
-	function getNumThreads($forumId, $database)
+	function getNumThreadsInForum($forumId, $database = null)
 	{
+		$database = ($database !== null) ? $database : getDatabase();
+
 		return $database->count('threads', [
 			'forum' => $forumId
 		]);
 	}
 
 
-	function getNumPosts($forumId, $database)
+	function getNumPostsInForum($forumId, $database = null)
 	{
+		$database = ($database !== null) ? $database : getDatabase();
+
 		return $database->count('forums', [
 			'[>]threads' => ['id' => 'forum'],
 			'[>]posts'   => ['threads.id' => 'thread']
@@ -22,12 +28,9 @@
 	}
 
 
-	function getLastPost($forumId, $database = null)
+	function getLastPostInForum($forumId, $database = null)
 	{
-		if ($database === null)
-		{
-			$database = getDatabase();
-		}
+		$database = ($database !== null) ? $database : getDatabase();
 
 		$lastPost = $database->select('forums', [
 			'[>]threads' => ['id' => 'forum'],
@@ -54,15 +57,8 @@
 	}
 
 
-	function getLastPostCellContent($forumId, $database = null)
+	function getLastPostCellContent($lastPost)
 	{
-		if ($database === null)
-		{
-			$database = getDatabase();
-		}
-
-		$lastPost = getLastPost($forumId, $database);
-
 		if ($lastPost === null)
 		{
 			$lastPostCellContent = '<em>Keiner</em>';

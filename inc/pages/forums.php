@@ -1,16 +1,19 @@
 <h2>Forum</h2>
 
 <?php
-
-	require_once __DIR__ . '/../config/misc.php';
-
+	
 	require_once __DIR__ . '/../functions/forums.php';
 	require_once __DIR__ . '/../functions/database.php';
 
 
 	$database = getDatabase();
 
-	$categories = $database->select('forum_categories', '*');
+	$categories = $database->select('forum_categories', [
+		'id',
+		'name'
+	], [
+		'ORDER' => 'sort_order ASC'
+	]);
 
 	foreach ($categories as $category)
 	{
@@ -37,9 +40,9 @@
 					$id = $forum['id'];
 					$name = $forum['name'];
 					$description = $forum['description'];
-					$numThreads = getNumThreads($id, $database);
-					$numPosts = getNumPosts($id, $database);
-					$lastPostCellContent = getLastPostCellContent($id, $database);
+					$numThreads = getNumThreadsInForum($id, $database);
+					$numPosts = getNumPostsInForum($id, $database);
+					$lastPostCellContent = getLastPostCellContent(getLastPostInForum($id, $database));
 
 					?>
 					<tr>
