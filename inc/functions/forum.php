@@ -6,8 +6,7 @@
 	function getThreadsInForum($forumId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
-
-
+		
 		$threads = $database->select('threads', [
 			'[>]posts' => ['id' => 'thread'],
 			'[>]users' => ['posts.author' => 'id']

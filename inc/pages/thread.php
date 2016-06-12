@@ -36,6 +36,8 @@
 			break;
 		}
 		$thread = $threads[0];
+		
+		addView($threadId, $database);
 
 		$threadName = $thread['name'];
 		$forumId = $thread['forum_id'];
@@ -69,15 +71,15 @@
 				? '<p class="powerlevel">' . POWERLEVEL_DESCRIPTIONS[$post['author_powerlevel']] . '</p>'
 				: '';
 			$authorTitle = $post['author_title'];
-			$authorAvatarUrl = 'http://placehold.it/120x120'; // TODO
+			$authorAvatarHtml = getAvatarHtml($authorId);
 			$authorRegistrationTime = date(DEFAULT_DATE_FORMAT, $post['author_registration_time']);
 			$authorCurrentPostNumber = getCurrentPostNumber($authorId, $id, $database);
 			$authorNumTotalPosts = getNumPostsByUser($authorId, $database);
 
 			$postTime = date(DEFAULT_DATE_FORMAT, $post['post_time']);
-			$content = $post['content'];
+			$content = nl2br($post['content']);
 			$authorSignature = (trim($post['author_signature']) !== '')
-				? '<div class="signature">' . $post['author_signature'] . '</div>'
+				? '<div class="signature">' . nl2br($post['author_signature']) . '</div>'
 				: '';
 
 			?>
@@ -86,7 +88,7 @@
 					<h3><a href="?p=user&id=<?php echo $authorId ?>"><?php echo $authorName; ?></a></h3>
 					<?php echo $authorPowerlevel; ?>
 					<p class="title"><?php echo $authorTitle; ?></p>
-					<img class="avatar" src="<?php echo $authorAvatarUrl; ?>" alt="avatar" />
+					<?php echo $authorAvatarHtml; ?>
 					<p>Beiträge: <?php echo $authorCurrentPostNumber; ?> / <?php echo $authorNumTotalPosts; ?></p>
 					<p>Registriert seit: <?php echo $authorRegistrationTime; ?></p>
 				</div>

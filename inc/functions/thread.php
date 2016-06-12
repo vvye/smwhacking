@@ -27,3 +27,23 @@
 
 		return $posts;
 	}
+
+
+	function addView($threadId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		// TODO reactivate this when testing is done
+		/*
+		$wasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+		if (!$wasRefreshed)
+		{
+			$database->update('threads', [
+				'views[+]' => 1
+			], [
+				'id' => $threadId
+			]);
+		}
+		*/
+
+	}
