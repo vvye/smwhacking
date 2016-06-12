@@ -42,6 +42,8 @@ button, .button, input[type="button"], input[type="submit"] {
     background-color: #DDDDDD;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    color: #333333 !important;
+    text-decoration: none;
 }
 
 button.pseudo, .button.pseudo, input[type="button"].pseudo, input[type="submit"].pseudo {
@@ -55,7 +57,7 @@ button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:ho
 
 button.primary, .button.primary, input[type="button"].primary, input[type="submit"].primary {
     background-color: #096AC9;
-    color: white;
+    color: white !important;
 }
 
 button.primary:hover, .button.primary:hover, input[type="button"].primary:hover, input[type="submit"].primary:hover {

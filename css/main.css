@@ -127,3 +127,8 @@ h2 {
 .clearfix {
     clear: both;
 }
+
+hr {
+    border-top: 1px solid;
+    border-bottom: none;
+}

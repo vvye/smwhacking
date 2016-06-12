@@ -167,6 +167,13 @@
     padding-left: 11rem;
 }
 
+.post .signature {
+    margin-top: 2rem;
+    border-top: 1px solid #888888;
+    padding-top: 0.5rem;
+    color: #666666;
+}
+
 .topbar {
     font-size: 0.8rem;
     color: gray;

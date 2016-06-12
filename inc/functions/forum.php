@@ -7,13 +7,19 @@
 	{
 		$database = ($database !== null) ? $database : getDatabase();
 
-		// FIXME why does this not work
-		/*
+
 		$threads = $database->select('threads', [
 			'[>]posts' => ['id' => 'thread'],
 			'[>]users' => ['posts.author' => 'id']
 		], [
-			'threads.*',
+			'threads.id',
+			'threads.name',
+			'threads.creation_time',
+			'threads.last_post_time',
+			'threads.views',
+			'threads.closed',
+			'threads.sticky',
+			'threads.id',
 			'users.id(author_id)',
 			'users.name(author_name)'
 		], [
@@ -24,17 +30,6 @@
 				'threads.last_post_time DESC'
 			]
 		]);
-		*/
-
-		$threads = $database->query('
-			SELECT threads.*, users.id AS author_id, users.name AS author_name
-			FROM threads
-			LEFT JOIN posts ON threads.id = posts.thread
-			LEFT JOIN users ON posts.author = users.id
-			WHERE threads.forum = ' . $database->quote($forumId) . '
-			GROUP BY threads.id
-			ORDER BY threads.sticky DESC,threads.last_post_time DESC 
-		')->fetchAll();
 
 		return $threads;
 	}
