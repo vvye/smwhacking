@@ -182,5 +182,6 @@
 .topbar {
     font-size: 0.8rem;
     color: gray;
+    margin-top: 0;
     margin-bottom: 0.3rem;
 }

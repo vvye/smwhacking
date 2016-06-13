@@ -53,7 +53,7 @@ button.pseudo, .button.pseudo, input[type="button"].pseudo, input[type="submit"]
 
 button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     border: 1px solid #AAAAAA;
-    background-color: #E4E4E4;
+    background-color: #E4E4E4 !important;
 }
 
 button.primary, .button.primary, input[type="button"].primary, input[type="submit"].primary {
@@ -62,6 +62,6 @@ button.primary, .button.primary, input[type="button"].primary, input[type="submi
 }
 
 button.primary:hover, .button.primary:hover, input[type="button"].primary:hover, input[type="submit"].primary:hover {
-    background-color: #097EDF;
+    background-color: #097EDF !important;
     border: 1px solid transparent;
 }

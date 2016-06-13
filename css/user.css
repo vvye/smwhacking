@@ -1,0 +1,49 @@
+.user-section {
+    margin-bottom: 0;
+    border-radius: 2px 2px 0 0;
+    background-color: #096AC9;
+    padding: 0.2rem 1rem;
+    color: white;
+}
+
+.medals {
+    border-bottom: 1px solid #CCCCCC;
+    background-color: white;
+    padding: 1rem;
+}
+
+.medals h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.medals h4:not(:first-of-type) {
+    margin-top: 2rem;
+}
+
+.medal-showcase {
+    display: inline-block;
+    margin: 1rem 3rem 1rem 0;
+}
+
+.medal-showcase img {
+    float: left;
+    max-width: 3rem;
+}
+
+.medal-showcase div {
+    padding-left: 4rem;
+}
+
+.medal-showcase h5 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.medal-showcase p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666666;
+}
