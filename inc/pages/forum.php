@@ -43,6 +43,25 @@
 			</form>
 		</div>
 
+		<?php
+
+		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
+
+		$threads = getThreadsInForum($forumId, $page, $database);
+		$numThreadsOnPage = count($threads);
+		$numTotalThreads = getNumTotalThreadsInForum($forumId, $database);
+		$numStickies = getNumStickiesInForum($forumId, $database);
+
+		$numPages = ceil($numTotalThreads / THREADS_PER_PAGE);
+		if ($page > $numPages)
+		{
+			$page = $numPages;
+		}
+
+		renderPagination($forumId, $page, $numPages);
+
+		?>
+
 		<table class="forum thread-list">
 			<thead>
 			<tr>
@@ -55,10 +74,7 @@
 			<tbody>
 			<?php
 
-				$threads = getThreadsInForum($forumId, $database);
-				$numStickies = getNumStickiesInForum($forumId, $database);
-
-				if (count($threads) === 0)
+				if ($numTotalThreads === 0)
 				{
 					?>
 					<tr>
@@ -80,7 +96,6 @@
 					else
 					{
 						$stickyCssClass = $stickyPrefix = '';
-
 					}
 
 					$new = 'NEU'; // TODO
@@ -111,7 +126,6 @@
 
 
 					<?php
-
 				}
 
 			?>
@@ -119,17 +133,7 @@
 			</tbody>
 		</table>
 
-		<ul class="pagination">
-			<li><a href="page/1">1</a></li>
-			<li><a href="page/2">2</a></li>
-			<li class="selected"><a href="page/3">3</a></li>
-			<li><a href="page/4">4</a></li>
-			<li><a href="page/5">5</a></li>
-		</ul>
-
 		<?php
 
-	}
-	while (false);
-
-?>
+		renderPagination($forumId, $page, $numPages);
+	} while (false);

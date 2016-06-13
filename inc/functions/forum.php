@@ -1,12 +1,14 @@
 <?php
 
+	require_once __DIR__ . '/../config/forum.php';
+
 	require_once __DIR__ . '/database.php';
 
 
-	function getThreadsInForum($forumId, $database = null)
+	function getThreadsInForum($forumId, $page, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
-		
+
 		$threads = $database->select('threads', [
 			'[>]posts' => ['id' => 'thread'],
 			'[>]users' => ['posts.author' => 'id']
@@ -27,10 +29,21 @@
 			'ORDER'         => [
 				'threads.sticky DESC',
 				'threads.last_post_time DESC'
-			]
+			],
+			'LIMIT'         => [($page - 1) * THREADS_PER_PAGE, THREADS_PER_PAGE]
 		]);
 
 		return $threads;
+	}
+
+
+	function getNumTotalThreadsInForum($forumId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		return $database->count('threads', [
+			'forum' => $forumId
+		]);
 	}
 
 
@@ -82,4 +95,16 @@
 		}
 
 		return $lastPost[0];
+	}
+
+
+	function renderPagination($forumId, $page, $numPages)
+	{
+		echo '<ul class="pagination">';
+		for ($i = 1; $i <= $numPages; $i++)
+		{
+			$selected = ($i === $page) ? ' class="selected"' : '';
+			echo '<li' . $selected . '><a href="?p=forum&id=' . $forumId . '&page=' . $i . '">' . $i . '</a></li>';
+		}
+		echo '</ul>';
 	}
