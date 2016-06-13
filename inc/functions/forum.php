@@ -35,18 +35,8 @@
 
 		return $threads;
 	}
-
-
-	function getNumTotalThreadsInForum($forumId, $database = null)
-	{
-		$database = ($database !== null) ? $database : getDatabase();
-
-		return $database->count('threads', [
-			'forum' => $forumId
-		]);
-	}
-
-
+	
+	
 	function getNumStickiesInForum($forumId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
@@ -95,16 +85,4 @@
 		}
 
 		return $lastPost[0];
-	}
-
-
-	function renderPagination($forumId, $page, $numPages)
-	{
-		echo '<ul class="pagination">';
-		for ($i = 1; $i <= $numPages; $i++)
-		{
-			$selected = ($i === $page) ? ' class="selected"' : '';
-			echo '<li' . $selected . '><a href="?p=forum&id=' . $forumId . '&page=' . $i . '">' . $i . '</a></li>';
-		}
-		echo '</ul>';
 	}

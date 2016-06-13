@@ -4,6 +4,7 @@
 	require_once __DIR__ . '/../functions/forum.php';
 	require_once __DIR__ . '/../functions/forums.php';
 	require_once __DIR__ . '/../functions/database.php';
+	require_once __DIR__ . '/../functions/misc.php';
 
 
 	do
@@ -48,17 +49,13 @@
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
 		$threads = getThreadsInForum($forumId, $page, $database);
-		$numThreadsOnPage = count($threads);
-		$numTotalThreads = getNumTotalThreadsInForum($forumId, $database);
+		$numTotalThreads = getNumThreadsInForum($forumId, $database);
 		$numStickies = getNumStickiesInForum($forumId, $database);
 
-		$numPages = ceil($numTotalThreads / THREADS_PER_PAGE);
-		if ($page > $numPages)
-		{
-			$page = $numPages;
-		}
+		$numPages = (int)ceil($numTotalThreads / THREADS_PER_PAGE);
+		makeBetween($page, 1, $numPages);
 
-		renderPagination($forumId, $page, $numPages);
+		renderPagination('?p=forum&id=' . $forumId, $page, $numPages);
 
 		?>
 
@@ -135,5 +132,5 @@
 
 		<?php
 
-		renderPagination($forumId, $page, $numPages);
+		renderPagination('?p=forum&id=' . $forumId, $page, $numPages);
 	} while (false);

@@ -4,6 +4,7 @@
 	require_once __DIR__ . '/../config/misc.php';
 
 	require_once __DIR__ . '/../functions/thread.php';
+	require_once __DIR__ . '/../functions/forum.php';
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/database.php';
 
@@ -36,7 +37,7 @@
 			break;
 		}
 		$thread = $threads[0];
-		
+
 		addView($threadId, $database);
 
 		$threadName = $thread['name'];
@@ -60,7 +61,14 @@
 
 		<?php
 
-		$posts = getPostsInThread($threadId, $database);
+		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
+
+		$numPosts = getNumPostsInThread($threadId, $database);
+		$numPages = (int)ceil($numPosts / POSTS_PER_PAGE);
+		makeBetween($page, 1, $numPages);
+		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);
+
+		$posts = getPostsInThread($threadId, $page, $database);
 
 		foreach ($posts as $post)
 		{
@@ -93,7 +101,16 @@
 					<p>Registriert seit: <?php echo $authorRegistrationTime; ?></p>
 				</div>
 				<div class="content">
-					<div class="topbar">geschrieben am <?php echo $postTime; ?></div>
+					<div class="topbar grid">
+						<div class="column">geschrieben am <?php echo $postTime; ?></div>
+						<div class="column">
+							(<a href="?p=thread&id=<?php echo $threadId; ?>#post-<?php echo $id; ?>">Link</a>
+							| <a
+								href="?p=new-reply&thread=<?php echo $threadId; ?>&quote=<?php echo $id; ?>">zitieren</a>
+							| <a href="?p=edit-reply&id=<?php echo $id; ?>">bearbeiten</a>
+							| <a href="?p=delete-reply&id=<?php echo $id; ?>">löschen</a>)
+						</div>
+					</div>
 					<?php echo $content; ?>
 					<?php echo $authorSignature; ?>
 				</div>
@@ -101,19 +118,21 @@
 			</div>
 			<?php
 		}
-	}
-	while (false);
+	} while (false);
 
 ?>
 
-<form class="right">
-	<button class="primary">Antworten</button>
-</form>
+	<div class="grid">
+		<p class="column breadcrumbs">
+			<a href="?p=forums">Foren-Übersicht</a> &rarr;
+			<a href="?p=forum&id=<?php echo $forumId; ?>"><?php echo $forumName; ?></a> &rarr;
+			<strong><?php echo $threadName; ?></strong>
+		</p>
+		<form class="column">
+			<a class="primary button" href="?p=new-reply&thread=<?php echo $threadId; ?>">Antworten</a>
+		</form>
+	</div>
 
-<ul class="pagination">
-	<li><a href="page/1">1</a></li>
-	<li><a href="page/2">2</a></li>
-	<li class="selected"><a href="page/3">3</a></li>
-	<li><a href="page/4">4</a></li>
-	<li><a href="page/5">5</a></li>
-</ul>
+<?php
+
+	renderPagination('?p=thread&id=' . $threadId, $page, $numPages);

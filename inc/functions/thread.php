@@ -1,9 +1,11 @@
 <?php
 
+	require_once __DIR__ . '/../config/thread.php';
+
 	require_once __DIR__ . '/../functions/database.php';
 
 
-	function getPostsInThread($threadId, $database = null)
+	function getPostsInThread($threadId, $page, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
 
@@ -22,7 +24,8 @@
 			'users.banned(author_banned)'
 		], [
 			'thread' => $threadId,
-			'ORDER'  => 'post_time ASC'
+			'ORDER'  => 'post_time ASC',
+			'LIMIT'  => [($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE]
 		]);
 
 		return $posts;
@@ -45,5 +48,4 @@
 			]);
 		}
 		*/
-
 	}
