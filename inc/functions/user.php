@@ -5,6 +5,54 @@
 	require_once __DIR__ . '/database.php';
 
 
+	function getUser($userId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+		
+		$users = $database->select('users', [
+			'id',
+		    'name',
+			'title',
+			'powerlevel',
+			'signature',
+			'registration_time',
+		    'banned'
+		], [
+			'id' => $userId,
+		    'LIMIT' => 1
+		]);
+
+		if (count($users) !== 1)
+		{
+			return null;
+		}
+
+		return $users[0];
+	}
+
+
+	function getPostsByUser($userId, $page, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$posts = $database->select('posts', [
+			'[>]threads' => ['thread' => 'id'],
+		], [
+			'posts.id',
+			'posts.post_time',
+			'posts.content',
+			'threads.id(thread_id)',
+		    'threads.name(thread_name)'
+		], [
+			'author' => $userId,
+			'ORDER'  => 'post_time ASC',
+			'LIMIT'  => [($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE]
+		]);
+
+		return $posts;
+	}
+	
+	
 	function getNumPostsByUser($userId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();

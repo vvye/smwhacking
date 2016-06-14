@@ -190,6 +190,21 @@
 	}
 
 
+	function getPostPageInThread($postId, $threadId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$numPostsUpTo = $database->count('posts', [
+			'AND' => [
+				'thread' => $threadId,
+				'id[<=]' => $postId
+			]
+		]);
+
+		return ceil($numPostsUpTo / POSTS_PER_PAGE);
+	}
+
+
 	function addViewToThread($threadId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();

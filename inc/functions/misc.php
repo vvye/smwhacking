@@ -17,3 +17,9 @@
 			$var = $max;
 		}
 	}
+
+
+	function renderErrorMessage($msg)
+	{
+		echo '<div class="message error">' . $msg . '</div>';
+	}
