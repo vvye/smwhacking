@@ -1,4 +1,4 @@
-.user-section {
+.user-section h3 {
     margin-bottom: 0;
     border-radius: 2px 2px 0 0;
     background-color: #096AC9;
@@ -6,10 +6,32 @@
     color: white;
 }
 
-.medals {
+.user-section .content {
     border-bottom: 1px solid #CCCCCC;
     background-color: white;
     padding: 1rem;
+}
+
+.user-section .content .sidebar {
+    float: left;
+    width: 10rem;
+    text-align: center;
+}
+
+.user-section .content table {
+    margin-left: 11rem;
+}
+
+.user-section .content td {
+    padding-right: 1rem;
+}
+
+.user-section .signature {
+    margin-top: 2rem;
+    border-top: 1px solid #888888;
+    padding-top: 0.5rem;
+    color: #666666;
+    font-size: 0.9rem;
 }
 
 .medals h4 {
