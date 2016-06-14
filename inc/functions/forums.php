@@ -205,6 +205,31 @@
 	}
 
 
+	function getLastEdit($postId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$edits = $database->select('edits', [
+			'[>]users' => ['user' => 'id']
+		], [
+			'edits.edit_time',
+			'users.id(editor_id)',
+			'users.name(editor_name)'
+		], [
+			'post'  => $postId,
+			'ORDER' => 'edit_time DESC',
+			'LIMIT' => 1
+		]);
+
+		if (count($edits) !== 1)
+		{
+			return null;
+		}
+
+		return $edits[0];
+	}
+
+
 	function addViewToThread($threadId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();

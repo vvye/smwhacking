@@ -92,6 +92,18 @@
 				: '';
 			$pageInThread = getPostPageInThread($id, $threadId, $database);
 
+			$lastEdit = getLastEdit($id, $database);
+			if ($lastEdit !== null)
+			{
+				$lastEditHtml = '<br />zuletzt bearbeitet von
+				<a href="?p=user&id=' . $lastEdit['editor_id'] . '">' . $lastEdit['editor_name'] . '</a>
+				am ' . date(DEFAULT_DATE_FORMAT, $lastEdit['edit_time']) . '.';
+			}
+			else
+			{
+				$lastEditHtml = '';
+			}
+
 			?>
 			<div class="post" id="post-<?php echo $id; ?>">
 				<div class="sidebar">
@@ -105,7 +117,7 @@
 				</div>
 				<div class="content">
 					<div class="topbar grid">
-						<div class="column">geschrieben am <?php echo $postTime; ?></div>
+						<div class="column">geschrieben am <?php echo $postTime; ?><?php echo $lastEditHtml; ?></div>
 						<div class="column">
 							(<a href="?p=thread&id=<?php echo $threadId; ?>&page=<?php echo $pageInThread; ?>#post-<?php echo $id; ?>">Link</a>
 							| <a
