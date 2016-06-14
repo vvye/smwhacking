@@ -4,8 +4,8 @@
 		smwhacking.de
 		WYE, 2016
 	*/
-
-	require_once 'inc/classes/Engine.php';
+	
+	require_once 'inc/functions/engine.php';
 
 ?>
 <!doctype html>
@@ -36,8 +36,7 @@
 			</div>
 			<?php
 
-				$engine = new Engine();
-				$engine->renderMenu();
+				renderMenu();
 
 			?>
 			<nav class="user-menu">
@@ -50,7 +49,7 @@
 		<div class="main">
 			<?php
 
-				$engine->renderPage();
+				renderPage();
 
 			?>
 		</div>
