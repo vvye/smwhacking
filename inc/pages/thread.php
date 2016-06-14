@@ -4,6 +4,7 @@
 	require_once __DIR__ . '/../config/misc.php';
 
 	require_once __DIR__ . '/../functions/database.php';
+	require_once __DIR__ . '/../functions/pagination.php';
 	require_once __DIR__ . '/../functions/forums.php';
 	require_once __DIR__ . '/../functions/user.php';
 
@@ -74,10 +75,11 @@
 			$id = $post['id'];
 			$authorId = $post['author_id'];
 			$authorName = $post['author_name'];
-			$authorPowerlevel = ($post['author_powerlevel'] !== 0)
+			$authorPowerlevel = ((int)$post['author_powerlevel'] !== 0)
 				? '<p class="powerlevel">' . POWERLEVEL_DESCRIPTIONS[$post['author_powerlevel']] . '</p>'
 				: '';
 			$authorTitle = $post['author_title'];
+			$authorRankHtml = getRankHtml($authorId);
 			$authorAvatarHtml = getAvatarHtml($authorId);
 			$authorRegistrationTime = date(DEFAULT_DATE_FORMAT, $post['author_registration_time']);
 			$authorCurrentPostNumber = getCurrentPostNumber($authorId, $id, $database);
@@ -94,6 +96,7 @@
 				<div class="sidebar">
 					<h3><a href="?p=user&id=<?php echo $authorId ?>"><?php echo $authorName; ?></a></h3>
 					<?php echo $authorPowerlevel; ?>
+					<?php echo $authorRankHtml; ?>
 					<p class="title"><?php echo $authorTitle; ?></p>
 					<?php echo $authorAvatarHtml; ?>
 					<p>Beiträge: <?php echo $authorCurrentPostNumber; ?> / <?php echo $authorNumTotalPosts; ?></p>
