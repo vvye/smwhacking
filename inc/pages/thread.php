@@ -3,10 +3,9 @@
 	require_once __DIR__ . '/../config/user.php';
 	require_once __DIR__ . '/../config/misc.php';
 
-	require_once __DIR__ . '/../functions/thread.php';
-	require_once __DIR__ . '/../functions/forum.php';
-	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/database.php';
+	require_once __DIR__ . '/../functions/forums.php';
+	require_once __DIR__ . '/../functions/user.php';
 
 
 	do
@@ -38,7 +37,7 @@
 		}
 		$thread = $threads[0];
 
-		addView($threadId, $database);
+		addViewToThread($threadId, $database);
 
 		$threadName = $thread['name'];
 		$forumId = $thread['forum_id'];
