@@ -16,6 +16,10 @@
 			'powerlevel',
 			'signature',
 			'registration_time',
+			'last_login_time',
+			'bio',
+			'website',
+			'email',
 		    'banned'
 		], [
 			'id' => $userId,
@@ -97,4 +101,48 @@
 		$imageHtml = $rank['has_image'] ? '<img src="img/ranks/' . $rank['id'] . '.png" alt="' . $rank['name'] . '" />' : '';
 		
 		return '<p>' . $rank['name'] . '</p>' . $imageHtml;
+	}
+
+	// TODO refactor?
+	function getProfileRankHtml($userId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$ranks = $database->select('ranks', '*', [
+			'min_posts[<=]' => getNumPostsByUser($userId, $database),
+			'ORDER'         => 'min_posts DESC',
+			'LIMIT'         => '1',
+		]);
+		$rank = $ranks[0];
+
+		// TODO check if file exists?
+		$imageHtml = $rank['has_image'] ? '<img src="img/ranks/' . $rank['id'] . '.png" alt="' . $rank['name'] . '" />' : '';
+
+		return $imageHtml . ' ' . $rank['name'];
+	}
+
+
+	function getLastPost($userId, $database)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+		
+		$posts = $database->select('posts', [
+			'[>]threads' => ['thread' => 'id']
+		], [
+			'posts.id',
+			'posts.post_time',
+		    'threads.id(thread_id)',
+		    'threads.name(thread_name)'
+		], [
+			'author' => $userId,
+		    'ORDER' => 'post_time DESC',
+		    'LIMIT' => 1
+		]);
+
+		if (count($posts) !== 1)
+		{
+			return null;
+		}
+		
+		return $posts[0];
 	}
