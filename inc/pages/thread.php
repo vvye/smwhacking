@@ -90,6 +90,7 @@
 			$authorSignature = (trim($post['author_signature']) !== '')
 				? '<div class="signature">' . nl2br($post['author_signature']) . '</div>'
 				: '';
+			$pageInThread = getPostPageInThread($id, $threadId, $database);
 
 			?>
 			<div class="post" id="post-<?php echo $id; ?>">
@@ -106,7 +107,7 @@
 					<div class="topbar grid">
 						<div class="column">geschrieben am <?php echo $postTime; ?></div>
 						<div class="column">
-							(<a href="?p=thread&id=<?php echo $threadId; ?>#post-<?php echo $id; ?>">Link</a>
+							(<a href="?p=thread&id=<?php echo $threadId; ?>&page=<?php echo $pageInThread; ?>#post-<?php echo $id; ?>">Link</a>
 							| <a
 								href="?p=new-reply&thread=<?php echo $threadId; ?>&quote=<?php echo $id; ?>">zitieren</a>
 							| <a href="?p=edit-reply&id=<?php echo $id; ?>">bearbeiten</a>
