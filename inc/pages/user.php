@@ -122,86 +122,58 @@
 			</div>
 		</section>
 
+		<?php
+
+		$medals = getMedals($id, $database);
+		$numTotalMedals = count($medals);
+
+		$medalsByCategory = [];
+		foreach ($medals as $key => $medal)
+		{
+			$medalsByCategory[$medal['category']][$key] = $medal;
+			$medalsByCategory[$medal['category']] = array_values($medalsByCategory[$medal['category']]);
+		}
+
+		?>
+
 		<section class="user-section">
-			<h3>Medaillen (9)</h3>
+			<h3>Medaillen (<?php echo $numTotalMedals; ?>)</h3>
 			<div class="content medals">
-				<h4>Meilensteine (5)</h4>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<h4>Event-Medaillen (4)</h4>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
-				<div class="medal-showcase">
-					<img src="http://smwhacking.de/forum/images/medals/special18.png" alt="Medaille"/>
-					<div>
-						<h5>Veteran</h5>
-						<p>Seit drei Jahren im Forum aktiv</p>
-						<p>verliehen am 31.12.1969 23:59:59</p>
-					</div>
-				</div>
+				<?php
+
+					foreach ($medalsByCategory as $category => $medals)
+					{
+						$numMedals = count($medals);
+						$categoryName = $medals[0]['category_name'];
+
+						echo '<h4>' . $categoryName . ' (' . $numMedals . ')</h4>';
+
+						foreach ($medals as $medal)
+						{
+							$imageUrl = 'img/medals/' . $category . '/' . $medal['image_filename'];
+							$medalName = $medal['name'];
+							$medalDescription = $medal['description'];
+							$medalAwardTime = date(DEFAULT_DATE_FORMAT, $medal['award_time']);
+
+							?>
+							<div class="medal-showcase">
+								<img src="<?php echo $imageUrl; ?>" alt="<?php echo $medalName; ?>" />
+								<div>
+									<h5><?php echo $medalName; ?></h5>
+									<p><?php echo $medalDescription; ?></p>
+									<p>verliehen am <?php echo $medalAwardTime; ?></p>
+								</div>
+							</div>
+							<?php
+						}
+					}
+
+				?>
+
 			</div>
 		</section>
 
 		<?php
-	} while (false);
+	}
+	while (false);
 

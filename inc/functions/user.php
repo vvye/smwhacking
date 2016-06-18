@@ -8,10 +8,10 @@
 	function getUser($userId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
-		
+
 		$users = $database->select('users', [
 			'id',
-		    'name',
+			'name',
 			'title',
 			'powerlevel',
 			'signature',
@@ -20,10 +20,10 @@
 			'bio',
 			'website',
 			'email',
-		    'banned'
+			'banned'
 		], [
-			'id' => $userId,
-		    'LIMIT' => 1
+			'id'    => $userId,
+			'LIMIT' => 1
 		]);
 
 		if (count($users) !== 1)
@@ -46,7 +46,7 @@
 			'posts.post_time',
 			'posts.content',
 			'threads.id(thread_id)',
-		    'threads.name(thread_name)'
+			'threads.name(thread_name)'
 		], [
 			'author' => $userId,
 			'ORDER'  => 'post_time ASC',
@@ -55,8 +55,8 @@
 
 		return $posts;
 	}
-	
-	
+
+
 	function getNumPostsByUser($userId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
@@ -99,7 +99,7 @@
 
 		// TODO check if file exists?
 		$imageHtml = $rank['has_image'] ? '<img src="img/ranks/' . $rank['id'] . '.png" alt="' . $rank['name'] . '" />' : '';
-		
+
 		return '<p>' . $rank['name'] . '</p>' . $imageHtml;
 	}
 
@@ -122,27 +122,50 @@
 	}
 
 
-	function getLastPost($userId, $database)
+	function getLastPost($userId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
-		
+
 		$posts = $database->select('posts', [
 			'[>]threads' => ['thread' => 'id']
 		], [
 			'posts.id',
 			'posts.post_time',
-		    'threads.id(thread_id)',
-		    'threads.name(thread_name)'
+			'threads.id(thread_id)',
+			'threads.name(thread_name)'
 		], [
 			'author' => $userId,
-		    'ORDER' => 'post_time DESC',
-		    'LIMIT' => 1
+			'ORDER'  => 'post_time DESC',
+			'LIMIT'  => 1
 		]);
 
 		if (count($posts) !== 1)
 		{
 			return null;
 		}
-		
+
 		return $posts[0];
+	}
+
+
+	function getMedals($userId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$medals = $database->select('awarded_medals', [
+			'[>]medals'           => ['medal' => 'id'],
+			'[>]medal_categories' => ['medals.category' => 'id']
+		], [
+			'medals.id',
+			'medals.category',
+			'medal_categories.name(category_name)',
+			'medals.name',
+			'medals.description',
+			'medals.image_filename',
+			'awarded_medals.award_time'
+		], [
+			'awarded_medals.user' => $userId
+		]);
+
+		return $medals;
 	}
