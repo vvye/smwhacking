@@ -130,16 +130,25 @@
 		$medalsByCategory = [];
 		foreach ($medals as $key => $medal)
 		{
-			$medalsByCategory[$medal['category']][$key] = $medal;
-			$medalsByCategory[$medal['category']] = array_values($medalsByCategory[$medal['category']]);
+			$medalsByCategory[$medal['category_name']][$key] = $medal;
+			$medalsByCategory[$medal['category_name']] = array_values($medalsByCategory[$medal['category_name']]);
 		}
 
 		?>
 
 		<section class="user-section">
-			<h3>Medaillen (<?php echo $numTotalMedals; ?>)</h3>
+			<?php if ($numTotalMedals !== 0): ?>
+				<h3>Medaillen (<?php echo $numTotalMedals; ?>)</h3>
+			<?php else: ?>
+				<h3>Medaillen</h3>
+			<?php endif; ?>
 			<div class="content medals">
 				<?php
+
+					if ($numTotalMedals === 0)
+					{
+						echo '<em>Dieser Nutzer hat noch keine Medaillen.</em>';
+					}
 
 					foreach ($medalsByCategory as $category => $medals)
 					{
@@ -150,7 +159,7 @@
 
 						foreach ($medals as $medal)
 						{
-							$imageUrl = 'img/medals/' . $category . '/' . $medal['image_filename'];
+							$imageUrl = 'img/medals/' . $medal['image_filename'];
 							$medalName = $medal['name'];
 							$medalDescription = $medal['description'];
 							$medalAwardTime = date(DEFAULT_DATE_FORMAT, $medal['award_time']);

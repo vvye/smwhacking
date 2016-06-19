@@ -157,7 +157,6 @@
 			'[>]medal_categories' => ['medals.category' => 'id']
 		], [
 			'medals.id',
-			'medals.category',
 			'medal_categories.name(category_name)',
 			'medals.name',
 			'medals.description',
