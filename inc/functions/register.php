@@ -94,7 +94,9 @@
 			http://www.smwhacking.de/?p=finish-registration&id=' . $userId . '&token=' . $activationToken . '
 			 Wenn du dich nicht registrieren wolltest, dann ignoriere diese Mail einfach.';
 
+		// TODO remove this
 		echo $messageBody . '<br />';
+
 		mail($email, 'smwhacking.de - Registrierung', $messageBody);
 	}
 	
