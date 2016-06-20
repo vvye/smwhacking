@@ -1,14 +1,14 @@
 <h2>Einloggen</h2>
 
-<form>
+<form action="" method="post">
 	<table>
 		<tr>
-			<td>Benutzername:</td>
-			<td><input type="text" name="username" /></td>
+			<td>E-Mail-Adresse:</td>
+			<td><label><input type="email" name="email" /></label></td>
 		</tr>
 		<tr>
 			<td>Passwort:</td>
-			<td><input type="password" name="password" /></td>
+			<td><label><input type="password" name="password" /></label></td>
 		</tr>
 		<tr>
 			<td class="final-action" colspan="2"><button class="primary" type="submit">Einloggen</button></td>

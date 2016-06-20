@@ -42,6 +42,7 @@
 			<nav class="user-menu">
 				<ul>
 					<li><a href="?p=login">Einloggen</a></li>
+					<li><a href="?p=register">Registrieren</a></li>
 				</ul>
 			</nav>
 		</header>

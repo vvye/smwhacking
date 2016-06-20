@@ -186,6 +186,11 @@
 			'LIMIT'  => [($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE]
 		]);
 
+		if ($posts === false)
+		{
+			return [];
+		}
+
 		return $posts;
 	}
 
