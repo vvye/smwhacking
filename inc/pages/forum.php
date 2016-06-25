@@ -94,7 +94,7 @@
 						$stickyCssClass = $stickyPrefix = '';
 					}
 
-					$new = 'NEU'; // TODO
+					$new = $thread['last_read_time'] < $thread['last_post_time'] ? 'NEU' : '';
 					$id = $thread['id'];
 					$name = $thread['name'];
 					$numReplies = getNumPostsInThread($id, $database) - 1;
@@ -132,4 +132,5 @@
 		<?php
 
 		renderPagination('?p=forum&id=' . $forumId, $page, $numPages);
-	} while (false);
+	}
+	while (false);

@@ -84,9 +84,12 @@
 	{
 		$database = ($database !== null) ? $database : getDatabase();
 
+		/*
+		// medoo doesn't seem to support the join syntax on the threads_read_table
 		$threads = $database->select('threads', [
-			'[>]posts' => ['id' => 'thread'],
-			'[>]users' => ['posts.author' => 'id']
+			'[>]posts'        => ['id' => 'thread'],
+			'[>]users'        => ['posts.author' => 'id'],
+			'[>]threads_read' => ['id' => 'thread', 'threads_read.user' => 2],
 		], [
 			'threads.id',
 			'threads.name',
@@ -95,18 +98,47 @@
 			'threads.views',
 			'threads.closed',
 			'threads.sticky',
-			'threads.id',
 			'users.id(author_id)',
-			'users.name(author_name)'
+			'users.name(author_name)',
+			'threads_read.last_read_time'
 		], [
-			'threads.forum' => $forumId,
-			'GROUP'         => 'threads.id',
-			'ORDER'         => [
+			'AND'   => [
+				'threads.forum'     => $forumId
+			],
+			'GROUP' => 'threads.id',
+			'ORDER' => [
 				'threads.sticky DESC',
 				'threads.last_post_time DESC'
 			],
-			'LIMIT'         => [($page - 1) * THREADS_PER_PAGE, THREADS_PER_PAGE]
+			'LIMIT' => [($page - 1) * THREADS_PER_PAGE, THREADS_PER_PAGE]
 		]);
+		*/
+
+		$readCondition = isset($_SESSION['userId'])
+			? 'threads_read.user = ' . $database->quote($_SESSION['userId'])
+			: '1';
+
+		$threads = $database->query('
+			SELECT threads.id,
+				threads.name,
+				threads.creation_time,
+				threads.last_post_time,
+				threads.views,
+				threads.closed,
+				threads.sticky,
+				users.id AS author_id,
+				users.name AS author_name,
+				threads_read.last_read_time
+			FROM threads
+			LEFT JOIN posts ON threads.id = posts.thread
+			LEFT JOIN users ON posts.author = users.id
+			LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . $readCondition . '
+			WHERE threads.forum = ' . $database->quote($forumId) . '
+			GROUP BY threads.id
+			ORDER BY threads.sticky DESC,
+			threads.last_post_time DESC
+			LIMIT 0,50
+		');
 
 		return $threads;
 	}

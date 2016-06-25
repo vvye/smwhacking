@@ -38,7 +38,7 @@
 			return false;
 		}
 
-		$_SESSION['user_id'] = $user['id'];
+		$_SESSION['userId'] = $user['id'];
 		$_SESSION['username'] = $user['name'];
 		$_SESSION['loggedIn'] = true;
 		$_SESSION['powerlevel'] = $user['powerlevel'];
