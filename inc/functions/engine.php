@@ -2,6 +2,7 @@
 
 	require_once __DIR__ . '/../config/engine.php';
 
+	require_once __DIR__ . '/session.php';
 	require_once __DIR__ . '/misc.php';
 
 
@@ -70,7 +71,37 @@
 		{
 			return in_array($currentPageName, $item['relatedPages']);
 		}
+
 		return false;
+	}
+
+
+	function renderUserMenu()
+	{
+		if (!isLoggedIn())
+		{
+			?>
+			<nav class="user-menu">
+				<ul>
+					<li><a href="?p=login">Einloggen</a></li>
+					<li><a href="?p=register">Registrieren</a></li>
+				</ul>
+			</nav>
+			<?php
+		}
+		else
+		{
+			?>
+			<nav class="user-menu">
+				<ul>
+					<li>Eingeloggt als <em><?php echo $_SESSION['username']; ?></em>.</li>
+					<li><a href="?p=pm">Private Nachrichten (0)</a></li>
+					<li><a href="?p=usercp">Einstellungen</a></li>
+					<li><a href="logout.php">Ausloggen</a></li>
+				</ul>
+			</nav>
+			<?php
+		}
 	}
 
 

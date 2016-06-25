@@ -81,7 +81,7 @@
 
 		$userId = $database->insert('users', [
 			'id'               => null,
-			'email'            => htmlspecialchars($email),
+			'email'            => strtolower(htmlspecialchars($email)),
 			'name'             => htmlspecialchars($username),
 			'password'         => $passwordHash,
 			'legacy_login'     => 0,

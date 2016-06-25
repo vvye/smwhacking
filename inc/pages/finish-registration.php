@@ -3,8 +3,7 @@
 	require_once __DIR__ . '/../functions/database.php';
 	require_once __DIR__ . '/../functions/session.php';
 	require_once __DIR__ . '/../functions/misc.php';
-
-
+	
 
 	do
 	{

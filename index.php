@@ -6,6 +6,8 @@
 	*/
 	
 	require_once 'inc/functions/engine.php';
+	
+	session_start();
 
 ?>
 <!doctype html>
@@ -37,14 +39,9 @@
 			<?php
 
 				renderMenu();
+				renderUserMenu();
 
 			?>
-			<nav class="user-menu">
-				<ul>
-					<li><a href="?p=login">Einloggen</a></li>
-					<li><a href="?p=register">Registrieren</a></li>
-				</ul>
-			</nav>
 		</header>
 
 		<div class="main">

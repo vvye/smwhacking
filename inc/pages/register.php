@@ -7,18 +7,16 @@
 
 	if (isset($_POST['submit']))
 	{
-		do
+		$database = getDatabase();
+
+		$errorMessages = validateRegistrationForm($database);
+
+		if (!empty($errorMessages))
 		{
-			$database = getDatabase();
-			
-			$errorMessages = validateRegistrationForm($database);
-
-			if (!empty($errorMessages))
-			{
-				renderErrorMessage(join('<br />', $errorMessages));
-				break;
-			}
-
+			renderErrorMessage(join('<br />', $errorMessages));
+		}
+		else
+		{
 			$email = htmlspecialchars(trim(getFieldValue('email')));
 			$username = getFieldValue('username');
 			$passwordHash = password_hash(getFieldValue('password'), PASSWORD_DEFAULT);
@@ -26,10 +24,7 @@
 			startRegistration($email, $username, $passwordHash, $database);
 
 			echo '<div class="message">Alles klar! Wir haben dir eine Mail geschickt. Klicke auf den Link in der Mail, um die Registrierung abzuschließen.</div>';
-
 		}
-		while (false);
-
 	}
 
 
