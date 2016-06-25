@@ -100,8 +100,16 @@ nav a:hover {
 
 .user-menu {
     position: static;
-    background-color: #7CB6E9;
+    background-color: #ABD7FF;
     box-shadow: 0 -0.5rem 0.5rem 0.5rem black;
+}
+
+.user-menu a {
+    color: #0F477B;
+}
+
+.user-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 .main {

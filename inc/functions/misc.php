@@ -19,6 +19,12 @@
 	}
 
 
+	function renderMessage($msg)
+	{
+		echo '<div class="message">' . $msg . '</div>';
+	}
+
+
 	function renderSuccessMessage($msg)
 	{
 		echo '<div class="message success">' . $msg . '</div>';

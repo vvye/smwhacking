@@ -94,9 +94,16 @@
 			?>
 			<nav class="user-menu">
 				<ul>
-					<li>Eingeloggt als <em><?php echo $_SESSION['username']; ?></em>.</li>
+					<li>
+						<a href="?p=user&id=<?php echo $_SESSION['user_id']; ?>">
+							Eingeloggt als <strong><?php echo $_SESSION['username']; ?></strong>
+						</a>
+					</li>
 					<li><a href="?p=pm">Private Nachrichten (0)</a></li>
 					<li><a href="?p=usercp">Einstellungen</a></li>
+					<?php if (isAdmin()): ?>
+						<li><a href="?p=admin">Administration</a></li>
+					<?php endif; ?>
 					<li><a href="?p=logout">Ausloggen</a></li>
 				</ul>
 			</nav>
