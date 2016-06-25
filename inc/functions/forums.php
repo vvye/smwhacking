@@ -302,3 +302,25 @@
 		}
 		*/
 	}
+
+
+	function markForumAsRead($forumId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$threadIds = $database->select('threads', 'id', [
+			'forum' => $forumId
+		]);
+
+		$userId = $database->quote($_SESSION['userId']);
+		$lastReadTime = time();
+
+		$data = [];
+		foreach ($threadIds as $threadId)
+		{
+			$data[] = '(' . $userId . ', ' . $threadId . ', ' . $lastReadTime . ')';
+		}
+		$values = join(', ', $data);
+
+		$database->query('REPLACE INTO threads_read(user, thread, last_read_time) VALUES ' . $values);
+	}

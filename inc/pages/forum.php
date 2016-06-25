@@ -28,6 +28,12 @@
 		}
 		$forum = $forums[0];
 
+		if (isset($_GET['mark-read']))
+		{
+			markForumAsRead($forumId, $database);
+			renderSuccessMessage('Dieses Forum wurde als gelesen markiert.');
+		}
+
 		$forumName = $forum['name'];
 
 		?>
@@ -38,7 +44,8 @@
 				<a href="?p=forums">Foren-Übersicht</a> &rarr; <strong><?php echo $forumName; ?></strong>
 			</p>
 			<form class="column">
-				<button class="pseudo">Forum als gelesen markieren</button>
+				<a class="pseudo button" href="?p=forum&id=<?php echo $forumId; ?>&mark-read">Forum als gelesen
+					markieren</a>
 				<button class="primary">Neues Thema erstellen</button>
 			</form>
 		</div>
