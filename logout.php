@@ -4,4 +4,4 @@
 
 	doLogout();
 
-	header('Location: ?p=home');
+	header('Location: /?p=home');
