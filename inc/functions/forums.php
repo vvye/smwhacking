@@ -267,6 +267,24 @@
 	}
 
 
+	function updateThreadLastReadTime($threadId, $lastReadTime, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		if (isset($_SESSION['userId']))
+		{
+			// medoo doesn't support REPLACE INTO
+			$userId = $database->quote($_SESSION['userId']);
+			$threadId = $database->quote($threadId);
+			$lastReadTime = $database->quote($lastReadTime);
+			$database->query('
+				REPLACE INTO threads_read(user, thread, last_read_time)
+				VALUES (' . $userId . ', ' . $threadId . ', ' . $lastReadTime . ')
+			');
+		}
+	}
+
+
 	function addViewToThread($threadId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
