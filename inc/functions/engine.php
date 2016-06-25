@@ -97,7 +97,7 @@
 					<li>Eingeloggt als <em><?php echo $_SESSION['username']; ?></em>.</li>
 					<li><a href="?p=pm">Private Nachrichten (0)</a></li>
 					<li><a href="?p=usercp">Einstellungen</a></li>
-					<li><a href="logout.php">Ausloggen</a></li>
+					<li><a href="?p=logout">Ausloggen</a></li>
 				</ul>
 			</nav>
 			<?php
