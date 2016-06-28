@@ -6,6 +6,33 @@
 	require_once __DIR__ . '/database.php';
 
 
+	function getForumCategories($database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$categories = $database->select('forum_categories', [
+			'id',
+			'name'
+		], [
+			'ORDER' => 'sort_order ASC'
+		]);
+
+		return $categories;
+	}
+
+
+	function getForumsByCategory($categoryId, $database = null)
+	{
+		$database = ($database !== null) ? $database : getDatabase();
+
+		$forums = $database->select('forums', '*', [
+			'category' => $categoryId
+		]);
+
+		return $forums;
+	}
+
+
 	function getNumThreadsInForum($forumId, $database = null)
 	{
 		$database = ($database !== null) ? $database : getDatabase();
@@ -306,6 +333,13 @@
 
 	function markForumAsRead($forumId, $database = null)
 	{
+		if (!isLoggedIn())
+		{
+			renderMessage('Du kannst Foren nur als gelesen markieren, wenn du eingeloggt bist.');
+
+			return;
+		}
+
 		$database = ($database !== null) ? $database : getDatabase();
 
 		$threadIds = $database->select('threads', 'id', [
@@ -322,5 +356,13 @@
 		}
 		$values = join(', ', $data);
 
-		$database->query('REPLACE INTO threads_read(user, thread, last_read_time) VALUES ' . $values);
+		try
+		{
+			$database->query('REPLACE INTO threads_read(user, thread, last_read_time) VALUES ' . $values);
+			renderSuccessMessage('Dieses Forum wurde als gelesen markiert.');
+		}
+		catch (Exception $e)
+		{
+			renderErrorMessage('Das Markieren hat nicht geklappt.');
+		}
 	}

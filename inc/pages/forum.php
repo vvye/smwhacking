@@ -31,7 +31,6 @@
 		if (isset($_GET['mark-read']))
 		{
 			markForumAsRead($forumId, $database);
-			renderSuccessMessage('Dieses Forum wurde als gelesen markiert.');
 		}
 
 		$forumName = $forum['name'];
@@ -43,11 +42,13 @@
 			<p class="column breadcrumbs">
 				<a href="?p=forums">Foren-Übersicht</a> &rarr; <strong><?php echo $forumName; ?></strong>
 			</p>
-			<form class="column">
-				<a class="pseudo button" href="?p=forum&id=<?php echo $forumId; ?>&mark-read">Forum als gelesen
-					markieren</a>
-				<button class="primary">Neues Thema erstellen</button>
-			</form>
+			<?php if (isLoggedIn()): ?>
+				<form class="column">
+					<a class="pseudo button" href="?p=forum&id=<?php echo $forumId; ?>&mark-read">Forum als gelesen
+						markieren</a>
+					<button class="primary">Neues Thema erstellen</button>
+				</form>
+			<?php endif; ?>
 		</div>
 
 		<?php

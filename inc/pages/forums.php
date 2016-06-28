@@ -8,12 +8,7 @@
 
 	$database = getDatabase();
 
-	$categories = $database->select('forum_categories', [
-		'id',
-		'name'
-	], [
-		'ORDER' => 'sort_order ASC'
-	]);
+	$categories = getForumCategories($database);
 
 	foreach ($categories as $category)
 	{
@@ -31,9 +26,7 @@
 			<tbody>
 			<?php
 
-				$forums = $database->select('forums', '*', [
-					'category' => $category['id']
-				]);
+				$forums = getForumsByCategory($category['id'], $database);
 
 				foreach ($forums as $forum)
 				{
