@@ -84,6 +84,7 @@ button, .button, input[type="button"], input[type="submit"] {
 
 button.pseudo, .button.pseudo, input[type="button"].pseudo, input[type="submit"].pseudo {
     background: none;
+    border: 1px solid #AAAAAA;
 }
 
 button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover {

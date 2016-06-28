@@ -95,7 +95,7 @@
 			<nav class="user-menu">
 				<ul>
 					<li>
-						<a href="?p=user&id=<?php echo $_SESSION['user_id']; ?>">
+						<a href="?p=user&id=<?php echo $_SESSION['userId']; ?>">
 							Eingeloggt als <strong><?php echo $_SESSION['username']; ?></strong>
 						</a>
 					</li>
