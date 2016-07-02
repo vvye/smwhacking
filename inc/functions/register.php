@@ -1,48 +1,47 @@
 <?php
-
+	
 	require_once __DIR__ . '/../config/database.php';
 
 
-	function validateRegistrationForm($database = null)
+	function validateRegistrationForm()
 	{
-		global $database;
 		$errorMessages = [];
 
 		if (trim(getFieldValue('email')) === '')
 		{
-			$errorMessages[] = 'Gib eine E-Mail-Adresse ein.';
+			$errorMessages[] = MSG_EMAIL_MISSING;
 		}
 		if (getFieldValue('email') !== getFieldValue('email-confirm'))
 		{
-			$errorMessages[] = 'Die E-Mail-Adressen stimmen nicht überein.';
+			$errorMessages[] = MSG_EMAILS_DONT_MATCH;
 		}
 		if (!preg_match('/^[a-zA-Z0-9 _-]{3,30}$/', getFieldValue('username')))
 		{
-			$errorMessages[] = 'Der Nutzername ist nicht erlaubt.';
+			$errorMessages[] = MSG_INVALID_USERNAME;
 		}
 		if (strlen(getFieldValue('password')) < 8)
 		{
-			$errorMessages[] = 'Das Passwort ist zu kurz.';
+			$errorMessages[] = MSG_PASSWORD_TOO_SHORT;
 		}
 		if (strtolower(getFieldValue('password')) === 'penis')
 		{
-			$errorMessages[] = 'Komm erst mal in die Pubertät.';
+			$errorMessages[] = MSG_PASSWORD_PENIS;
 		}
 		if (getFieldValue('password') !== getFieldValue('password-confirm'))
 		{
-			$errorMessages[] = 'Die beiden Passwörter stimmen nicht überein.';
+			$errorMessages[] = MSG_PASSWORDS_DONT_MATCH;
 		}
 		if (str_ireplace(' ', '', strtolower(getFieldValue('security-answer'))) !== 'supermarioworld')
 		{
-			$errorMessages[] = 'Die Antwort auf die Sicherheitsfrage stimmt nicht.';
+			$errorMessages[] = MSG_WRONG_SECURITY_ANSWER;
 		}
 		if (emailExists(getFieldValue('email')))
 		{
-			$errorMessages[] = 'Diese E-Mail-Adresse ist schon registriert.';
+			$errorMessages[] = MSG_EMAIL_TAKEN;
 		}
 		if (usernameExists(getFieldValue('username')))
 		{
-			$errorMessages[] = 'Dieser Nutzername ist schon registriert.';
+			$errorMessages[] = MSG_USERNAME_TAKEN;
 		}
 
 		return $errorMessages;

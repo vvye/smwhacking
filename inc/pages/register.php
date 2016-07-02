@@ -9,7 +9,7 @@
 	{
 		if (isLoggedIn())
 		{
-			renderMessage('Du bist schon registriert.');
+			renderMessage(MSG_ALREADY_REGISTERED);
 			break;
 		}
 
@@ -17,7 +17,7 @@
 		{
 			$database = getDatabase();
 
-			$errorMessages = validateRegistrationForm($database);
+			$errorMessages = validateRegistrationForm();
 
 			if (!empty($errorMessages))
 			{
@@ -30,7 +30,7 @@
 
 			startRegistration($email, $username, $passwordHash);
 
-			echo '<div class="message">Alles klar! Wir haben dir eine Mail geschickt. Klicke auf den Link in der Mail, um die Registrierung abzuschließen.</div>';
+			renderSuccessMessage(MSG_REGISTER_SUCCESS);
 		}
 
 		renderTemplate('register_form', [

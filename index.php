@@ -5,6 +5,8 @@
 		WYE, 2016
 	*/
 	
+	require_once 'inc/lang/de/strings.php';
+	
 	require_once 'inc/functions/engine.php';
 	require_once 'inc/functions/template.php';
 	

@@ -6,7 +6,7 @@
 	{
 		if (isLoggedIn())
 		{
-			renderMessage('Du bist schon eingeloggt.');
+			renderMessage(MSG_ALREADY_LOGGED_IN);
 			break;
 		}
 
@@ -16,8 +16,7 @@
 
 			if (!$loginSuccess)
 			{
-				renderErrorMessage('Das Einloggen hat nicht geklappt. Stimmen E-Mail-Adresse und Passwort?<br />'
-					. 'Wenn das Problem weiterhin auftritt, wende dich an info@smwhacking.de.');
+				renderErrorMessage(MSG_LOGIN_FAILURE);
 
 			}
 			else

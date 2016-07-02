@@ -112,7 +112,7 @@
 	{
 		if ($lastPost === null)
 		{
-			$lastPostCellContent = '<em>Keiner</em>';
+			$lastPostCellContent = '<em>' . MSG_NONE . '</em>';
 		}
 		else
 		{
@@ -185,7 +185,7 @@
 			GROUP BY threads.id
 			ORDER BY threads.sticky DESC,
 			threads.last_post_time DESC
-			LIMIT 0,50
+			LIMIT ' . $database->quote(($page - 1) * THREADS_PER_PAGE) . ', ' . POSTS_PER_PAGE . '
 		');
 
 		return $threads;
@@ -375,7 +375,7 @@
 
 		if (!isLoggedIn())
 		{
-			renderMessage('Du kannst Foren nur als gelesen markieren, wenn du eingeloggt bist.');
+			renderMessage(MSG_MARK_READ_NOT_LOGGED_IN);
 
 			return;
 		}
@@ -393,11 +393,11 @@
 				REPLACE INTO forums_read(user, forum, last_read_time)
 				VALUES (' . $database->quote($_SESSION['userId']) . ', ' . $database->quote($forumId) . ', ' . $database->quote(time()) . ')
 			');
-			renderSuccessMessage('Dieses Forum wurde als gelesen markiert.');
+			renderSuccessMessage(MSG_MARK_READ_SUCCESS);
 		}
 		catch (Exception $e)
 		{
-			renderErrorMessage('Das Markieren hat nicht geklappt.');
+			renderErrorMessage(MSG_MARK_READ_ERROR);
 		}
 	}
 
@@ -406,7 +406,7 @@
 	{
 		if (!isLoggedIn())
 		{
-			renderMessage('Du kannst Foren nur als gelesen markieren, wenn du eingeloggt bist.');
+			renderMessage(MSG_MARK_READ_NOT_LOGGED_IN);
 
 			return;
 		}
@@ -429,10 +429,10 @@
 				'id' => $_SESSION['userId']
 			]);
 
-			renderSuccessMessage('Alle Foren wurden als gelesen markiert.');
+			renderSuccessMessage(MSG_MARK_READ_SUCCESS);
 		}
 		catch (Exception $e)
 		{
-			renderErrorMessage('Das Markieren hat nicht geklappt.');
+			renderErrorMessage(MSG_MARK_READ_ERROR);
 		}
 	}

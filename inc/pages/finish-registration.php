@@ -1,5 +1,5 @@
 <?php
-
+	
 	require_once __DIR__ . '/../functions/database.php';
 	require_once __DIR__ . '/../functions/session.php';
 	require_once __DIR__ . '/../functions/misc.php';
@@ -9,9 +9,7 @@
 	{
 		if (isLoggedIn() || !isset($_GET['id']) || !isset($_GET['token']))
 		{
-			renderErrorMessage('Das Abschließen der Registrierung hat nicht geklappt. '
-				. 'Hast du diese Seite wirklich aus einer E-Mail heraus aufgerufen?<br />'
-				. 'Wenn du Probleme beim Registrieren hast, wende dich an info@smwhacking.de.');
+			renderErrorMessage(MSG_FINISH_REGISTRATION_GENERAL_FAILURE);
 			break;
 		}
 
@@ -25,9 +23,7 @@
 		]);
 		if ($numUsersToRegister !== 1)
 		{
-			renderErrorMessage('Das Abschließen der Registrierung hat nicht geklappt &mdash; '
-				. 'Entweder stimmt der Link nicht, oder der Nutzer ist schon registriert.<br />'
-				. 'Wenn du Probleme beim Registrieren hast, wende dich an info@smwhacking.de.');
+			renderErrorMessage(MSG_FINISH_REGISTRATION_NO_USER);
 			break;
 		}
 		
@@ -36,9 +32,7 @@
 			'id' => $_GET['id']
 		]);
 		
-		renderSuccessMessage('Alles klar, die Registrierung ist abgeschlossen!<br />'
-		. 'Du kannst dich jetzt mit deiner E-Mail-Adresse und deinem Passwort <a href="?p=login">einloggen</a>.');
-
+		renderSuccessMessage(MSG_FINISH_REGISTRATION_SUCCESS);
 
 	}
 	while (false);

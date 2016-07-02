@@ -8,7 +8,7 @@
 	{
 		if (!isset($_GET['id']) || !is_int($_GET['id'] * 1))
 		{
-			renderErrorMessage('Diesen Nutzer gibt es nicht.');
+			renderErrorMessage(MSG_USER_DOESNT_EXIST);
 			break;
 		}
 		$userId = (int)$_GET['id'];
@@ -17,14 +17,14 @@
 
 		if ($user === null)
 		{
-			renderErrorMessage('Diesen Nutzer gibt es nicht.');
+			renderErrorMessage(MSG_USER_DOESNT_EXIST);
 			break;
 		}
 
 		$lastPost = getLastPost($userId);
 		if ($lastPost === null)
 		{
-			$lastPostHtml = '<em>keiner</em>';
+			$lastPostHtml = '<em>' . MSG_NONE . '</em>';
 		}
 		else
 		{

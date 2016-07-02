@@ -1,13 +1,13 @@
 <?php
 
 	require_once __DIR__ . '/misc.php';
-	
-	
-	function renderTemplate($filename, $data, $lang = 'de')
+
+
+	function renderTemplate($templateName, $data, $lang = 'de')
 	{
-		if (file_exists($fullFilePath = __DIR__ . '/../tmpl/' . $lang . '/' . sanitize($filename) . '.php'))
+		if (file_exists($filePath = __DIR__ . '/../lang/' . $lang . '/tmpl/' . sanitize($templateName) . '.php'))
 		{
 			extract($data);
-			include $fullFilePath;
+			include $filePath;
 		}
 	}

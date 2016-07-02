@@ -1,6 +1,4 @@
-<?php if ($top): ?>
-	<h2><?= $forumName ?></h2>
-<?php endif; ?>
+<h2><?= $forumName ?></h2>
 
 <div class="grid">
 	<p class="column breadcrumbs">

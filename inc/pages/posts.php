@@ -10,7 +10,7 @@
 	{
 		if (!isset($_GET['user']) || !is_int($_GET['user'] * 1))
 		{
-			renderErrorMessage('Diesen Nutzer gibt es nicht.');
+			renderErrorMessage(MSG_USER_DOESNT_EXIST);
 			break;
 		}
 		$userId = (int)$_GET['user'];
@@ -19,7 +19,7 @@
 
 		if ($user === null)
 		{
-			renderErrorMessage('Diesen Nutzer gibt es nicht.');
+			renderErrorMessage(MSG_USER_DOESNT_EXIST);
 			break;
 		}
 

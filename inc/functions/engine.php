@@ -45,17 +45,21 @@
 			{
 				$link = '?p=' . $item['page'];
 			}
-			$cssClass = (isMenuItemActive($item)) ? ' class="active"' : '';
+			$active = isMenuItemActive($item);
 		}
 		else
 		{
 			$link = isset($item['link']) ? $item['link'] : '';
-			$cssClass = '';
+			$active = false;
 		}
 
 		$caption = isset($item['caption']) ? $item['caption'] : '';
 
-		echo '<li' . $cssClass . '><a href="' . $link . '">' . $caption . '</a></li>';
+		renderTemplate('menu_item', [
+			'active' => $active,
+			'link' => $link,
+			'caption' => $caption
+		]);
 	}
 
 
@@ -78,37 +82,12 @@
 
 	function renderUserMenu()
 	{
-		if (!isLoggedIn())
-		{
-			?>
-			<nav class="user-menu">
-				<ul>
-					<li><a href="?p=login">Einloggen</a></li>
-					<li><a href="?p=register">Registrieren</a></li>
-				</ul>
-			</nav>
-			<?php
-		}
-		else
-		{
-			?>
-			<nav class="user-menu">
-				<ul>
-					<li>
-						<a href="?p=user&id=<?php echo $_SESSION['userId']; ?>">
-							Eingeloggt als <strong><?php echo $_SESSION['username']; ?></strong>
-						</a>
-					</li>
-					<li><a href="?p=pm">Private Nachrichten (0)</a></li>
-					<li><a href="?p=usercp">Einstellungen</a></li>
-					<?php if (isAdmin()): ?>
-						<li><a href="?p=admin">Administration</a></li>
-					<?php endif; ?>
-					<li><a href="?p=logout">Ausloggen</a></li>
-				</ul>
-			</nav>
-			<?php
-		}
+		renderTemplate('user_menu', [
+			'loggedIn' => isLoggedIn(),
+			'admin' => isAdmin(),
+			'userId' => $_SESSION['userId'] ?? '',
+			'username' => $_SESSION['username'] ?? ''
+		]);
 	}
 
 
