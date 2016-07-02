@@ -1,7 +1,6 @@
 <?php
 
 	require_once __DIR__ . '/../functions/forums.php';
-	require_once __DIR__ . '/../functions/database.php';
 	require_once __DIR__ . '/../functions/pagination.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
@@ -15,11 +14,7 @@
 		}
 		$forumId = $_GET['id'];
 
-		$database = getDatabase();
-
-		$forums = $database->select('forums', '*', [
-			'id' => $forumId
-		]);
+		$forums = getForum($forumId);
 
 		if (count($forums) !== 1)
 		{
@@ -35,23 +30,10 @@
 
 		$forumName = $forum['name'];
 
-		?>
-		<h2><?php echo $forumName; ?></h2>
-
-		<div class="grid">
-			<p class="column breadcrumbs">
-				<a href="?p=forums">Foren-Übersicht</a> &rarr; <strong><?php echo $forumName; ?></strong>
-			</p>
-			<?php if (isLoggedIn()): ?>
-				<form class="column">
-					<a class="pseudo button" href="?p=forum&id=<?php echo $forumId; ?>&mark-read">Forum als gelesen
-						markieren</a>
-					<button class="primary">Neues Thema erstellen</button>
-				</form>
-			<?php endif; ?>
-		</div>
-
-		<?php
+		renderTemplate('forum_top', [
+			'forumName' => $forumName,
+			'forumId'   => $forumId
+		]);
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
@@ -64,78 +46,30 @@
 
 		renderPagination('?p=forum&id=' . $forumId, $page, $numPages);
 
+		$threadsForTemplate = [];
+		foreach ($threads as $index => $thread)
+		{
+			$threadsForTemplate[] = [
+				'sticky'              => $thread['sticky'],
+				'lastSticky'          => $thread['sticky'] && $index === $numStickies,
+				'new'                 => isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'] ? 'NEU' : '',
+				'id'                  => $thread['id'],
+				'name'                => $thread['name'],
+				'numReplies'          => getNumPostsInThread($thread['id']) - 1,
+				'numViews'            => $thread['views'],
+				'lastPostCellContent' => getLastPostCellContent(getLastPostInThread($thread['id'])),
+				'authorId'            => $thread['author_id'],
+				'authorName'          => $thread['author_name'],
+				'creationTime'        => date(DEFAULT_DATE_FORMAT, $thread['creation_time']),
+			];
+		}
+		
+		renderTemplate('thread_list', [
+			'numTotalThreads' => $numTotalThreads,
+			'threads'         => $threadsForTemplate
+		]);
+
 		?>
-
-		<table class="forum thread-list">
-			<thead>
-			<tr>
-				<th class="thread" colspan="2">Thema</th>
-				<th class="num-replies">Antworten</th>
-				<th class="num-views">Zugriffe</th>
-				<th class="last-post">letzter Beitrag</th>
-			</tr>
-			</thead>
-			<tbody>
-			<?php
-
-				if ($numTotalThreads === 0)
-				{
-					?>
-					<tr>
-						<td colspan="5" style="text-align: center;">
-							<em>In diesem Forum gibt es noch keine Themen.</em>
-						</td>
-					</tr>
-					<?php
-				}
-
-				$i = 0;
-				foreach ($threads as $thread)
-				{
-					if ($thread['sticky'])
-					{
-						$stickyCssClass = (++$i === $numStickies) ? ' class="last sticky"' : ' class="sticky"';
-						$stickyPrefix = 'Wichtig: ';
-					}
-					else
-					{
-						$stickyCssClass = $stickyPrefix = '';
-					}
-
-					$new = isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'] ? 'NEU' : '';
-					$id = $thread['id'];
-					$name = $thread['name'];
-					$numReplies = getNumPostsInThread($id) - 1;
-					$numViews = $thread['views'];
-					$lastPostCellContent = getLastPostCellContent(getLastPostInThread($id));
-					$authorId = $thread['author_id'];
-					$authorName = $thread['author_name'];
-					$creationTime = date(DEFAULT_DATE_FORMAT, $thread['creation_time']);
-
-					?>
-
-					<tr<?php echo $stickyCssClass; ?>>
-						<td class="new"><?php echo $new; ?></td>
-						<td>
-							<h3><?php echo $stickyPrefix; ?>
-								<a href="?p=thread&id=<?php echo $id; ?>"><?php echo $name; ?></a>
-							</h3>
-							<p>erstellt von <a href="?p=user&id=<?php echo $authorId; ?>"><?php echo $authorName; ?></a>
-								am <?php echo $creationTime; ?></p>
-						</td>
-						<td class="num-replies"><?php echo $numReplies; ?></td>
-						<td class="num-views"><?php echo $numViews; ?></td>
-						<td class="last-post"><?php echo $lastPostCellContent; ?></td>
-					</tr>
-
-
-					<?php
-				}
-
-			?>
-
-			</tbody>
-		</table>
 
 		<?php
 

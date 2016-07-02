@@ -2,9 +2,15 @@
 
 	function sanitize($str)
 	{
-		return preg_replace('/[^A-Za-z0-9- ]/', '', $str);
+		return preg_replace('/[^A-Za-z0-9-_ ]/', '', $str);
 	}
 
+
+	function obfuscateEmail($email)
+	{
+		return str_ireplace(['@', '.'], [' <i class="fa fa-at"></i> ', ' <i class="fa fa-circle"></i> '], $email);
+	}
+	
 
 	function makeBetween(&$var, $min, $max)
 	{
@@ -29,7 +35,7 @@
 	{
 		echo '<div class="message success">' . $msg . '</div>';
 	}
-	
+
 
 	function renderErrorMessage($msg)
 	{

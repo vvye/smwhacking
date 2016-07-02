@@ -46,6 +46,16 @@
 	}
 
 
+	function getForum($forumId)
+	{
+		global $database;
+
+		return $database->select('forums', '*', [
+			'id' => $forumId
+		]);
+	}
+
+
 	function getNumThreadsInForum($forumId)
 	{
 		global $database;
@@ -179,6 +189,23 @@
 		');
 
 		return $threads;
+	}
+
+
+	function getThread($threadId)
+	{
+		global $database;
+
+		return $database->select('threads', [
+			'[>]forums' => ['forum' => 'id']
+		], [
+			'threads.id',
+			'threads.name',
+			'forums.id(forum_id)',
+			'forums.name(forum_name)'
+		], [
+			'threads.id' => $threadId
+		]);
 	}
 
 
@@ -352,7 +379,7 @@
 
 			return;
 		}
-		
+
 		$database->delete('threads_read', [
 			'AND' => [
 				'forum' => $forumId,
