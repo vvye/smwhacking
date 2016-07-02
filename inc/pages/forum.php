@@ -30,7 +30,7 @@
 
 		if (isset($_GET['mark-read']))
 		{
-			markForumAsRead($forumId, $database);
+			markForumAsRead($forumId);
 		}
 
 		$forumName = $forum['name'];
@@ -55,9 +55,9 @@
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
-		$threads = getThreadsInForum($forumId, $page, $database);
-		$numTotalThreads = getNumThreadsInForum($forumId, $database);
-		$numStickies = getNumStickiesInForum($forumId, $database);
+		$threads = getThreadsInForum($forumId, $page);
+		$numTotalThreads = getNumThreadsInForum($forumId);
+		$numStickies = getNumStickiesInForum($forumId);
 
 		$numPages = (int)ceil($numTotalThreads / THREADS_PER_PAGE);
 		makeBetween($page, 1, $numPages);
@@ -105,9 +105,9 @@
 					$new = isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'] ? 'NEU' : '';
 					$id = $thread['id'];
 					$name = $thread['name'];
-					$numReplies = getNumPostsInThread($id, $database) - 1;
+					$numReplies = getNumPostsInThread($id) - 1;
 					$numViews = $thread['views'];
-					$lastPostCellContent = getLastPostCellContent(getLastPostInThread($id, $database));
+					$lastPostCellContent = getLastPostCellContent(getLastPostInThread($id));
 					$authorId = $thread['author_id'];
 					$authorName = $thread['author_name'];
 					$creationTime = date(DEFAULT_DATE_FORMAT, $thread['creation_time']);

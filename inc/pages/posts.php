@@ -18,7 +18,7 @@
 		}
 		$userId = (int)$_GET['user'];
 
-		$user = getUser($userId, $database);
+		$user = getUser($userId);
 
 		if ($user === null)
 		{
@@ -28,7 +28,7 @@
 
 		echo '<h2>Beiträge von ' . $user['name'] . '</h2>';
 
-		$numPosts = getNumPostsByUser($userId, $database);
+		$numPosts = getNumPostsByUser($userId);
 
 		if ($numPosts === 0)
 		{
@@ -40,7 +40,7 @@
 		makeBetween($page, 1, $numPages);
 		renderPagination('?p=posts&user=' . $userId, $page, $numPages);
 
-		$posts = getPostsByUser($userId, $page, $database);
+		$posts = getPostsByUser($userId, $page);
 
 		foreach ($posts as $post)
 		{
@@ -56,15 +56,15 @@
 			$authorRankHtml = getRankHtml($authorId);
 			$authorAvatarHtml = getAvatarHtml($authorId);
 			$authorRegistrationTime = date(DEFAULT_DATE_FORMAT, $user['registration_time']);
-			$authorCurrentPostNumber = getCurrentPostNumber($authorId, $id, $database);
-			$authorNumTotalPosts = getNumPostsByUser($authorId, $database);
+			$authorCurrentPostNumber = getCurrentPostNumber($authorId, $id);
+			$authorNumTotalPosts = getNumPostsByUser($authorId);
 
 			$postTime = date(DEFAULT_DATE_FORMAT, $post['post_time']);
 			$content = nl2br($post['content']);
 			$authorSignature = (trim($user['signature']) !== '')
 				? '<div class="signature">' . nl2br($user['signature']) . '</div>'
 				: '';
-			$pageInThread = getPostPageInThread($id, $threadId, $database);
+			$pageInThread = getPostPageInThread($id, $threadId);
 
 			?>
 			<div class="post" id="post-<?php echo $id; ?>">

@@ -36,11 +36,11 @@
 		{
 			$errorMessages[] = 'Die Antwort auf die Sicherheitsfrage stimmt nicht.';
 		}
-		if (emailExists(getFieldValue('email'), $database))
+		if (emailExists(getFieldValue('email')))
 		{
 			$errorMessages[] = 'Diese E-Mail-Adresse ist schon registriert.';
 		}
-		if (usernameExists(getFieldValue('username'), $database))
+		if (usernameExists(getFieldValue('username')))
 		{
 			$errorMessages[] = 'Dieser Nutzername ist schon registriert.';
 		}

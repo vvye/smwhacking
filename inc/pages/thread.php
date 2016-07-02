@@ -38,7 +38,7 @@
 		}
 		$thread = $threads[0];
 
-		addViewToThread($threadId, $database);
+		addViewToThread($threadId);
 
 		$threadName = $thread['name'];
 		$forumId = $thread['forum_id'];
@@ -63,15 +63,15 @@
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
-		$numPosts = getNumPostsInThread($threadId, $database);
+		$numPosts = getNumPostsInThread($threadId);
 		$numPages = (int)ceil($numPosts / POSTS_PER_PAGE);
 		makeBetween($page, 1, $numPages);
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);
 
-		$posts = getPostsInThread($threadId, $page, $database);
+		$posts = getPostsInThread($threadId, $page);
 
 		$lastReadTime = $posts[count($posts) - 1]['post_time'];
-		markThreadAsRead($threadId, $lastReadTime, $database);
+		markThreadAsRead($threadId, $lastReadTime);
 
 		foreach ($posts as $post)
 		{
@@ -85,17 +85,17 @@
 			$authorRankHtml = getRankHtml($authorId);
 			$authorAvatarHtml = getAvatarHtml($authorId);
 			$authorRegistrationTime = date(DEFAULT_DATE_FORMAT, $post['author_registration_time']);
-			$authorCurrentPostNumber = getCurrentPostNumber($authorId, $id, $database);
-			$authorNumTotalPosts = getNumPostsByUser($authorId, $database);
+			$authorCurrentPostNumber = getCurrentPostNumber($authorId, $id);
+			$authorNumTotalPosts = getNumPostsByUser($authorId);
 
 			$postTime = date(DEFAULT_DATE_FORMAT, $post['post_time']);
 			$content = nl2br($post['content']);
 			$authorSignature = (trim($post['author_signature']) !== '')
 				? '<div class="signature">' . nl2br($post['author_signature']) . '</div>'
 				: '';
-			$pageInThread = getPostPageInThread($id, $threadId, $database);
+			$pageInThread = getPostPageInThread($id, $threadId);
 
-			$lastEdit = getLastEdit($id, $database);
+			$lastEdit = getLastEdit($id);
 			if ($lastEdit !== null)
 			{
 				$lastEditHtml = '<br />zuletzt bearbeitet von

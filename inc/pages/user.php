@@ -16,7 +16,7 @@
 		}
 		$id = (int)$_GET['id'];
 
-		$user = getUser($id, $database);
+		$user = getUser($id);
 
 		if ($user === null)
 		{
@@ -27,17 +27,17 @@
 		$name = $user['name'];
 		$avatarHtml = getAvatarHtml($id);
 		$powerlevel = POWERLEVEL_DESCRIPTIONS[$user['powerlevel']];
-		$rankHtml = getProfileRankHtml($id, $database);
+		$rankHtml = getProfileRankHtml($id);
 		$title = $user['title'];
 		$registrationTime = date(DEFAULT_DATE_FORMAT, $user['registration_time']);
 		$lastLoginTime = date(DEFAULT_DATE_FORMAT, $user['last_login_time']);
-		$numPosts = getNumPostsByUser($id, $database);
+		$numPosts = getNumPostsByUser($id);
 		$websiteHtml = ($user['website'] !== '') ? '<a href="' . $user['website'] . '">' . $user['website'] . '</a>' : '';
 		$emailHtml = str_ireplace(['@', '.'], [' <i class="fa fa-at"></i> ', ' <i class="fa fa-circle"></i> '], $user['email']);
 		$bio = nl2br($user['bio']);
 		$signature = nl2br($user['signature']);
 
-		$lastPost = getLastPost($id, $database);
+		$lastPost = getLastPost($id);
 		if ($lastPost === null)
 		{
 			$lastPostHtml = '<em>keiner</em>';
@@ -45,7 +45,7 @@
 		else
 		{
 			// TODO permission to see last post
-			$page = getPostPageInThread($lastPost['id'], $lastPost['thread_id'], $database);
+			$page = getPostPageInThread($lastPost['id'], $lastPost['thread_id']);
 			$lastPostHtml = date(DEFAULT_DATE_FORMAT, $lastPost['post_time']) . ' in <a href="?p=thread&id='
 				. $lastPost['thread_id'] . '&page=' . $page . '#post-' . $lastPost['id'] . '">' . $lastPost['thread_name'] . '</a>';
 		}
@@ -130,7 +130,7 @@
 
 		<?php
 
-		$medals = getMedals($id, $database);
+		$medals = getMedals($id);
 		$numTotalMedals = count($medals);
 
 		$medalsByCategory = [];

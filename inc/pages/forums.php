@@ -26,7 +26,7 @@
 			<tbody>
 			<?php
 
-				$forums = getForumsByCategory($category['id'], $database);
+				$forums = getForumsByCategory($category['id']);
 
 				foreach ($forums as $forum)
 				{
@@ -34,9 +34,9 @@
 					$name = $forum['name'];
 					$new = isLoggedIn() && $forum['last_read_time'] < $forum['last_post_time'] ? 'NEU' : '';
 					$description = $forum['description'];
-					$numThreads = getNumThreadsInForum($id, $database);
-					$numPosts = getNumPostsInForum($id, $database);
-					$lastPostCellContent = getLastPostCellContent(getLastPostInForum($id, $database));
+					$numThreads = getNumThreadsInForum($id);
+					$numPosts = getNumPostsInForum($id);
+					$lastPostCellContent = getLastPostCellContent(getLastPostInForum($id));
 
 					?>
 					<tr>

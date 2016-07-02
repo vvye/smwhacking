@@ -91,7 +91,7 @@
 		global $database;
 
 		$ranks = $database->select('ranks', '*', [
-			'min_posts[<=]' => getNumPostsByUser($userId, $database),
+			'min_posts[<=]' => getNumPostsByUser($userId),
 			'ORDER'         => 'min_posts DESC',
 			'LIMIT'         => '1',
 		]);
@@ -109,7 +109,7 @@
 		global $database;
 
 		$ranks = $database->select('ranks', '*', [
-			'min_posts[<=]' => getNumPostsByUser($userId, $database),
+			'min_posts[<=]' => getNumPostsByUser($userId),
 			'ORDER'         => 'min_posts DESC',
 			'LIMIT'         => '1',
 		]);

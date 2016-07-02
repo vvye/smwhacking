@@ -28,7 +28,7 @@
 			$username = getFieldValue('username');
 			$passwordHash = password_hash(getFieldValue('password'), PASSWORD_DEFAULT);
 
-			startRegistration($email, $username, $passwordHash, $database);
+			startRegistration($email, $username, $passwordHash);
 
 			echo '<div class="message">Alles klar! Wir haben dir eine Mail geschickt. Klicke auf den Link in der Mail, um die Registrierung abzuschließen.</div>';
 		}
