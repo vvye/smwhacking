@@ -102,7 +102,7 @@
 						$stickyCssClass = $stickyPrefix = '';
 					}
 
-					$new = $thread['last_read_time'] < $thread['last_post_time'] ? 'NEU' : '';
+					$new = isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'] ? 'NEU' : '';
 					$id = $thread['id'];
 					$name = $thread['name'];
 					$numReplies = getNumPostsInThread($id, $database) - 1;

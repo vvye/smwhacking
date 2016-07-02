@@ -32,6 +32,7 @@
 				{
 					$id = $forum['id'];
 					$name = $forum['name'];
+					$new = isLoggedIn() && $forum['last_read_time'] < $forum['last_post_time'] ? 'NEU' : '';
 					$description = $forum['description'];
 					$numThreads = getNumThreadsInForum($id, $database);
 					$numPosts = getNumPostsInForum($id, $database);
@@ -39,7 +40,7 @@
 
 					?>
 					<tr>
-						<td class="new"></td>
+						<td class="new"><?php echo $new; ?></td>
 						<td class="forum-description">
 							<h3><a href="?p=forum&id=<?php echo $id; ?>"><?php echo $name; ?></a></h3>
 							<p><?php echo $forum['description']; ?></p>

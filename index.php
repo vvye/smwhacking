@@ -7,6 +7,9 @@
 	
 	require_once 'inc/functions/engine.php';
 	
+	require_once 'inc/functions/database.php';
+	$database = getDatabase();
+	
 	session_start();
 
 ?>

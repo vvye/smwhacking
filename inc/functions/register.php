@@ -5,7 +5,7 @@
 
 	function validateRegistrationForm($database = null)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 		$errorMessages = [];
 
 		if (trim(getFieldValue('email')) === '')
@@ -49,9 +49,9 @@
 	}
 
 
-	function emailExists($email, $database = null)
+	function emailExists($email)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$numEmails = $database->count('users', [
 			'email' => $email
@@ -61,9 +61,9 @@
 	}
 
 
-	function usernameExists($username, $database = null)
+	function usernameExists($username)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$numUsers = $database->count('users', [
 			'name' => $username
@@ -73,9 +73,9 @@
 	}
 
 
-	function startRegistration($email, $username, $passwordHash, $database = null)
+	function startRegistration($email, $username, $passwordHash)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$activationToken = bin2hex(random_bytes(16));
 

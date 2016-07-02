@@ -71,7 +71,7 @@
 		$posts = getPostsInThread($threadId, $page, $database);
 
 		$lastReadTime = $posts[count($posts) - 1]['post_time'];
-		updateThreadLastReadTime($threadId, $lastReadTime, $database);
+		markThreadAsRead($threadId, $lastReadTime, $database);
 
 		foreach ($posts as $post)
 		{

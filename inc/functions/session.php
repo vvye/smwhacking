@@ -6,7 +6,7 @@
 
 	function doLogin($database = null)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$givenEmail = strtolower(getFieldValue('email'));
 		$givenPassword = getFieldValue('password');

@@ -5,9 +5,9 @@
 	require_once __DIR__ . '/database.php';
 
 
-	function getUser($userId, $database = null)
+	function getUser($userId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$users = $database->select('users', [
 			'id',
@@ -35,9 +35,9 @@
 	}
 
 
-	function getPostsByUser($userId, $page, $database = null)
+	function getPostsByUser($userId, $page)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$posts = $database->select('posts', [
 			'[>]threads' => ['thread' => 'id'],
@@ -57,9 +57,9 @@
 	}
 
 
-	function getNumPostsByUser($userId, $database = null)
+	function getNumPostsByUser($userId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		return $database->count('posts', [
 			'author' => $userId
@@ -67,9 +67,9 @@
 	}
 
 
-	function getCurrentPostNumber($userId, $postId, $database = null)
+	function getCurrentPostNumber($userId, $postId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		return $database->count('posts', [
 			'AND' => [
@@ -86,9 +86,9 @@
 	}
 
 
-	function getRankHtml($userId, $database = null)
+	function getRankHtml($userId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$ranks = $database->select('ranks', '*', [
 			'min_posts[<=]' => getNumPostsByUser($userId, $database),
@@ -104,9 +104,9 @@
 	}
 
 	// TODO refactor?
-	function getProfileRankHtml($userId, $database = null)
+	function getProfileRankHtml($userId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$ranks = $database->select('ranks', '*', [
 			'min_posts[<=]' => getNumPostsByUser($userId, $database),
@@ -122,9 +122,9 @@
 	}
 
 
-	function getLastPost($userId, $database = null)
+	function getLastPost($userId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$posts = $database->select('posts', [
 			'[>]threads' => ['thread' => 'id']
@@ -148,9 +148,9 @@
 	}
 
 
-	function getMedals($userId, $database = null)
+	function getMedals($userId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$medals = $database->select('awarded_medals', [
 			'[>]medals'           => ['medal' => 'id'],

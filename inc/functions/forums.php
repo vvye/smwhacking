@@ -3,12 +3,13 @@
 	require_once __DIR__ . '/../config/forums.php';
 	require_once __DIR__ . '/../config/misc.php';
 
+	require_once __DIR__ . '/session.php';
 	require_once __DIR__ . '/database.php';
 
 
-	function getForumCategories($database = null)
+	function getForumCategories()
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$categories = $database->select('forum_categories', [
 			'id',
@@ -21,21 +22,33 @@
 	}
 
 
-	function getForumsByCategory($categoryId, $database = null)
+	function getForumsByCategory($categoryId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
+		/*
 		$forums = $database->select('forums', '*', [
 			'category' => $categoryId
 		]);
+		*/
+
+		$readCondition = isLoggedIn() ? 'forums_read.user = ' . $database->quote($_SESSION['userId']) : '1';
+
+		$forums = $database->query('
+			SELECT forums.*, forums_read.last_read_time AS last_read_time
+			FROM forums
+			LEFT JOIN forums_read ON forums.id = forums_read.forum AND ' . $readCondition . '
+			WHERE forums.category = ' . $database->quote($categoryId) . '
+			GROUP BY forums.id
+		');
 
 		return $forums;
 	}
 
 
-	function getNumThreadsInForum($forumId, $database = null)
+	function getNumThreadsInForum($forumId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		return $database->count('threads', [
 			'forum' => $forumId
@@ -43,9 +56,9 @@
 	}
 
 
-	function getNumPostsInForum($forumId, $database = null)
+	function getNumPostsInForum($forumId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		return $database->count('forums', [
 			'[>]threads' => ['id' => 'forum'],
@@ -56,9 +69,9 @@
 	}
 
 
-	function getLastPostInForum($forumId, $database = null)
+	function getLastPostInForum($forumId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$lastPost = $database->select('forums', [
 			'[>]threads' => ['id' => 'forum'],
@@ -107,9 +120,9 @@
 	}
 
 
-	function getThreadsInForum($forumId, $page, $database = null)
+	function getThreadsInForum($forumId, $page)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		/*
 		// medoo doesn't seem to support the join syntax on the threads_read_table
@@ -141,9 +154,7 @@
 		]);
 		*/
 
-		$readCondition = isset($_SESSION['userId'])
-			? 'threads_read.user = ' . $database->quote($_SESSION['userId'])
-			: '1';
+		$readCondition = isLoggedIn() ? 'threads_read.user = ' . $database->quote($_SESSION['userId']) : '1';
 
 		$threads = $database->query('
 			SELECT threads.id,
@@ -171,9 +182,9 @@
 	}
 
 
-	function getNumStickiesInForum($forumId, $database = null)
+	function getNumStickiesInForum($forumId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		return $database->count('threads', [
 			'AND' => [
@@ -184,9 +195,9 @@
 	}
 
 
-	function getNumPostsInThread($threadId, $database = null)
+	function getNumPostsInThread($threadId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		return $database->count('posts', [
 			'thread' => $threadId,
@@ -194,9 +205,9 @@
 	}
 
 
-	function getLastPostInThread($threadId, $database = null)
+	function getLastPostInThread($threadId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$lastPost = $database->select('threads', [
 			'[>]posts' => ['threads.id' => 'thread'],
@@ -222,9 +233,9 @@
 	}
 
 
-	function getPostsInThread($threadId, $page, $database = null)
+	function getPostsInThread($threadId, $page)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$posts = $database->select('posts', [
 			'[>]users' => ['author' => 'id'],
@@ -254,9 +265,9 @@
 	}
 
 
-	function getPostPageInThread($postId, $threadId, $database = null)
+	function getPostPageInThread($postId, $threadId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$numPostsUpTo = $database->count('posts', [
 			'AND' => [
@@ -269,9 +280,9 @@
 	}
 
 
-	function getLastEdit($postId, $database = null)
+	function getLastEdit($postId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		$edits = $database->select('edits', [
 			'[>]users' => ['user' => 'id']
@@ -294,9 +305,9 @@
 	}
 
 
-	function updateThreadLastReadTime($threadId, $lastReadTime, $database = null)
+	function markThreadAsRead($threadId, $lastReadTime)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		if (isset($_SESSION['userId']))
 		{
@@ -312,9 +323,9 @@
 	}
 
 
-	function addViewToThread($threadId, $database = null)
+	function addViewToThread($threadId)
 	{
-		$database = ($database !== null) ? $database : getDatabase();
+		global $database;
 
 		// TODO reactivate this when testing is done
 		/*
@@ -331,7 +342,40 @@
 	}
 
 
-	function markForumAsRead($forumId, $database = null)
+	function markForumAsRead($forumId)
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			renderMessage('Du kannst Foren nur als gelesen markieren, wenn du eingeloggt bist.');
+
+			return;
+		}
+		
+		$database->delete('threads_read', [
+			'AND' => [
+				'forum' => $forumId,
+				'user'  => $_SESSION['userId']
+			]
+		]);
+
+		try
+		{
+			$database->query('
+				REPLACE INTO forums_read(user, forum, last_read_time)
+				VALUES (' . $database->quote($_SESSION['userId']) . ', ' . $database->quote($forumId) . ', ' . $database->quote(time()) . ')
+			');
+			renderSuccessMessage('Dieses Forum wurde als gelesen markiert.');
+		}
+		catch (Exception $e)
+		{
+			renderErrorMessage('Das Markieren hat nicht geklappt.');
+		}
+	}
+
+
+	function markAllForumsAsRead($database)
 	{
 		if (!isLoggedIn())
 		{
@@ -340,26 +384,25 @@
 			return;
 		}
 
-		$database = ($database !== null) ? $database : getDatabase();
-
-		$threadIds = $database->select('threads', 'id', [
-			'forum' => $forumId
-		]);
-
-		$userId = $database->quote($_SESSION['userId']);
-		$lastReadTime = time();
-
-		$data = [];
-		foreach ($threadIds as $threadId)
-		{
-			$data[] = '(' . $userId . ', ' . $threadId . ', ' . $lastReadTime . ')';
-		}
-		$values = join(', ', $data);
+		global $database;
 
 		try
 		{
-			$database->query('REPLACE INTO threads_read(user, thread, last_read_time) VALUES ' . $values);
-			renderSuccessMessage('Dieses Forum wurde als gelesen markiert.');
+			$database->delete('threads_read', [
+				'user' => $_SESSION['userId'],
+			]);
+
+			$database->delete('forums_read', [
+				'user' => $_SESSION['userId'],
+			]);
+
+			$database->update('users', [
+				'last_read_time' => time()
+			], [
+				'id' => $_SESSION['userId']
+			]);
+
+			renderSuccessMessage('Alle Foren wurden als gelesen markiert.');
 		}
 		catch (Exception $e)
 		{
