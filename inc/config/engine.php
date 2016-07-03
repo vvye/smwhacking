@@ -7,19 +7,19 @@
 	define('MENU_ITEMS', [
 		[
 			'page'    => 'home',
-			'caption' => 'Startseite'
+			'caption' => CAPTION_HOME
 		], [
 			'page'    => 'about',
-			'caption' => 'Was ist SMW-Hacken?'
+			'caption' => CAPTION_ABOUT
 		], [
 			'page'         => 'forums',
-			'caption'      => 'Forum',
+			'caption'      => CAPTION_FORUM,
 			'relatedPages' => ['forum', 'thread', 'new-reply', 'user']
 		], [
 			'page'    => 'chat',
-			'caption' => 'Chat'
+			'caption' => CAPTION_CHAT
 		], [
 			'page'    => 'files',
-			'caption' => 'Uploader'
+			'caption' => CAPTION_FILES
 		],
 	]);

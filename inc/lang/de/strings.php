@@ -108,3 +108,23 @@
 
 	define('SECURITY_ANSWER',
 		'supermarioworld');
+	
+	
+	define('CAPTION_HOME', 
+		'Startseite');
+	
+	
+	define('CAPTION_ABOUT',
+		'Was ist SMW-Hacken?');
+	
+	
+	define('CAPTION_FORUM',
+		'Forum');
+	
+	
+	define('CAPTION_CHAT',
+		'Chat');
+	
+	
+	define('CAPTION_FILES',
+		'Uploader');
