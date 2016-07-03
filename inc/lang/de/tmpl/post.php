@@ -1,4 +1,4 @@
-<div class="post" id="post-<?= $userId ?>">
+<div class="post" id="post-<?= $id ?>">
 	<div class="sidebar">
 		<h3><a href="?p=user&id=<?= $author['id'] ?>"><?= $author['name'] ?></a></h3>
 		<?php if ($author['powerlevelId'] !== 0): ?>
@@ -25,11 +25,11 @@
 			</div>
 			<div class="column">
 				(
-				<a href="?p=thread&id=<?= $threadId ?>&page=<?= $pageInThread ?>#post-<?= $userId ?>">Link</a>
+				<a href="?p=thread&id=<?= $threadId ?>&page=<?= $pageInThread ?>#post-<?= $id ?>">Link</a>
 				<?php if ($inThread): ?>
-					| <a href="?p=new-reply&thread=<?= $threadId ?>&quote=<?= $userId ?>">zitieren</a>
-					| <a href="?p=edit-reply&id=<?= $userId ?>">bearbeiten</a>
-					| <a href="?p=delete-reply&id=<?= $userId ?>">löschen</a>
+					| <a href="?p=new-reply&thread=<?= $threadId ?>&quote=<?= $id ?>">zitieren</a>
+					| <a href="?p=edit-reply&id=<?= $id ?>">bearbeiten</a>
+					| <a href="?p=delete-reply&id=<?= $id ?>">löschen</a>
 				<?php endif; ?>
 				)
 			</div>
