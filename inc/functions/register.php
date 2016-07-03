@@ -31,7 +31,7 @@
 		{
 			$errorMessages[] = MSG_PASSWORDS_DONT_MATCH;
 		}
-		if (str_ireplace(' ', '', strtolower(getFieldValue('security-answer'))) !== 'supermarioworld')
+		if (str_ireplace(' ', '', strtolower(getFieldValue('security-answer'))) !== SECURITY_ANSWER)
 		{
 			$errorMessages[] = MSG_WRONG_SECURITY_ANSWER;
 		}
@@ -88,15 +88,17 @@
 			'activation_token' => $activationToken
 		]);
 
-		$messageBody = 'Hallo! Du bekommst diese Mail, weil du dich bei smwhacking.de registrieren willst.
-			Öffne folgende Seite, um fortzufahren:
-			http://www.smwhacking.de/?p=finish-registration&id=' . $userId . '&token=' . $activationToken . '
-			 Wenn du dich nicht registrieren wolltest, dann ignoriere diese Mail einfach.';
+		ob_start();
+		renderTemplate('registration_email', [
+			'userId' => $userId,
+			'activationToken' => $activationToken
+		]);
+		$messageBody = ob_get_clean();
 
 		// TODO remove this
 		echo $messageBody . '<br />';
 
-		mail($email, 'smwhacking.de - Registrierung', $messageBody);
+		mail($email, MSG_REGISTRATION_EMAIL_SUBJECT, $messageBody);
 	}
 	
 	

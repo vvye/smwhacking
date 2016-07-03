@@ -39,7 +39,7 @@
 		</tr>
 		<tr>
 			<td>
-				<h3>Wofür steht die Abkürzung "SMW"?</h3>
+				<h3><?= SECURITY_QUESTION ?></h3>
 				<p>Beanwtorte die Frage, um zu beweisen, dass du ein Mensch bist.<br />
 					Wenn du Probleme beim Beantworten der Frage hast, wende dich an info@smwhacking.de.</p>
 			</td>

@@ -84,17 +84,27 @@
 
 	define('MSG_NONE',
 		'keiner');
-	
-	
+
+
 	define('MSG_MARK_READ_NOT_LOGGED_IN',
 		'Du kannst Foren nur als gelesen markieren, wenn du eingeloggt bist.');
 
 
 	define('MSG_MARK_READ_SUCCESS',
 		'Dieses Forum wurde als gelesen markiert.');
-	
-	
+
+
 	define('MSG_MARK_READ_ERROR',
 		'Das Markieren hat nicht geklappt.');
-	
-	
+
+
+	define('MSG_REGISTRATION_EMAIL_SUBJECT',
+		'smwhacking.de - Registrierung');
+
+
+	define('SECURITY_QUESTION',
+		'Wofür steht die Abkürzung "SMW"?');
+
+
+	define('SECURITY_ANSWER',
+		'supermarioworld');

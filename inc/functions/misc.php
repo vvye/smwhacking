@@ -27,17 +27,26 @@
 
 	function renderMessage($msg)
 	{
-		echo '<div class="message">' . $msg . '</div>';
+		renderTemplate('message', [
+			'type' => '',
+			'message' => $msg
+		]);
 	}
 
 
 	function renderSuccessMessage($msg)
 	{
-		echo '<div class="message success">' . $msg . '</div>';
+		renderTemplate('message', [
+			'type' => 'success',
+			'message' => $msg
+		]);
 	}
 
 
 	function renderErrorMessage($msg)
 	{
-		echo '<div class="message error">' . $msg . '</div>';
+		renderTemplate('error', [
+			'type' => '',
+			'message' => $msg
+		]);
 	}
