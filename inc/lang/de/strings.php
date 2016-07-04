@@ -128,3 +128,7 @@
 	
 	define('CAPTION_FILES',
 		'Uploader');
+
+
+	define('MSG_NEW',
+		'NEU');

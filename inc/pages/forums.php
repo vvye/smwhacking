@@ -2,36 +2,37 @@
 
 <?php
 
-	require_once __DIR__ . '/../functions/forums.php';
+	require_once __DIR__ . '/../functions/forums.php';;
 
 
-	$categories = getForumCategories();
+	$forumsByCategory = getForumsByCategory();
+	$unreadForums = getUnreadForums();
 
-	$categoriesForTemplate = [];
-	foreach ($categories as $category)
+	$categories = [];
+	foreach ($forumsByCategory as $categoryName => $forums)
 	{
-		$forums = getForumsByCategory($category['id']);
-
 		$forumsForTemplate = [];
 		foreach ($forums as $forum)
 		{
+			$unread = isLoggedIn() && in_array($forum['id'], $unreadForums);
+
 			$forumsForTemplate[] = [
 				'id'                  => $forum['id'],
 				'name'                => $forum['name'],
-				'new'                 => 'NEU', // isLoggedIn() && $forum['last_read_time'] < $forum['last_post_time'] ? 'NEU' : '', // TODO
+				'new'                 => $unread ? MSG_NEW : '',
 				'description'         => $forum['description'],
-				'numThreads'          => getNumThreadsInForum($forum['id']),
-				'numPosts'            => getNumPostsInForum($forum['id']),
-				'lastPostCellContent' => getLastPostCellContent(getLastPostInForum($forum['id']))
+				'numThreads'          => $forum['num_threads'],
+				'numPosts'            => $forum['num_posts'],
+				'lastPostCellContent' => getLastPostCellContent(getPostById($forum['last_post']))
 			];
 		}
 
-		$categoriesForTemplate[] = [
-			'name'   => $category['name'],
+		$categories[] = [
+			'name'   => $categoryName,
 			'forums' => $forumsForTemplate
 		];
 	}
 
 	renderTemplate('forum_list', [
-		'categories' => $categoriesForTemplate
+		'categories' => $categories
 	]);

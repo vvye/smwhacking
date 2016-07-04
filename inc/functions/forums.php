@@ -22,27 +22,60 @@
 	}
 
 
-	function getForumsByCategory($categoryId)
+	function getForumsByCategory()
 	{
 		global $database;
 
-		/*
-		$forums = $database->select('forums', '*', [
-			'category' => $categoryId
+		$forums = $database->select('forums', [
+			'[>]forum_categories' => ['category' => 'id']
+		], [
+			'forums.id',
+			'forums.name',
+			'forums.description',
+			'forums.min_powerlevel',
+			'forums.num_threads',
+			'forums.num_posts',
+			'forums.last_post',
+			'forum_categories.name(category_name)'
+		], [
+			'ORDER' => ['forum_categories.sort_order ASC', 'forums.sort_order ASC']
 		]);
-		*/
 
-		$readCondition = isLoggedIn() ? 'forums_read.user = ' . $database->quote($_SESSION['userId']) : '1';
+		$forumsByCategory = [];
+		foreach ($forums as $forum)
+		{
+			$forumsByCategory[$forum['category_name']][] = $forum;
+		}
 
-		$forums = $database->query('
-			SELECT forums.*, forums_read.last_read_time AS last_read_time
+		return $forumsByCategory;
+	}
+
+
+	function getUnreadForums()
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			return false;
+		}
+
+		$unreadForums = $database->query('
+			SELECT forums.id
 			FROM forums
-			LEFT JOIN forums_read ON forums.id = forums_read.forum AND ' . $readCondition . '
-			WHERE forums.category = ' . $database->quote($categoryId) . '
-			GROUP BY forums.id
-		');
+			LEFT JOIN threads ON forums.id = threads.forum
+			LEFT OUTER JOIN threads_read ON threads.id = threads_read.thread AND threads_read.user = ' . $database->quote($_SESSION['userId']) . '
+			WHERE threads_read.last_read_time IS NULL OR threads_read.last_read_time < threads.last_post_time
+			GROUP BY forums.id 
+		')->fetchAll();
 
-		return $forums;
+		$unreadForumsFlattened = [];
+		foreach ($unreadForums as $unreadForum)
+		{
+			$unreadForumsFlattened[] = $unreadForum['id'];
+		}
+
+		return $unreadForumsFlattened;
 	}
 
 
@@ -56,6 +89,27 @@
 	}
 
 
+	function getNumThreadsByForum()
+	{
+		global $database;
+
+		$threadsByForum = $database->query('
+			SELECT forums.id AS forum, COUNT(threads.id) AS num_threads
+			FROM forums
+			LEFT JOIN threads ON forums.id = threads.forum
+			GROUP BY forums.id
+		')->fetchAll();
+
+		$numThreadsByForum = [];
+		foreach ($threadsByForum as $row)
+		{
+			$numThreadsByForum[$row['forum']] = $row['num_threads'];
+		}
+
+		return $numThreadsByForum;
+	}
+
+
 	function getNumThreadsInForum($forumId)
 	{
 		global $database;
@@ -63,6 +117,28 @@
 		return $database->count('threads', [
 			'forum' => $forumId
 		]);
+	}
+
+
+	function getNumPostsByForum()
+	{
+		global $database;
+
+		$postsByForum = $database->query('
+			SELECT forums.id AS forum, COUNT(posts.id) AS num_posts
+			FROM forums
+			LEFT JOIN threads ON forums.id = threads.forum
+			LEFT JOIN posts ON threads.id = posts.thread
+			GROUP BY forums.id
+		')->fetchAll();
+
+		$numPostsByForum = [];
+		foreach ($postsByForum as $row)
+		{
+			$numPostsByForum[$row['forum']] = $row['num_posts'];
+		}
+
+		return $numPostsByForum;
 	}
 
 
@@ -91,7 +167,7 @@
 			'threads.id(thread_id)',
 			'users.id(author_id)',
 			'users.name(author_name)',
-			'posts.id(post_id)',
+			'posts.id(id)',
 			'posts.post_time'
 		], [
 			'forums.id' => $forumId,
@@ -99,7 +175,33 @@
 			"LIMIT"     => 1
 		]);
 
-		if (count($lastPost) !== 1 || $lastPost[0]['post_id'] == '')
+		if (count($lastPost) !== 1 || $lastPost[0]['id'] == '')
+		{
+			return null;
+		}
+
+		return $lastPost[0];
+	}
+
+
+	function getPostById($postId)
+	{
+		global $database;
+
+		$lastPost = $database->select('posts', [
+			'[>]threads' => ['thread' => 'id'],
+			'[>]users'   => ['author' => 'id']
+		], [
+			'threads.id(thread_id)',
+			'users.id(author_id)',
+			'users.name(author_name)',
+			'posts.id(id)',
+			'posts.post_time'
+		], [
+			'posts.id' => $postId
+		]);
+
+		if (count($lastPost) !== 1 || $lastPost[0]['id'] == '')
 		{
 			return null;
 		}
@@ -117,7 +219,7 @@
 		else
 		{
 			$threadId = $lastPost['thread_id'];
-			$postId = $lastPost['post_id'];
+			$postId = $lastPost['id'];
 			$authorId = $lastPost['author_id'];
 			$authorName = $lastPost['author_name'];
 			$postTime = date(DEFAULT_DATE_FORMAT, $lastPost['post_time']);
@@ -243,7 +345,7 @@
 			'threads.id(thread_id)',
 			'users.id(author_id)',
 			'users.name(author_name)',
-			'posts.id(post_id)',
+			'posts.id(id)',
 			'posts.post_time'
 		], [
 			'threads.id' => $threadId,
@@ -251,7 +353,7 @@
 			"LIMIT"      => 1
 		]);
 
-		if (count($lastPost) !== 1 || $lastPost[0]['post_id'] == '')
+		if (count($lastPost) !== 1 || $lastPost[0]['id'] == '')
 		{
 			return null;
 		}
@@ -354,8 +456,6 @@
 	{
 		global $database;
 
-		// TODO reactivate this when testing is done
-		/*
 		$wasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
 		if (!$wasRefreshed)
 		{
@@ -365,7 +465,6 @@
 				'id' => $threadId
 			]);
 		}
-		*/
 	}
 
 
@@ -375,24 +474,31 @@
 
 		if (!isLoggedIn())
 		{
-			renderMessage(MSG_MARK_READ_NOT_LOGGED_IN);
+			renderMessage('Du kannst Foren nur als gelesen markieren, wenn du eingeloggt bist.');
 
 			return;
 		}
 
-		$database->delete('threads_read', [
-			'AND' => [
-				'forum' => $forumId,
-				'user'  => $_SESSION['userId']
-			]
+		$threadIds = $database->select('threads', 'id', [
+			'forum' => $forumId
 		]);
+
+		$userId = $database->quote($_SESSION['userId']);
+		$lastReadTime = time();
+
+		$data = [];
+		foreach ($threadIds as $threadId)
+		{
+			$data[] = '(' . $userId . ', ' . $threadId . ', ' . $lastReadTime . ')';
+		}
+		$values = join(', ', $data);
 
 		try
 		{
 			$database->query('
-				REPLACE INTO forums_read(user, forum, last_read_time)
-				VALUES (' . $database->quote($_SESSION['userId']) . ', ' . $database->quote($forumId) . ', ' . $database->quote(time()) . ')
-			');
+				REPLACE INTO threads_read(user, thread, last_read_time)
+				VALUES ' . $values
+			);
 			renderSuccessMessage(MSG_MARK_READ_SUCCESS);
 		}
 		catch (Exception $e)
@@ -402,16 +508,16 @@
 	}
 
 
-	function markAllForumsAsRead($database)
+	function markAllForumsAsRead()
 	{
+		global $database;
+
 		if (!isLoggedIn())
 		{
 			renderMessage(MSG_MARK_READ_NOT_LOGGED_IN);
 
 			return;
 		}
-
-		global $database;
 
 		try
 		{

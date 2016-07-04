@@ -19,7 +19,10 @@
 			'powerlevel',
 			'banned'
 		], [
-			'email' => $givenEmail
+			'AND' => [
+				'email'     => $givenEmail,
+				'activated' => 1
+			]
 		]);
 
 		if (empty($users) || count($users) !== 1)
