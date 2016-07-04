@@ -39,7 +39,19 @@
 		</td>
 		<td class="num-replies"><?= $thread['numReplies'] ?></td>
 		<td class="num-views"><?= $thread['numViews'] ?></td>
-		<td class="last-post"><?= $thread['lastPostCellContent'] ?></td>
+		<td class="last-post">
+			<?php if ($thread['lastPost'] === null): ?>
+				<em><?= MSG_NONE ?></em>
+			<?php else: ?>
+				von <a href="?p=user&id=<?= $thread['lastPost']['author_id'] ?>">
+					<?= $thread['lastPost']['author_name'] ?>
+				</a>
+				<a href="?p=thread&id=<?= $thread['lastPost']['thread_id'] ?>#post-<?= $thread['lastPost']['id'] ?>">
+					<i class="fa fa-arrow-right"></i>
+				</a>
+				<p><?= date(DEFAULT_DATE_FORMAT, $thread['lastPost']['post_time']) ?></p>
+			<?php endif; ?>
+		</td>
 		</tr>
 		
 	<?php endforeach; ?>

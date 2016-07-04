@@ -1,5 +1,3 @@
-<h2>Forum</h2>
-
 <?php
 
 	require_once __DIR__ . '/../functions/forums.php';;
@@ -15,15 +13,16 @@
 		foreach ($forums as $forum)
 		{
 			$unread = isLoggedIn() && in_array($forum['id'], $unreadForums);
-
+			$lastPost = getPostById($forum['last_post']);
+			
 			$forumsForTemplate[] = [
-				'id'                  => $forum['id'],
-				'name'                => $forum['name'],
-				'new'                 => $unread ? MSG_NEW : '',
-				'description'         => $forum['description'],
-				'numThreads'          => $forum['num_threads'],
-				'numPosts'            => $forum['num_posts'],
-				'lastPostCellContent' => getLastPostCellContent(getPostById($forum['last_post']))
+				'id'          => $forum['id'],
+				'name'        => $forum['name'],
+				'unread'      => $unread,
+				'description' => $forum['description'],
+				'numThreads'  => $forum['num_threads'],
+				'numPosts'    => $forum['num_posts'],
+				'lastPost'    => $lastPost
 			];
 		}
 

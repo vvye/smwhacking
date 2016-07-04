@@ -94,6 +94,10 @@
 		'Dieses Forum wurde als gelesen markiert.');
 
 
+	define('MSG_MARK_ALL_READ_SUCCESS',
+		'Alle Foren wurden als gelesen markiert.');
+
+
 	define('MSG_MARK_READ_ERROR',
 		'Das Markieren hat nicht geklappt.');
 
@@ -108,24 +112,24 @@
 
 	define('SECURITY_ANSWER',
 		'supermarioworld');
-	
-	
-	define('CAPTION_HOME', 
+
+
+	define('CAPTION_HOME',
 		'Startseite');
-	
-	
+
+
 	define('CAPTION_ABOUT',
 		'Was ist SMW-Hacken?');
-	
-	
+
+
 	define('CAPTION_FORUM',
 		'Forum');
-	
-	
+
+
 	define('CAPTION_CHAT',
 		'Chat');
-	
-	
+
+
 	define('CAPTION_FILES',
 		'Uploader');
 
