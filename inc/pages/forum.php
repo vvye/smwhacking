@@ -37,8 +37,8 @@
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
-		$threads = getThreadsInForum($forumId, $page);
 		$numTotalThreads = $forum['num_threads'];
+		$threads = getThreadsInForum($forumId, $page);
 		$numStickies = getNumStickiesInForum($forumId);
 
 		$numPages = (int)ceil($numTotalThreads / THREADS_PER_PAGE);
@@ -49,15 +49,17 @@
 		$threadsForTemplate = [];
 		foreach ($threads as $index => $thread)
 		{
+			$unread = isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'];
+
 			$threadsForTemplate[] = [
 				'sticky'       => $thread['sticky'],
 				'lastSticky'   => $thread['sticky'] && $index === $numStickies,
-				'new'          => isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'] ? 'NEU' : '',
+				'unread'       => $unread,
 				'id'           => $thread['id'],
 				'name'         => $thread['name'],
-				'numReplies'   => getNumPostsInThread($thread['id']) - 1,
+				'numReplies'   => $thread['posts'] - 1,
 				'numViews'     => $thread['views'],
-				'lastPost'     => getLastPostInThread($thread['id']),
+				'lastPost'     => getPostById($thread['last_post']),
 				'authorId'     => $thread['author_id'],
 				'authorName'   => $thread['author_name'],
 				'creationTime' => date(DEFAULT_DATE_FORMAT, $thread['creation_time']),
@@ -68,10 +70,6 @@
 			'numTotalThreads' => $numTotalThreads,
 			'threads'         => $threadsForTemplate
 		]);
-
-		?>
-
-		<?php
 
 		renderPagination('?p=forum&id=' . $forumId, $page, $numPages);
 	}

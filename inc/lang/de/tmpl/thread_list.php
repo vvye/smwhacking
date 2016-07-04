@@ -26,7 +26,7 @@
 		<?php else: ?>
 			<tr>
 		<?php endif; ?>
-		<td class="new"><?= $thread['new'] ?></td>
+		<td class="new"><?= $thread['unread'] ? MSG_NEW : '' ?></td>
 		<td>
 			<h3>
 				<?php if ($thread['sticky']): ?>

@@ -103,16 +103,16 @@
 	{
 		global $database;
 
-		// medoo doesn't seem to support the join syntax on the threads_read_table
-		// TODO refactor this?
 		$readCondition = isLoggedIn() ? 'threads_read.user = ' . $database->quote($_SESSION['userId']) : '1';
-
+		// medoo doesn't seem to support the join syntax on the threads_read_table
 		$threads = $database->query('
 			SELECT threads.id,
 				threads.name,
 				threads.creation_time,
 				threads.last_post_time,
 				threads.views,
+				threads.posts,
+				threads.last_post,
 				threads.closed,
 				threads.sticky,
 				users.id AS author_id,
@@ -137,16 +137,21 @@
 	{
 		global $database;
 
-		return $database->select('threads', [
-			'[>]forums' => ['forum' => 'id']
-		], [
-			'threads.id',
-			'threads.name',
-			'forums.id(forum_id)',
-			'forums.name(forum_name)'
-		], [
-			'threads.id' => $threadId
-		]);
+		$readCondition = isLoggedIn() ? 'threads_read.user = ' . $database->quote($_SESSION['userId']) : '1';
+
+		return $database->query('
+			SELECT threads.id,
+			threads.name,
+			threads.posts,
+			threads.last_post,
+			forums.id AS forum_id,
+			forums.name AS forum_name,
+			threads_read.last_read_time
+			FROM threads
+			LEFT JOIN forums ON threads.forum = forums.id
+			LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . $readCondition . '
+			WHERE threads.id = ' . $database->quote($threadId) . '
+		')->fetchAll();
 	}
 
 
@@ -160,44 +165,6 @@
 				'sticky' => 1
 			]
 		]);
-	}
-
-
-	function getNumPostsInThread($threadId)
-	{
-		global $database;
-
-		return $database->count('posts', [
-			'thread' => $threadId,
-		]);
-	}
-
-
-	function getLastPostInThread($threadId)
-	{
-		global $database;
-
-		$lastPost = $database->select('threads', [
-			'[>]posts' => ['threads.id' => 'thread'],
-			'[>]users' => ['posts.author' => 'id']
-		], [
-			'threads.id(thread_id)',
-			'users.id(author_id)',
-			'users.name(author_name)',
-			'posts.id(id)',
-			'posts.post_time'
-		], [
-			'threads.id' => $threadId,
-			"ORDER"      => "posts.post_time DESC",
-			"LIMIT"      => 1
-		]);
-
-		if (count($lastPost) !== 1 || $lastPost[0]['id'] == '')
-		{
-			return null;
-		}
-
-		return $lastPost[0];
 	}
 
 
@@ -273,19 +240,19 @@
 	}
 
 
-	function markThreadAsRead($threadId, $lastReadTime)
+	function updateThreadLastReadTime($threadId, $oldLastReadTime, $newlastReadTime)
 	{
 		global $database;
 
-		if (isset($_SESSION['userId']))
+		if (isLoggedIn() && $newlastReadTime > $oldLastReadTime)
 		{
 			// medoo doesn't support REPLACE INTO
 			$userId = $database->quote($_SESSION['userId']);
 			$threadId = $database->quote($threadId);
-			$lastReadTime = $database->quote($lastReadTime);
+			$newlastReadTime = $database->quote($newlastReadTime);
 			$database->query('
 				REPLACE INTO threads_read(user, thread, last_read_time)
-				VALUES (' . $userId . ', ' . $threadId . ', ' . $lastReadTime . ')
+				VALUES (' . $userId . ', ' . $threadId . ', ' . $newlastReadTime . ')
 			');
 		}
 	}

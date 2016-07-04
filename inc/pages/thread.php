@@ -42,18 +42,21 @@
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
-		$numPosts = getNumPostsInThread($threadId);
+		$numPosts = $thread['posts'];
 		$numPages = (int)ceil($numPosts / POSTS_PER_PAGE);
 		makeBetween($page, 1, $numPages);
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);
 
 		$posts = getPostsInThread($threadId, $page);
 
-		$lastReadTime = $posts[count($posts) - 1]['post_time'];
-		markThreadAsRead($threadId, $lastReadTime);
+
+		$newLastReadTime = $posts[count($posts) - 1]['post_time'];
+		updateThreadLastReadTime($threadId, $thread['last_read_time'], $newLastReadTime);
 
 		foreach ($posts as $post)
 		{
+			$unread = isLoggedIn() && $post['post_time'] > $thread['last_read_time'];
+
 			renderTemplate('post', [
 				'inThread'     => true,
 				'id'           => $post['id'],
@@ -61,6 +64,7 @@
 				'postTime'     => date(DEFAULT_DATE_FORMAT, $post['post_time']),
 				'content'      => nl2br($post['content']),
 				'pageInThread' => getPostPageInThread($post['id'], $threadId),
+				'unread'       => $unread,
 				'lastEdit'     => getLastEdit($post['id']),
 				'author'       => [
 					'id'                => $post['author_id'],

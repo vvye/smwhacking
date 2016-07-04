@@ -163,6 +163,11 @@
     font-weight: bold;
 }
 
+.post .new {
+    font-weight: bold;
+    color: #FF6528;
+}
+
 .avatar {
     margin-top: 0.3rem;
 }
