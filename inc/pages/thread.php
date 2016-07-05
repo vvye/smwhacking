@@ -48,10 +48,12 @@
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);
 
 		$posts = getPostsInThread($threadId, $page);
-
-
-		$newLastReadTime = $posts[count($posts) - 1]['post_time'];
-		updateThreadLastReadTime($threadId, $thread['last_read_time'], $newLastReadTime);
+		
+		if (isLoggedIn())
+		{
+			$newLastReadTime = $posts[count($posts) - 1]['post_time'];
+			updateThreadLastReadTime($threadId, $thread['last_read_time'], $newLastReadTime);
+		}
 
 		foreach ($posts as $post)
 		{

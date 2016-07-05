@@ -137,21 +137,36 @@
 	{
 		global $database;
 
-		$readCondition = isLoggedIn() ? 'threads_read.user = ' . $database->quote($_SESSION['userId']) : '1';
-
-		return $database->query('
-			SELECT threads.id,
-			threads.name,
-			threads.posts,
-			threads.last_post,
-			forums.id AS forum_id,
-			forums.name AS forum_name,
-			threads_read.last_read_time
-			FROM threads
-			LEFT JOIN forums ON threads.forum = forums.id
-			LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . $readCondition . '
-			WHERE threads.id = ' . $database->quote($threadId) . '
-		')->fetchAll();
+		if (isLoggedIn())
+		{
+			return $database->query('
+				SELECT threads.id,
+				threads.name,
+				threads.posts,
+				threads.last_post,
+				forums.id AS forum_id,
+				forums.name AS forum_name,
+				threads_read.last_read_time
+				FROM threads
+				LEFT JOIN forums ON threads.forum = forums.id
+				LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . 'threads_read.user = ' . $database->quote($_SESSION['userId']) . '
+				WHERE threads.id = ' . $database->quote($threadId) . '
+			')->fetchAll();
+		}
+		else
+		{
+			return $database->query('
+				SELECT threads.id,
+				threads.name,
+				threads.posts,
+				threads.last_post,
+				forums.id AS forum_id,
+				forums.name AS forum_name
+				FROM threads
+				LEFT JOIN forums ON threads.forum = forums.id
+				WHERE threads.id = ' . $database->quote($threadId) . '
+			')->fetchAll();
+		}
 	}
 
 
