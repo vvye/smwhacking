@@ -133,18 +133,6 @@
 	}
 
 
-	function threadExists($threadId)
-	{
-		global $database;
-
-		$count = $database->count('threads', [
-			'id' => $threadId
-		]);
-
-		return $count === 1;
-	}
-
-
 	function getThread($threadId)
 	{
 		global $database;

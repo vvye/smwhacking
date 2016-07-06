@@ -29,7 +29,7 @@
 						von <a href="?p=user&id=<?= $forum['lastPost']['author_id'] ?>">
 							<?= $forum['lastPost']['author_name'] ?>
 						</a>
-						<a href="?p=thread&id=<?= $forum['lastPost']['thread_id'] ?>#post-<?= $forum['lastPost']['id'] ?>">
+						<a href="?p=thread&id=<?= $forum['lastPost']['thread_id'] ?>&page=<?= $forum['lastPostPage'] ?>#post-<?= $forum['lastPost']['id'] ?>">
 							<i class="fa fa-arrow-right"></i>
 						</a>
 						<p><?= date(DEFAULT_DATE_FORMAT, $forum['lastPost']['post_time']) ?></p>
