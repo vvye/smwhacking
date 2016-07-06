@@ -142,6 +142,10 @@
 		'Du musst eingeloggt sein, um Beiträge schreiben zu können.');
 
 
+	define('MSG_NEW_REPLY_BANNED',
+		'Du darfst keine Beiträge schreiben.');
+
+
 	define('MSG_THREAD_DOESNT_EXIST',
 		'Dieses Thema gibt es nicht.');
 

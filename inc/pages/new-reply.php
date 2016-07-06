@@ -11,6 +11,12 @@
 			break;
 		}
 
+		if (!isBanned())
+		{
+			renderErrorMessage(MSG_NEW_REPLY_BANNED);
+			break;
+		}
+
 		if (!isset($_GET['thread']) || !is_numeric($_GET['thread']))
 		{
 			renderErrorMessage(MSG_THREAD_DOESNT_EXIST);

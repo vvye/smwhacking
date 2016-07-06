@@ -42,7 +42,7 @@
 					<?php else: ?>
 						<?= date(DEFAULT_DATE_FORMAT, $lastPost['post_time']) ?>
 						in <a
-							href="?p=thread&id=<?= $lastPost['thread_id'] ?>&page=<?= $lastPostPage ?>#post-<?= $lastPost['id'] ?>"></a>
+							href="?p=thread&id=<?= $lastPost['thread_id'] ?>&page=<?= $lastPostPage ?>#post-<?= $lastPost['id'] ?>"><?= $lastPost['thread_name'] ?></a>
 					<?php endif; ?>
 				</td>
 			</tr>

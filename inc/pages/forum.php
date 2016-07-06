@@ -57,7 +57,7 @@
 
 			$threadsForTemplate[] = [
 				'sticky'       => $thread['sticky'],
-				'lastSticky'   => $thread['sticky'] && $index === $numStickies,
+				'lastSticky'   => $thread['sticky'] && $index === $numStickies - 1,
 				'unread'       => $unread,
 				'id'           => $thread['id'],
 				'name'         => $thread['name'],
