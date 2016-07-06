@@ -11,6 +11,8 @@
 	</p>
 	<?php if ($loggedIn): ?>
 		<form class="column">
+			<a class="subtle button">Thema schließen</a>
+			<a class="subtle button">Thema als wichtig markieren</a>
 			<a class="primary button" href="?p=new-reply&thread=<?= $threadId ?>">Antworten</a>
 		</form>
 	<?php endif; ?>
