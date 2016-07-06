@@ -78,7 +78,7 @@
 					'avatarHtml'        => getAvatarHtml($post['author_id']),
 					'registrationTime'  => date(DEFAULT_DATE_FORMAT, $post['author_registration_time']),
 					'currentPostNumber' => getCurrentPostNumber($post['author_id'], $post['id']),
-					'numTotalPosts'     => $numPosts,
+					'numTotalPosts'     => getNumPostsByUser($post['author_id']),
 					'signature'         => nl2br(trim($post['author_signature']))
 				]
 			]);
