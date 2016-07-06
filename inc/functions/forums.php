@@ -416,3 +416,51 @@
 
 		return $newThreadId;
 	}
+
+
+	function closeThread($threadId)
+	{
+		global $database;
+
+		$database->update('threads', [
+			'closed' => 1,
+		], [
+			'id' => $threadId
+		]);
+	}
+
+
+	function openThread($threadId)
+	{
+		global $database;
+
+		$database->update('threads', [
+			'closed' => 0,
+		], [
+			'id' => $threadId
+		]);
+	}
+
+
+	function stickyThread($threadId)
+	{
+		global $database;
+
+		$database->update('threads', [
+			'sticky' => 1,
+		], [
+			'id' => $threadId
+		]);
+	}
+
+
+	function unstickyThread($threadId)
+	{
+		global $database;
+
+		$database->update('threads', [
+			'sticky' => 0,
+		], [
+			'id' => $threadId
+		]);
+	}
