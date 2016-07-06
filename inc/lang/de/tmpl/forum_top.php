@@ -4,7 +4,7 @@
 	<p class="column breadcrumbs">
 		<a href="?p=forums">Foren-Übersicht</a> &rarr; <strong><?= $forumName ?></strong>
 	</p>
-	<?php if (isLoggedIn()): ?>
+	<?php if ($loggedIn): ?>
 		<form class="column">
 			<a class="subtle button" href="?p=forum&id=<?= $forumId ?>&mark-read">Forum als gelesen
 				markieren</a>

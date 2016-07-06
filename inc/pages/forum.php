@@ -32,7 +32,8 @@
 
 		renderTemplate('forum_top', [
 			'forumName' => $forumName,
-			'forumId'   => $forumId
+			'forumId'   => $forumId,
+			'loggedIn'  => isLoggedIn()
 		]);
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
@@ -50,7 +51,7 @@
 		foreach ($threads as $index => $thread)
 		{
 			$unread = isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'];
-			
+
 			$lastPost = getPostById($thread['last_post']);
 			$lastPostPage = ($lastPost !== null) ? getPostPageInThread($lastPost['id'], $thread['id']) : '';
 

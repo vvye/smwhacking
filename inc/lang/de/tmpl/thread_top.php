@@ -9,7 +9,9 @@
 		<a href="?p=forum&id=<?= $forumId ?>"><?= $forumName ?></a> &rarr;
 		<strong><?= $threadName ?></strong>
 	</p>
-	<form class="column">
-		<a class="primary button" href="?p=new-reply&thread=<?= $threadId ?>">Antworten</a>
-	</form>
+	<?php if ($loggedIn): ?>
+		<form class="column">
+			<a class="primary button" href="?p=new-reply&thread=<?= $threadId ?>">Antworten</a>
+		</form>
+	<?php endif; ?>
 </div>

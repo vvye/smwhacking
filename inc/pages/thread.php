@@ -37,7 +37,8 @@
 			'threadId'   => $threadId,
 			'threadName' => $threadName,
 			'forumId'    => $forumId,
-			'forumName'  => $forumName
+			'forumName'  => $forumName,
+			'loggedIn'   => isLoggedIn()
 		]);
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
@@ -88,7 +89,8 @@
 			'threadId'   => $threadId,
 			'threadName' => $threadName,
 			'forumId'    => $forumId,
-			'forumName'  => $forumName
+			'forumName'  => $forumName,
+			'loggedIn'   => isLoggedIn()
 		]);
 
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);
