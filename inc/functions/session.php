@@ -94,5 +94,5 @@
 
 	function isBanned()
 	{
-		return (isset($_SESSION['banned']) && $_SESSION['banned']);
+		return (isset($_SESSION['banned']) && $_SESSION['banned'] !== 0);
 	}
