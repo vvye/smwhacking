@@ -154,5 +154,29 @@
 		'Der Beitrags-Text darf nicht leer sein.');
 
 
+	define('MSG_THREAD_TITLE_EMPTY',
+		'Das Thema muss einen Titel haben.');
+
+
 	define('MSG_NEW_REPLY_SUCCESS',
 		'Der Beitrag wurde abgeschickt!');
+
+
+	define('MSG_NEW_THREAD_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Themen erstellen zu können.');
+
+
+	define('MSG_NEW_THREAD_BANNED',
+		'Du darfst keine Themen erstellen.');
+
+
+	define('MSG_FORUM_DOESNT_EXIST',
+		'Dieses Forum gibt es nicht.');
+
+
+	define('MSG_NEW_THREAD_SUCCESS',
+		'Das Thema wurde erstellt!');
+
+
+	define('MSG_GENERAL_ERROR',
+		'Irgendwas ist schiefgelaufen.');

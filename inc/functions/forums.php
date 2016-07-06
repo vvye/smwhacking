@@ -104,7 +104,6 @@
 		global $database;
 
 		$readCondition = isLoggedIn() ? 'threads_read.user = ' . $database->quote($_SESSION['userId']) : '1';
-		// medoo doesn't seem to support the join syntax on the threads_read_table
 		$threads = $database->query('
 			SELECT threads.id,
 				threads.name,
@@ -341,7 +340,7 @@
 	}
 
 
-	function doPost($threadId, $postText)
+	function createPost($threadId, $postText, $postTime = null)
 	{
 		global $database;
 
@@ -350,20 +349,19 @@
 			return null;
 		}
 
-		$postText = htmlspecialchars($postText);
-		$postTime = time();
+		$postTime = $postTime ?: time();
 
 		$newPostId = $database->insert('posts', [
 			'id'        => null,
 			'thread'    => $threadId,
 			'author'    => $_SESSION['userId'],
 			'post_time' => $postTime,
-			'content'   => $postText,
+			'content'   => htmlspecialchars($postText),
 			'deleted'   => 0
 		]);
 		$database->update('threads', [
-			'posts[+]' => 1,
-			'last_post' => $newPostId,
+			'posts[+]'       => 1,
+			'last_post'      => $newPostId,
 			'last_post_time' => $postTime
 		], [
 			'id' => $threadId
@@ -377,11 +375,44 @@
 		$forumId = $forumIds[0];
 
 		$database->update('forums', [
-			'posts[+]' => 1,
+			'posts[+]'  => 1,
 			'last_post' => $newPostId
 		], [
 			'id' => $forumId
 		]);
 
 		return $newPostId;
+	}
+
+
+	function createThread($forumId, $threadTitle, $postText)
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			return null;
+		}
+
+		$postTime = time();
+
+		$newThreadId = $database->insert('threads', [
+			'id'             => null,
+			'forum'          => $forumId,
+			'name'           => htmlspecialchars($threadTitle),
+			'creation_time'  => $postTime,
+			'posts'          => 0,
+			'last_post_time' => $postTime,
+			'views'          => 0
+		]);
+
+		createPost($newThreadId, $postText, $postTime);
+
+		$database->update('forums', [
+			'threads[+]' => 1
+		], [
+			'id' => $forumId
+		]);
+
+		return $newThreadId;
 	}

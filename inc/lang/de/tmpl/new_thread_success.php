@@ -1,0 +1,1 @@
+<a href="?p=thread&id=<?= $threadId ?>"><i class="fa fa-arrow-right"></i> Thema ansehen</a>

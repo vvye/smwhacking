@@ -3,7 +3,6 @@
 	require_once __DIR__ . '/../functions/forums.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
-	$success = false;
 
 	do
 	{
@@ -13,8 +12,9 @@
 			break;
 		}
 
-		if (!isBanned())
+		if (isBanned())
 		{
+			// TODO permission to view thread
 			renderErrorMessage(MSG_NEW_REPLY_BANNED);
 			break;
 		}
@@ -25,7 +25,7 @@
 			break;
 		}
 		$threadId = $_GET['thread'];
-		
+
 		$threads = getThread($threadId);
 
 		if (count($threads) !== 1)
@@ -35,6 +35,8 @@
 		}
 		$thread = $threads[0];
 
+		$success = false;
+
 		if (isset($_POST['submit']))
 		{
 			$postText = trim(getFieldValue('post-text'));
@@ -42,34 +44,36 @@
 			if ($postText === '')
 			{
 				renderErrorMessage(MSG_POST_TEXT_EMPTY);
-				break;
+				$error = true;
 			}
-
-			$newPostId = doPost($threadId, $postText);
-			if ($newPostId === null)
+			else
 			{
-				break;
-			}
+				$newPostId = createPost($threadId, $postText);
+				if ($newPostId === null)
+				{
+					renderErrorMessage(MSG_GENERAL_ERROR);
+					break;
+				}
 
-			$success = true;
-			renderSuccessMessage(MSG_NEW_REPLY_SUCCESS);
-			renderTemplate('new_reply_success', [
-				'threadId' => $threadId,
-				'page'     => getPostPageInThread($newPostId, $threadId),
-				'postId'   => $newPostId
+				$success = true;
+				renderSuccessMessage(MSG_NEW_REPLY_SUCCESS);
+				renderTemplate('new_reply_success', [
+					'threadId' => $threadId,
+					'page'     => getPostPageInThread($newPostId, $threadId),
+					'postId'   => $newPostId
+				]);
+			}
+		}
+		if (!$success)
+		{
+			renderTemplate('new_reply', [
+				'threadId'   => $threadId,
+				'threadName' => $thread['name'],
+				'forumId'    => $thread['forum_id'],
+				'forumName'  => $thread['forum_name']
 			]);
 		}
 	}
 	while (false);
-
-	if (!$success)
-	{
-		renderTemplate('new_reply', [
-			'threadId'   => $threadId,
-			'threadName' => $thread['name'],
-			'forumId'    => $thread['forum_id'],
-			'forumName'  => $thread['forum_name']
-		]);
-	}
 
 

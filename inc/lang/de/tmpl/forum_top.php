@@ -10,9 +10,8 @@
 			<a class="subtle button" href="?p=forum&id=<?= $forumId ?>&mark-read">Forum als gelesen
 				markieren</a>
 			<?php if ($canMakeThread): ?>
-				<button class="primary" href="?p=new-thread&forum=<?= $forumId ?>">Neues Thema erstellen</button>
+				<a class="button primary" href="?p=new-thread&forum=<?= $forumId ?>">Neues Thema erstellen</a>
 			<?php endif; ?>
 		<?php endif; ?>
 	</div>
-
 </div>
