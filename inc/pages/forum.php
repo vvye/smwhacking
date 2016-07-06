@@ -31,9 +31,10 @@
 		$forumName = $forum['name'];
 
 		renderTemplate('forum_top', [
-			'forumName' => $forumName,
-			'forumId'   => $forumId,
-			'loggedIn'  => isLoggedIn()
+			'forumName'     => $forumName,
+			'forumId'       => $forumId,
+			'loggedIn'      => isLoggedIn(),
+			'canMakeThread' => !isBanned()
 		]);
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;

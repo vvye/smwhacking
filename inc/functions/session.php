@@ -4,7 +4,7 @@
 	require_once __DIR__ . '/phpbb_auth.php';
 
 
-	function doLogin($database = null)
+	function doLogin()
 	{
 		global $database;
 
@@ -94,5 +94,5 @@
 
 	function isBanned()
 	{
-		return (isset($_SESSION['banned']) && $_SESSION['banned'] !== 0);
+		return (isset($_SESSION['banned']) && (int)$_SESSION['banned'] !== 0);
 	}

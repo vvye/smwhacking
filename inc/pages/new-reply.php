@@ -3,6 +3,8 @@
 	require_once __DIR__ . '/../functions/forums.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
+	$success = false;
+
 	do
 	{
 		if (!isLoggedIn())
@@ -23,26 +25,17 @@
 			break;
 		}
 		$threadId = $_GET['thread'];
+		
+		$threads = getThread($threadId);
 
-		if (!isset($_POST['submit']))
+		if (count($threads) !== 1)
 		{
-			$threads = getThread($threadId);
-
-			if (count($threads) !== 1)
-			{
-				renderErrorMessage(MSG_THREAD_DOESNT_EXIST);
-				break;
-			}
-			$thread = $threads[0];
-
-			renderTemplate('new_reply', [
-				'threadId'   => $threadId,
-				'threadName' => $thread['name'],
-				'forumId'    => $thread['forum_id'],
-				'forumName'  => $thread['forum_name']
-			]);
+			renderErrorMessage(MSG_THREAD_DOESNT_EXIST);
+			break;
 		}
-		else
+		$thread = $threads[0];
+
+		if (isset($_POST['submit']))
 		{
 			$postText = trim(getFieldValue('post-text'));
 
@@ -58,15 +51,25 @@
 				break;
 			}
 
+			$success = true;
 			renderSuccessMessage(MSG_NEW_REPLY_SUCCESS);
 			renderTemplate('new_reply_success', [
 				'threadId' => $threadId,
 				'page'     => getPostPageInThread($newPostId, $threadId),
 				'postId'   => $newPostId
 			]);
-
 		}
 	}
 	while (false);
+
+	if (!$success)
+	{
+		renderTemplate('new_reply', [
+			'threadId'   => $threadId,
+			'threadName' => $thread['name'],
+			'forumId'    => $thread['forum_id'],
+			'forumName'  => $thread['forum_name']
+		]);
+	}
 
 

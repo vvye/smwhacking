@@ -54,6 +54,10 @@ body {
     border-color: #FF6528;
 }
 
+.message.success {
+    border-color: #00CB00;
+}
+
 h1 {
     margin: 0;
     font-size: 4rem;
