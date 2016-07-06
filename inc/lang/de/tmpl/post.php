@@ -4,9 +4,12 @@
 		<?php if ($author['powerlevelId'] !== 0): ?>
 			<?= $author['powerlevel'] ?>
 		<?php endif; ?>
-		<?= $author['rankHtml'] ?>
+		<p><?= $author['rank']['name'] ?></p>
+		<?php if ($author['rank']['has_image']): ?>
+			<img src="img/ranks/<?= $author['rank']['id'] ?>.png" alt="<?= $author['rank']['name'] ?>" />
+		<?php endif; ?>
 		<p class="title"><?= $author['title'] ?></p>
-		<?= $author['avatarHtml'] ?>
+		<img class="avatar" src="img/avatars/<?= $author['id'] ?>.png" alt="Avatar" />
 		<p>Beiträge: <?= $author['currentPostNumber'] ?> / <?= $author['numTotalPosts'] ?></p>
 		<p>Registriert seit: <?= $author['registrationTime'] ?></p>
 	</div>

@@ -6,7 +6,7 @@
 	</p>
 	<?php if (isLoggedIn()): ?>
 		<form class="column">
-			<a class="pseudo button" href="?p=forum&id=<?= $forumId ?>&mark-read">Forum als gelesen
+			<a class="subtle button" href="?p=forum&id=<?= $forumId ?>&mark-read">Forum als gelesen
 				markieren</a>
 			<button class="primary">Neues Thema erstellen</button>
 		</form>

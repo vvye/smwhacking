@@ -82,7 +82,7 @@ button, .button, input[type="button"], input[type="submit"] {
     text-decoration: none;
 }
 
-button.pseudo, .button.pseudo, input[type="button"].pseudo, input[type="submit"].pseudo {
+button.subtle, .button.subtle, input[type="button"].subtle, input[type="submit"].subtle {
     background: none;
     border: 1px solid #AAAAAA;
 }

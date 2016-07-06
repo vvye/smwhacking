@@ -21,18 +21,9 @@
 			break;
 		}
 
+		// TODO permission to see last post
 		$lastPost = getLastPost($userId);
-		if ($lastPost === null)
-		{
-			$lastPostHtml = '<em>' . MSG_NONE . '</em>';
-		}
-		else
-		{
-			// TODO permission to see last post
-			$page = getPostPageInThread($lastPost['id'], $lastPost['thread_id']);
-			$lastPostHtml = date(DEFAULT_DATE_FORMAT, $lastPost['post_time']) . ' in <a href="?p=thread&id='
-				. $lastPost['thread_id'] . '&page=' . $page . '#post-' . $lastPost['id'] . '">' . $lastPost['thread_name'] . '</a>';
-		}
+		$lastPostPage = ($lastPost !== null) ? getPostPageInThread($lastPost['id'], $lastPost['thread_id']) : '';
 
 		renderTemplate('user_top', [
 			'name' => $user['name'],
@@ -40,15 +31,16 @@
 		]);
 
 		renderTemplate('user_info', [
-			'avatarHtml'       => getAvatarHtml($userId),
+			'id'               => $userId,
 			'powerlevel'       => POWERLEVEL_DESCRIPTIONS[$user['powerlevel']],
-			'rankHtml'         => getProfileRankHtml($userId),
+			'rank'             => getRank($userId),
 			'title'            => $user['title'],
 			'registrationTime' => date(DEFAULT_DATE_FORMAT, $user['registration_time']),
 			'lastLoginTime'    => date(DEFAULT_DATE_FORMAT, $user['last_login_time']),
 			'numPosts'         => getNumPostsByUser($userId),
-			'lastPostHtml'     => $lastPostHtml,
-			'websiteHtml'      => ($user['website'] !== '') ? '<a href="' . $user['website'] . '">' . $user['website'] . '</a>' : '',
+			'lastPost'         => $lastPost,
+			'lastPostPage'     => $lastPostPage,
+			'website'          => $user['website'],
 			'emailHtml'        => obfuscateEmail($user['email'])
 		]);
 

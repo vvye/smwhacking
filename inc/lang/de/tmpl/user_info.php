@@ -2,7 +2,7 @@
 	<h3>Nutzer-Info</h3>
 	<div class="content">
 		<div class="sidebar">
-			<?php echo $avatarHtml; ?>
+			<img class="avatar" src="img/avatars/<?= $id ?>.png" alt="Avatar" />
 		</div>
 		<table>
 			<tr>
@@ -11,7 +11,12 @@
 			</tr>
 			<tr>
 				<td>Rang:</td>
-				<td><?php echo $rankHtml; ?></td>
+				<td>
+					<?php if ($rank['has_image']): ?>
+						<img src="img/ranks/<?= $rank['id'] ?>.png" alt="<?= $rank['name'] ?>" />
+					<?php endif; ?>
+					<?= $rank['name'] ?>
+				</td>
 			</tr>
 			<tr>
 				<td>Titel:</td>
@@ -31,14 +36,26 @@
 			</tr>
 			<tr>
 				<td>Letzter Beitrag:</td>
-				<td><?php echo $lastPostHtml; ?></td>
+				<td>
+					<?php if ($lastPost === null): ?>
+						<em><?= MSG_NONE ?></em>
+					<?php else: ?>
+						<?= date(DEFAULT_DATE_FORMAT, $lastPost['post_time']) ?>
+						in <a
+							href="?p=thread&id=<?= $lastPost['thread_id'] ?>&page=<?= $lastPostPage ?>#post-<?= $lastPost['id'] ?>"></a>
+					<?php endif; ?>
+				</td>
 			</tr>
 			<tr>
-				<td colspan="2">&nbsp;</td>
+				<td colspan=" 2">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>Website:</td>
-				<td><?php echo $websiteHtml; ?></td>
+				<td>
+					<?php if ($website !== ''): ?>
+						<a href="<?= $website ?>"><?= $website ?></a>
+					<?php endif; ?>
+				</td>
 			</tr>
 			<tr>
 				<td>E-Mail:</td>

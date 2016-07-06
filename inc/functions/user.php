@@ -85,13 +85,7 @@
 	}
 
 
-	function getAvatarHtml($userId)
-	{
-		return '<img class="avatar" src="img/avatars/' . $userId . '.png" alt="Avatar" />';
-	}
-
-
-	function getRankHtml($userId)
+	function getRank($userId)
 	{
 		global $database;
 
@@ -100,30 +94,7 @@
 			'ORDER'         => 'min_posts DESC',
 			'LIMIT'         => '1',
 		]);
-		$rank = $ranks[0];
-
-		// TODO check if file exists?
-		$imageHtml = $rank['has_image'] ? '<img src="img/ranks/' . $rank['id'] . '.png" alt="' . $rank['name'] . '" />' : '';
-
-		return '<p>' . $rank['name'] . '</p>' . $imageHtml;
-	}
-
-	// TODO refactor?
-	function getProfileRankHtml($userId)
-	{
-		global $database;
-
-		$ranks = $database->select('ranks', '*', [
-			'min_posts[<=]' => getNumPostsByUser($userId),
-			'ORDER'         => 'min_posts DESC',
-			'LIMIT'         => '1',
-		]);
-		$rank = $ranks[0];
-
-		// TODO check if file exists?
-		$imageHtml = $rank['has_image'] ? '<img src="img/ranks/' . $rank['id'] . '.png" alt="' . $rank['name'] . '" />' : '';
-
-		return $imageHtml . ' ' . $rank['name'];
+		return $ranks[0];
 	}
 
 

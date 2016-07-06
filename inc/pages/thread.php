@@ -48,7 +48,7 @@
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);
 
 		$posts = getPostsInThread($threadId, $page);
-		
+
 		if (isLoggedIn())
 		{
 			$newLastReadTime = $posts[count($posts) - 1]['post_time'];
@@ -74,8 +74,7 @@
 					'powerlevelId'      => (int)$post['author_powerlevel'],
 					'powerlevel'        => POWERLEVEL_DESCRIPTIONS[$post['author_powerlevel']],
 					'title'             => $post['author_title'],
-					'rankHtml'          => getRankHtml($post['author_id']),
-					'avatarHtml'        => getAvatarHtml($post['author_id']),
+					'rank'              => getRank($post['author_id']),
 					'registrationTime'  => date(DEFAULT_DATE_FORMAT, $post['author_registration_time']),
 					'currentPostNumber' => getCurrentPostNumber($post['author_id'], $post['id']),
 					'numTotalPosts'     => getNumPostsByUser($post['author_id']),
