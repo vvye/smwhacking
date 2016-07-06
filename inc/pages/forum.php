@@ -37,7 +37,7 @@
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
-		$numTotalThreads = $forum['num_threads'];
+		$numTotalThreads = $forum['threads'];
 		$threads = getThreadsInForum($forumId, $page);
 		$numStickies = getNumStickiesInForum($forumId);
 
@@ -50,6 +50,9 @@
 		foreach ($threads as $index => $thread)
 		{
 			$unread = isLoggedIn() && $thread['last_read_time'] < $thread['last_post_time'];
+			
+			$lastPost = getPostById($thread['last_post']);
+			$lastPostPage = ($lastPost !== null) ? getPostPageInThread($lastPost['id'], $thread['id']) : '';
 
 			$threadsForTemplate[] = [
 				'sticky'       => $thread['sticky'],
@@ -59,7 +62,8 @@
 				'name'         => $thread['name'],
 				'numReplies'   => $thread['posts'] - 1,
 				'numViews'     => $thread['views'],
-				'lastPost'     => getPostById($thread['last_post']),
+				'lastPost'     => $lastPost,
+				'lastPostPage' => $lastPostPage,
 				'authorId'     => $thread['author_id'],
 				'authorName'   => $thread['author_name'],
 				'creationTime' => date(DEFAULT_DATE_FORMAT, $thread['creation_time']),

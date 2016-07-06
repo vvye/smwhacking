@@ -45,8 +45,8 @@
 
 	function renderErrorMessage($msg)
 	{
-		renderTemplate('error', [
-			'type' => '',
+		renderTemplate('message', [
+			'type' => 'error',
 			'message' => $msg
 		]);
 	}

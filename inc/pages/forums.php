@@ -20,8 +20,8 @@
 				'name'        => $forum['name'],
 				'unread'      => $unread,
 				'description' => $forum['description'],
-				'numThreads'  => $forum['num_threads'],
-				'numPosts'    => $forum['num_posts'],
+				'numThreads'  => $forum['threads'],
+				'numPosts'    => $forum['posts'],
 				'lastPost'    => $lastPost,
 				'lastPostPage' => '' // TODO // getPostPageInThread($forum['last_post'])
 			];

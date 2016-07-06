@@ -46,14 +46,14 @@
 				von <a href="?p=user&id=<?= $thread['lastPost']['author_id'] ?>">
 					<?= $thread['lastPost']['author_name'] ?>
 				</a>
-				<a href="?p=thread&id=<?= $thread['lastPost']['thread_id'] ?>#post-<?= $thread['lastPost']['id'] ?>">
+				<a href="?p=thread&id=<?= $thread['lastPost']['thread_id'] ?>&page=<?= $thread['lastPostPage'] ?>#post-<?= $thread['lastPost']['id'] ?>">
 					<i class="fa fa-arrow-right"></i>
 				</a>
 				<p><?= date(DEFAULT_DATE_FORMAT, $thread['lastPost']['post_time']) ?></p>
 			<?php endif; ?>
 		</td>
 		</tr>
-		
+
 	<?php endforeach; ?>
 
 	</tbody>

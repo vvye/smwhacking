@@ -17,8 +17,8 @@
 			'forums.name',
 			'forums.description',
 			'forums.min_powerlevel',
-			'forums.num_threads',
-			'forums.num_posts',
+			'forums.threads',
+			'forums.posts',
 			'forums.last_post',
 			'forum_categories.name(category_name)'
 		], [
@@ -133,6 +133,18 @@
 	}
 
 
+	function threadExists($threadId)
+	{
+		global $database;
+
+		$count = $database->count('threads', [
+			'id' => $threadId
+		]);
+
+		return $count === 1;
+	}
+
+
 	function getThread($threadId)
 	{
 		global $database;
@@ -201,9 +213,12 @@
 			'users.registration_time(author_registration_time)',
 			'users.banned(author_banned)'
 		], [
-			'thread' => $threadId,
-			'ORDER'  => 'post_time ASC',
-			'LIMIT'  => [($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE]
+			'AND'   => [
+				'thread'  => $threadId,
+				'deleted' => 0
+			],
+			'ORDER' => 'post_time ASC',
+			'LIMIT' => [($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE]
 		]);
 
 		if ($posts === false)
@@ -221,8 +236,9 @@
 
 		$numPostsUpTo = $database->count('posts', [
 			'AND' => [
-				'thread' => $threadId,
-				'id[<=]' => $postId
+				'thread'  => $threadId,
+				'id[<=]'  => $postId,
+				'deleted' => 0
 			]
 		]);
 
@@ -334,4 +350,50 @@
 	function markAllForumsAsRead()
 	{
 		markForumAsRead(null);
+	}
+
+
+	function doPost($threadId, $postText)
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			return null;
+		}
+
+		$postText = htmlspecialchars($postText);
+		$postTime = time();
+
+		$newPostId = $database->insert('posts', [
+			'id'        => null,
+			'thread'    => $threadId,
+			'author'    => $_SESSION['userId'],
+			'post_time' => $postTime,
+			'content'   => $postText,
+			'deleted'   => 0
+		]);
+		$database->update('threads', [
+			'posts[+]' => 1,
+			'last_post' => $newPostId,
+			'last_post_time' => $postTime
+		], [
+			'id' => $threadId
+		]);
+
+		$forumIds = $database->select('forums', [
+			'[>]threads' => ['id' => 'forum']
+		], 'forums.id', [
+			'threads.id' => $threadId
+		]);
+		$forumId = $forumIds[0];
+
+		$database->update('forums', [
+			'posts[+]' => 1,
+			'last_post' => $newPostId
+		], [
+			'id' => $forumId
+		]);
+
+		return $newPostId;
 	}

@@ -136,3 +136,19 @@
 
 	define('MSG_NEW',
 		'NEU');
+
+
+	define('MSG_NEW_REPLY_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Beiträge schreiben zu können.');
+
+
+	define('MSG_THREAD_DOESNT_EXIST',
+		'Dieses Thema gibt es nicht.');
+
+
+	define('MSG_POST_TEXT_EMPTY',
+		'Der Beitrags-Text darf nicht leer sein.');
+
+
+	define('MSG_NEW_REPLY_SUCCESS',
+		'Der Beitrag wurde abgeschickt!');
