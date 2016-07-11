@@ -139,7 +139,7 @@
 
 		if (isLoggedIn())
 		{
-			return $database->query('
+			$threads = $database->query('
 				SELECT threads.id,
 				threads.name,
 				threads.posts,
@@ -157,7 +157,7 @@
 		}
 		else
 		{
-			return $database->query('
+			$threads = $database->query('
 				SELECT threads.id,
 				threads.name,
 				threads.posts,
@@ -169,6 +169,13 @@
 				WHERE threads.id = ' . $database->quote($threadId) . '
 			')->fetchAll();
 		}
+
+		if (count($threads) !== 1 || $threads[0]['id'] == '')
+		{
+			return null;
+		}
+
+		return $threads[0];
 	}
 
 
@@ -492,4 +499,29 @@
 		], [
 			'id' => $threadId
 		]);
+	}
+
+
+	function editPost($postId, $postText)
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			return null;
+		}
+
+		$newPostId = $database->update('posts', [
+			'content' => htmlspecialchars($postText),
+		], [
+			'id' => $postId
+		]);
+
+		$database->insert('edits', [
+			'post'      => $postId,
+			'user'      => $_SESSION['userId'],
+			'edit_time' => time()
+		]);
+
+		return $newPostId;
 	}

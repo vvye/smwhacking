@@ -228,3 +228,23 @@
 
 	define('MSG_UNSTICKY_THREAD_SUCCESS',
 		'Das Thema wurde von der Liste der wichtigen Themen abgelöst.');
+
+
+	define('MSG_EDIT_REPLY_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Beiträge bearbeiten zu können.');
+
+
+	define('MSG_EDIT_REPLY_BANNED',
+		'Du darfst keine Beiträge bearbeiten.');
+
+
+	define('MSG_POST_DOESNT_EXIST',
+		'Der Beitrag existiert nicht.');
+
+
+	define('MSG_EDIT_REPLY_NOT_ALLOWED',
+		'Du darfst diesen Beitrag nicht bearbeiten.');
+
+
+	define('MSG_EDIT_REPLY_SUCCESS',
+		'Der Beitrag wurde bearbeitet.');

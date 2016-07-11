@@ -67,7 +67,10 @@
 		global $database;
 
 		return $database->count('posts', [
-			'author' => $userId
+			'AND' => [
+				'author'  => $userId,
+				'deleted' => 0
+			]
 		]);
 	}
 
@@ -94,6 +97,7 @@
 			'ORDER'         => 'min_posts DESC',
 			'LIMIT'         => '1',
 		]);
+
 		return $ranks[0];
 	}
 

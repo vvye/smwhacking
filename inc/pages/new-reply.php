@@ -19,21 +19,20 @@
 			break;
 		}
 
-		if (!isset($_GET['thread']) || !is_numeric($_GET['thread']))
+		if (!isset($_GET['thread']) || !is_int($_GET['thread'] * 1))
 		{
 			renderErrorMessage(MSG_THREAD_DOESNT_EXIST);
 			break;
 		}
 		$threadId = $_GET['thread'];
 
-		$threads = getThread($threadId);
+		$thread = getThread($threadId);
 
-		if (count($threads) !== 1)
+		if ($thread === null)
 		{
 			renderErrorMessage(MSG_THREAD_DOESNT_EXIST);
 			break;
 		}
-		$thread = $threads[0];
 
 		$postText = '';
 		if (isset($_GET['quote']) && is_int($quotedPostId = ($_GET['quote'] * 1)))
@@ -41,7 +40,9 @@
 			$quotedPost = getPostById($quotedPostId);
 			if ($quotedPost !== null)
 			{
-				$postText = '[quote=' . $quotedPost['author_name'] . ']' . $quotedPost['content'] . '[/quote]';
+				// TODO outsource to template? 
+				$postText = '[quote=' . $quotedPost['author_name'] . ']'
+					. htmlspecialchars_decode($quotedPost['content']) . '[/quote]';
 			}
 		}
 

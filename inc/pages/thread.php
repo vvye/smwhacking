@@ -17,14 +17,13 @@
 		}
 		$threadId = $_GET['id'];
 
-		$threads = getThread($threadId);
-
-		if (count($threads) !== 1)
+		$thread = getThread($threadId);
+		
+		if ($thread === null)
 		{
 			include __DIR__ . '/404.php';
 			break;
 		}
-		$thread = $threads[0];
 
 		addViewToThread($threadId);
 
