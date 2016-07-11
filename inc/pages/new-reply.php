@@ -35,6 +35,16 @@
 		}
 		$thread = $threads[0];
 
+		$postText = '';
+		if (isset($_GET['quote']) && is_int($quotedPostId = ($_GET['quote'] * 1)))
+		{
+			$quotedPost = getPostById($quotedPostId);
+			if ($quotedPost !== null)
+			{
+				$postText = '[quote=' . $quotedPost['author_name'] . ']' . $quotedPost['content'] . '[/quote]';
+			}
+		}
+
 		$success = false;
 
 		if (isset($_POST['submit']))
@@ -70,7 +80,8 @@
 				'threadId'   => $threadId,
 				'threadName' => $thread['name'],
 				'forumId'    => $thread['forum_id'],
-				'forumName'  => $thread['forum_name']
+				'forumName'  => $thread['forum_name'],
+				'postText'   => $postText
 			]);
 		}
 	}

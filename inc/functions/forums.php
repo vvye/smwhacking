@@ -77,7 +77,7 @@
 	{
 		global $database;
 
-		$lastPost = $database->select('posts', [
+		$posts = $database->select('posts', [
 			'[>]threads' => ['thread' => 'id'],
 			'[>]users'   => ['author' => 'id']
 		], [
@@ -85,17 +85,18 @@
 			'users.id(author_id)',
 			'users.name(author_name)',
 			'posts.id(id)',
+			'posts.content',
 			'posts.post_time'
 		], [
 			'posts.id' => $postId
 		]);
 
-		if (count($lastPost) !== 1 || $lastPost[0]['id'] == '')
+		if (count($posts) !== 1 || $posts[0]['id'] == '')
 		{
 			return null;
 		}
 
-		return $lastPost[0];
+		return $posts[0];
 	}
 
 
