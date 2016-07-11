@@ -525,3 +525,9 @@
 
 		return $newPostId;
 	}
+
+
+	function canModifyPost($post)
+	{
+		return ($post['author_id'] === $_SESSION['userId'] || isModerator()) && !isBanned();
+	}

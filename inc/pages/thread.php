@@ -18,7 +18,7 @@
 		$threadId = $_GET['id'];
 
 		$thread = getThread($threadId);
-		
+
 		if ($thread === null)
 		{
 			include __DIR__ . '/404.php';
@@ -68,15 +68,16 @@
 			$unread = isLoggedIn() && $post['post_time'] > $thread['last_read_time'];
 
 			renderTemplate('post', [
-				'inThread'     => true,
-				'id'           => $post['id'],
-				'threadId'     => $threadId,
-				'postTime'     => date(DEFAULT_DATE_FORMAT, $post['post_time']),
-				'content'      => nl2br($post['content']),
-				'pageInThread' => getPostPageInThread($post['id'], $threadId),
-				'unread'       => $unread,
-				'lastEdit'     => getLastEdit($post['id']),
-				'author'       => [
+				'inThread'      => true,
+				'id'            => $post['id'],
+				'threadId'      => $threadId,
+				'postTime'      => date(DEFAULT_DATE_FORMAT, $post['post_time']),
+				'content'       => nl2br($post['content']),
+				'pageInThread'  => getPostPageInThread($post['id'], $threadId),
+				'unread'        => $unread,
+				'lastEdit'      => getLastEdit($post['id']),
+				'canModifyPost' => canModifyPost($post),
+				'author'        => [
 					'id'                => $post['author_id'],
 					'name'              => $post['author_name'],
 					'powerlevelId'      => (int)$post['author_powerlevel'],

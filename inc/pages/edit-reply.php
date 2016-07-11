@@ -36,7 +36,7 @@
 			break;
 		}
 
-		if ($post['author_id'] !== $_SESSION['userId'] && !isModerator())
+		if (!canModifyPost($post))
 		{
 			renderErrorMessage(MSG_EDIT_REPLY_NOT_ALLOWED);
 			break;

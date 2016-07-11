@@ -40,15 +40,16 @@
 		foreach ($posts as $post)
 		{
 			renderTemplate('post', [
-				'inThread'     => false,
-				'id'           => $post['id'],
-				'threadId'     => $post['thread_id'],
-				'threadName'   => $post['thread_name'],
-				'postTime'     => date(DEFAULT_DATE_FORMAT, $post['post_time']),
-				'content'      => nl2br($post['content']),
-				'pageInThread' => getPostPageInThread($post['id'], $post['thread_id']),
-				'lastEdit'     => getLastEdit($post['id']),
-				'author'       => [
+				'inThread'      => false,
+				'id'            => $post['id'],
+				'threadId'      => $post['thread_id'],
+				'threadName'    => $post['thread_name'],
+				'postTime'      => date(DEFAULT_DATE_FORMAT, $post['post_time']),
+				'content'       => nl2br($post['content']),
+				'pageInThread'  => getPostPageInThread($post['id'], $post['thread_id']),
+				'lastEdit'      => getLastEdit($post['id']),
+				'canModifyPost' => canModifyPost($post),
+				'author'        => [
 					'id'                => $userId,
 					'name'              => $user['name'],
 					'powerlevelId'      => (int)$user['powerlevel'],
