@@ -143,6 +143,8 @@
 				threads.name,
 				threads.posts,
 				threads.last_post,
+				threads.closed,
+				threads.sticky,
 				forums.id AS forum_id,
 				forums.name AS forum_name,
 				threads_read.last_read_time
@@ -415,6 +417,32 @@
 		]);
 
 		return $newThreadId;
+	}
+
+
+	function isClosed($threadId)
+	{
+		global $database;
+
+		return $database->count('threads', [
+			'AND' => [
+				'id'     => $threadId,
+				'closed' => 1
+			]
+		]) === 1;
+	}
+
+
+	function isSticky($threadId)
+	{
+		global $database;
+
+		return $database->count('threads', [
+			'AND' => [
+				'id'     => $threadId,
+				'sticky' => 1
+			]
+		]) === 1;
 	}
 
 

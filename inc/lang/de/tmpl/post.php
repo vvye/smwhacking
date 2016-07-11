@@ -17,7 +17,7 @@
 		<div class="topbar grid">
 			<div class="column">
 				<?php if ($inThread && $unread): ?>
-					<span class="new"><?= MSG_NEW ?></span>
+					<span class="status"><?= MSG_NEW ?></span>
 				<?php endif; ?>
 				geschrieben am <?= $postTime ?>
 				<?php if (!$inThread): ?>

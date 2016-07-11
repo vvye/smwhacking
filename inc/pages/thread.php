@@ -31,14 +31,22 @@
 		$threadName = $thread['name'];
 		$forumId = $thread['forum_id'];
 		$forumName = $thread['forum_name'];
+		$closed = $thread['closed'];
+		$sticky = $thread['sticky'];
+
+		$canPost = isBanned() ? false : isModerator() || !$closed;
 
 		renderTemplate('thread_top', [
-			'top'        => true,
-			'threadId'   => $threadId,
-			'threadName' => $threadName,
-			'forumId'    => $forumId,
-			'forumName'  => $forumName,
-			'loggedIn'   => isLoggedIn()
+			'top'           => true,
+			'threadId'      => $threadId,
+			'threadName'    => $threadName,
+			'forumId'       => $forumId,
+			'forumName'     => $forumName,
+			'canTakeAction' => isLoggedIn() && !isBanned(),
+			'moderator'     => isModerator(),
+			'canPost'       => $canPost,
+			'closed'        => $closed,
+			'sticky'        => $sticky
 		]);
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
@@ -85,12 +93,16 @@
 		}
 
 		renderTemplate('thread_top', [
-			'top'        => false,
-			'threadId'   => $threadId,
-			'threadName' => $threadName,
-			'forumId'    => $forumId,
-			'forumName'  => $forumName,
-			'loggedIn'   => isLoggedIn()
+			'top'           => false,
+			'threadId'      => $threadId,
+			'threadName'    => $threadName,
+			'forumId'       => $forumId,
+			'forumName'     => $forumName,
+			'canTakeAction' => isLoggedIn() && !isBanned(),
+			'moderator'     => isModerator(),
+			'canPost'       => $canPost,
+			'closed'        => $closed,
+			'sticky'        => $sticky
 		]);
 
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);

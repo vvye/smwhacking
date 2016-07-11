@@ -57,6 +57,7 @@
 			$lastPostPage = ($lastPost !== null) ? getPostPageInThread($lastPost['id'], $thread['id']) : '';
 
 			$threadsForTemplate[] = [
+				'closed'       => $thread['closed'],
 				'sticky'       => $thread['sticky'],
 				'lastSticky'   => $thread['sticky'] && $index === $numStickies - 1,
 				'unread'       => $unread,

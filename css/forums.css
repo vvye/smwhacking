@@ -84,11 +84,19 @@
     text-align: left;
 }
 
-.forum .new {
+.forum .status {
     width: 3rem;
     text-align: center;
     font-weight: bold;
+    line-height: 1rem;
+}
+
+.forum .status .new {
     color: #FF6528;
+}
+
+.forum .status .closed {
+    color: #666666;
 }
 
 .forum .num-threads,
@@ -163,7 +171,7 @@
     font-weight: bold;
 }
 
-.post .new {
+.post .status {
     font-weight: bold;
     color: #FF6528;
 }

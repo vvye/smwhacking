@@ -138,6 +138,10 @@
 		'NEU');
 
 
+	define('MSG_OFF',
+		'OFF');
+
+
 	define('MSG_NEW_REPLY_NOT_LOGGED_IN',
 		'Du musst eingeloggt sein, um Beiträge schreiben zu können.');
 
@@ -180,3 +184,47 @@
 
 	define('MSG_GENERAL_ERROR',
 		'Irgendwas ist schiefgelaufen.');
+
+
+	define('MSG_NOT_ALLOWED',
+		'Du darfst diese Aktion nicht ausführen.');
+
+
+	define('MSG_PARAMETERS_MISSING',
+		'Einige nötige Parameter wurden nicht angegeben.');
+
+
+	define('MSG_UNKNOWN_ACTION',
+		'Unbekannte Aktion.');
+
+
+	define('MSG_THREAD_ALREADY_CLOSED',
+		'Das Thema ist schon geschlossen.');
+
+
+	define('MSG_THREAD_ALREADY_OPEN',
+		'Das Thema ist schon offen.');
+
+
+	define('MSG_THREAD_ALREADY_STICKIED',
+		'Das Thema ist schon als wichtig markiert.');
+
+
+	define('MSG_THREAD_ALREADY_UNSTICKIED',
+		'Das Thema war noch nicht als wichtig markiert.');
+
+
+	define('MSG_CLOSE_THREAD_SUCCESS',
+		'Das Thema wurde geschlossen.');
+
+
+	define('MSG_OPEN_THREAD_SUCCESS',
+		'Das Thema wurde geöffnet.');
+
+
+	define('MSG_STICKY_THREAD_SUCCESS',
+		'Das Thema wurde als wichtig markiert.');
+
+
+	define('MSG_UNSTICKY_THREAD_SUCCESS',
+		'Das Thema wurde von der Liste der wichtigen Themen abgelöst.');

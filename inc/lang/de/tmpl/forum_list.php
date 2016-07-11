@@ -5,7 +5,7 @@
 	<table class="forum forum-category">
 		<thead>
 		<tr>
-			<th class="category-name" colspan="2"><?php echo $category['name']; ?></th>
+			<th class="category-name" colspan="2"><?= $category['name']; ?></th>
 			<th class="num-threads">Themen</th>
 			<th class="num-posts">Beiträge</th>
 			<th class="last-post">letzter Beitrag</th>
@@ -15,13 +15,14 @@
 
 		<?php foreach ($category['forums'] as $forum): ?>
 			<tr>
-				<td class="new"><?php echo $forum['unread'] ? MSG_NEW : ''; ?></td>
+				<td class="status">
+					<span class="new"><?= $forum['unread'] ? MSG_NEW : ''; ?></span></td>
 				<td class="forum-description">
-					<h3><a href="?p=forum&id=<?php echo $forum['id']; ?>"><?php echo $forum['name']; ?></a></h3>
-					<p><?php echo $forum['description']; ?></p>
+					<h3><a href="?p=forum&id=<?= $forum['id']; ?>"><?= $forum['name']; ?></a></h3>
+					<p><?= $forum['description']; ?></p>
 				</td>
-				<td class="num-threads"><?php echo $forum['numThreads']; ?></td>
-				<td class="num-posts"><?php echo $forum['numPosts']; ?></td>
+				<td class="num-threads"><?= $forum['numThreads']; ?></td>
+				<td class="num-posts"><?= $forum['numPosts']; ?></td>
 				<td class="last-post">
 					<?php if ($forum['lastPost'] === null): ?>
 						<em><?= MSG_NONE ?></em>

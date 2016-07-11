@@ -26,7 +26,14 @@
 		<?php else: ?>
 			<tr>
 		<?php endif; ?>
-		<td class="new"><?= $thread['unread'] ? MSG_NEW : '' ?></td>
+		<td class="status">
+			<?php if ($thread['closed']): ?>
+				<span class="closed"><?= MSG_OFF ?></span><br />
+			<?php endif; ?>
+			<?php if ($thread['unread']): ?>
+				<span class="new"><?= MSG_NEW ?></span><br />
+			<?php endif; ?>
+		</td>
 		<td>
 			<h3>
 				<?php if ($thread['sticky']): ?>
