@@ -48,7 +48,7 @@
 				'content'       => nl2br($post['content']),
 				'pageInThread'  => getPostPageInThread($post['id'], $post['thread_id']),
 				'lastEdit'      => getLastEdit($post['id']),
-				'canModifyPost' => canModifyPost($post),
+				'canModifyPost' => false,
 				'author'        => [
 					'id'                => $userId,
 					'name'              => $user['name'],

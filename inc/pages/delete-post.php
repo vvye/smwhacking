@@ -40,6 +40,13 @@
 			break;
 		}
 
+		if (!isset($_GET['token']) || !isCsrfTokenCorrect($_GET['token']))
+		{
+			renderErrorMessage(MSG_BAD_TOKEN);
+			break;
+		}
+		$token = $_GET['token'];
+
 		$firstPost = isFirstPostOfThread($postId, $threadId);
 
 		if (isset($_POST['submit']))
@@ -54,7 +61,7 @@
 			{
 				renderSuccessMessage(MSG_DELETE_POST_SUCCESS);
 			}
-			
+
 			renderTemplate('delete_after', [
 				'firstPost' => $firstPost,
 				'threadId'  => $threadId,
@@ -69,7 +76,8 @@
 				'threadId'   => $threadId,
 				'threadName' => $thread['name'],
 				'forumId'    => $thread['forum_id'],
-				'forumName'  => $thread['forum_name']
+				'forumName'  => $thread['forum_name'],
+				'token'      => $token
 			]);
 		}
 	}

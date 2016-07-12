@@ -77,6 +77,7 @@
 				'unread'        => $unread,
 				'lastEdit'      => getLastEdit($post['id']),
 				'canModifyPost' => canModifyPost($post),
+				'token'         => getCsrfToken(),
 				'author'        => [
 					'id'                => $post['author_id'],
 					'name'              => $post['author_name'],

@@ -17,7 +17,9 @@
 			'password',
 			'legacy_login',
 			'powerlevel',
-			'banned'
+			'banned',
+			'csrf_token',
+			'csrf_token_expiry_time'
 		], [
 			'AND' => [
 				'email'     => $givenEmail,
@@ -46,6 +48,10 @@
 		$_SESSION['loggedIn'] = true;
 		$_SESSION['powerlevel'] = $user['powerlevel'];
 		$_SESSION['banned'] = $user['banned'];
+		$_SESSION['csrfToken'] = $user['csrf_token'];
+		$_SESSION['csrfTokenExpiryTime'] = $user['csrf_token_expiry_time'];
+
+		handleCsrfTokenRenewal();
 
 		$database->update('users', [
 			'last_login_time' => time(),
@@ -64,6 +70,40 @@
 		}
 
 		return true;
+	}
+
+
+	function getCsrfToken()
+	{
+		if (!isLoggedIn())
+		{
+			return '';
+		}
+		return $_SESSION['csrfToken'];
+	}
+
+
+	function isCsrfTokenCorrect($token)
+	{
+		return $token === $_SESSION['csrfToken'];
+	}
+
+
+	function handleCsrfTokenRenewal()
+	{
+		global $database;
+
+		$expiryTime = $_SESSION['csrfTokenExpiryTime'];
+		if ($expiryTime <= time())
+		{
+			$newToken = bin2hex(random_bytes(8));
+			$database->update('users', [
+				'csrf_token' => $newToken,
+				'csrf_token_expiry_time' => strtotime('+1 day')
+			], [
+				'id' => $_SESSION['userId']
+			]);
+		}
 	}
 
 

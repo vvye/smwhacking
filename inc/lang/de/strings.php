@@ -268,5 +268,9 @@
 
 	define('MSG_DELETE_THREAD_SUCCESS',
 		'Das Thema wurde gelöscht.');
+
+
+	define('MSG_BAD_TOKEN',
+		'Das Token stimmt nicht.');
 	
 	

@@ -14,7 +14,7 @@
 		], [
 			'page'         => 'forums',
 			'caption'      => CAPTION_FORUM,
-			'relatedPages' => ['forum', 'thread', 'new-post', 'user']
+			'relatedPages' => ['forum', 'thread', 'new-post', 'edit-post', 'delete-post', 'moderate-thread', 'user']
 		], [
 			'page'    => 'chat',
 			'caption' => CAPTION_CHAT

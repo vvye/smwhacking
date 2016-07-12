@@ -271,19 +271,19 @@
 	}
 
 
-	function updateThreadLastReadTime($threadId, $oldLastReadTime, $newlastReadTime)
+	function updateThreadLastReadTime($threadId, $oldLastReadTime, $newLastReadTime)
 	{
 		global $database;
 
-		if (isLoggedIn() && $newlastReadTime > $oldLastReadTime)
+		if (isLoggedIn() && $newLastReadTime > $oldLastReadTime)
 		{
 			// medoo doesn't support REPLACE INTO
 			$userId = $database->quote($_SESSION['userId']);
 			$threadId = $database->quote($threadId);
-			$newlastReadTime = $database->quote($newlastReadTime);
+			$newLastReadTime = $database->quote($newLastReadTime);
 			$database->query('
 				REPLACE INTO threads_read(user, thread, last_read_time)
-				VALUES (' . $userId . ', ' . $threadId . ', ' . $newlastReadTime . ')
+				VALUES (' . $userId . ', ' . $threadId . ', ' . $newLastReadTime . ')
 			');
 		}
 	}
@@ -625,12 +625,7 @@
 			'id' => $threadId,
 		]);
 
-		$forumIds = $database->select('forums', [
-			'[>]threads' => ['id' => 'forum']
-		], 'forums.id', [
-			'threads.id' => $threadId
-		]);
-		$forumId = $forumIds[0];
+		$forumId = getForumIdFromThread($threadId);
 
 		$database->update('forums', [
 			'posts[-]' => 1
@@ -668,12 +663,7 @@
 			'id' => $threadId,
 		]);
 
-		$forumIds = $database->select('forums', [
-			'[>]threads' => ['id' => 'forum']
-		], 'forums.id', [
-			'threads.id' => $threadId
-		]);
-		$forumId = $forumIds[0];
+		$forumId = getForumIdFromThread($threadId);
 
 		$database->update('forums', [
 			'posts[-]' => $numPostsToDelete
@@ -719,12 +709,7 @@
 			'id' => $threadId,
 		]);
 
-		$forumIds = $database->select('forums', [
-			'[>]threads' => ['id' => 'forum']
-		], 'forums.id', [
-			'threads.id' => $threadId
-		]);
-		$forumId = $forumIds[0];
+		$forumId = getForumIdFromThread($threadId);
 
 		updateLastPostInForum($forumId);
 	}
@@ -738,20 +723,28 @@
 			'[>]threads' => ['thread' => 'id'],
 			'[>]forums'  => ['threads.forum' => 'id']
 		], 'posts.id', [
-			'AND' => [
-				'forums.id' => $forumId,
+			'AND'   => [
+				'forums.id'     => $forumId,
 				'posts.deleted' => 0
 			],
-			'ORDER'   => 'id DESC',
-			'LIMIT'   => 1
+			'ORDER' => 'id DESC',
+			'LIMIT' => 1
 		]);
-		print_r($database->error());
-		print_r($lastPostIds);
 		$lastPostId = $lastPostIds[0];
 
 		$database->update('forums', [
 			'last_post' => $lastPostId
 		], [
 			'id' => $forumId,
+		]);
+	}
+
+
+	function getForumIdFromThread($threadId)
+	{
+		global $database;
+
+		return $database->get('threads', 'forum', [
+			'id' => $threadId
 		]);
 	}

@@ -42,6 +42,13 @@
 			break;
 		}
 
+		if (!isset($_GET['token']) || !isCsrfTokenCorrect($_GET['token']))
+		{
+			renderErrorMessage(MSG_BAD_TOKEN);
+			break;
+		}
+		$token = $_GET['token'];
+
 		// TODO edit thread title if post is first post of a thread
 		$postText = htmlspecialchars_decode($post['content']);
 
@@ -77,7 +84,8 @@
 				'threadName' => $thread['name'],
 				'forumId'    => $thread['forum_id'],
 				'forumName'  => $thread['forum_name'],
-				'postText'   => $postText
+				'postText'   => $postText,
+				'token'      => $token
 			]);
 		}
 

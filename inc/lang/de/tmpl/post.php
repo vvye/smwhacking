@@ -35,8 +35,8 @@
 				<?php if ($inThread): ?>
 					| <a href="?p=new-post&thread=<?= $threadId ?>&quote=<?= $id ?>">zitieren</a>
 					<?php if ($canModifyPost): ?>
-						| <a href="?p=edit-post&id=<?= $id ?>">bearbeiten</a>
-						| <a href="?p=delete-post&id=<?= $id ?>">löschen</a>
+						| <a href="?p=edit-post&id=<?= $id ?>&token=<?= $token ?>">bearbeiten</a>
+						| <a href="?p=delete-post&id=<?= $id ?>&token=<?= $token ?>">löschen</a>
 					<?php endif; ?>
 				<?php endif; ?>
 				)

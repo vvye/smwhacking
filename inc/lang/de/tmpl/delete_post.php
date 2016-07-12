@@ -11,7 +11,7 @@
 	<div class="message">Weil er der erste Beitrag des Themas ist, wird dadurch das gesamte Thema gelöscht!</div>
 <?php endif; ?>
 
-<form method="post" action="?p=delete-post&id=<?= $postId ?>">
+<form method="post" action="?p=delete-post&id=<?= $postId ?>&token=<?= $token ?>">
 	<a class="button primary" href="?p=thread&id=<?= $threadId ?>">Abbrechen</a>
 	<button class="subtle" type="submit" name="submit">
 		<?php if ($firstPost): ?>
