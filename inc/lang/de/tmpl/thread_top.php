@@ -31,7 +31,7 @@
 			<?php endif; ?>
 
 			<?php if ($canPost): ?>
-				<a class="primary button" href="?p=new-reply&thread=<?= $threadId ?>">Antworten</a>
+				<a class="primary button" href="?p=new-post&thread=<?= $threadId ?>">Antworten</a>
 			<?php endif; ?>
 			
 		</form>

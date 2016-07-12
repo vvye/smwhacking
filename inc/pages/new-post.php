@@ -8,14 +8,14 @@
 	{
 		if (!isLoggedIn())
 		{
-			renderErrorMessage(MSG_NEW_REPLY_NOT_LOGGED_IN);
+			renderErrorMessage(MSG_NEW_POST_NOT_LOGGED_IN);
 			break;
 		}
 
 		if (isBanned())
 		{
 			// TODO permission to view thread
-			renderErrorMessage(MSG_NEW_REPLY_BANNED);
+			renderErrorMessage(MSG_NEW_POST_BANNED);
 			break;
 		}
 
@@ -67,8 +67,8 @@
 				}
 
 				$success = true;
-				renderSuccessMessage(MSG_NEW_REPLY_SUCCESS);
-				renderTemplate('new_reply_success', [
+				renderSuccessMessage(MSG_NEW_POST_SUCCESS);
+				renderTemplate('new_post_success', [
 					'threadId' => $threadId,
 					'page'     => getPostPageInThread($newPostId, $threadId),
 					'postId'   => $newPostId
@@ -77,7 +77,7 @@
 		}
 		if (!$success)
 		{
-			renderTemplate('new_reply', [
+			renderTemplate('new_post', [
 				'threadId'   => $threadId,
 				'threadName' => $thread['name'],
 				'forumId'    => $thread['forum_id'],

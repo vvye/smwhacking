@@ -8,14 +8,14 @@
 	{
 		if (!isLoggedIn())
 		{
-			renderErrorMessage(MSG_EDIT_REPLY_NOT_LOGGED_IN);
+			renderErrorMessage(MSG_EDIT_POST_NOT_LOGGED_IN);
 			break;
 		}
 
 		if (isBanned())
 		{
 			// TODO permission to view thread
-			renderErrorMessage(MSG_EDIT_REPLY_BANNED);
+			renderErrorMessage(MSG_EDIT_POST_BANNED);
 			break;
 		}
 
@@ -38,10 +38,11 @@
 
 		if (!canModifyPost($post))
 		{
-			renderErrorMessage(MSG_EDIT_REPLY_NOT_ALLOWED);
+			renderErrorMessage(MSG_EDIT_POST_NOT_ALLOWED);
 			break;
 		}
 
+		// TODO edit thread title if post is first post of a thread
 		$postText = htmlspecialchars_decode($post['content']);
 
 		$success = false;
@@ -60,8 +61,8 @@
 				editPost($postId, $postText);
 
 				$success = true;
-				renderSuccessMessage(MSG_EDIT_REPLY_SUCCESS);
-				renderTemplate('new_reply_success', [
+				renderSuccessMessage(MSG_EDIT_POST_SUCCESS);
+				renderTemplate('new_post_success', [
 					'threadId' => $threadId,
 					'page'     => getPostPageInThread($postId, $threadId),
 					'postId'   => $postId
@@ -70,7 +71,7 @@
 		}
 		if (!$success)
 		{
-			renderTemplate('edit_reply', [
+			renderTemplate('edit_post', [
 				'postId'     => $postId,
 				'threadId'   => $threadId,
 				'threadName' => $thread['name'],

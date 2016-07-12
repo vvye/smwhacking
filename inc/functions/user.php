@@ -82,7 +82,8 @@
 		return $database->count('posts', [
 			'AND' => [
 				'author' => $userId,
-				'id[<=]' => $postId
+				'id[<=]' => $postId,
+				'deleted' => 0
 			]
 		]);
 	}

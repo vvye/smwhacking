@@ -49,7 +49,8 @@
 			FROM forums
 			LEFT JOIN threads ON forums.id = threads.forum
 			LEFT OUTER JOIN threads_read ON threads.id = threads_read.thread AND threads_read.user = ' . $database->quote($_SESSION['userId']) . '
-			WHERE threads_read.last_read_time IS NULL OR threads_read.last_read_time < threads.last_post_time
+			WHERE (threads_read.last_read_time IS NULL OR threads_read.last_read_time < threads.last_post_time)
+			AND threads.deleted = 0
 			GROUP BY forums.id 
 		')->fetchAll();
 
@@ -123,6 +124,7 @@
 			LEFT JOIN users ON posts.author = users.id
 			LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . $readCondition . '
 			WHERE threads.forum = ' . $database->quote($forumId) . '
+			AND threads.deleted = 0
 			GROUP BY threads.id
 			ORDER BY threads.sticky DESC,
 			threads.last_post_time DESC
@@ -152,7 +154,7 @@
 				FROM threads
 				LEFT JOIN forums ON threads.forum = forums.id
 				LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . 'threads_read.user = ' . $database->quote($_SESSION['userId']) . '
-				WHERE threads.id = ' . $database->quote($threadId) . '
+				WHERE threads.id = ' . $database->quote($threadId) . ' AND threads.deleted = 0
 			')->fetchAll();
 		}
 		else
@@ -166,7 +168,7 @@
 				forums.name AS forum_name
 				FROM threads
 				LEFT JOIN forums ON threads.forum = forums.id
-				WHERE threads.id = ' . $database->quote($threadId) . '
+				WHERE threads.id = ' . $database->quote($threadId) . ' AND threads.deleted = 0
 			')->fetchAll();
 		}
 
@@ -185,8 +187,9 @@
 
 		return $database->count('threads', [
 			'AND' => [
-				'forum'  => $forumId,
-				'sticky' => 1
+				'forum'   => $forumId,
+				'sticky'  => 1,
+				'deleted' => 0
 			]
 		]);
 	}
@@ -529,5 +532,226 @@
 
 	function canModifyPost($post)
 	{
-		return ($post['author_id'] === $_SESSION['userId'] || isModerator()) && !isBanned();
+		if (isBanned())
+		{
+			return false;
+		}
+		if (isModerator())
+		{
+			return true;
+		}
+
+		return $post['author_id'] === $_SESSION['userId'];
+	}
+
+
+	function isFirstPostOfThread($postId, $threadId)
+	{
+		global $database;
+
+		$post = $database->select('posts', 'id', [
+			'AND'   => [
+				'thread'  => $threadId,
+				'deleted' => 0
+			],
+			'ORDER' => 'id ASC',
+			'LIMIT' => 1
+		]);
+
+		if (count($post) !== 1 || $post[0] == '')
+		{
+			return false;
+		}
+
+		return $post[0] === $postId;
+	}
+
+
+	function isLastPostOfThread($postId, $threadId)
+	{
+		global $database;
+
+		$post = $database->select('posts', 'id', [
+			'AND'   => [
+				'thread'  => $threadId,
+				'deleted' => 0
+			],
+			'ORDER' => 'id DESC',
+			'LIMIT' => 1
+		]);
+
+		if (count($post) !== 1 || $post[0] == '')
+		{
+			return false;
+		}
+
+		return $post[0] === $postId;
+	}
+
+
+	function isPostDeleted($postId)
+	{
+		global $database;
+
+		return $database->count('posts', [
+			'AND' => [
+				'id'      => $postId,
+				'deleted' => 1
+			]
+		]) === 1;
+	}
+
+
+	function deletePost($postId, $threadId)
+	{
+		global $database;
+
+		if (isPostDeleted($postId))
+		{
+			return;
+		}
+
+		$wasLastPost = isLastPostOfThread($postId, $threadId);
+
+		$database->update('posts', [
+			'deleted' => 1
+		], [
+			'id' => $postId,
+		]);
+
+		$database->update('threads', [
+			'posts[-]' => 1
+		], [
+			'id' => $threadId,
+		]);
+
+		$forumIds = $database->select('forums', [
+			'[>]threads' => ['id' => 'forum']
+		], 'forums.id', [
+			'threads.id' => $threadId
+		]);
+		$forumId = $forumIds[0];
+
+		$database->update('forums', [
+			'posts[-]' => 1
+		], [
+			'id' => $forumId,
+		]);
+
+		if ($wasLastPost)
+		{
+			updateLastPostInThread($threadId);
+		}
+	}
+
+
+	function deleteThread($threadId)
+	{
+		global $database;
+
+		$postIds = $database->select('posts', 'id', [
+			'AND' => [
+				'thread'  => $threadId,
+				'deleted' => 0
+			]
+		]);
+		$numPostsToDelete = count($postIds);
+		$database->update('posts', [
+			'deleted' => 1
+		], [
+			'id' => $postIds,
+		]);
+		$database->update('threads', [
+			'deleted'  => 1,
+			'posts[-]' => $numPostsToDelete
+		], [
+			'id' => $threadId,
+		]);
+
+		$forumIds = $database->select('forums', [
+			'[>]threads' => ['id' => 'forum']
+		], 'forums.id', [
+			'threads.id' => $threadId
+		]);
+		$forumId = $forumIds[0];
+
+		$database->update('forums', [
+			'posts[-]' => $numPostsToDelete
+		], [
+			'id' => $forumId,
+		]);
+
+		$database->update('forums', [
+			'threads[-]' => 1
+		], [
+			'id' => $forumId,
+		]);
+
+		updateLastPostInForum($forumId);
+	}
+
+
+	function updateLastPostInThread($threadId)
+	{
+		global $database;
+
+		$lastPostIds = $database->select('posts', 'id', [
+			'AND'   => [
+				'thread'  => $threadId,
+				'deleted' => 0
+			],
+			'ORDER' => 'id DESC',
+			'LIMIT' => 1
+		]);
+
+		if (!isset($lastPostIds[0])) // only post in thread
+		{
+			return;
+		}
+
+		$lastPostId = $lastPostIds[0];
+		$lastPost = getPostById($lastPostId);
+
+		$database->update('threads', [
+			'last_post'      => $lastPostId,
+			'last_post_time' => $lastPost['post_time']
+		], [
+			'id' => $threadId,
+		]);
+
+		$forumIds = $database->select('forums', [
+			'[>]threads' => ['id' => 'forum']
+		], 'forums.id', [
+			'threads.id' => $threadId
+		]);
+		$forumId = $forumIds[0];
+
+		updateLastPostInForum($forumId);
+	}
+
+
+	function updateLastPostInForum($forumId)
+	{
+		global $database;
+
+		$lastPostIds = $database->select('posts', [
+			'[>]threads' => ['thread' => 'id'],
+			'[>]forums'  => ['threads.forum' => 'id']
+		], 'posts.id', [
+			'AND' => [
+				'forums.id' => $forumId,
+				'posts.deleted' => 0
+			],
+			'ORDER'   => 'id DESC',
+			'LIMIT'   => 1
+		]);
+		print_r($database->error());
+		print_r($lastPostIds);
+		$lastPostId = $lastPostIds[0];
+
+		$database->update('forums', [
+			'last_post' => $lastPostId
+		], [
+			'id' => $forumId,
+		]);
 	}

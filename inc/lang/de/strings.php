@@ -142,11 +142,11 @@
 		'OFF');
 
 
-	define('MSG_NEW_REPLY_NOT_LOGGED_IN',
+	define('MSG_NEW_POST_NOT_LOGGED_IN',
 		'Du musst eingeloggt sein, um Beiträge schreiben zu können.');
 
 
-	define('MSG_NEW_REPLY_BANNED',
+	define('MSG_NEW_POST_BANNED',
 		'Du darfst keine Beiträge schreiben.');
 
 
@@ -162,7 +162,7 @@
 		'Das Thema muss einen Titel haben.');
 
 
-	define('MSG_NEW_REPLY_SUCCESS',
+	define('MSG_NEW_POST_SUCCESS',
 		'Der Beitrag wurde abgeschickt!');
 
 
@@ -230,11 +230,11 @@
 		'Das Thema wurde von der Liste der wichtigen Themen abgelöst.');
 
 
-	define('MSG_EDIT_REPLY_NOT_LOGGED_IN',
+	define('MSG_EDIT_POST_NOT_LOGGED_IN',
 		'Du musst eingeloggt sein, um Beiträge bearbeiten zu können.');
 
 
-	define('MSG_EDIT_REPLY_BANNED',
+	define('MSG_EDIT_POST_BANNED',
 		'Du darfst keine Beiträge bearbeiten.');
 
 
@@ -242,9 +242,31 @@
 		'Der Beitrag existiert nicht.');
 
 
-	define('MSG_EDIT_REPLY_NOT_ALLOWED',
+	define('MSG_EDIT_POST_NOT_ALLOWED',
 		'Du darfst diesen Beitrag nicht bearbeiten.');
 
 
-	define('MSG_EDIT_REPLY_SUCCESS',
+	define('MSG_EDIT_POST_SUCCESS',
 		'Der Beitrag wurde bearbeitet.');
+
+
+	define('MSG_DELETE_POST_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Beiträge löschen zu können.');
+
+
+	define('MSG_DELETE_POST_BANNED',
+		'Du darfst keine Beiträge löschen.');
+
+
+	define('MSG_DELETE_POST_NOT_ALLOWED',
+		'Du darfst diesen Beitrag nicht löschen.');
+
+
+	define('MSG_DELETE_POST_SUCCESS',
+		'Der Beitrag wurde gelöscht.');
+
+
+	define('MSG_DELETE_THREAD_SUCCESS',
+		'Das Thema wurde gelöscht.');
+	
+	

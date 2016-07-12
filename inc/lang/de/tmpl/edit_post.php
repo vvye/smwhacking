@@ -6,7 +6,7 @@
 
 <h2>Beitrag bearbeiten</h2>
 
-<form method="post" action="?p=edit-reply&id=<?= $postId ?>">
+<form method="post" action="?p=edit-post&id=<?= $postId ?>">
 	<textarea class="post-text" name="post-text" placeholder="Beitrags-Text"><?= $postText ?></textarea>
 	<button class="primary" type="submit" name="submit">Beitrag bearbeiten</button>
 </form>
