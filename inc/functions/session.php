@@ -51,7 +51,7 @@
 		$_SESSION['csrfToken'] = $user['csrf_token'];
 		$_SESSION['csrfTokenExpiryTime'] = $user['csrf_token_expiry_time'];
 
-		handleCsrfTokenRenewal();
+		renewCsrfToken();
 
 		$database->update('users', [
 			'last_login_time' => time(),
@@ -79,6 +79,7 @@
 		{
 			return '';
 		}
+
 		return $_SESSION['csrfToken'];
 	}
 
@@ -89,21 +90,17 @@
 	}
 
 
-	function handleCsrfTokenRenewal()
+	function renewCsrfToken()
 	{
 		global $database;
 
-		$expiryTime = $_SESSION['csrfTokenExpiryTime'];
-		if ($expiryTime <= time())
-		{
-			$newToken = bin2hex(random_bytes(8));
-			$database->update('users', [
-				'csrf_token' => $newToken,
-				'csrf_token_expiry_time' => strtotime('+1 day')
-			], [
-				'id' => $_SESSION['userId']
-			]);
-		}
+		$newToken = bin2hex(random_bytes(8));
+		$database->update('users', [
+			'csrf_token'             => $newToken,
+			'csrf_token_expiry_time' => strtotime('+1 day')
+		], [
+			'id' => $_SESSION['userId']
+		]);
 	}
 
 
