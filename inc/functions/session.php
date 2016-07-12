@@ -18,8 +18,7 @@
 			'legacy_login',
 			'powerlevel',
 			'banned',
-			'csrf_token',
-			'csrf_token_expiry_time'
+			'csrf_token'
 		], [
 			'AND' => [
 				'email'     => $givenEmail,
@@ -49,8 +48,7 @@
 		$_SESSION['powerlevel'] = $user['powerlevel'];
 		$_SESSION['banned'] = $user['banned'];
 		$_SESSION['csrfToken'] = $user['csrf_token'];
-		$_SESSION['csrfTokenExpiryTime'] = $user['csrf_token_expiry_time'];
-
+		
 		renewCsrfToken();
 
 		$database->update('users', [

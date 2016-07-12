@@ -25,6 +25,12 @@
 			break;
 		}
 
+		if (!canView($thread['min_powerlevel']))
+		{
+			renderErrorMessage(MSG_VIEW_THREAD_NOT_ALLOWED);
+			break;
+		}
+
 		addViewToThread($threadId);
 
 		$threadName = $thread['name'];

@@ -14,7 +14,6 @@
 
 		if (isBanned())
 		{
-			// TODO permission to view thread
 			renderErrorMessage(MSG_NEW_POST_BANNED);
 			break;
 		}
@@ -31,6 +30,18 @@
 		if ($thread === null)
 		{
 			renderErrorMessage(MSG_THREAD_DOESNT_EXIST);
+			break;
+		}
+
+		if (!canView($thread['min_powerlevel']))
+		{
+			renderErrorMessage(MSG_VIEW_THREAD_NOT_ALLOWED);
+			break;
+		}
+
+		if (!canPostInThread($thread))
+		{
+			renderErrorMessage(MSG_NEW_POST_NOT_ALLOWED);
 			break;
 		}
 

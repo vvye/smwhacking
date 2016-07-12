@@ -150,6 +150,10 @@
 		'Du darfst keine Beiträge schreiben.');
 
 
+	define('MSG_NEW_POST_NOT_ALLOWED',
+		'Du darfst in diesem Thema keine Beiträge schreiben.');
+
+
 	define('MSG_THREAD_DOESNT_EXIST',
 		'Dieses Thema gibt es nicht.');
 
@@ -272,5 +276,17 @@
 
 	define('MSG_BAD_TOKEN',
 		'Das Token stimmt nicht.');
+
+
+	define('MSG_VIEW_POST_NOT_ALLOWED',
+		'Dieser Post ist für dich nicht sichtbar.');
+
+
+	define('MSG_VIEW_FORUM_NOT_ALLOWED',
+		'Dieses Forum ist für dich nicht sichtbar.');
+
+
+	define('MSG_VIEW_THREAD_NOT_ALLOWED',
+		'Dieses Thema ist für dich nicht sichtbar.');
 	
 	

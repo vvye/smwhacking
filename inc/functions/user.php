@@ -41,12 +41,14 @@
 
 		$posts = $database->select('posts', [
 			'[>]threads' => ['thread' => 'id'],
+			'[>]forums' => ['threads.forum' => 'id']
 		], [
 			'posts.id',
 			'posts.post_time',
 			'posts.content',
 			'threads.id(thread_id)',
-			'threads.name(thread_name)'
+			'threads.name(thread_name)',
+			'forums.min_powerlevel(min_powerlevel)'
 		], [
 			'author' => $userId,
 			'ORDER'  => 'post_time ASC',

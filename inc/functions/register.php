@@ -1,5 +1,5 @@
 <?php
-	
+
 	require_once __DIR__ . '/../config/database.php';
 
 
@@ -79,18 +79,19 @@
 		$activationToken = bin2hex(random_bytes(16));
 
 		$userId = $database->insert('users', [
-			'id'               => null,
-			'email'            => strtolower(htmlspecialchars($email)),
-			'name'             => htmlspecialchars($username),
-			'password'         => $passwordHash,
-			'legacy_login'     => 0,
-			'activated'        => 0,
-			'activation_token' => $activationToken
+			'id'                => null,
+			'email'             => strtolower(htmlspecialchars($email)),
+			'name'              => htmlspecialchars($username),
+			'password'          => $passwordHash,
+			'legacy_login'      => 0,
+			'registration_time' => time(),
+			'activated'         => 0,
+			'activation_token'  => $activationToken
 		]);
 
 		ob_start();
 		renderTemplate('registration_email', [
-			'userId' => $userId,
+			'userId'          => $userId,
 			'activationToken' => $activationToken
 		]);
 		$messageBody = ob_get_clean();

@@ -176,6 +176,11 @@
     color: #FF6528;
 }
 
+.post.forbidden {
+    padding-top: 2.5rem;
+    text-align: center;
+}
+
 .avatar {
     display: block;
     max-width: 9rem;

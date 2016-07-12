@@ -23,6 +23,12 @@
 		}
 		$forum = $forums[0];
 
+		if (!canView($forum['min_powerlevel']))
+		{
+			renderErrorMessage(MSG_VIEW_FORUM_NOT_ALLOWED);
+			break;
+		}
+
 		if (isset($_GET['mark-read']))
 		{
 			markForumAsRead($forumId);

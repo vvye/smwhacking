@@ -39,6 +39,12 @@
 
 		foreach ($posts as $post)
 		{
+			if (!canView($post['min_powerlevel']))
+			{
+				renderTemplate('forbidden_post', []);
+				continue;
+			}
+			
 			renderTemplate('post', [
 				'inThread'      => false,
 				'id'            => $post['id'],

@@ -20,6 +20,7 @@
 			'forums.threads',
 			'forums.posts',
 			'forums.last_post',
+			'forums.min_powerlevel',
 			'forum_categories.name(category_name)'
 		], [
 			'ORDER' => ['forum_categories.sort_order ASC', 'forums.sort_order ASC']
@@ -150,11 +151,12 @@
 				threads.sticky,
 				forums.id AS forum_id,
 				forums.name AS forum_name,
+				forums.min_powerlevel,
 				threads_read.last_read_time
 				FROM threads
 				LEFT JOIN forums ON threads.forum = forums.id
 				LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . 'threads_read.user = ' . $database->quote($_SESSION['userId']) . '
-				WHERE threads.id = ' . $database->quote($threadId) . ' AND threads.deleted = 0
+				WHERE threads.id = ' . $database->quote($threadId) . ' AND threads.deleted = 0;
 			')->fetchAll();
 		}
 		else
@@ -165,10 +167,11 @@
 				threads.posts,
 				threads.last_post,
 				forums.id AS forum_id,
-				forums.name AS forum_name
+				forums.name AS forum_name,
+				forums.min_powerlevel
 				FROM threads
 				LEFT JOIN forums ON threads.forum = forums.id
-				WHERE threads.id = ' . $database->quote($threadId) . ' AND threads.deleted = 0
+				WHERE threads.id = ' . $database->quote($threadId) . ' AND threads.deleted = 0;		
 			')->fetchAll();
 		}
 
@@ -530,9 +533,38 @@
 	}
 
 
+	function canView($minPowerlevel)
+	{
+		if (!isLoggedIn() || isBanned())
+		{
+			return $minPowerlevel === 0;
+		}
+
+		return $minPowerlevel <= $_SESSION['powerlevel'];
+	}
+
+
+	function canPostInThread($thread)
+	{
+		if (!isLoggedIn() || isBanned())
+		{
+			return false;
+		}
+		if (isModerator())
+		{
+			return true;
+		}
+		if (!canView($thread['min_powerlevel']) || $thread['closed'])
+		{
+			return false;
+		}
+		return true;
+	}
+
+
 	function canModifyPost($post)
 	{
-		if (isBanned())
+		if (!isLoggedIn() || isBanned())
 		{
 			return false;
 		}

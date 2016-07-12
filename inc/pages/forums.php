@@ -12,6 +12,11 @@
 		$forumsForTemplate = [];
 		foreach ($forums as $forum)
 		{
+			if (!canView($forum['min_powerlevel']))
+			{
+				continue;
+			}
+			
 			$unread = isLoggedIn() && in_array($forum['id'], $unreadForums);
 			$lastPost = getPostById($forum['last_post']);
 
