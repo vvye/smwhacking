@@ -1,7 +1,7 @@
 <p class="column breadcrumbs">
 	<a href="?p=forums">Foren-Übersicht</a> &rarr;
 	<a href="?p=forum&id=<?= $forumId ?>"><?= $forumName ?></a> &rarr;
-	<strong><?= $threadName ?></strong>
+	<strong><?= $threadTitle ?></strong>
 </p>
 
 <h2>Beitrag schreiben</h2>

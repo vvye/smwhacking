@@ -21,7 +21,7 @@
 				<?php endif; ?>
 				geschrieben am <?= $postTime ?>
 				<?php if (!$inThread): ?>
-					in <a href="?p=thread&id=<?= $threadId ?>"><?= $threadName ?></a>
+					in <a href="?p=thread&id=<?= $threadId ?>"><?= $threadTitle ?></a>
 				<?php endif; ?>
 				<?php if ($lastEdit !== null): ?>
 					<br />zuletzt bearbeitet von <a

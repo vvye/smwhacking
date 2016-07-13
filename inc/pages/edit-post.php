@@ -49,7 +49,9 @@
 		}
 		$token = $_GET['token'];
 
-		// TODO edit thread title if post is first post of a thread
+		$isThread = isFirstPostOfThread($postId, $threadId);
+
+		$threadTitle = htmlspecialchars_decode($thread['name']);
 		$postText = htmlspecialchars_decode($post['content']);
 
 		$success = false;
@@ -58,6 +60,11 @@
 		{
 			$postText = trim(getFieldValue('post-text'));
 
+			if ($isThread && $threadTitle === '')
+			{
+				renderErrorMessage(MSG_THREAD_TITLE_EMPTY);
+				$error = true;
+			}
 			if ($postText === '')
 			{
 				renderErrorMessage(MSG_POST_TEXT_EMPTY);
@@ -66,6 +73,11 @@
 			else
 			{
 				editPost($postId, $postText);
+				if ($isThread)
+				{
+					$threadTitle = trim(getFieldValue('thread-title'));
+					editThreadTitle($threadId, $threadTitle);
+				}
 
 				$success = true;
 				renderSuccessMessage(MSG_EDIT_POST_SUCCESS);
@@ -79,13 +91,14 @@
 		if (!$success)
 		{
 			renderTemplate('edit_post', [
-				'postId'     => $postId,
-				'threadId'   => $threadId,
-				'threadName' => $thread['name'],
-				'forumId'    => $thread['forum_id'],
-				'forumName'  => $thread['forum_name'],
-				'postText'   => $postText,
-				'token'      => $token
+				'isThread'    => $isThread,
+				'postId'      => $postId,
+				'threadId'    => $threadId,
+				'threadTitle' => $threadTitle,
+				'forumId'     => $thread['forum_id'],
+				'forumName'   => $thread['forum_name'],
+				'postText'    => $postText,
+				'token'       => $token
 			]);
 		}
 

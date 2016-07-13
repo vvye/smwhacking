@@ -537,10 +537,10 @@
 	{
 		if (!isLoggedIn() || isBanned())
 		{
-			return $minPowerlevel === 0;
+			return (int)$minPowerlevel === 0;
 		}
 
-		return $minPowerlevel <= $_SESSION['powerlevel'];
+		return (int)$minPowerlevel <= $_SESSION['powerlevel'];
 	}
 
 
@@ -777,6 +777,18 @@
 		global $database;
 
 		return $database->get('threads', 'forum', [
+			'id' => $threadId
+		]);
+	}
+
+
+	function editThreadTitle($threadId, $threadTitle)
+	{
+		global $database;
+
+		$database->update('threads', [
+			'name' => htmlspecialchars($threadTitle)
+		], [
 			'id' => $threadId
 		]);
 	}
