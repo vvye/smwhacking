@@ -69,9 +69,16 @@
 	{
 		global $database;
 
-		return $database->select('forums', '*', [
+		$forum = $database->get('forums', '*', [
 			'id' => $forumId
 		]);
+
+		if (!is_array($forum) || empty($forum))
+		{
+			return null;
+		}
+
+		return $forum;
 	}
 
 
@@ -558,6 +565,7 @@
 		{
 			return false;
 		}
+
 		return true;
 	}
 

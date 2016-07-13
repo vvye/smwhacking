@@ -14,7 +14,6 @@
 
 		if (isBanned())
 		{
-			// TODO permission to view forum
 			renderErrorMessage(MSG_NEW_THREAD_BANNED);
 			break;
 		}
@@ -26,13 +25,18 @@
 		}
 		$forumId = $_GET['forum'];
 
-		$forums = getForum($forumId);
-		if (count($forums) !== 1)
+		$forum = getForum($forumId);
+		if ($forum === null)
 		{
 			renderErrorMessage(MSG_FORUM_DOESNT_EXIST);
 			break;
 		}
-		$forum = $forums[0];
+
+		if (!canView($forum['min_powerlevel']))
+		{
+			renderErrorMessage(MSG_NEW_THREAD_NOT_ALLOWED);
+			break;
+		}
 
 		$success = false;
 
@@ -58,16 +62,6 @@
 				{
 					renderErrorMessage(MSG_GENERAL_ERROR);
 					break;
-				}
-
-				// TODO
-				if (false)
-				{
-					closeThread($newThreadId);
-				}
-				if (false)
-				{
-					stickyThread($newThreadId);
 				}
 
 				$success = true;

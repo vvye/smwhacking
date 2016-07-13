@@ -154,6 +154,10 @@
 		'Du darfst in diesem Thema keine Beiträge schreiben.');
 
 
+	define('MSG_NEW_THREAD_NOT_ALLOWED',
+		'Du darfst in diesem Forum keine Themen erstellen.');
+
+
 	define('MSG_THREAD_DOESNT_EXIST',
 		'Dieses Thema gibt es nicht.');
 

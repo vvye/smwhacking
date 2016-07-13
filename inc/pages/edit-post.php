@@ -14,7 +14,6 @@
 
 		if (isBanned())
 		{
-			// TODO permission to view thread
 			renderErrorMessage(MSG_EDIT_POST_BANNED);
 			break;
 		}
@@ -27,18 +26,19 @@
 		$postId = $_GET['id'];
 
 		$post = getPostById($postId);
+
+		if (!canModifyPost($post))
+		{
+			renderErrorMessage(MSG_EDIT_POST_NOT_ALLOWED);
+			break;
+		}
+
 		$thread = getThread($post['thread_id']);
 		$threadId = $thread['id'];
 
 		if ($post === null)
 		{
 			renderErrorMessage(MSG_POST_DOESNT_EXIST);
-			break;
-		}
-
-		if (!canModifyPost($post))
-		{
-			renderErrorMessage(MSG_EDIT_POST_NOT_ALLOWED);
 			break;
 		}
 

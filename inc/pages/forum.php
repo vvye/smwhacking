@@ -14,14 +14,12 @@
 		}
 		$forumId = $_GET['id'];
 
-		$forums = getForum($forumId);
-
-		if (count($forums) !== 1)
+		$forum = getForum($forumId);
+		if ($forum === null)
 		{
 			include __DIR__ . '/404.php';
 			break;
 		}
-		$forum = $forums[0];
 
 		if (!canView($forum['min_powerlevel']))
 		{
