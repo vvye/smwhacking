@@ -2,7 +2,11 @@
 	<h3>Nutzer-Info</h3>
 	<div class="content">
 		<div class="sidebar">
-			<img class="avatar" src="img/avatars/<?= $id ?>.png" alt="Avatar" />
+			<?php if ($hasAvatar): ?>
+				<img class="avatar" src="img/avatars/<?= $id ?>.png" alt="Avatar" />
+			<?php else: ?>
+				<img class="avatar" src="img/avatars/default.png" alt="Avatar" />
+			<?php endif; ?>
 		</div>
 		<table>
 			<tr>
@@ -39,7 +43,7 @@
 				<td>
 					<?php if ($lastPost === null): ?>
 						<em><?= MSG_NONE ?></em>
-						<?php elseif (!$canViewLastPost): ?>
+					<?php elseif (!$canViewLastPost): ?>
 						<em><?= MSG_VIEW_POST_NOT_ALLOWED ?></em>
 					<?php else: ?>
 						<?= date(DEFAULT_DATE_FORMAT, $lastPost['post_time']) ?>
@@ -51,6 +55,11 @@
 			<tr>
 				<td colspan=" 2">&nbsp;</td>
 			</tr>
+
+			<tr>
+				<td>Wohnort:</td>
+				<td><?= $location ?></td>
+			</tr>
 			<tr>
 				<td>Website:</td>
 				<td>
@@ -59,10 +68,12 @@
 					<?php endif; ?>
 				</td>
 			</tr>
-			<tr>
-				<td>E-Mail:</td>
-				<td><?php echo $emailHtml; ?></td>
-			</tr>
+			<?php if (false): // TODO choose to make email public ?>
+				<tr>
+					<td>E-Mail:</td>
+					<td><?php echo $emailHtml; ?></td>
+				</tr>
+			<?php endif; ?>
 		</table>
 		<div class="clearfix"></div>
 	</div>

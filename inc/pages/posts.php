@@ -47,7 +47,7 @@
 				renderTemplate('forbidden_post', []);
 				continue;
 			}
-			
+
 			renderTemplate('post', [
 				'inThread'      => false,
 				'id'            => $post['id'],
@@ -65,6 +65,7 @@
 					'powerlevel'        => POWERLEVEL_DESCRIPTIONS[$user['powerlevel']],
 					'title'             => $user['title'],
 					'rank'              => getRank($user['id']),
+					'hasAvatar'         => hasAvatar($user['id']),
 					'registrationTime'  => date(DEFAULT_DATE_FORMAT, $user['registration_time']),
 					'currentPostNumber' => getCurrentPostNumber($user['id'], $post['id']),
 					'numTotalPosts'     => $numPosts,

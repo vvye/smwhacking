@@ -94,6 +94,7 @@
 					'powerlevel'        => POWERLEVEL_DESCRIPTIONS[$post['author_powerlevel']],
 					'title'             => $post['author_title'],
 					'rank'              => getRank($post['author_id']),
+					'hasAvatar'         => hasAvatar($post['author_id']),
 					'registrationTime'  => date(DEFAULT_DATE_FORMAT, $post['author_registration_time']),
 					'currentPostNumber' => getCurrentPostNumber($post['author_id'], $post['id']),
 					'numTotalPosts'     => getNumPostsByUser($post['author_id']),

@@ -11,7 +11,7 @@
 		$givenEmail = strtolower(getFieldValue('email'));
 		$givenPassword = getFieldValue('password');
 
-		$users = $database->select('users', [
+		$user = $database->get('users', [
 			'id',
 			'name',
 			'password',
@@ -26,18 +26,12 @@
 			]
 		]);
 
-		if (empty($users) || count($users) !== 1)
+		if (!is_array($user) || empty($user))
 		{
 			return false;
 		}
-		$user = $users[0];
-		$passwordHash = $user['password'];
 
-		$passwordCorrect = $user['legacy_login']
-			? phpbb_check_hash($givenPassword, $passwordHash)
-			: password_verify($givenPassword, $passwordHash);
-
-		if (!$passwordCorrect)
+		if (!isPasswordCorrect($user['id'], $givenPassword))
 		{
 			return false;
 		}
@@ -48,7 +42,7 @@
 		$_SESSION['powerlevel'] = $user['powerlevel'];
 		$_SESSION['banned'] = $user['banned'];
 		$_SESSION['csrfToken'] = $user['csrf_token'];
-		
+
 		renewCsrfToken();
 
 		$database->update('users', [
@@ -59,17 +53,45 @@
 
 		if ($user['legacy_login'])
 		{
-			$database->update('users', [
-				'password'     => password_hash($givenPassword, PASSWORD_DEFAULT),
-				'legacy_login' => 0
-			], [
-				'id' => $user['id']
-			]);
+			updatePassword($user['id'], $givenPassword);
 		}
 
 		return true;
 	}
 
+
+	function isPasswordCorrect($userId, $givenPassword)
+	{
+		global $database;
+
+		$user = $database->get('users', '*', [
+			'id' => $userId
+		]);
+
+		if (!is_array($user) || empty($user))
+		{
+			return false;
+		}
+
+		$passwordHash = $user['password'];
+
+		return $user['legacy_login']
+			? phpbb_check_hash($givenPassword, $passwordHash)
+			: password_verify($givenPassword, $passwordHash);
+	}
+
+
+	function updatePassword($userId, $password)
+	{
+		global $database;
+
+		$database->update('users', [
+			'password'     => password_hash($password, PASSWORD_DEFAULT),
+			'legacy_login' => 0
+		], [
+			'id' => $userId
+		]);
+	}
 
 	function getCsrfToken()
 	{
@@ -117,12 +139,22 @@
 
 	function isModerator()
 	{
+		if (!isLoggedIn() || isBanned())
+		{
+			return false;
+		}
+
 		return (isset($_SESSION['powerlevel']) && $_SESSION['powerlevel'] >= 1);
 	}
 
 
 	function isAdmin()
 	{
+		if (!isLoggedIn() || isBanned())
+		{
+			return false;
+		}
+
 		return (isset($_SESSION['powerlevel']) && $_SESSION['powerlevel'] >= 2);
 	}
 

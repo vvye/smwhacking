@@ -1,9 +1,13 @@
-<h2>Einstellungen</h2>
+<?php if ($isOwnProfile): ?>
+	<h2>Einstellungen</h2>
+<?php else: ?>
+	<h2>Einstellungen: <a href="?p=user&id=<?= $userId ?>"><?= $username ?></a></h2>
+<?php endif; ?>
 
-<form>
+<form action="<?= $action ?>" method="post" enctype="multipart/form-data">
 
 	<fieldset>
-		<legend>Daten des Nutzerkontos</legend>
+		<legend>Zugangsdaten</legend>
 		<table>
 			<tr>
 				<td>
@@ -11,7 +15,7 @@
 					<p>Mit dieser Adresse loggst du dich ein. Merk dir gut, wenn du sie geändert hast!</p>
 				</td>
 				<td>
-					<label><input type="email" name="email" value="" required /></label>
+					<label><input type="email" name="email" value="<?= $email ?>" required /></label>
 				</td>
 			</tr>
 			<tr>
@@ -20,19 +24,19 @@
 					<p>Wenn du dein Passwort ändern möchtest, gib hier zuerst dein altes Passwort ein.</p>
 				</td>
 				<td>
-					<label><input type="password" name="old-password"></label>
+					<label><input type="password" name="old-password" value=""></label>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<h3>Neues Passwort:</h3>
 					<p>Wenn du dein Passwort ändern möchtest, gib hier ein neues ein (mindestens 8 Zeichen). Gib es zwei
-						Mal ein, um Tippfehlerm
-						vorzubeugen.</p>
+						Mal ein, um Tippfehlern vorzubeugen.</p>
 				</td>
 				<td class="stacked-input">
-					<label><input type="password" name="new-password" /></label>
-					<label><input type="password" name="new-password-confirm" /></label>
+					<label><input type="password" name="new-password" value="<?= $newPassword ?>" /></label>
+					<label><input type="password" name="new-password-confirm"
+					              value="<?= $newPasswordConfirm ?>" /></label>
 				</td>
 			</tr>
 		</table>
@@ -55,22 +59,24 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<h3>Titel:</h3>
-					<p>Wird im Forum unter deinem Rang angezeigt.</p>
-				</td>
-				<td>
-					<label><input type="text" name="title" maxlength="255" value="" /></label>
-				</td>
-			</tr>
+			<?php if ($isModerator): ?>
+				<tr>
+					<td>
+						<h3>Titel:</h3>
+						<p>Wird im Forum unter deinem Rang angezeigt.</p>
+					</td>
+					<td>
+						<label><input type="text" name="title" maxlength="255" value="<?= $title ?>" /></label>
+					</td>
+				</tr>
+			<?php endif; ?>
 			<tr>
 				<td>
 					<h3>Wohnort:</h3>
 					<p>Teile den anderen Nutzern mit, woher du kommst oder wo du gerade bist.</p>
 				</td>
 				<td>
-					<label><input type="text" name="location" maxlength="100" value="" /></label>
+					<label><input type="text" name="location" maxlength="100" value="<?= $location ?>" /></label>
 				</td>
 			</tr>
 			<tr>
@@ -79,7 +85,7 @@
 					<p>Wenn du eine eigene Website hast, kannst du hier die Adresse eingeben.</p>
 				</td>
 				<td>
-					<label><input type="url" name="website" maxlength="100" value="" /></label>
+					<label><input type="url" name="website" maxlength="100" value="<?= $website ?>" /></label>
 				</td>
 			</tr>
 			<tr>
@@ -88,7 +94,7 @@
 					<p>Schreib ein bisschen über dich selbst.</p>
 				</td>
 				<td>
-					<label><textarea class="bio" name="bio"></textarea></label>
+					<label><textarea class="bio" name="bio"><?= $bio ?></textarea></label>
 				</td>
 			</tr>
 
@@ -98,13 +104,58 @@
 					<p>Wird unter jedem deiner Beiträge angezeigt.</p>
 				</td>
 				<td>
-					<label><textarea class="signature" name="signature" maxlength="1024"></textarea></label>
+					<label><textarea class="signature" name="signature"
+					                 maxlength="1024"><?= $signature ?></textarea></label>
 				</td>
 			</tr>
 		</table>
 	</fieldset>
 
-	<input type="submit" class="primary" value="Einstellungen speichern" />
+	<?php if ($isModerator && !$isOwnProfile): ?>
+		<fieldset>
+			<legend>Administration</legend>
+			<table>
+				<?php if ($isAdmin): ?>
+					<tr>
+						<td>
+							<h3>Powerlevel:</h3>
+							<p>Moderatoren können alle Beiträge bearbeiten, Nutzer bannen und Medaillen verleihen,
+								Administratoren können alle Profile bearbeiten und Foren und Medaillen verwalten.</p>
+						</td>
+						<td>
+							<select name="powerlevel">
+								<option value="0" <?= $powerlevel === 0 ? 'selected="selected"' : '' ?>>
+									Normaler Nutzer
+								</option>
+								<option value="1" <?= $powerlevel === 1 ? 'selected="selected"' : '' ?>>
+									Moderator
+								</option>
+								<option value="2" <?= $powerlevel === 2 ? 'selected="selected"' : '' ?>>
+									Administrator
+								</option>
+							</select>
+						</td>
+					</tr>
+				<?php endif; ?>
+				<tr>
+					<td>
+						<h3>Gebannt:</h3>
+						<p>Gebannte Nutzer können keine Beiträge oder Nachrichten schreiben und ihr Profil nicht
+							bearbeiten.</p>
+					</td>
+					<td>
+						<div class="custom-checkbox-group">
+							<input type="checkbox" class="custom-checkbox" name="banned"
+							       id="banned" <?= $banned ? 'checked="checked"' : '' ?>/>
+							<label class="custom-checkbox-label" for="banned"> gebannt</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+	<?php endif; ?>
+
+	<input type="submit" name="submit" class="primary" value="Einstellungen speichern" />
 
 </form>
 

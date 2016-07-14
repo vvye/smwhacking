@@ -2,6 +2,8 @@
 
 	require_once __DIR__ . '/../config/user.php';
 
+	require_once __DIR__ . '/session.php';
+
 
 	function getUser($userId)
 	{
@@ -15,6 +17,7 @@
 			'signature',
 			'registration_time',
 			'last_login_time',
+			'location',
 			'bio',
 			'website',
 			'email',
@@ -153,4 +156,62 @@
 		]);
 
 		return $medals;
+	}
+
+
+	function setUserData($userId, $data)
+	{
+		global $database;
+
+		$database->update('users', [
+			'email'     => strtolower(htmlspecialchars($data['email'])),
+			'location'  => htmlspecialchars($data['location']),
+			'website'   => htmlspecialchars($data['website']),
+			'bio'       => htmlspecialchars($data['bio']),
+			'signature' => htmlspecialchars($data['signature'])
+		], [
+			'id' => $userId
+		]);
+	}
+
+
+	function setUserTitle($userId, $title)
+	{
+		global $database;
+
+		$database->update('users', [
+			'title' => htmlspecialchars($title)
+		], [
+			'id' => $userId
+		]);
+	}
+
+
+	function hasAvatar($userId)
+	{
+		return file_exists(__DIR__ . '/../../img/avatars/' . $userId . '.png');
+	}
+
+
+	function banUser($userId)
+	{
+		global $database;
+
+		$database->update('users', [
+			'banned' => 1
+		], [
+			'id' => $userId
+		]);
+	}
+
+
+	function setPowerlevel($userId, $powerlevel)
+	{
+		global $database;
+
+		$database->update('users', [
+			'powerlevel' => $powerlevel
+		], [
+			'id' => $userId
+		]);
 	}

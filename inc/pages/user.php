@@ -29,8 +29,10 @@
 		$canViewLastPost = canView($lastPost['min_powerlevel']);
 
 		renderTemplate('user_top', [
-			'name' => $user['name'],
-			'id'   => $userId
+			'isAdmin'     => isAdmin(),
+			'isModerator' => isModerator(),
+			'name'        => $user['name'],
+			'id'          => $userId
 		]);
 
 		renderTemplate('user_info', [
@@ -38,6 +40,7 @@
 			'powerlevel'       => POWERLEVEL_DESCRIPTIONS[$user['powerlevel']],
 			'rank'             => getRank($userId),
 			'title'            => $user['title'],
+			'hasAvatar'        => hasAvatar($userId),
 			'registrationTime' => date(DEFAULT_DATE_FORMAT, $user['registration_time']),
 			'lastLoginTime'    => date(DEFAULT_DATE_FORMAT, $user['last_login_time']),
 			'numPosts'         => getNumPostsByUser($userId),
@@ -45,6 +48,7 @@
 			'lastPost'         => $lastPost,
 			'lastPostPage'     => $lastPostPage,
 			'website'          => $user['website'],
+			'location'         => $user['location'],
 			'emailHtml'        => obfuscateEmail($user['email'])
 		]);
 
@@ -52,7 +56,6 @@
 			'bio'       => nl2br($user['bio']),
 			'signature' => nl2br($user['signature'])
 		]);
-
 
 		$medals = getMedals($userId);
 		$numTotalMedals = count($medals);

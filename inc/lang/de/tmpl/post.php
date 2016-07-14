@@ -9,7 +9,11 @@
 			<img src="img/ranks/<?= $author['rank']['id'] ?>.png" alt="<?= $author['rank']['name'] ?>" />
 		<?php endif; ?>
 		<p class="title"><?= $author['title'] ?></p>
-		<img class="avatar" src="img/avatars/<?= $author['id'] ?>.png" alt="Avatar" />
+		<?php if ($author['hasAvatar']): ?>
+			<img class="avatar" src="img/avatars/<?= $author['id'] ?>.png" alt="Avatar" />
+		<?php else: ?>
+			<img class="avatar" src="img/avatars/default.png" alt="Avatar" />
+		<?php endif; ?>
 		<p>Beiträge: <?= $author['currentPostNumber'] ?> / <?= $author['numTotalPosts'] ?></p>
 		<p>Registriert seit: <?= $author['registrationTime'] ?></p>
 	</div>

@@ -184,7 +184,7 @@
 .avatar {
     display: block;
     max-width: 9rem;
-    margin: 0.3rem auto 0;
+    margin: 0.3rem auto 0.5rem;
 }
 
 .post .content {

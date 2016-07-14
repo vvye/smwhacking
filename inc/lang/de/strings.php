@@ -292,5 +292,23 @@
 
 	define('MSG_VIEW_THREAD_NOT_ALLOWED',
 		'Dieses Thema ist für dich nicht sichtbar.');
-	
-	
+
+
+	define('MSG_USERCP_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um dein Profil bearbeiten zu können.');
+
+
+	define('MSG_USERCP_BANNED',
+		'Du darfst dein Profil nicht bearbeiten.');
+
+
+	define('MSG_USERCP_NOT_ADMIN',
+		'Du darfst nur dein eigenes Profil bearbeiten.');
+
+
+	define('MSG_WRONG_PASSWORD',
+		'Das Passwort stimmt nicht.');
+
+
+	define('MSG_USERCP_SUCCESS',
+		'Die Einstellungen wurden gespeichert.');
