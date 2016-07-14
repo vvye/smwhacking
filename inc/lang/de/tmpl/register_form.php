@@ -27,8 +27,8 @@
 		<tr>
 			<td>
 				<h3>Passwort:</h3>
-				<p>Wähle ein sicheres Passwort (mindestens 8 Zeichen). Gib es zwei Mal ein, um Tippfehler
-					auszuschließen.</p>
+				<p>Wähle ein sicheres Passwort (mindestens 8 Zeichen). Gib es zwei Mal ein, um Tippfehlern
+					vorzubeugen.</p>
 			</td>
 			<td class="stacked-input">
 				<label><input type="password" name="password" value="<?= $password ?>"

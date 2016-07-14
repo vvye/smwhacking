@@ -6,13 +6,17 @@ form.right {
     text-align: right;
 }
 
+form table {
+    width: 100%;
+}
+
 form table td {
     vertical-align: top;
     padding: 0.5rem 1rem 0.5rem 0;
 }
 
 form table td:first-child {
-    max-width: 15rem;
+    width: 16rem;
     padding: 0.9rem 1rem 0.9rem 0;
 }
 
@@ -31,20 +35,38 @@ form .final-action {
     text-align: right;
 }
 
-input[type="text"], input[type="password"], input[type="email"], textarea {
+fieldset {
+    margin: 1rem 0 3rem;
+    padding: 0.5rem 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: white;
+}
+
+legend {
+    margin-left: -1rem;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea {
     min-width: 15rem;
     border: 1px solid #CCCCCC;
     border-radius: 2px;
     padding: 0.4rem 0.5rem;
 }
 
-input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover, textarea:hover {
+input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover, input[type="url"]:hover, textarea:hover {
     border: 1px solid #B0B0B0;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"]:focus, textarea:focus {
     border: 1px solid #999999;
     box-shadow: 0 1px 1px #DDDDDD inset;
+}
+
+.file-input span {
+    margin-left: 1rem;
 }
 
 .stacked-input input {
@@ -102,6 +124,70 @@ button.primary:hover, .button.primary:hover, input[type="button"].primary:hover,
     border: 1px solid transparent;
 }
 
+.custom-checkbox-group {
+    margin: 1rem 0 1.5rem;
+}
+
+.custom-checkbox, .custom-radio {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+}
+
+.custom-checkbox, .custom-checkbox-label, .custom-radio, .custom-radio-label {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.custom-checkbox-label, .custom-radio-label {
+    position: relative;
+    margin-left: 0 !important;
+}
+
+.custom-checkbox + .custom-checkbox-label:before, .custom-radio + .custom-radio-label:before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    border: 2px solid #DDD;
+    border-radius: 2px;
+    background: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5rem;
+}
+
+.custom-checkbox:checked + .custom-checkbox-label:before {
+    content: '\f00c';
+    font-family: 'FontAwesome', sans-serif;
+    color: white;
+    background-color: #096AC9;
+}
+
+.custom-radio + .custom-radio-label:before {
+    border-radius: 50%;
+}
+
+.custom-radio:checked + .custom-radio-label:before {
+    content: '\f00c';
+    border-color: #096AC9;
+    font-family: 'FontAwesome', sans-serif;
+    color: #096AC9;
+}
+
+.custom-checkbox:focus + .custom-checkbox-label, .custom-radio:focus + .custom-radio-label {
+    outline: 1px dotted #888;
+}
+
+.custom-checkbox-label span, .custom-radio-label span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
 .post-text {
     width: 80%;
 }
@@ -109,4 +195,9 @@ button.primary:hover, .button.primary:hover, input[type="button"].primary:hover,
 .thread-title {
     width: 80%;
     font-weight: bold;
+}
+
+textarea.bio,
+textarea.signature {
+    width: 80%
 }
