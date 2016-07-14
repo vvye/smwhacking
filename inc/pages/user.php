@@ -16,6 +16,8 @@
 		}
 		$userId = (int)$_GET['id'];
 
+		$isOwnProfile = isLoggedIn() && $userId === (int)$_SESSION['userId'];
+
 		$user = getUser($userId);
 
 		if ($user === null)
@@ -29,10 +31,10 @@
 		$canViewLastPost = canView($lastPost['min_powerlevel']);
 
 		renderTemplate('user_top', [
-			'isAdmin'     => isAdmin(),
-			'isModerator' => isModerator(),
-			'name'        => $user['name'],
-			'id'          => $userId
+			'canEditProfile' => $isOwnProfile || isAdmin(),
+			'canBan'         => !$isOwnProfile && isModerator(),
+			'name'           => $user['name'],
+			'id'             => $userId
 		]);
 
 		renderTemplate('user_info', [
