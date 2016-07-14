@@ -59,7 +59,7 @@
 					</div>
 				</td>
 			</tr>
-			<?php if ($isModerator): ?>
+			<?php if ($canChangeTitle): ?>
 				<tr>
 					<td>
 						<h3>Titel:</h3>
@@ -111,44 +111,28 @@
 		</table>
 	</fieldset>
 
-	<?php if ($isModerator && !$isOwnProfile): ?>
+	<?php if ($canChangePowerlevel): ?>
 		<fieldset>
 			<legend>Administration</legend>
 			<table>
-				<?php if ($isAdmin): ?>
-					<tr>
-						<td>
-							<h3>Powerlevel:</h3>
-							<p>Moderatoren können alle Beiträge bearbeiten, Nutzer bannen und Medaillen verleihen,
-								Administratoren können alle Profile bearbeiten und Foren und Medaillen verwalten.</p>
-						</td>
-						<td>
-							<select name="powerlevel">
-								<option value="0" <?= $powerlevel === 0 ? 'selected="selected"' : '' ?>>
-									Normaler Nutzer
-								</option>
-								<option value="1" <?= $powerlevel === 1 ? 'selected="selected"' : '' ?>>
-									Moderator
-								</option>
-								<option value="2" <?= $powerlevel === 2 ? 'selected="selected"' : '' ?>>
-									Administrator
-								</option>
-							</select>
-						</td>
-					</tr>
-				<?php endif; ?>
 				<tr>
 					<td>
-						<h3>Gebannt:</h3>
-						<p>Gebannte Nutzer können keine Beiträge oder Nachrichten schreiben und ihr Profil nicht
-							bearbeiten.</p>
+						<h3>Powerlevel:</h3>
+						<p>Moderatoren können alle Beiträge bearbeiten, Nutzer bannen und Medaillen verleihen,
+							Administratoren können alle Profile bearbeiten und Foren und Medaillen verwalten.</p>
 					</td>
 					<td>
-						<div class="custom-checkbox-group">
-							<input type="checkbox" class="custom-checkbox" name="banned"
-							       id="banned" <?= $banned ? 'checked="checked"' : '' ?>/>
-							<label class="custom-checkbox-label" for="banned"> gebannt</label>
-						</div>
+						<select name="powerlevel">
+							<option value="0" <?= $powerlevel === 0 ? 'selected="selected"' : '' ?>>
+								Normaler Nutzer
+							</option>
+							<option value="1" <?= $powerlevel === 1 ? 'selected="selected"' : '' ?>>
+								Moderator
+							</option>
+							<option value="2" <?= $powerlevel === 2 ? 'selected="selected"' : '' ?>>
+								Administrator
+							</option>
+						</select>
 					</td>
 				</tr>
 			</table>
