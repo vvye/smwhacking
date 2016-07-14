@@ -3,6 +3,9 @@
 	require_once __DIR__ . '/../config/forums.php';
 	require_once __DIR__ . '/../config/misc.php';
 
+	require_once __DIR__ . '/thread.php';
+	require_once __DIR__ . '/post.php';
+	require_once __DIR__ . '/permissions.php';
 	require_once __DIR__ . '/session.php';
 
 

@@ -3,6 +3,9 @@
 	require_once __DIR__ . '/../config/forums.php';
 	require_once __DIR__ . '/../config/misc.php';
 
+	require_once __DIR__ . '/forums.php';
+	require_once __DIR__ . '/thread.php';
+	require_once __DIR__ . '/permissions.php';
 	require_once __DIR__ . '/session.php';
 
 
@@ -200,11 +203,10 @@
 				'thread'  => $threadId,
 				'deleted' => 0
 			],
-			'ORDER' => 'id DESC',
-			'LIMIT' => 1
+			'ORDER' => 'id DESC'
 		]);
 
-		return $id[0] === $postId;
+		return (int)$id === (int)$postId;
 	}
 
 

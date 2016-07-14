@@ -54,6 +54,12 @@
 
 		if (isset($_POST['submit']))
 		{
+			if (isPostDeleted($postId))
+			{
+				renderErrorMessage(MSG_POST_DOESNT_EXIST);
+				break;
+			}
+
 			deletePost($postId, $threadId);
 			if ($firstPost)
 			{
