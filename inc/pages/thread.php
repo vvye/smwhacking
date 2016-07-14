@@ -5,6 +5,9 @@
 
 	require_once __DIR__ . '/../functions/pagination.php';
 	require_once __DIR__ . '/../functions/forums.php';
+	require_once __DIR__ . '/../functions/thread.php';
+	require_once __DIR__ . '/../functions/post.php';
+	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/user.php';
 
 

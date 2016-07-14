@@ -283,7 +283,7 @@
 
 
 	define('MSG_VIEW_POST_NOT_ALLOWED',
-		'Dieser Post ist für dich nicht sichtbar.');
+		'Dieser Beitrag ist für dich nicht sichtbar.');
 
 
 	define('MSG_VIEW_FORUM_NOT_ALLOWED',

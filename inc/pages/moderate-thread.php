@@ -1,6 +1,9 @@
 <?php
 
 	require_once __DIR__ . '/../functions/forums.php';
+	require_once __DIR__ . '/../functions/thread.php';
+	require_once __DIR__ . '/../functions/post.php';
+	require_once __DIR__ . '/../functions/permissions.php';
 
 	do
 	{
@@ -26,7 +29,7 @@
 
 		if ($action === 'close')
 		{
-			if (isClosed($threadId))
+			if (isThreadClosed($threadId))
 			{
 				renderMessage(MSG_THREAD_ALREADY_CLOSED);
 			}
@@ -38,7 +41,7 @@
 		}
 		else if ($action === 'open')
 		{
-			if (!isClosed($threadId))
+			if (!isThreadClosed($threadId))
 			{
 				renderMessage(MSG_THREAD_ALREADY_OPEN);
 			}
@@ -50,7 +53,7 @@
 		}
 		else if ($action === 'sticky')
 		{
-			if (isSticky($threadId))
+			if (isThreadSticky($threadId))
 			{
 				renderMessage(MSG_THREAD_ALREADY_STICKIED);
 			}
@@ -62,7 +65,7 @@
 		}
 		else if ($action === 'unsticky')
 		{
-			if (!isSticky($threadId))
+			if (!isThreadSticky($threadId))
 			{
 				renderMessage(MSG_THREAD_ALREADY_UNSTICKIED);
 			}

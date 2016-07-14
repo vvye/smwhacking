@@ -1,6 +1,9 @@
 <?php
 
 	require_once __DIR__ . '/../functions/forums.php';
+	require_once __DIR__ . '/../functions/thread.php';
+	require_once __DIR__ . '/../functions/post.php';
+	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/user.php';
 
 
@@ -21,9 +24,9 @@
 			break;
 		}
 
-		// TODO permission to see last post
-		$lastPost = getLastPost($userId);
+		$lastPost = getLastPostByUser($userId);
 		$lastPostPage = ($lastPost !== null) ? getPostPageInThread($lastPost['id'], $lastPost['thread_id']) : '';
+		$canViewLastPost = canView($lastPost['min_powerlevel']);
 
 		renderTemplate('user_top', [
 			'name' => $user['name'],
@@ -38,6 +41,7 @@
 			'registrationTime' => date(DEFAULT_DATE_FORMAT, $user['registration_time']),
 			'lastLoginTime'    => date(DEFAULT_DATE_FORMAT, $user['last_login_time']),
 			'numPosts'         => getNumPostsByUser($userId),
+			'canViewLastPost'  => $canViewLastPost,
 			'lastPost'         => $lastPost,
 			'lastPostPage'     => $lastPostPage,
 			'website'          => $user['website'],

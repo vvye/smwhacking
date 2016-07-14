@@ -1,10 +1,12 @@
 <?php
 
 	require_once __DIR__ . '/../functions/forums.php';
+	require_once __DIR__ . '/../functions/post.php';
+	require_once __DIR__ . '/../functions/permissions.php';
 
 
 	$forumsByCategory = getForumsByCategory();
-	$unreadForums = getUnreadForums();
+	$unreadForums = getUnreadForumIds();
 
 	$categories = [];
 	foreach ($forumsByCategory as $categoryName => $forums)

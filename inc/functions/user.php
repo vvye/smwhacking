@@ -2,8 +2,6 @@
 
 	require_once __DIR__ . '/../config/user.php';
 
-	require_once __DIR__ . '/database.php';
-
 
 	function getUser($userId)
 	{
@@ -41,7 +39,7 @@
 
 		$posts = $database->select('posts', [
 			'[>]threads' => ['thread' => 'id'],
-			'[>]forums' => ['threads.forum' => 'id']
+			'[>]forums'  => ['threads.forum' => 'id']
 		], [
 			'posts.id',
 			'posts.post_time',
@@ -50,9 +48,12 @@
 			'threads.name(thread_name)',
 			'forums.min_powerlevel(min_powerlevel)'
 		], [
-			'author' => $userId,
-			'ORDER'  => 'post_time ASC',
-			'LIMIT'  => [($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE]
+			'AND'   => [
+				'author'        => $userId,
+				'posts.deleted' => 0
+			],
+			'ORDER' => 'post_time ASC',
+			'LIMIT' => [($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE]
 		]);
 
 		if ($posts === false)
@@ -83,8 +84,8 @@
 
 		return $database->count('posts', [
 			'AND' => [
-				'author' => $userId,
-				'id[<=]' => $postId,
+				'author'  => $userId,
+				'id[<=]'  => $postId,
 				'deleted' => 0
 			]
 		]);
@@ -105,17 +106,19 @@
 	}
 
 
-	function getLastPost($userId)
+	function getLastPostByUser($userId)
 	{
 		global $database;
 
 		$posts = $database->select('posts', [
-			'[>]threads' => ['thread' => 'id']
+			'[>]threads' => ['thread' => 'id'],
+			'[>]forums'  => ['threads.forum' => 'id']
 		], [
 			'posts.id',
 			'posts.post_time',
 			'threads.id(thread_id)',
-			'threads.name(thread_name)'
+			'threads.name(thread_name)',
+			'forums.min_powerlevel'
 		], [
 			'author' => $userId,
 			'ORDER'  => 'post_time DESC',

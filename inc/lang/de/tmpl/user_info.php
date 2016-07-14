@@ -39,6 +39,8 @@
 				<td>
 					<?php if ($lastPost === null): ?>
 						<em><?= MSG_NONE ?></em>
+						<?php elseif (!$canViewLastPost): ?>
+						<em><?= MSG_VIEW_POST_NOT_ALLOWED ?></em>
 					<?php else: ?>
 						<?= date(DEFAULT_DATE_FORMAT, $lastPost['post_time']) ?>
 						in <a
