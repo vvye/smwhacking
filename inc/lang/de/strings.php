@@ -352,3 +352,19 @@
 
 	define('MSG_UNBAN_SUCCESS',
 		'Der Nutzer wurde entsperrt.');
+
+
+	define('MSG_USER_NO_MEDALS',
+		'Dieser Nutzer hat noch keine Medaillen.');
+
+
+	define('MSG_AWARD_MEDAL_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Medaillen verwalten zu können.');
+
+
+	define('MSG_AWARD_MEDAL_NOT_ALLOWED',
+		'Du darfst keine Medaillen verwalten.');
+
+
+	define('MSG_AWARD_MEDAL_SUCCESS',
+		'Die Änderungen wurden gespeichert.');

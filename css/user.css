@@ -45,26 +45,28 @@
     margin-top: 2rem;
 }
 
-.medal-showcase {
+.medal {
     display: inline-block;
+    width: 18rem;
     margin: 1rem 3rem 1rem 0;
+    vertical-align: top;
 }
 
-.medal-showcase img {
+.medal img {
     float: left;
     max-width: 3rem;
 }
 
-.medal-showcase div {
+.medal div {
     padding-left: 4rem;
 }
 
-.medal-showcase h5 {
+.medal h5 {
     margin: 0;
     font-size: 1rem;
 }
 
-.medal-showcase p {
+.medal p {
     margin: 0;
     font-size: 0.8rem;
     color: #666666;

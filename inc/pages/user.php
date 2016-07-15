@@ -5,6 +5,7 @@
 	require_once __DIR__ . '/../functions/post.php';
 	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/user.php';
+	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
 
 
@@ -64,15 +65,10 @@
 			'signature' => nl2br($user['signature'])
 		]);
 
-		$medals = getMedals($userId);
+		$medals = getAwardedMedalsByUser($userId);
 		$numTotalMedals = count($medals);
 
-		$medalsByCategory = [];
-		foreach ($medals as $key => $medal)
-		{
-			$medalsByCategory[$medal['category_name']][$key] = $medal;
-			$medalsByCategory[$medal['category_name']] = array_values($medalsByCategory[$medal['category_name']]);
-		}
+		$medalsByCategory = getMedalsByCategory($medals);
 
 		renderTemplate('user_medals', [
 			'numTotalMedals'   => $numTotalMedals,

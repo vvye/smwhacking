@@ -175,28 +175,6 @@
 	}
 
 
-	function getMedals($userId)
-	{
-		global $database;
-
-		$medals = $database->select('awarded_medals', [
-			'[>]medals'           => ['medal' => 'id'],
-			'[>]medal_categories' => ['medals.category' => 'id']
-		], [
-			'medals.id',
-			'medal_categories.name(category_name)',
-			'medals.name',
-			'medals.description',
-			'medals.image_filename',
-			'awarded_medals.award_time'
-		], [
-			'awarded_medals.user' => $userId
-		]);
-
-		return $medals;
-	}
-
-
 	function setUserData($userId, $data)
 	{
 		global $database;

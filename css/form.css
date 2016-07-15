@@ -188,6 +188,21 @@ button.primary:hover, .button.primary:hover, input[type="button"].primary:hover,
     font-size: 1rem;
 }
 
+.medals .custom-checkbox-group {
+    margin: 0.5rem 0 0;
+}
+
+.medals .custom-checkbox + .custom-checkbox-label {
+    font-size: 0.9rem;
+}
+
+.medals .custom-checkbox + .custom-checkbox-label:before {
+    width: 0.75rem;
+    height: 0.75rem;
+    line-height: 0.75rem;
+    font-size: 0.75rem;
+}
+
 select {
     display: inline-block;
     border: 1px solid #AAAAAA;

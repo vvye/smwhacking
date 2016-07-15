@@ -4,9 +4,11 @@
 	<?php else: ?>
 		<h3>Medaillen</h3>
 	<?php endif ?>
+
 	<div class="content medals">
+
 		<?php if ($numTotalMedals === 0): ?>
-			<em>Dieser Nutzer hat noch keine Medaillen.</em>
+			<em><?= MSG_USER_NO_MEDALS ?></em>
 		<?php endif; ?>
 
 		<?php foreach ($medalsByCategory as $category => $medals): ?>
@@ -14,7 +16,7 @@
 			<h4><?= $medals[0]['category_name'] ?> (<?= count($medals) ?>)</h4>
 
 			<?php foreach ($medals as $medal): ?>
-				<div class="medal-showcase">
+				<div class="medal">
 					<img src="img/medals/<?= $medal['image_filename'] ?>" alt="<?= $medal['name'] ?>" />
 					<div>
 						<h5><?= $medal['name'] ?></h5>
