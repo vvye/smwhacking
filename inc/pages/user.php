@@ -34,6 +34,7 @@
 		renderTemplate('user_top', [
 			'canEditProfile' => !isBanned() && ($isOwnProfile || isAdmin()),
 			'canBan'         => !$isOwnProfile && isModerator(),
+			'canGiveMedal'   => isModerator(),
 			'name'           => $user['name'],
 			'id'             => $userId,
 			'banned'         => $user['banned'],

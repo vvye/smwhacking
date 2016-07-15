@@ -19,4 +19,8 @@
 		<?php endif; ?>
 
 	<?php endif; ?>
+	<?php if ($canGiveMedal): ?>
+	<a class="subtle button" href="?p=give-medal&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-certificate"></i>
+		Medaille verleihen</a>
+	<?php endif; ?>
 </form>
