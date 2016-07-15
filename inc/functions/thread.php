@@ -74,6 +74,8 @@
 				threads.name,
 				threads.posts,
 				threads.last_post,
+				threads.closed,
+				threads.sticky,
 				forums.id AS forum_id,
 				forums.name AS forum_name,
 				forums.min_powerlevel

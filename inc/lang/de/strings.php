@@ -312,3 +312,11 @@
 
 	define('MSG_USERCP_SUCCESS',
 		'Die Einstellungen wurden gespeichert.');
+
+
+	define('MSG_AVATAR_GENERAL_ERROR',
+		'Das Hochladen des Avatars hat nicht geklappt.');
+
+
+	define('MSG_AVATAR_WRONG_FILE_FORMAT',
+		'Der Avatar hat ein falsches Dateiformat.');

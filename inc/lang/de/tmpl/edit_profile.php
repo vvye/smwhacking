@@ -52,10 +52,26 @@
 						das Bild größer ist als 150x150 Pixel, wird es verkleinert.</p>
 				</td>
 				<td>
-					<label><input type="file" class="file-input" name="avatar" /></label><br />
-					<div class="custom-checkbox-group">
-						<input type="checkbox" class="custom-checkbox" name="delete-avatar" id="delete-avatar" />
-						<label class="custom-checkbox-label" for="delete-avatar"> Avatar löschen</label>
+					<div style="float: left;">
+						<?php if ($hasAvatar): ?>
+							<img class="avatar" src="img/avatars/<?= $userId ?>.png" alt="Avatar" />
+						<?php else: ?>
+							<img class="avatar" src="img/avatars/default.png" alt="Avatar" />
+						<?php endif; ?>
+					</div>
+					<div style="padding-left: 150px;">
+						<div class="custom-checkbox-group">
+							<input type="checkbox" class="custom-checkbox" name="change-avatar" id="change-avatar" />
+							<label class="custom-checkbox-label" for="change-avatar"> Avatar ändern</label>
+						</div>
+						<div id="edit-avatar">
+							<input type="file" class="file-input" name="avatar" id="avatar" />
+							<div class="custom-checkbox-group">
+								<input type="checkbox" class="custom-checkbox" name="delete-avatar"
+								       id="delete-avatar" />
+								<label class="custom-checkbox-label" for="delete-avatar"> Avatar löschen</label>
+							</div>
+						</div>
 					</div>
 				</td>
 			</tr>
@@ -150,6 +166,19 @@
 	fileInput('file-input', {
 		buttonText: 'Durchsuchen&hellip;',
 		noFileText: 'Keine Datei ausgewählt.'
-	})
+	});
+
+	var editAvatarBox = document.getElementById('edit-avatar');
+	var avatarInput = document.getElementById('avatar');
+	var changeAvatarCheckbox = document.getElementById('change-avatar');
+	var deleteAvatarCheckbox = document.getElementById('delete-avatar');
+
+	(changeAvatarCheckbox.onchange = function () {
+		editAvatarBox.style.display = changeAvatarCheckbox.checked ? '' : 'none';
+	})();
+
+	(deleteAvatarCheckbox.onchange = function () {
+		avatarInput.style.display = deleteAvatarCheckbox.checked ? 'none' : '';
+	})();
 
 </script>

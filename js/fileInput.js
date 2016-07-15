@@ -18,7 +18,9 @@ function fileInput(className, options) {
 
         var label = document.createElement('label');
         label.className = input.className;
+        label.id = input.id;
         input.removeAttribute('class');
+        input.removeAttribute('id');
 
         var browseButton = document.createElement('a');
         browseButton.className = 'button';

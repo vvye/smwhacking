@@ -1,6 +1,7 @@
 <?php
 
 	require_once __DIR__ . '/../functions/user.php';
+	require_once __DIR__ . '/../functions/avatar.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
 
@@ -61,10 +62,12 @@
 			$powerlevel = (int)getFieldValue('powerlevel');
 			$banned = (bool)getFieldValue('banned');
 
+			$error = false;
+
 			if ($email === '')
 			{
 				renderErrorMessage(MSG_EMAIL_MISSING);
-				break;
+				$error = true;
 			}
 
 			$oldEmail = htmlspecialchars_decode($user['email']);
@@ -72,7 +75,7 @@
 			if ($changeEmail && emailExists($email))
 			{
 				renderErrorMessage(MSG_EMAIL_TAKEN);
-				break;
+				$error = true;
 			}
 
 			$changePassword = ($newPassword !== '');
@@ -81,50 +84,75 @@
 				if (!isPasswordCorrect($userId, $oldPassword))
 				{
 					renderErrorMessage(MSG_WRONG_PASSWORD);
-					break;
+					$error = true;
 				}
 				if (strlen($newPassword) < 8)
 				{
 					renderErrorMessage(MSG_PASSWORD_TOO_SHORT);
-					break;
+					$error = true;
 				}
 				if (strtolower($newPassword) === 'penis')
 				{
 					renderErrorMessage(MSG_PASSWORD_PENIS);
-					break;
+					$error = true;
 				}
 				if ($newPassword !== $newPasswordConfirm)
 				{
 					renderErrorMessage(MSG_PASSWORDS_DONT_MATCH);
-					break;
+					$error = true;
 				}
 			}
 
-			setUserData($userId, [
-				'email'     => $email,
-				'location'  => $location,
-				'website'   => $website,
-				'bio'       => $bio,
-				'signature' => $signature
-			]);
-
-			if ($changePassword)
+			$changeAvatar = isset($_POST['change-avatar']);
+			if ($changeAvatar)
 			{
-				updatePassword($userId, $newPassword);
+				$deleteAvatar = isset($_POST['delete-avatar']);
+				if ($deleteAvatar)
+				{
+					deleteAvatar($userId);
+				}
+				else
+				{
+					$errorMessages = processUploadedAvatar($userId);
+					if (!empty($errorMessages))
+					{
+						foreach ($errorMessages as $errorMessage)
+						{
+							renderErrorMessage($errorMessage);
+						}
+						$error = true;
+					}
+				}
 			}
 
-			if ($canChangeTitle)
+			if (!$error)
 			{
-				setUserTitle($userId, $title);
-			}
+				setUserData($userId, [
+					'email'     => $email,
+					'location'  => $location,
+					'website'   => $website,
+					'bio'       => $bio,
+					'signature' => $signature
+				]);
 
-			if ($canChangePowerlevel)
-			{
-				makeBetween($powerlevel, 0, 2);
-				setPowerlevel($userId, $powerlevel);
-			}
+				if ($changePassword)
+				{
+					updatePassword($userId, $newPassword);
+				}
 
-			renderSuccessMessage(MSG_USERCP_SUCCESS);
+				if ($canChangeTitle)
+				{
+					setUserTitle($userId, $title);
+				}
+
+				if ($canChangePowerlevel)
+				{
+					makeBetween($powerlevel, 0, 2);
+					setPowerlevel($userId, $powerlevel);
+				}
+
+				renderSuccessMessage(MSG_USERCP_SUCCESS);
+			}
 		}
 
 		renderTemplate('edit_profile', [
@@ -138,6 +166,7 @@
 			'powerlevel'          => $powerlevel,
 			'banned'              => $banned,
 			'email'               => $email,
+			'hasAvatar'           => hasAvatar($userId),
 			'oldPassword'         => $oldPassword,
 			'newPassword'         => $newPassword,
 			'newPasswordConfirm'  => $newPasswordConfirm,

@@ -187,12 +187,6 @@
 	}
 
 
-	function hasAvatar($userId)
-	{
-		return file_exists(__DIR__ . '/../../img/avatars/' . $userId . '.png');
-	}
-
-
 	function banUser($userId)
 	{
 		global $database;

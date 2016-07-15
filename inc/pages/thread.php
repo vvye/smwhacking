@@ -9,6 +9,7 @@
 	require_once __DIR__ . '/../functions/post.php';
 	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/user.php';
+	require_once __DIR__ . '/../functions/avatar.php';
 
 
 	do

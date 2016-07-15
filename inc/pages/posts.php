@@ -7,6 +7,7 @@
 	require_once __DIR__ . '/../functions/pagination.php';
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/misc.php';
+	require_once __DIR__ . '/../functions/avatar.php';
 
 
 	do
