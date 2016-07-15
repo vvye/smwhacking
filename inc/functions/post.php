@@ -49,6 +49,7 @@
 			'users.id(author_id)',
 			'users.name(author_name)',
 			'users.powerlevel(author_powerlevel)',
+			'users.banned(author_banned)',
 			'users.title(author_title)',
 			'users.signature(author_signature)',
 			'users.registration_time(author_registration_time)',

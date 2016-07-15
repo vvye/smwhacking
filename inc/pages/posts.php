@@ -64,6 +64,7 @@
 					'name'              => $user['name'],
 					'powerlevelId'      => (int)$user['powerlevel'],
 					'powerlevel'        => POWERLEVEL_DESCRIPTIONS[$user['powerlevel']],
+					'banned'            => $user['banned'],
 					'title'             => $user['title'],
 					'rank'              => getRank($user['id']),
 					'hasAvatar'         => hasAvatar($user['id']),

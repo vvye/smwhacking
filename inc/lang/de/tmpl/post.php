@@ -1,22 +1,39 @@
 <div class="post" id="post-<?= $id ?>">
+
 	<div class="sidebar">
-		<h3><a href="?p=user&id=<?= $author['id'] ?>"><?= $author['name'] ?></a></h3>
-		<?php if ($author['powerlevelId'] !== 0): ?>
+		<h3>
+			<a href="?p=user&id=<?= $author['id'] ?>">
+				<?php if ($author['banned']): ?>
+					<i class="fa fa-ban"></i>
+				<?php endif; ?>
+				<?= $author['name'] ?>
+			</a>
+		</h3>
+
+		<?php if ($author['banned']): ?>
+			gesperrt
+		<?php elseif ($author['powerlevelId'] !== 0): ?>
 			<?= $author['powerlevel'] ?>
 		<?php endif; ?>
+
 		<p><?= $author['rank']['name'] ?></p>
+
 		<?php if ($author['rank']['has_image']): ?>
 			<img src="img/ranks/<?= $author['rank']['id'] ?>.png" alt="<?= $author['rank']['name'] ?>" />
 		<?php endif; ?>
+
 		<p class="title"><?= $author['title'] ?></p>
+
 		<?php if ($author['hasAvatar']): ?>
 			<img class="avatar" src="img/avatars/<?= $author['id'] ?>.png" alt="Avatar" />
 		<?php else: ?>
 			<img class="avatar" src="img/avatars/default.png" alt="Avatar" />
 		<?php endif; ?>
+
 		<p>Beiträge: <?= $author['currentPostNumber'] ?> / <?= $author['numTotalPosts'] ?></p>
 		<p>Registriert seit: <?= $author['registrationTime'] ?></p>
 	</div>
+
 	<div class="content">
 		<div class="topbar grid">
 			<div class="column">
@@ -51,5 +68,6 @@
 			<div class="signature"><?= $author['signature'] ?></div>
 		<?php endif; ?>
 	</div>
+
 	<div class="clearfix"></div>
 </div>

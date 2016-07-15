@@ -43,6 +43,7 @@
 		renderTemplate('user_info', [
 			'id'               => $userId,
 			'powerlevel'       => POWERLEVEL_DESCRIPTIONS[$user['powerlevel']],
+			'banned'           => $user['banned'],
 			'rank'             => getRank($userId),
 			'title'            => $user['title'],
 			'hasAvatar'        => hasAvatar($userId),

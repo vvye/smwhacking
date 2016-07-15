@@ -9,6 +9,11 @@
 			<?php endif; ?>
 		</div>
 		<table>
+			<?php if ($banned): ?>
+				<tr>
+					<td colspan="2"><i class="fa fa-ban"></i> gesperrt</td>
+				</tr>
+			<?php endif; ?>
 			<tr>
 				<td>Powerlevel:</td>
 				<td><?php echo $powerlevel; ?></td>

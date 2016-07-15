@@ -93,6 +93,7 @@
 					'name'              => $post['author_name'],
 					'powerlevelId'      => (int)$post['author_powerlevel'],
 					'powerlevel'        => POWERLEVEL_DESCRIPTIONS[$post['author_powerlevel']],
+					'banned'            => $post['author_banned'],
 					'title'             => $post['author_title'],
 					'rank'              => getRank($post['author_id']),
 					'hasAvatar'         => hasAvatar($post['author_id']),
