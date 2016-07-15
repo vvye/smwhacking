@@ -59,7 +59,7 @@
 							<img class="avatar" src="img/avatars/default.png" alt="Avatar" />
 						<?php endif; ?>
 					</div>
-					<div style="padding-left: 150px;">
+					<div style="padding-left: 166px;">
 						<div class="custom-checkbox-group">
 							<input type="checkbox" class="custom-checkbox" name="change-avatar" id="change-avatar" />
 							<label class="custom-checkbox-label" for="change-avatar"> Avatar ändern</label>

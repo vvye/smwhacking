@@ -1,0 +1,1 @@
+<a href="?p=user&id=<?= $userId ?>">Zurück zum Profil von <?= $username ?></a>

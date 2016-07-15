@@ -199,6 +199,18 @@
 	}
 
 
+	function unbanUser($userId)
+	{
+		global $database;
+
+		$database->update('users', [
+			'banned' => 0
+		], [
+			'id' => $userId
+		]);
+	}
+
+
 	function setPowerlevel($userId, $powerlevel)
 	{
 		global $database;

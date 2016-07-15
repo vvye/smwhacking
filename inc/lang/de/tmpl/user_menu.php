@@ -14,7 +14,7 @@
 				</a>
 			</li>
 			<li><a href="?p=pm">Private Nachrichten (0)</a></li>
-			<li><a href="?p=edit-profile">Einstellungen</a></li>
+			<li><a href="?p=edit-profile&token=<?= $token ?>">Einstellungen</a></li>
 			<?php if ($admin): ?>
 				<li><a href="?p=admin">Administration</a></li>
 			<?php endif; ?>

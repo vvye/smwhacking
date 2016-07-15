@@ -32,10 +32,12 @@
 		$canViewLastPost = canView($lastPost['min_powerlevel']);
 
 		renderTemplate('user_top', [
-			'canEditProfile' => $isOwnProfile || isAdmin(),
+			'canEditProfile' => !isBanned() && ($isOwnProfile || isAdmin()),
 			'canBan'         => !$isOwnProfile && isModerator(),
 			'name'           => $user['name'],
-			'id'             => $userId
+			'id'             => $userId,
+			'banned'         => $user['banned'],
+			'token'          => getCsrfToken()
 		]);
 
 		renderTemplate('user_info', [

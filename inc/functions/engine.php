@@ -56,8 +56,8 @@
 		$caption = isset($item['caption']) ? $item['caption'] : '';
 
 		renderTemplate('menu_item', [
-			'active' => $active,
-			'link' => $link,
+			'active'  => $active,
+			'link'    => $link,
 			'caption' => $caption
 		]);
 	}
@@ -84,9 +84,10 @@
 	{
 		renderTemplate('user_menu', [
 			'loggedIn' => isLoggedIn(),
-			'admin' => isAdmin(),
-			'userId' => $_SESSION['userId'] ?? '',
-			'username' => $_SESSION['username'] ?? ''
+			'admin'    => isAdmin(),
+			'userId'   => $_SESSION['userId'] ?? '',
+			'username' => $_SESSION['username'] ?? '',
+			'token'    => getCsrfToken()
 		]);
 	}
 

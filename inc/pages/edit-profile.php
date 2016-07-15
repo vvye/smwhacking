@@ -31,6 +31,13 @@
 			break;
 		}
 
+		if (!isset($_GET['token']) || !isCsrfTokenCorrect($_GET['token']))
+		{
+			renderErrorMessage(MSG_BAD_TOKEN);
+			break;
+		}
+		$token = $_GET['token'];
+
 		$user = getUser($userId);
 		$username = htmlspecialchars_decode($user['name']);
 
@@ -156,7 +163,7 @@
 		}
 
 		renderTemplate('edit_profile', [
-			'action'              => '?p=edit-profile' . $isOwnProfile ? '' : ('&user=' . $userId),
+			'action'              => '?p=edit-profile' . ($isOwnProfile ? '' : ('&user=' . $userId)) . '&token=' . getCsrfToken(),
 			'isOwnProfile'        => $isOwnProfile,
 			'canEditProfile'      => $canEditProfile,
 			'canChangeTitle'      => $canChangeTitle,
@@ -174,7 +181,8 @@
 			'location'            => $location,
 			'website'             => $website,
 			'bio'                 => $bio,
-			'signature'           => $signature
+			'signature'           => $signature,
+			'token'               => $token
 		]);
 	}
 	while (false);

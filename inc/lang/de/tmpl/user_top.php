@@ -5,10 +5,18 @@
 	<a class="subtle button" href="?p=new-pm&user=<?= $id ?>"><i class="fa fa-envelope"></i> Nachricht
 		schreiben</a>
 	<?php if ($canEditProfile): ?>
-		<a class="subtle button" href="?p=edit-profile&user=<?= $id ?>"><i class="fa fa-cog"></i>
+		<a class="subtle button" href="?p=edit-profile&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-cog"></i>
 			Profil bearbeiten</a>
 	<?php endif; ?>
 	<?php if ($canBan): ?>
-		<a class="subtle button" href="?p=ban&user=<?= $id ?>"><i class="fa fa-ban"></i> Nutzer bannen</a>
+
+		<?php if ($banned): ?>
+			<a class="subtle button" href="?p=ban&user=<?= $id ?>&action=unban&token=<?= $token ?>"><i
+					class="fa fa-ban"></i> Nutzer entsperren</a>
+		<?php else: ?>
+			<a class="subtle button" href="?p=ban&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-ban"></i> Nutzer
+				sperren</a>
+		<?php endif; ?>
+
 	<?php endif; ?>
 </form>

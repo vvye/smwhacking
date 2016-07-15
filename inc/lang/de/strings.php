@@ -320,3 +320,31 @@
 
 	define('MSG_AVATAR_WRONG_FILE_FORMAT',
 		'Der Avatar hat ein falsches Dateiformat.');
+
+
+	define('MSG_BAN_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Nutzer sperren zu können.');
+
+
+	define('MSG_BAN_NOT_MODERATOR',
+		'Nur Moderatoren und Administratoren können Nutzer sperren.');
+
+
+	define('MSG_BAN_CANT_BAN_YOURSELF',
+		'Du kannst dich nicht selbst sperren.');
+
+
+	define('MSG_BAN_SUCCESS',
+		'Der Nutzer wurde gesperrt.');
+
+
+	define('MSG_BAN_USER_ALREADY_BANNED',
+		'Der Nutzer ist schon gesperrt.');
+
+
+	define('MSG_UNBAN_USER_ALREADY_UNBANNED',
+		'Der Nutzer wurde gesperrt.');
+
+
+	define('MSG_UNBAN_SUCCESS',
+		'Der Nutzer wurde entsperrt.');
