@@ -1,8 +1,46 @@
 <?php
 
 	require_once __DIR__ . '/../config/user.php';
+	require_once __DIR__ . '/../config/forums.php';
 
 	require_once __DIR__ . '/session.php';
+
+
+	function getNumUsers()
+	{
+		global $database;
+
+		return $database->count('users');
+	}
+
+
+	function getUsers($page, $sortColumn, $sortDirection)
+	{
+		global $database;
+
+		$offset = (int)(($page - 1) * USERS_PER_PAGE);
+		$numRows = (int)USERS_PER_PAGE;
+
+		$users = $database->query('
+			SELECT
+				users.id,
+				users.name,
+				users.location,
+				users.website,
+				users.powerlevel,
+				users.banned,
+				users.registration_time,
+				users.last_login_time,
+				COUNT(posts.id) AS num_posts
+			FROM users
+			LEFT JOIN posts ON users.id = posts.author AND posts.deleted = 0
+			GROUP BY users.id
+			ORDER BY ' . $sortColumn . ' ' . $sortDirection . ', id ' . $sortDirection . '
+			LIMIT ' . $offset . ', ' . $numRows . '
+		')->fetchAll(PDO::FETCH_ASSOC);
+
+		return $users;
+	}
 
 
 	function getUser($userId)

@@ -134,6 +134,10 @@
 		'Uploader');
 
 
+	define('CAPTION_USERS',
+		'Mitglieder');
+
+
 	define('MSG_NEW',
 		'NEU');
 

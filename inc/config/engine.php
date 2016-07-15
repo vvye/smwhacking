@@ -1,9 +1,9 @@
 <?php
 
 	define('DEFAULT_PAGE_NAME', 'home');
-	
+
 	define('DEFAULT_SUBPAGE_NAME', '');
-	
+
 	define('MENU_ITEMS', [
 		[
 			'page'    => 'home',
@@ -15,6 +15,9 @@
 			'page'         => 'forums',
 			'caption'      => CAPTION_FORUM,
 			'relatedPages' => ['forum', 'thread', 'new-post', 'edit-post', 'delete-post', 'moderate-thread', 'user']
+		], [
+			'page'    => 'users',
+			'caption' => CAPTION_USERS
 		], [
 			'page'    => 'chat',
 			'caption' => CAPTION_CHAT

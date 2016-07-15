@@ -73,11 +73,8 @@
 }
 
 .forum td {
-    padding: 0.5rem 0.2rem;
-}
-
-.forum td {
     border-bottom: 1px solid #CCCCCC;
+    padding: 0.5rem 0.2rem;
 }
 
 .forum-category .category-name {
@@ -205,3 +202,72 @@
     margin-top: 0;
     margin-bottom: 0.3rem;
 }
+
+.users {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.users th {
+    background-color: #096AC9;
+    padding: 0.35rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.users th a {
+    color: white !important;
+}
+
+.users th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.users th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.users tr {
+    background-color: white;
+}
+
+.users td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.3rem 0.2rem;
+}
+
+.users .id {
+    width: 3rem;
+    text-align: center;
+}
+
+.users .name {
+    width: 10rem;
+}
+
+.users .registration-time,
+.users .last-login-time {
+    width: 12rem;
+    text-align: center;
+}
+
+.users .num-posts {
+    width: 4rem;
+    text-align: center;
+}
+
+.users .rank {
+    width: 8rem;
+}
+
+.users .location,
+.users .website {
+    width: 14rem;
+    text-align: center;
+}
+
+.users .status {
+    text-align: center;
+}
+
