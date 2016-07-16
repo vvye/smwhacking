@@ -4,6 +4,6 @@
 <p>Gesperrte Nutzer können keine Beiträge schreiben und ihr Profil nicht ändern.</p>
 
 <form method="post" action="?p=ban&user=<?= $userId ?>&token=<?= $token ?>">
-	<a class="button primary" href="?p=user&id=<?= $threadId ?>">Abbrechen</a>
+	<a class="button primary" href="?p=user&id=<?= $userId ?>">Abbrechen</a>
 	<button class="subtle" type="submit" name="submit"><?= $username ?> sperren</button>
 </form>

@@ -45,6 +45,13 @@
     margin-top: 2rem;
 }
 
+.all-medals h3 {
+    margin: 2rem 0 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
 .medal {
     display: inline-block;
     width: 18rem;
@@ -61,7 +68,8 @@
     padding-left: 4rem;
 }
 
-.medal h5 {
+.medal h5,
+.all-medals h4 {
     margin: 0;
     font-size: 1rem;
 }
@@ -70,4 +78,16 @@
     margin: 0;
     font-size: 0.8rem;
     color: #666666;
+}
+
+.medal .got-medal {
+    margin-top: 0.2rem;
+    border: 1px solid #00CB00;
+    border-left-width: 0.4rem;
+    border-radius: 1px;
+    padding: 0.1rem 0.2rem;
+}
+
+.medal .got-medal i {
+    color: #00AA00;
 }

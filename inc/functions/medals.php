@@ -1,6 +1,24 @@
 <?php
 
 
+	function getAllMedals()
+	{
+		global $database;
+
+		$medals = $database->select('medals', [
+			'[>]medal_categories' => ['category' => 'id']
+		], [
+			'medals.id',
+			'medal_categories.name(category_name)',
+			'medals.name',
+			'medals.description',
+			'medals.image_filename',
+		]);
+
+		return $medals;
+	}
+
+
 	function getAwardableMedals()
 	{
 		global $database;
@@ -83,6 +101,25 @@
 		$awardTime = time();
 		$data = [];
 		foreach ($medalIds as $medalId)
+		{
+			$data[] = [
+				'user'       => $userId,
+				'medal'      => $medalId,
+				'award_time' => $awardTime
+			];
+		}
+
+		$database->insert('awarded_medals', $data);
+	}
+
+
+	function awardMedalToMultipleUsers($userIds, $medalId)
+	{
+		global $database;
+
+		$awardTime = time();
+		$data = [];
+		foreach ($userIds as $userId)
 		{
 			$data[] = [
 				'user'       => $userId,
@@ -183,4 +220,72 @@
 		]);
 
 		return $favoriteMedals;
+	}
+
+
+	function getUserIdsByMedal($medalId)
+	{
+		global $database;
+
+		$userIds = $database->select('awarded_medals', 'user', [
+			'medal' => $medalId
+		]);
+
+		return $userIds;
+	}
+
+
+	function getAutomaticMedals()
+	{
+		global $database;
+
+		$automaticMedals = $database->select('medals', '*', [
+			'award_condition[!]' => 'manual'
+		]);
+
+		return $automaticMedals;
+	}
+
+
+	function getUserIdsEligibleForAutomaticMedal($medal)
+	{
+		global $database;
+
+		$medalId = $medal['id'];
+		$awardCondition = $medal['award_condition'];
+		$value = $medal['value'];
+
+		$userIdsWithMedal = getUserIdsByMedal($medalId);
+
+		if ($awardCondition === 'post_count')
+		{
+			$users = $database->query('
+				SELECT users.id
+				FROM users
+				LEFT JOIN posts ON users.id = posts.author AND posts.deleted = 0
+				GROUP BY users.id
+				HAVING COUNT(posts.id) >= ' . $database->quote($value) . '
+			')->fetchAll(PDO::FETCH_ASSOC);
+
+			$userIds = array_map(function ($user)
+			{
+				return $user['id'];
+			}, $users);
+		}
+		else if ($awardCondition === 'registration_time')
+		{
+			$registrationTime = time() - $value;
+
+			$userIds = $database->select('users', 'id', [
+				'registration_time[<=]' => $registrationTime
+			]);
+		}
+		else
+		{
+			$userIds = [];
+		}
+
+		$userIds = array_diff($userIds, $userIdsWithMedal);
+
+		return $userIds;
 	}

@@ -368,3 +368,27 @@
 
 	define('MSG_AWARD_MEDAL_SUCCESS',
 		'Die Änderungen wurden gespeichert.');
+
+
+	define('MSG_AUTOMATIC_MEDALS_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um auf neue Medaillen prüfen zu können.');
+
+
+	define('MSG_AUTOMATIC_MEDALS_CHECKING',
+		'Prüfe Medaille "{{name}}"&hellip;<br />');
+
+
+	define('MSG_AUTOMATIC_MEDALS_NONE_AWARDED',
+		'Es gibt keine neuen Medaillen zu verleihen.');
+
+
+	define('MSG_AUTOMATIC_MEDALS_AWARDED_INCLUDING_YOU',
+		'Es wurden neue Medaillen an {{num}} Nutzer verliehen. Du bist auch darunter!');
+
+
+	define('MSG_AUTOMATIC_MEDALS_AWARDED',
+		'Es wurden neue Medaillen an {{num}} Nutzer verliehen. Du bist leider nicht darunter.');
+
+
+	define('MSG_AUTOMATIC_MEDALS_TOO_SOON',
+		'Es darf nur einmal am Tag auf neue Medaillen geprüft werden - möglich ist es wieder am {{time}}.');

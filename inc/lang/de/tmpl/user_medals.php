@@ -51,5 +51,7 @@
 
 		<?php endforeach; ?>
 
+		<a class="subtle button" href="?p=medals">Alle verleihbaren Medaillen ansehen</a>
+
 	</div>
 </section>
