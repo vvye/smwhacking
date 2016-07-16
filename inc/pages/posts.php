@@ -6,8 +6,9 @@
 	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/pagination.php';
 	require_once __DIR__ . '/../functions/user.php';
-	require_once __DIR__ . '/../functions/misc.php';
+	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
+	require_once __DIR__ . '/../functions/misc.php';
 
 
 	do
@@ -69,6 +70,7 @@
 					'rank'              => getRank($user['id']),
 					'hasAvatar'         => hasAvatar($user['id']),
 					'registrationTime'  => date(DEFAULT_DATE_FORMAT, $user['registration_time']),
+					'favoriteMedals'    => getFavoriteMedals($user['id']),
 					'currentPostNumber' => getCurrentPostNumber($user['id'], $post['id']),
 					'numTotalPosts'     => $numPosts,
 					'signature'         => nl2br(trim($user['signature']))

@@ -105,5 +105,82 @@
 				'medal' => $medalIds,
 			]
 		]);
+	}
 
+
+	function ensureCorrectRankFormat(&$favoriteMedalRanks)
+	{
+		$ranksFormatCorrect = (count(array_unique($favoriteMedalRanks)) === count($favoriteMedalRanks));
+		if ($ranksFormatCorrect)
+		{
+			$rankValues = array_values($favoriteMedalRanks);
+			for ($i = 1; $i <= min(count($rankValues), MAX_FAVORITE_MEDALS); $i++)
+			{
+				if (!in_array($i, $rankValues))
+				{
+					$ranksFormatCorrect = false;
+					break;
+				}
+			}
+		}
+
+		if (!$ranksFormatCorrect)
+		{
+			$i = 1;
+			foreach ($favoriteMedalRanks as $medal => $rank)
+			{
+				$favoriteMedalRanks[$medal] = $i++;
+			}
+		}
+	}
+
+
+	function setFavoriteMedals($userId, $medals)
+	{
+		global $database;
+
+		$database->update('awarded_medals', [
+			'favorite' => 0
+		], [
+			'user' => $userId
+		]);
+
+		foreach ($medals as $medalId => $rank)
+		{
+			$database->update('awarded_medals', [
+				'favorite' => $rank
+			], [
+				'AND' => [
+					'user'  => $userId,
+					'medal' => $medalId
+				]
+			]);
+		}
+	}
+
+
+	function getFavoriteMedals($userId)
+	{
+		global $database;
+
+		$favoriteMedals = $database->select('awarded_medals', [
+			'[>]medals'           => ['medal' => 'id'],
+			'[>]medal_categories' => ['medals.category' => 'id']
+		], [
+			'medals.id',
+			'medal_categories.name(category_name)',
+			'medals.name',
+			'medals.description',
+			'medals.image_filename',
+			'awarded_medals.award_time',
+			'awarded_medals.favorite(rank)'
+		], [
+			'AND'   => [
+				'awarded_medals.user'        => $userId,
+				'awarded_medals.favorite[!]' => 0
+			],
+			'ORDER' => 'awarded_medals.favorite ASC'
+		]);
+
+		return $favoriteMedals;
 	}

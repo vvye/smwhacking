@@ -1,6 +1,7 @@
 <?php
 
 	require_once __DIR__ . '/../functions/user.php';
+	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
@@ -41,6 +42,9 @@
 		$user = getUser($userId);
 		$username = htmlspecialchars_decode($user['name']);
 
+		$medals = getAwardedMedalsByUser($userId);
+		$medalsByCategory = getMedalsByCategory($medals);
+
 		if (!isset($_POST['submit']))
 		{
 			$email = htmlspecialchars_decode($user['email']);
@@ -53,6 +57,15 @@
 			$signature = htmlspecialchars_decode($user['signature']);
 			$powerlevel = (int)$user['powerlevel'];
 			$banned = (bool)$user['banned'];
+
+			$favoriteMedalsRaw = getFavoriteMedals($userId);
+			$favoriteMedalRanks = [];
+			foreach ($favoriteMedalsRaw as $medal)
+			{
+				$favoriteMedalRanks[$medal['id']] = $medal['rank'];
+			}
+
+
 		}
 		else
 		{
@@ -132,6 +145,17 @@
 				}
 			}
 
+			$favoriteMedalIds = array_keys($_POST['favorite'] ?? []);
+			array_splice($favoriteMedalIds, MAX_FAVORITE_MEDALS);
+
+			$favoriteMedalRanks = [];
+			foreach ($favoriteMedalIds as $id)
+			{
+				$favoriteMedalRanks[$id] = $_POST['favorite-rank'][$id];
+			}
+
+			ensureCorrectRankFormat($favoriteMedalRanks);
+
 			if (!$error)
 			{
 				setUserData($userId, [
@@ -141,6 +165,8 @@
 					'bio'       => $bio,
 					'signature' => $signature
 				]);
+
+				setFavoriteMedals($userId, $favoriteMedalRanks);
 
 				if ($changePassword)
 				{
@@ -182,6 +208,9 @@
 			'website'             => $website,
 			'bio'                 => $bio,
 			'signature'           => $signature,
+			'medalsByCategory'    => $medalsByCategory,
+			'numAwardedMedals'    => count($medals),
+			'favoriteMedals'      => $favoriteMedalRanks,
 			'token'               => $token
 		]);
 	}

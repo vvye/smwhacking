@@ -32,6 +32,12 @@
 
 		<p>Beiträge: <?= $author['currentPostNumber'] ?> / <?= $author['numTotalPosts'] ?></p>
 		<p>Registriert seit: <?= $author['registrationTime'] ?></p>
+
+		<?php foreach ($author['favoriteMedals'] as $medal): ?>
+			<img src="img/medals/<?= $medal['image_filename'] ?>" alt="<?= $medal['name'] ?>"
+			     title="<?= $medal['name'] ?> &mdash; <?= $medal['description'] ?>" />
+		<?php endforeach; ?>
+
 	</div>
 
 	<div class="content">

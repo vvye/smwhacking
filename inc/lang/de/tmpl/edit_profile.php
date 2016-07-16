@@ -127,6 +127,71 @@
 		</table>
 	</fieldset>
 
+	<fieldset>
+		<legend>Medaillen</legend>
+		<table>
+			<tr>
+				<td>
+					<h3>Lieblings-Medaillen:</h3>
+					<p>Du kannst bis zu <?= MAX_FAVORITE_MEDALS ?> Medaillen auswählen, auf die du am stolzesten bist.
+						Sie werden im Forum unter deinem Avatar angezeigt und auf deinem Profil hervorgehoben.</p>
+					<?php if ($numAwardedMedals !== 0): ?>
+						<p><br />Du kannst außerdem die Reihenfolge auswählen (je höher, desto weiter vorne). Wenn du
+							nicht jede Zahl genau einmal vergibst, wird die Reihenfolge automatisch von oben nach unten
+							vergeben!</p>
+					<?php endif; ?>
+				</td>
+				<td class="medals">
+					<?php if ($numAwardedMedals === 0): ?>
+						<em><?= MSG_USER_NO_MEDALS ?></em>
+					<?php endif; ?>
+
+					<?php foreach ($medalsByCategory as $category => $medals): ?>
+
+						<h4><?= $medals[0]['category_name'] ?> (<?= count($medals) ?>)</h4>
+
+						<?php foreach ($medals as $medal): ?>
+							<div class="medal">
+								<img src="img/medals/<?= $medal['image_filename'] ?>" alt="<?= $medal['name'] ?>" />
+								<div>
+									<h5><?= $medal['name'] ?></h5>
+									<p><?= $medal['description'] ?></p>
+								</div>
+								<div class="custom-checkbox-group">
+									<input type="checkbox" class="custom-checkbox" name="favorite[<?= $medal['id'] ?>]"
+									       id="favorite-<?= $medal['id'] ?>" <?= array_key_exists($medal['id'], $favoriteMedals) ? 'checked="checked"' : '' ?>/>
+									<label class="custom-checkbox-label"
+									       for="favorite-<?= $medal['id'] ?>">auswählen</label>
+									<br />
+									<label><input type="number" class="favorite-medal-rank"
+									              name="favorite-rank[<?= $medal['id'] ?>]"
+									              id="favorite-rank-<?= $medal['id'] ?>" min="1"
+									              max="<?= MAX_FAVORITE_MEDALS ?>"
+									              style="display: <?= array_key_exists($medal['id'], $favoriteMedals) ? 'block' : 'none' ?>"
+									              value="<?= $favoriteMedals[$medal['id']] ?? '' ?>" placeholder="Rang"></label>
+								</div>
+							</div>
+						<?php endforeach; ?>
+
+					<?php endforeach; ?>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Auf neue Medaillen prüfen:</h3>
+					<p>Manche Medaillen werden automatisch nach bestimmten Kriterien verliehen (z.&nbsp;B. Anzahl der
+						Beiträge oder Zeit seit der Registrierung). Hier kannst du prüfen, ob du schon neue Medaillen
+						verdienst, und sie dir automatisch verleihen lassen.</p>
+				</td>
+				<td style="vertical-align: middle;">
+					<a class="button" href="?p=award-automatic-medals" target="_blank"><i
+							class="fa fa-external-link"></i> Auf neue Medaillen prüfen</a>
+					<p>(öffnet sich in einem neuen Fenster)</p>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+
 	<?php if ($canChangePowerlevel): ?>
 		<fieldset>
 			<legend>Administration</legend>
@@ -168,6 +233,7 @@
 		noFileText: 'Keine Datei ausgewählt.'
 	});
 
+	// avatar checkboxes
 	var editAvatarBox = document.getElementById('edit-avatar');
 	var avatarInput = document.getElementById('avatar');
 	var changeAvatarCheckbox = document.getElementById('change-avatar');
@@ -180,5 +246,27 @@
 	(deleteAvatarCheckbox.onchange = function () {
 		avatarInput.style.display = deleteAvatarCheckbox.checked ? 'none' : '';
 	})();
+
+	// medal checkboxes
+	var medalCheckboxes = document.querySelectorAll('input[name*="favorite"]');
+	var limit = <?= MAX_FAVORITE_MEDALS ?>;
+	for (var i = 0; i < medalCheckboxes.length; i++) {
+		(function (i) {
+			medalCheckboxes[i].onchange = function () {
+				var rankInputId = this.id.replace('favorite', 'favorite-rank');
+				var rankInput = document.getElementById(rankInputId);
+				rankInput.style.display = this.checked ? 'block' : 'none';
+
+				var numChecked = 0;
+				for (var i = 0; i < medalCheckboxes.length; i++) {
+					numChecked += medalCheckboxes[i].checked;
+				}
+				if (numChecked > limit) {
+					this.checked = false;
+					rankInput.style.display = 'none';
+				}
+			};
+		})(i);
+	}
 
 </script>

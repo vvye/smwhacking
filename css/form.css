@@ -49,20 +49,25 @@ legend {
     font-weight: bold;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea {
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="number"], textarea {
     min-width: 15rem;
     border: 1px solid #CCCCCC;
     border-radius: 2px;
     padding: 0.4rem 0.5rem;
 }
 
-input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover, input[type="url"]:hover, textarea:hover {
+input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover, input[type="url"]:hover, input[type="number"]:hover, textarea:hover {
     border: 1px solid #B0B0B0;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"]:focus, textarea:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="number"]:focus, textarea:focus {
     border: 1px solid #999999;
     box-shadow: 0 1px 1px #DDDDDD inset;
+}
+
+input[type="number"] {
+    min-width: 3rem;
+    padding: 0.1rem 0.3rem;
 }
 
 .file-input span {
@@ -159,6 +164,10 @@ button.primary:hover, .button.primary:hover, input[type="button"].primary:hover,
     line-height: 1.5rem;
 }
 
+.custom-checkbox:disabled + .custom-checkbox-label, .custom-radio:disabled + .custom-radio-label {
+    font-style: italic;
+}
+
 .custom-checkbox:checked + .custom-checkbox-label:before {
     content: '\f00c';
     font-family: 'FontAwesome', sans-serif;
@@ -203,6 +212,12 @@ button.primary:hover, .button.primary:hover, input[type="button"].primary:hover,
     font-size: 0.75rem;
 }
 
+.favorite-medal-rank {
+    display: none;
+    margin-top: 0.5rem;
+    width: 5rem;
+}
+
 select {
     display: inline-block;
     border: 1px solid #AAAAAA;
@@ -217,7 +232,7 @@ select {
     appearance: none;
 }
 
-select:hover {
+select:hover, select:focus {
     background-color: #E4E4E4;
 }
 

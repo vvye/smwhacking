@@ -9,6 +9,7 @@
 	require_once __DIR__ . '/../functions/post.php';
 	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/user.php';
+	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
 
 
@@ -97,6 +98,7 @@
 					'title'             => $post['author_title'],
 					'rank'              => getRank($post['author_id']),
 					'hasAvatar'         => hasAvatar($post['author_id']),
+					'favoriteMedals'    => getFavoriteMedals($post['author_id']),
 					'registrationTime'  => date(DEFAULT_DATE_FORMAT, $post['author_registration_time']),
 					'currentPostNumber' => getCurrentPostNumber($post['author_id'], $post['id']),
 					'numTotalPosts'     => getNumPostsByUser($post['author_id']),

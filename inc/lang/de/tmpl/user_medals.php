@@ -1,5 +1,28 @@
+<?php if ($numFavoriteMedals !== 0): ?>
+	<section class="user-section">
+		<h3>Lieblings-Medaillen (<?= $numFavoriteMedals ?>)</h3>
+		<div class="content medals">
+
+			<?php foreach ($favoriteMedals as $medal): ?>
+				<div class="medal">
+					<img src="img/medals/<?= $medal['image_filename'] ?>" alt="<?= $medal['name'] ?>" />
+					<div>
+						<h5><?= $medal['name'] ?></h5>
+						<p><?= $medal['description'] ?></p>
+						<p>verliehen am <?= date(DEFAULT_DATE_FORMAT, $medal['award_time']) ?></p>
+					</div>
+				</div>
+			<?php endforeach; ?>
+
+		</div>
+	</section>
+<?php endif; ?>
+
+
 <section class="user-section">
-	<?php if ($numTotalMedals !== 0): ?>
+	<?php if ($numTotalMedals !== 0 && $numFavoriteMedals !== 0): ?>
+		<h3>Alle Medaillen (<?= $numTotalMedals ?>)</h3>
+	<?php elseif ($numTotalMedals !== 0): ?>
 		<h3>Medaillen (<?= $numTotalMedals ?>)</h3>
 	<?php else: ?>
 		<h3>Medaillen</h3>

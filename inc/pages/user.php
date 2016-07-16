@@ -67,12 +67,17 @@
 
 		$medals = getAwardedMedalsByUser($userId);
 		$numTotalMedals = count($medals);
-
 		$medalsByCategory = getMedalsByCategory($medals);
 
+		$favoriteMedals = getFavoriteMedals($userId);
+		$numFavoriteMedals = count($favoriteMedals);
+		$favoriteMedalsByCategory = getMedalsByCategory($favoriteMedals);
+
 		renderTemplate('user_medals', [
-			'numTotalMedals'   => $numTotalMedals,
-			'medalsByCategory' => $medalsByCategory,
+			'medalsByCategory'  => $medalsByCategory,
+			'numTotalMedals'    => $numTotalMedals,
+			'favoriteMedals'    => $favoriteMedals,
+			'numFavoriteMedals' => $numFavoriteMedals
 		]);
 	}
 	while (false);

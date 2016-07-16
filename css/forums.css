@@ -151,6 +151,7 @@
 .post .sidebar {
     float: left;
     width: 10rem;
+    margin: 0 1rem;
     text-align: center;
 }
 
@@ -185,7 +186,7 @@
 }
 
 .post .content {
-    padding-left: 11rem;
+    padding-left: 12rem;
 }
 
 .post .signature {
@@ -234,7 +235,7 @@
 
 .users td {
     border-bottom: 1px solid #CCCCCC;
-    padding: 0.3rem 0.2rem;
+    padding: 0.4rem 0.2rem;
 }
 
 .users .id {
