@@ -114,6 +114,11 @@ button.subtle, .button.subtle, input[type="button"].subtle, input[type="submit"]
     border: 1px solid #AAAAAA;
 }
 
+button.small, .button.small, input[type="button"].small, input[type="submit"].small {
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+}
+
 button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     border: 1px solid #AAAAAA;
     background-color: #E4E4E4 !important;

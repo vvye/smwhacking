@@ -392,3 +392,15 @@
 
 	define('MSG_AUTOMATIC_MEDALS_TOO_SOON',
 		'Es darf nur einmal am Tag auf neue Medaillen geprüft werden - möglich ist es wieder am {{time}}.');
+
+
+	define('BBCODE_QUOTE',
+		'Zitat');
+
+
+	define('BBCODE_QUOTE_BY',
+		'Zitat von');
+
+
+	define('BBCODE_CODE',
+		'Code');

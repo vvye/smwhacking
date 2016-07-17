@@ -11,6 +11,7 @@
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
+	require_once __DIR__ . '/../functions/bbcode.php';
 
 
 	do
@@ -74,6 +75,8 @@
 			updateThreadLastReadTime($threadId, $thread['last_read_time'], $newLastReadTime);
 		}
 
+		$bbcodeParser = getBBCodeParser();
+
 		foreach ($posts as $post)
 		{
 			$unread = isLoggedIn() && $post['post_time'] > $thread['last_read_time'];
@@ -83,7 +86,7 @@
 				'id'            => $post['id'],
 				'threadId'      => $threadId,
 				'postTime'      => date(DEFAULT_DATE_FORMAT, $post['post_time']),
-				'content'       => nl2br($post['content']),
+				'content'       => parseBBCode($bbcodeParser, $post['content']),
 				'pageInThread'  => getPostPageInThread($post['id'], $threadId),
 				'unread'        => $unread,
 				'lastEdit'      => getLastEdit($post['id']),
@@ -121,5 +124,7 @@
 		]);
 
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);
+
+		renderTemplate('spoiler_js', []);
 	}
 	while (false);

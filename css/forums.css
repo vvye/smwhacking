@@ -103,7 +103,7 @@
 }
 
 .forum .last-post {
-    width: 10rem;
+    width: 11rem;
     text-align: center;
 }
 
@@ -203,6 +203,70 @@
     margin-top: 0;
     margin-bottom: 0.3rem;
 }
+
+/* BBCode */
+
+.quote,
+.code,
+.spoiler {
+    margin: 0.5rem 1rem;
+}
+
+.quote .head,
+.code .head,
+.spoiler .head {
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.spoiler .head .button {
+    margin-left: 0.3rem;
+}
+
+.quote .box,
+.code .box,
+.spoiler .box {
+    border: 1px solid #AAAAAA;
+    border-radius: 1px;
+    background-color: #F8F8F8;
+    padding: 0.5rem 1rem;
+}
+
+.code .box {
+    max-height: 20rem;
+    overflow-y: auto;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.spoiler .box {
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.inline-spoiler {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background-color: #333 !important;
+    padding: 2px 3px;
+}
+
+.inline-spoiler .inner {
+    visibility: hidden !important;
+}
+
+.inline-spoiler:hover {
+    border-color: #AAAAAA;
+    background: none !important;
+}
+
+.inline-spoiler:hover > .inner {
+    visibility: visible !important;
+}
+
+
+/* user list */
 
 .users {
     width: 100%;
