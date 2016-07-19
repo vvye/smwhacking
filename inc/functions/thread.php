@@ -322,15 +322,16 @@
 	}
 
 
-	function moveThread($threadId, $forumId)
+	function moveThread($threadId, $sourceForumId, $targetForumId)
 	{
 		global $database;
 
 		$database->update('threads', [
-			'forum' => $forumId
+			'forum' => $targetForumId
 		], [
 			'id' => $threadId
 		]);
 
-		updateLastPostInForum($forumId);
+		updateLastPostInForum($sourceForumId);
+		updateLastPostInForum($targetForumId);
 	}

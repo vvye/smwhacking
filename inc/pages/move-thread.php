@@ -52,7 +52,11 @@
 
 			$targetForum = getForum($targetForumId);
 
-			// TODO does target forum exist?
+			if ($targetForum === null)
+			{
+				renderErrorMessage(MSG_FORUM_DOESNT_EXIST);
+				$error = true;
+			}
 
 			if (!canView($targetForum['min_powerlevel']))
 			{
@@ -69,7 +73,7 @@
 
 			if (!$error)
 			{
-				moveThread($threadId, $targetForumId);
+				moveThread($threadId, $thread['forum_id'], $targetForumId);
 
 				renderSuccessMessage(MSG_MOVE_THREAD_SUCCESS);
 				renderTemplate('move_thread_after', [
