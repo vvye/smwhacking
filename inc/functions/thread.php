@@ -320,3 +320,17 @@
 
 		updateLastPostInForum($forumId);
 	}
+
+
+	function moveThread($threadId, $forumId)
+	{
+		global $database;
+
+		$database->update('threads', [
+			'forum' => $forumId
+		], [
+			'id' => $threadId
+		]);
+
+		updateLastPostInForum($forumId);
+	}

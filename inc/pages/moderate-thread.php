@@ -27,6 +27,13 @@
 			break;
 		}
 
+		if (!isset($_GET['token']) || !isCsrfTokenCorrect($_GET['token']))
+		{
+			renderErrorMessage(MSG_BAD_TOKEN);
+			break;
+		}
+		$token = $_GET['token'];
+
 		if ($action === 'close')
 		{
 			if (isThreadClosed($threadId))
@@ -85,7 +92,8 @@
 
 		renderTemplate('moderate_thread_after', [
 			'threadId'       => $threadId,
-			'oppositeAction' => $oppositeActions[$action] ?? ''
+			'oppositeAction' => $oppositeActions[$action] ?? '',
+			'token'          => $token
 		]);
 	}
 	while (false);

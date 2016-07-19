@@ -57,7 +57,8 @@
 			'moderator'     => isModerator(),
 			'canPost'       => $canPost,
 			'closed'        => $closed,
-			'sticky'        => $sticky
+			'sticky'        => $sticky,
+			'token'         => getCsrfToken()
 		]);
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
@@ -75,8 +76,6 @@
 			updateThreadLastReadTime($threadId, $thread['last_read_time'], $newLastReadTime);
 		}
 
-		$bbcodeParser = getBBCodeParser();
-
 		foreach ($posts as $post)
 		{
 			$unread = isLoggedIn() && $post['post_time'] > $thread['last_read_time'];
@@ -86,7 +85,7 @@
 				'id'            => $post['id'],
 				'threadId'      => $threadId,
 				'postTime'      => date(DEFAULT_DATE_FORMAT, $post['post_time']),
-				'content'       => parseBBCode($bbcodeParser, $post['content']),
+				'content'       => parseBBCode($post['content']),
 				'pageInThread'  => getPostPageInThread($post['id'], $threadId),
 				'unread'        => $unread,
 				'lastEdit'      => getLastEdit($post['id']),
@@ -120,7 +119,8 @@
 			'moderator'     => isModerator(),
 			'canPost'       => $canPost,
 			'closed'        => $closed,
-			'sticky'        => $sticky
+			'sticky'        => $sticky,
+			'token'         => getCsrfToken()
 		]);
 
 		renderPagination('?p=thread&id=' . $threadId, $page, $numPages);

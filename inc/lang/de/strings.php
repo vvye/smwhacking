@@ -404,3 +404,23 @@
 
 	define('BBCODE_CODE',
 		'Code');
+
+
+	define('MSG_MOVE_THREAD_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Themen verschieben zu können.');
+
+
+	define('MSG_MOVE_THREAD_BANNED',
+		'Du darfst keine Themen verschieben.');
+
+
+	define('MSG_MOVE_THREAD_NOT_ALLOWED',
+		'Du darfst dieses Thema nicht verschieben.');
+
+
+	define('MSG_MOVE_THREAD_SAME_FORUM',
+		'Das Thema befindet sich schon in diesem Forum.');
+
+
+	define('MSG_MOVE_THREAD_SUCCESS',
+		'Das Thema wurde verschoben.');

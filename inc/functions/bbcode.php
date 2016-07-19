@@ -1,27 +1,32 @@
 <?php
 
 	require_once __DIR__ . '/../config/bbcode.php';
-	require_once __DIR__ . '/../vendor/bbcode/stringparser_bbcode.class.php';
 
 
-	function getBBCodeParser()
+	function parseBBCode($text)
 	{
-		$bbcodeParser = new StringParser_BBCode();
-
 		$bbcodes = BBCODES;
+
 		foreach ($bbcodes as $bbcode)
 		{
-			$bbcodeParser->addCode($bbcode['code'], $bbcode['type'], $bbcode['callback'], $bbcode['params'],
-				$bbcode['content_type'], $bbcode['allowed_in'], $bbcode['not_allowed_in']);
+			$text = parseSingleBBCode($text, $bbcode);
 		}
 
-		$bbcodeParser->addParser('block', 'nl2br');
-
-		return $bbcodeParser;
+		return nl2br($text);
 	}
 
 
-	function parseBBCode(StringParser_BBCode $bbcodeParser, $text)
+	function parseSingleBBCode($text, $bbcode, $startPos = 0, $endPos = 0)
 	{
-		return $bbcodeParser->parse($text);
+		$tag = $bbcode['tag'];
+
+		$openingTag = '[' . $tag . ']';
+		$closingTag = '[/' . $tag . ']';
+
+		$openingReplacement = $bbcode['replacement']['start'];
+		$closingReplacement = $bbcode['replacement']['end'];
+
+
+
+		return $text;
 	}

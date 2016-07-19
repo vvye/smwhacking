@@ -39,6 +39,26 @@
 	}
 
 
+	function getAllVisibleForums()
+	{
+		global $database;
+
+		$powerlevel = isLoggedIn() ? $_SESSION['powerlevel'] : 0;
+
+		$forums = $database->select('forums', [
+			'[>]forum_categories' => ['category' => 'id']
+		], [
+			'forums.id',
+			'forums.name'
+		], [
+			'min_powerlevel[<=]' => $powerlevel,
+			'ORDER' => ['forum_categories.sort_order ASC', 'forums.sort_order ASC']
+		]);
+
+		return $forums;
+	}
+
+
 	function getUnreadForumIds()
 	{
 		global $database;
