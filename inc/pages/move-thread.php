@@ -60,7 +60,6 @@
 
 			if (!canView($targetForum['min_powerlevel']))
 			{
-				// TODO check if this is ever reached
 				renderErrorMessage(MSG_MOVE_THREAD_NOT_ALLOWED);
 				$error = true;
 			}
