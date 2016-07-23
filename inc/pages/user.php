@@ -7,6 +7,7 @@
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
+	require_once __DIR__ . '/../functions/bbcode.php';
 
 
 	do
@@ -61,8 +62,8 @@
 		]);
 
 		renderTemplate('user_bio', [
-			'bio'       => nl2br($user['bio']),
-			'signature' => nl2br($user['signature'])
+			'bio'       => parseBBCode($user['bio']),
+			'signature' => parseBBCode($user['signature'])
 		]);
 
 		$medals = getAwardedMedalsByUser($userId);

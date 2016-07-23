@@ -8,10 +8,10 @@
 				var spoilerBox = spoilerButton.parentNode.parentNode.getElementsByTagName('div')[0];
 				if (window.getComputedStyle(spoilerBox).getPropertyValue('display') === 'none') {
 					spoilerBox.style.display = 'block';
-					spoilerButton.innerHTML = 'verstecken';
+					spoilerButton.innerHTML = '<?= BBCODE_SPOILER_HIDE ?>';
 				} else {
 					spoilerBox.style.display = 'none';
-					spoilerButton.innerHTML = 'anzeigen';
+					spoilerButton.innerHTML = '<?= BBCODE_SPOILER_SHOW ?>';
 				}
 			};
 		})(i);

@@ -141,7 +141,7 @@
 .post {
     background-color: white;
     border-bottom: 1px solid #CCCCCC;
-    padding: 1rem 1rem 2.5rem 0;
+    padding: 1rem 1rem 1rem 0;
 }
 
 .post:nth-child(even) {
@@ -186,7 +186,7 @@
 }
 
 .post .content {
-    padding-left: 12rem;
+    overflow-x: hidden;
 }
 
 .post .signature {
@@ -237,6 +237,10 @@
     overflow-y: auto;
     font-family: monospace;
     white-space: pre-wrap;
+}
+
+.code .box br {
+    display: none;
 }
 
 .spoiler .box {

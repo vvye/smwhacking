@@ -406,6 +406,18 @@
 		'Code');
 
 
+	define('BBCODE_SPOILER',
+		'Spoiler');
+
+
+	define('BBCODE_SPOILER_SHOW',
+		'anzeigen');
+
+
+	define('BBCODE_SPOILER_HIDE',
+		'verbergen');
+
+
 	define('MSG_MOVE_THREAD_NOT_LOGGED_IN',
 		'Du musst eingeloggt sein, um Themen verschieben zu können.');
 

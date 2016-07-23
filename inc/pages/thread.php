@@ -89,6 +89,7 @@
 				'pageInThread'  => getPostPageInThread($post['id'], $threadId),
 				'unread'        => $unread,
 				'lastEdit'      => getLastEdit($post['id']),
+				'canPost'       => isLoggedIn(),
 				'canModifyPost' => canModifyPost($post),
 				'token'         => getCsrfToken(),
 				'author'        => [
@@ -104,7 +105,7 @@
 					'registrationTime'  => date(DEFAULT_DATE_FORMAT, $post['author_registration_time']),
 					'currentPostNumber' => getCurrentPostNumber($post['author_id'], $post['id']),
 					'numTotalPosts'     => getNumPostsByUser($post['author_id']),
-					'signature'         => nl2br(trim($post['author_signature']))
+					'signature'         => parseBBCode($post['author_signature'])
 				]
 			]);
 		}

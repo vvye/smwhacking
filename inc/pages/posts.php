@@ -59,6 +59,7 @@
 				'content'       => nl2br($post['content']),
 				'pageInThread'  => getPostPageInThread($post['id'], $post['thread_id']),
 				'lastEdit'      => getLastEdit($post['id']),
+				'canPost'       => isLoggedIn(),
 				'canModifyPost' => false,
 				'author'        => [
 					'id'                => $userId,
@@ -73,7 +74,7 @@
 					'favoriteMedals'    => getFavoriteMedals($user['id']),
 					'currentPostNumber' => getCurrentPostNumber($user['id'], $post['id']),
 					'numTotalPosts'     => $numPosts,
-					'signature'         => nl2br(trim($user['signature']))
+					'signature'         => parseBBCode($user['signature'])
 				]
 			]);
 		}

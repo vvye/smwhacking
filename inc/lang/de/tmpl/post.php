@@ -60,7 +60,9 @@
 				(
 				<a href="?p=thread&id=<?= $threadId ?>&page=<?= $pageInThread ?>#post-<?= $id ?>">Link</a>
 				<?php if ($inThread): ?>
-					| <a href="?p=new-post&thread=<?= $threadId ?>&quote=<?= $id ?>">zitieren</a>
+					<?php if ($canPost): ?>
+						| <a href="?p=new-post&thread=<?= $threadId ?>&quote=<?= $id ?>">zitieren</a>
+					<?php endif; ?>
 					<?php if ($canModifyPost): ?>
 						| <a href="?p=edit-post&id=<?= $id ?>&token=<?= $token ?>">bearbeiten</a>
 						| <a href="?p=delete-post&id=<?= $id ?>&token=<?= $token ?>">löschen</a>
