@@ -246,6 +246,12 @@ option {
     padding-right: 1.5rem;
 }
 
+/* specific elements */
+
+.login {
+    width: auto;
+}
+
 .post-text {
     width: 80%;
 }
