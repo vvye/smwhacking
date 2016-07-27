@@ -30,6 +30,7 @@
 		<link rel="stylesheet" type="text/css" href="css/form.css" />
 		<link rel="stylesheet" type="text/css" href="css/forums.css" />
 		<link rel="stylesheet" type="text/css" href="css/user.css" />
+		<link rel="stylesheet" type="text/css" href="css/cuteedit.css" />
 
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 

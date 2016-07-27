@@ -1,0 +1,313 @@
+.cuteedit ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cuteedit-item, .cuteedit-separator {
+    float: left;
+    margin-right: 1px;
+}
+
+.cuteedit-separator {
+    height: 1px;
+    width: 6px;
+}
+
+.cuteedit-toolbar-all {
+    background-image: url('skin.png');
+    cursor: default;
+    height: 24px;
+}
+
+.cuteedit-toolbar-bold {
+    background-position: -3px -3px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-bold-pressed {
+    background-position: -3px -148px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-italic {
+    background-position: -29px -3px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-italic-pressed {
+    background-position: -29px -148px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-underline {
+    background-position: -55px -3px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-underline-pressed {
+    background-position: -55px -148px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-strike {
+    background-position: -81px -3px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-strike-pressed {
+    background-position: -81px -148px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-size {
+    background-position: -3px -29px;
+    width: 40px;
+}
+
+.cuteedit-toolbar-size-pressed {
+    background-position: -3px -174px;
+    width: 40px;
+}
+
+.cuteedit-toolbar-color {
+    background-position: -3px -55px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-color-pressed {
+    background-position: -3px -200px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-highlight {
+    background-position: -29px -55px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-highlight-pressed {
+    background-position: -29px -200px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-link {
+    background-position: -55px -55px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-link-pressed {
+    background-position: -55px -200px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-image {
+    background-position: -81px -55px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-image-pressed {
+    background-position: -81px -200px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-emoticon {
+    background-position: -107px -55px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-emoticon-pressed {
+    background-position: -107px -200px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-quote {
+    background-position: -3px -81px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-quote-pressed {
+    background-position: -3px -226px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-code {
+    background-position: -29px -81px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-code-pressed {
+    background-position: -29px -226px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-spoiler {
+    background-position: -3px -107px;
+    width: 50px;
+}
+
+.cuteedit-toolbar-spoiler-pressed {
+    background-position: -3px -252px;
+    width: 50px;
+}
+
+.cuteedit-button, .cuteedit-button-hover, .cuteedit-button-pressed, .cuteedit-button-active, .cuteedit-button-active-hover, .cuteedit-button-active-pressed {
+    border: 1px solid #000000;
+    cursor: default;
+}
+
+.cuteedit-button {
+    background-color: #ffffff;
+    padding: 1px 5px;
+}
+
+.cuteedit-button-hover {
+    background-color: #cccccc;
+    padding: 1px 5px;
+}
+
+.cuteedit-button-pressed {
+    background-color: #cccccc;
+    padding: 2px 4px 0 6px;
+}
+
+.cuteedit-button-active {
+    background-color: #cccccc;
+    padding: 1px 5px;
+}
+
+.cuteedit-button-active-hover {
+    background-color: #999999;
+    padding: 1px 5px;
+}
+
+.cuteedit-button-active-pressed {
+    background-color: #999999;
+    padding: 2px 4px 0 6px;
+}
+
+.cuteedit-drop {
+    background-color: #242a33;
+    border: 1px solid #b5b5b5;
+    border-radius: 2px 2px 2px 2px;
+    color: #cccccc;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cuteedit-drop-item, .cuteedit-drop-item-highlight {
+    border-color: #404e59 #090b0c #090b0c #404e59;
+    border-radius: 2px 3px 2px 3px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: default;
+    margin: 2px 4px;
+    padding: 3px 8px;
+}
+
+.cuteedit-drop-item-highlight {
+    background-color: #2c343d;
+    border-color: #090b0c #404e59 #404e59 #090b0c;
+    border-style: solid;
+    border-width: 1px;
+    color: white;
+    padding: 3px 8px;
+}
+
+.cuteedit-colors {
+    background-color: #242a33;
+    border: 1px solid #b5b5b5;
+    border-radius: 2px 2px 2px 2px;
+    padding: 10px;
+}
+
+.cuteedit-colors td {
+    border-bottom: 1px solid #090b0c;
+    border-right: 1px solid #090b0c;
+    cursor: default;
+    line-height: 16px;
+    padding: 0;
+    width: 14px;
+}
+
+.cuteedit-input {
+    background-color: #242a33;
+    border: 1px solid #b5b5b5;
+    border-radius: 2px 2px 2px 2px;
+    color: #000000;
+    padding: 6px;
+    width: 200px;
+}
+
+.cuteedit-input-text {
+    color: #b5b5b5;
+    padding: 3px 0;
+}
+
+.cuteedit-input-label {
+    color: #b5b5b5;
+}
+
+.cuteedit-input-text input {
+    background-color: #404e59;
+    border: 1px solid #667a87;
+    border-radius: 1px 1px 1px 1px;
+    color: #cccccc;
+    padding: 3px;
+    width: 192px;
+}
+
+.cuteedit-input-buttons {
+    text-align: right;
+}
+
+.cuteedit-list {
+    background-color: #242a33;
+    border: 1px solid #b5b5b5;
+    border-radius: 2px 2px 2px 2px;
+    color: #b5b5b5;
+    list-style-type: none;
+    margin: 0;
+    padding: 6px;
+    width: 360px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.cuteedit-list-parent {
+    clear: both;
+}
+
+.cuteedit-list-item {
+    border-color: #404e59 #090b0c #090b0c #404e59;
+    border-radius: 2px 3px 2px 3px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    float: left;
+    margin: 2px;
+    padding: 2px;
+    text-align: center;
+}
+
+.cuteedit-list-parent ul {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.cuteedit-list-item:hover {
+    background-color: #2c343d;
+    border-color: #404e59 #404e59 #404e59 #404e59;
+    border-radius: 2px 2px 2px 2px;
+}
+
+.cuteedit-list-parent span {
+    border-bottom: 1px solid;
+    display: block;
+    font-size: 14px;
+    font-variant: small-caps;
+    font-weight: bold;
+    margin-left: 3px;
+    width: 95%;
+}

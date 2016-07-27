@@ -110,7 +110,7 @@
 					<p>Schreib ein bisschen über dich selbst.</p>
 				</td>
 				<td>
-					<label><textarea class="bio" name="bio"><?= $bio ?></textarea></label>
+					<label><textarea class="bio" name="bio" id="bio"><?= $bio ?></textarea></label>
 				</td>
 			</tr>
 
@@ -120,7 +120,7 @@
 					<p>Wird unter jedem deiner Beiträge angezeigt.</p>
 				</td>
 				<td>
-					<label><textarea class="signature" name="signature"
+					<label><textarea class="signature" name="signature" id="signature"
 					                 maxlength="1024"><?= $signature ?></textarea></label>
 				</td>
 			</tr>
@@ -226,7 +226,11 @@
 
 
 <script type="text/javascript" src="js/fileInput.js"></script>
+<script type="text/javascript" src="js/cuteedit.js"></script>
 <script type="text/javascript">
+
+	var bioEditor = new CuteEdit('bio');
+	var signatureEditor = new CuteEdit('signature');
 
 	fileInput('file-input', {
 		buttonText: 'Durchsuchen&hellip;',
