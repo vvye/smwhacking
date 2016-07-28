@@ -27,10 +27,12 @@
 					<?= $rank['name'] ?>
 				</td>
 			</tr>
-			<tr>
-				<td>Titel:</td>
-				<td><?php echo $title; ?></td>
-			</tr>
+			<?php if ($title !== ''): ?>
+				<tr>
+					<td>Titel:</td>
+					<td><?php echo $title; ?></td>
+				</tr>
+			<?php endif; ?>
 			<tr>
 				<td>Registriert am:</td>
 				<td><?php echo $registrationTime; ?></td>
@@ -57,22 +59,25 @@
 					<?php endif; ?>
 				</td>
 			</tr>
-			<tr>
-				<td colspan=" 2">&nbsp;</td>
-			</tr>
 
 			<tr>
-				<td>Wohnort:</td>
-				<td><?= $location ?></td>
+				<td colspan="2">&nbsp;</td>
 			</tr>
-			<tr>
-				<td>Website:</td>
-				<td>
-					<?php if ($website !== ''): ?>
+
+			<?php if ($location !== ''): ?>
+				<tr>
+					<td>Wohnort:</td>
+					<td><?= $location ?></td>
+				</tr>
+			<?php endif; ?>
+			<?php if ($website !== ''): ?>
+				<tr>
+					<td>Website:</td>
+					<td>
 						<a href="<?= $website ?>"><?= $website ?></a>
-					<?php endif; ?>
-				</td>
-			</tr>
+					</td>
+				</tr>
+			<?php endif; ?>
 			<?php if (false): // TODO choose to make email public ?>
 				<tr>
 					<td>E-Mail:</td>
