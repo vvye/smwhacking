@@ -26,13 +26,12 @@
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet"
 		      type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/normalize.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<link rel="stylesheet" type="text/css" href="css/form.css" />
 		<link rel="stylesheet" type="text/css" href="css/forums.css" />
 		<link rel="stylesheet" type="text/css" href="css/user.css" />
 		<link rel="stylesheet" type="text/css" href="css/cuteedit.css" />
-
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 
 	</head>
 
