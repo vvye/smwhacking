@@ -204,7 +204,7 @@ var CuteEdit = (function () {
                     this.wrap('[quote]', '[/quote]');
                 }
                 else {
-                    this.wrap('[quote=' + url + ']', '[/quote]');
+                    this.wrap('[quote="' + url + '"]', '[/quote]');
                 }
             }),
             cancelMethod: Event.callback(this, 'restoreSelection')

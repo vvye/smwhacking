@@ -15,8 +15,8 @@
 }
 
 .cuteedit-toolbar-all {
-    background-image: url('skin.png');
-    cursor: default;
+    background-image: url('editor_skin.png');
+    cursor: pointer;
     height: 24px;
 }
 
