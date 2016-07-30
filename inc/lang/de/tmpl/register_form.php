@@ -1,7 +1,7 @@
 <h2>Registrieren</h2>
 
 <form action="?p=register" method="post">
-	<table>
+	<table class="form">
 		<tr>
 			<td>
 				<h3>E-Mail-Adresse:</h3>

@@ -1,7 +1,7 @@
 <h2>Einloggen</h2>
 
 <form action="?p=login" method="post">
-	<table class="login">
+	<table class="login form">
 		<tr>
 			<td>E-Mail-Adresse:</td>
 			<td><label><input type="email" name="email" /></label></td>

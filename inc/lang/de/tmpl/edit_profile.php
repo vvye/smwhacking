@@ -8,7 +8,7 @@
 
 	<fieldset>
 		<legend>Zugangsdaten</legend>
-		<table>
+		<table class="form">
 			<tr>
 				<td>
 					<h3>E-Mail-Adresse: <span>*</span></h3>
@@ -44,7 +44,7 @@
 
 	<fieldset>
 		<legend>Persönliche Daten</legend>
-		<table>
+		<table class="form">
 			<tr>
 				<td>
 					<h3>Avatar:</h3>
@@ -129,7 +129,7 @@
 
 	<fieldset>
 		<legend>Medaillen</legend>
-		<table>
+		<table class="form">
 			<tr>
 				<td>
 					<h3>Lieblings-Medaillen:</h3>
@@ -195,7 +195,7 @@
 	<?php if ($canChangePowerlevel): ?>
 		<fieldset>
 			<legend>Administration</legend>
-			<table>
+			<table class="form">
 				<tr>
 					<td>
 						<h3>Powerlevel:</h3>
