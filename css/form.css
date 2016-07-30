@@ -248,7 +248,11 @@ option {
 
 /* specific elements */
 
-.login {
+.post-form {
+    margin-bottom: 4rem;
+}
+
+.form.login {
     width: auto;
 }
 

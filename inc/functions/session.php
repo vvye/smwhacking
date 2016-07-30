@@ -18,6 +18,8 @@
 			'legacy_login',
 			'powerlevel',
 			'banned',
+			'title',
+			'signature',
 			'csrf_token'
 		], [
 			'AND' => [
@@ -41,6 +43,8 @@
 		$_SESSION['loggedIn'] = true;
 		$_SESSION['powerlevel'] = $user['powerlevel'];
 		$_SESSION['banned'] = $user['banned'];
+		$_SESSION['title'] = $user['title'];
+		$_SESSION['signature'] = $user['title'];
 
 		$_SESSION['csrfToken'] = renewCsrfToken();
 

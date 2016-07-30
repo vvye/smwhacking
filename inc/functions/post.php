@@ -72,6 +72,42 @@
 	}
 
 
+	function getLastPostsInThread($threadId)
+	{
+		global $database;
+
+		$posts = $database->select('posts', [
+			'[>]users' => ['author' => 'id'],
+		], [
+			'posts.id',
+			'posts.post_time',
+			'posts.content',
+			'users.id(author_id)',
+			'users.name(author_name)',
+			'users.powerlevel(author_powerlevel)',
+			'users.banned(author_banned)',
+			'users.title(author_title)',
+			'users.signature(author_signature)',
+			'users.registration_time(author_registration_time)',
+			'users.banned(author_banned)'
+		], [
+			'AND'   => [
+				'thread'  => $threadId,
+				'deleted' => 0
+			],
+			'ORDER' => 'post_time DESC',
+			'LIMIT' => POSTS_IN_THREAD_REVIEW
+		]);
+
+		if ($posts === false)
+		{
+			return [];
+		}
+
+		return $posts;
+	}
+
+
 	function getPostPageInThread($postId, $threadId)
 	{
 		global $database;

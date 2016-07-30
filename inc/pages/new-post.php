@@ -4,6 +4,10 @@
 	require_once __DIR__ . '/../functions/thread.php';
 	require_once __DIR__ . '/../functions/post.php';
 	require_once __DIR__ . '/../functions/permissions.php';
+	require_once __DIR__ . '/../functions/bbcode.php';
+	require_once __DIR__ . '/../functions/user.php';
+	require_once __DIR__ . '/../functions/avatar.php';
+	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
 
@@ -62,7 +66,7 @@
 
 		$success = false;
 
-		if (isset($_POST['submit']))
+		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
 			$postText = trim(getFieldValue('post-text'));
 
@@ -70,6 +74,25 @@
 			{
 				renderErrorMessage(MSG_POST_TEXT_EMPTY);
 				$error = true;
+			}
+			else if (isset($_POST['preview']))
+			{
+				renderTemplate('post_preview', [
+					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
+					'content'  => parseBBCode($postText),
+					'author'   => [
+						'id'             => $_SESSION['userId'],
+						'name'           => $_SESSION['username'],
+						'powerlevelId'   => (int)$_SESSION['powerlevel'],
+						'powerlevel'     => POWERLEVEL_DESCRIPTIONS[$_SESSION['powerlevel']],
+						'banned'         => $_SESSION['banned'],
+						'title'          => $_SESSION['title'],
+						'rank'           => getRank($_SESSION['userId']),
+						'hasAvatar'      => hasAvatar($_SESSION['userId']),
+						'favoriteMedals' => getFavoriteMedals($_SESSION['userId']),
+						'signature'      => $_SESSION['signature']
+					]
+				]);
 			}
 			else
 			{
@@ -98,6 +121,40 @@
 				'forumName'  => $thread['forum_name'],
 				'postText'   => $postText
 			]);
+
+			$posts = getLastPostsInThread($threadId);
+
+			foreach ($posts as $post)
+			{
+				renderTemplate('post', [
+					'inThread'      => true,
+					'id'            => $post['id'],
+					'threadId'      => $threadId,
+					'postTime'      => date(DEFAULT_DATE_FORMAT, $post['post_time']),
+					'content'       => parseBBCode($post['content']),
+					'pageInThread'  => getPostPageInThread($post['id'], $threadId),
+					'unread'        => false,
+					'lastEdit'      => getLastEdit($post['id']),
+					'canPost'       => isLoggedIn(),
+					'canModifyPost' => canModifyPost($post),
+					'token'         => getCsrfToken(),
+					'author'        => [
+						'id'                => $post['author_id'],
+						'name'              => $post['author_name'],
+						'powerlevelId'      => (int)$post['author_powerlevel'],
+						'powerlevel'        => POWERLEVEL_DESCRIPTIONS[$post['author_powerlevel']],
+						'banned'            => $post['author_banned'],
+						'title'             => $post['author_title'],
+						'rank'              => getRank($post['author_id']),
+						'hasAvatar'         => hasAvatar($post['author_id']),
+						'favoriteMedals'    => getFavoriteMedals($post['author_id']),
+						'registrationTime'  => date(DEFAULT_DATE_FORMAT, $post['author_registration_time']),
+						'currentPostNumber' => getCurrentPostNumber($post['author_id'], $post['id']),
+						'numTotalPosts'     => getNumPostsByUser($post['author_id']),
+						'signature'         => ''
+					]
+				]);
+			}
 		}
 	}
 	while (false);
