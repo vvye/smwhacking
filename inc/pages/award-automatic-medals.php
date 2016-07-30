@@ -1,6 +1,7 @@
 <?php
 
 	require_once __DIR__ . '/../functions/medals.php';
+	require_once __DIR__ . '/../functions/notifications.php';
 
 	require_once __DIR__ . '/../config/misc.php';
 
@@ -40,6 +41,9 @@
 			$userIds = getUserIdsEligibleForAutomaticMedal($medal);
 
 			awardMedalToMultipleUsers($userIds, $medal['id']);
+
+			$notificationMessage = str_replace('{{medalName}}', $medal['name'], NOTIFICATION_AUTOMATIC_MEDAL_AWARD_BODY);
+			sendNotification($userIds, NOTIFICATION_MEDAL_AWARD_SUBJECT, $notificationMessage);
 
 			$numAwardedMedals += count($userIds);
 			$usersAwarded = array_merge($usersAwarded, $userIds);

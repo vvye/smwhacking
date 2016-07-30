@@ -77,7 +77,7 @@
 			$website = trim(getFieldValue('website'));
 			$bio = trim(getFieldValue('bio'));
 			$signature = trim(getFieldValue('signature'));
-			$enableNotifications = (bool)getFieldValue('enable_notifications');
+			$enableNotifications = getFieldValue('enable-notifications');
 
 			$powerlevel = (int)getFieldValue('powerlevel');
 			$banned = (bool)getFieldValue('banned');

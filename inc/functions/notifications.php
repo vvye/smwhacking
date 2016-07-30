@@ -9,7 +9,10 @@
 		global $database;
 
 		$emails = $database->select('users', 'email', [
-			'id' => $userIds
+			'AND' => [
+				'id'                   => $userIds,
+				'enable_notifications' => 1
+			]
 		]);
 
 		// send emails asynchronously by sending a separate HTTP request

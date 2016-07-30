@@ -2,6 +2,7 @@
 
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/medals.php';
+	require_once __DIR__ . '/../functions/notifications.php';
 
 	do
 	{
@@ -61,9 +62,23 @@
 			awardMedals($userId, $medalIdsToAward);
 			removeMedals($userId, $medalIdsToRemove);
 
-			// TODO send notifications
-
 			renderSuccessMessage(MSG_AWARD_MEDAL_SUCCESS);
+
+			// send notification
+			if ($userId !== $_SESSION['userId'])
+			{
+				ob_start();
+				renderTemplate('medal_notification_body', [
+					'awardedMedals' => getMedalsByIds($medalIdsToAward),
+					'removedMedals' => getMedalsByIds($medalIdsToRemove),
+					'awarderId'     => $_SESSION['userId'],
+					'awarderName'   => $_SESSION['username'],
+					'userId'        => $userId
+				]);
+				$notificationBody = ob_get_clean();
+				sendNotification([$userId], NOTIFICATION_MEDAL_STATUS_CHANGED_SUBJECT, $notificationBody);
+			}
+
 
 			// reload medal data
 			$awardableMedals = getAwardableMedalsByUser($userId);

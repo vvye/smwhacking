@@ -389,6 +389,8 @@
 			'thread' => $thread['id']
 		]);
 
+		$watcherIds = array_diff($watcherIds, [$author['id']]);
+
 		$postText = removeBBCode($postText);
 		$postTextTeaser = substr($postText, 0, 200) . (strlen($postText) > 200 ? '...' : '');
 

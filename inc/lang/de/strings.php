@@ -456,3 +456,15 @@
 
 	define('MSG_UNWATCH_SUCCESS',
 		'Du hast dein Abo für das Thema gekündigt.');
+
+
+	define('NOTIFICATION_MEDAL_AWARD_SUBJECT',
+		'Dir wurde eine Medaille verliehen!');
+
+
+	define('NOTIFICATION_AUTOMATIC_MEDAL_AWARD_BODY',
+		'Dir wurde die Medaille "{{medalName}} verliehen!');
+
+
+	define('NOTIFICATION_MEDAL_STATUS_CHANGED_SUBJECT',
+		'Neues bei deinen Medaillen!');

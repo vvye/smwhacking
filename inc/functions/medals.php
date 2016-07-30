@@ -1,6 +1,5 @@
 <?php
 
-
 	function getAllMedals()
 	{
 		global $database;
@@ -16,6 +15,22 @@
 		]);
 
 		return $medals;
+	}
+
+
+	function getMedalsByIds($medalIds)
+	{
+		global $database;
+
+		$medals = $database->select('medals', [
+			'medals.name',
+			'medals.description'
+		], [
+			'id' => $medalIds
+		]);
+
+		return $medals;
+
 	}
 
 
