@@ -13,7 +13,11 @@
 					Eingeloggt als <strong><?= $username ?></strong>
 				</a>
 			</li>
-			<li><a href="?p=pm">Private Nachrichten (0)</a></li>
+			<li><a href="?p=pm">Private Nachrichten
+					<?php if (true): // $numPms > 0 ?>
+						<span class="badge">5 neue</span>
+					<?php endif; ?>
+				</a></li>
 			<li><a href="?p=edit-profile&token=<?= $token ?>">Einstellungen</a></li>
 			<?php if ($admin): ?>
 				<li><a href="?p=admin">Administration</a></li>
