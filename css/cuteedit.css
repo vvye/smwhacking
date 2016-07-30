@@ -110,8 +110,18 @@
     width: 24px;
 }
 
+.cuteedit-toolbar-youtube {
+    background-position: -55px -81px;
+    width: 24px;
+}
+
+.cuteedit-toolbar-youtube-pressed {
+    background-position: -55px -226px;
+    width: 24px;
+}
+
 .cuteedit-toolbar-emoticon {
-    background-position: -107px -55px;
+    background-position: -107px -81px;
     width: 24px;
 }
 
@@ -147,6 +157,16 @@
 
 .cuteedit-toolbar-spoiler-pressed {
     background-position: -3px -252px;
+    width: 50px;
+}
+
+.cuteedit-toolbar-inline-spoiler {
+    background-position: -55px -107px;
+    width: 50px;
+}
+
+.cuteedit-toolbar-inline-spoiler-pressed {
+    background-position: -55px -252px;
     width: 50px;
 }
 
@@ -186,79 +206,63 @@
 }
 
 .cuteedit-drop {
-    background-color: #242a33;
-    border: 1px solid #b5b5b5;
-    border-radius: 2px 2px 2px 2px;
-    color: #cccccc;
+    background-color: white;
+    border: 1px solid #AAAAAA;
+    border-radius: 1px;
+    box-shadow: 0 0 2px #AAAAAA;
+    color: #333333;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 .cuteedit-drop-item, .cuteedit-drop-item-highlight {
-    border-color: #404e59 #090b0c #090b0c #404e59;
-    border-radius: 2px 3px 2px 3px;
-    border-style: solid;
-    border-width: 1px;
     cursor: default;
-    margin: 2px 4px;
-    padding: 3px 8px;
+    padding: 0.2rem 0.5rem;
 }
 
 .cuteedit-drop-item-highlight {
-    background-color: #2c343d;
-    border-color: #090b0c #404e59 #404e59 #090b0c;
-    border-style: solid;
-    border-width: 1px;
+    background-color: #4C9ED9;
     color: white;
-    padding: 3px 8px;
 }
 
 .cuteedit-colors {
-    background-color: #242a33;
-    border: 1px solid #b5b5b5;
-    border-radius: 2px 2px 2px 2px;
-    padding: 10px;
+    background-color: white;
+    border: 1px solid #AAAAAA;
+    box-shadow: 0 0 2px #AAAAAA;
+    border-radius: 1px;
+    padding: 1rem;
+    border-collapse: separate;
 }
 
 .cuteedit-colors td {
-    border-bottom: 1px solid #090b0c;
-    border-right: 1px solid #090b0c;
-    cursor: default;
-    line-height: 16px;
+    cursor: pointer;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
     padding: 0;
-    width: 14px;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
 }
 
 .cuteedit-input {
-    background-color: #242a33;
-    border: 1px solid #b5b5b5;
-    border-radius: 2px 2px 2px 2px;
-    color: #000000;
-    padding: 6px;
-    width: 200px;
-}
-
-.cuteedit-input-text {
-    color: #b5b5b5;
-    padding: 3px 0;
-}
-
-.cuteedit-input-label {
-    color: #b5b5b5;
-}
-
-.cuteedit-input-text input {
-    background-color: #404e59;
-    border: 1px solid #667a87;
-    border-radius: 1px 1px 1px 1px;
-    color: #cccccc;
-    padding: 3px;
-    width: 192px;
+    background-color: white;
+    border: 1px solid #AAAAAA;
+    box-shadow: 0 0 2px #AAAAAA;
+    color: #333333;
+    border-radius: 1px;
+    padding: 0.5rem 1rem;
 }
 
 .cuteedit-input-buttons {
     text-align: right;
+}
+
+.cuteedit-input-ok,
+.cuteedit-input-cancel {
+    display: inline-block;
+    margin: 0.5rem 0.2rem 0;
+    padding: 0.2rem 0.6rem;
 }
 
 .cuteedit-list {

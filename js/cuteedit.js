@@ -80,11 +80,11 @@ var CuteEdit = (function () {
     };
 
     Editor.prototype.setup = function () {
-        var shortcutKey = Browser.MacOS && (Browser.Gecko || Browser.Opera || Browser.WebKit) && !Browser.LegacyIE ? '\u2318' : 'Ctrl+';
+        var shortcutKey = Browser.MacOS && (Browser.Gecko || Browser.Opera || Browser.WebKit) && !Browser.LegacyIE ? '\u2318' : 'Strg+';
         var label, i;
 
         this.addItem(new Button({
-            tooltip: 'Bold (' + shortcutKey + 'B)',
+            tooltip: 'Fett (' + shortcutKey + 'B)',
             theme: this.makeTheme('bold'),
             activate: Event.callback(this, function () {
                 this.wrap('[b]', '[/b]');
@@ -92,7 +92,7 @@ var CuteEdit = (function () {
         }), 'B');
 
         this.addItem(new Button({
-            tooltip: 'Italic (' + shortcutKey + 'I)',
+            tooltip: 'Kursiv (' + shortcutKey + 'I)',
             theme: this.makeTheme('italic'),
             activate: Event.callback(this, function () {
                 this.wrap('[i]', '[/i]');
@@ -100,7 +100,7 @@ var CuteEdit = (function () {
         }), 'I');
 
         this.addItem(new Button({
-            tooltip: 'Underline (' + shortcutKey + 'U)',
+            tooltip: 'Unterstrichen (' + shortcutKey + 'U)',
             theme: this.makeTheme('underline'),
             activate: Event.callback(this, function () {
                 this.wrap('[u]', '[/u]');
@@ -108,7 +108,7 @@ var CuteEdit = (function () {
         }), 'U');
 
         this.addItem(new Button({
-            tooltip: 'Strikethrough (' + shortcutKey + 'S)',
+            tooltip: 'Durchgestrichen (' + shortcutKey + 'S)',
             theme: this.makeTheme('strike'),
             activate: Event.callback(this, function () {
                 this.wrap('[s]', '[/s]');
@@ -117,16 +117,16 @@ var CuteEdit = (function () {
 
         this.addSeperator();
 
-        var sizes = [8, 10, 12, 16, 24];
+        var sizes = [75, 85, 100, 150, 200];
         var size = new Drop({
             button: {
-                tooltip: 'Size',
+                tooltip: 'Größe',
                 theme: this.makeTheme('size')
             }
         });
         for (i = 0; i < sizes.length; i++) {
             label = document.createElement('span');
-            label.style.fontSize = sizes[i] + 'pt';
+            label.style.fontSize = sizes[i] + '%';
             label.appendChild(document.createTextNode(sizes[i]));
 
             size.addOption(label, Event.callback({editor: this, size: sizes[i]}, function () {
@@ -139,7 +139,7 @@ var CuteEdit = (function () {
 
         this.addItem(new Colors({
             button: {
-                tooltip: 'Color',
+                tooltip: 'Farbe',
                 theme: this.makeTheme('color')
             },
             method: Event.callback(this, function (color) {
@@ -149,7 +149,7 @@ var CuteEdit = (function () {
 
         this.addItem(new Colors({
             button: {
-                tooltip: 'Highlight',
+                tooltip: 'Hervorheben',
                 theme: this.makeTheme('highlight')
             },
             method: Event.callback(this, function (color) {
@@ -161,13 +161,13 @@ var CuteEdit = (function () {
 
         this.addItem(new Input({
             button: {
-                tooltip: 'Insert Link (' + shortcutKey + 'L)',
+                tooltip: 'Link einfügen (' + shortcutKey + 'L)',
                 theme: this.makeTheme('link'),
                 beforeactivate: Event.callback(this, function () {
                     return this.link('[url]', '[/url]');
                 })
             },
-            label: 'Link URL:',
+            label: 'Link-Adresse:',
             defaultValue: 'http://',
             okMethod: Event.callback(this, function (url) {
                 this.wrap('[url=' + url + ']', '[/url]');
@@ -177,13 +177,13 @@ var CuteEdit = (function () {
 
         this.addItem(new Input({
             button: {
-                tooltip: 'Insert Image (' + shortcutKey + 'M)',
+                tooltip: 'Bild einfügen (' + shortcutKey + 'M)',
                 theme: this.makeTheme('image'),
                 beforeactivate: Event.callback(this, function () {
                     return this.link('[img]', '[/img]');
                 })
             },
-            label: 'Image URL:',
+            label: 'Bild-Adresse:',
             defaultValue: 'http://',
             okMethod: Event.callback(this, function (url) {
                 this.replaceSelection('[img]' + url + '[/img]');
@@ -191,14 +191,40 @@ var CuteEdit = (function () {
             cancelMethod: Event.callback(this, 'restoreSelection')
         }), 'M');
 
+        this.addItem(new Input({
+            button: {
+                tooltip: 'Youtube-Video einfügen',
+                theme: this.makeTheme('youtube'),
+                beforeactivate: Event.callback(this, function () {
+                    return this.link('[img]', '[/img]');
+                })
+            },
+            label: 'Video-Adresse:',
+            defaultValue: '',
+            okMethod: Event.callback(this, function (url) {
+
+                var id;
+                var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[2].length == 11) {
+                    id = match[2];
+                } else {
+                    id = url; // error
+                }
+
+                this.replaceSelection('[youtube]' + id + '[/youtube]');
+            }),
+            cancelMethod: Event.callback(this, 'restoreSelection')
+        }));
+
         this.addSeperator();
 
         this.addItem(new Input({
             button: {
-                tooltip: 'Insert Quote',
+                tooltip: 'Zitat einfügen',
                 theme: this.makeTheme('quote')
             },
-            label: 'Name of quoted user:',
+            label: 'Zitierter Nutzer:',
             okMethod: Event.callback(this, function (url) {
                 if (url === '') {
                     this.wrap('[quote]', '[/quote]');
@@ -211,7 +237,7 @@ var CuteEdit = (function () {
         }));
 
         this.addItem(new Button({
-            tooltip: 'Insert Code',
+            tooltip: 'Code einfügen',
             theme: this.makeTheme('code'),
             activate: Event.callback(this, function () {
                 this.wrap('[code]', '[/code]');
@@ -219,10 +245,18 @@ var CuteEdit = (function () {
         }));
 
         this.addItem(new Button({
-            tooltip: 'Insert Spoiler',
+            tooltip: 'Spoiler einfügen',
             theme: this.makeTheme('spoiler'),
             activate: Event.callback(this, function () {
                 this.wrap('[spoiler]', '[/spoiler]');
+            })
+        }));
+
+        this.addItem(new Button({
+            tooltip: 'Inline-Spoiler einfügen',
+            theme: this.makeTheme('inline-spoiler'),
+            activate: Event.callback(this, function () {
+                this.wrap('[ispoiler]', '[/ispoiler]');
             })
         }));
 
@@ -539,7 +573,7 @@ var CuteEdit = (function () {
 
     Button.prototype.isActive = function () {
         return this.active;
-    }
+    };
 
     Button.prototype.mouseover = function () {
         this.hover = true;
@@ -637,7 +671,6 @@ var CuteEdit = (function () {
         if (this.visible) {
             this.activate();
         }
-        ;
     };
 
     Toggle.prototype.activate = function () {
@@ -650,7 +683,7 @@ var CuteEdit = (function () {
 
     Toggle.prototype.isActive = function () {
         return this.button.active;
-    }
+    };
 
     Toggle.prototype.show = function () {
         this.visible = true;
@@ -727,7 +760,7 @@ var CuteEdit = (function () {
 
     Drop.prototype.isActive = function () {
         return this.toggle.button.active;
-    }
+    };
 
     Drop.prototype.appendTo = function (element) {
         this.toggle.appendTo(element);
@@ -792,7 +825,7 @@ var CuteEdit = (function () {
 
     Colors.prototype.isActive = function () {
         return this.toggle.button.active;
-    }
+    };
 
     Colors.prototype.appendTo = function (element) {
         this.toggle.appendTo(element);
@@ -823,6 +856,7 @@ var CuteEdit = (function () {
         textContainer.className = 'cuteedit-input-text';
 
         this.input = document.createElement('input');
+        this.input.setAttribute('type', 'text');
         Event.addListener(this.input, 'keydown', [this, 'keyboardHandler']);
         Event.addListener(this.input, 'mousedown', function (e) {
             e.stopPropagation();
@@ -839,7 +873,7 @@ var CuteEdit = (function () {
         else {
             ok.type = 'button';
         }
-        ok.className = 'cuteedit-input-ok';
+        ok.className = 'cuteedit-input-ok primary';
         ok.appendChild(document.createTextNode('OK'));
         Event.addListener(ok, 'click', [this, 'okHandler']);
         Event.addListener(ok, 'mousedown', function (e) {
@@ -854,8 +888,8 @@ var CuteEdit = (function () {
         else {
             cancel.type = 'button';
         }
-        cancel.className = 'cuteedit-input-cancel';
-        cancel.appendChild(document.createTextNode('Cancel'));
+        cancel.className = 'cuteedit-input-cancel subtle';
+        cancel.appendChild(document.createTextNode('Abbrechen'));
         Event.addListener(cancel, 'click', [this, 'cancelHandler']);
         Event.addListener(cancel, 'mousedown', function (e) {
             e.stopPropagation();
@@ -911,7 +945,7 @@ var CuteEdit = (function () {
 
     Input.prototype.isActive = function () {
         return this.toggle.button.active;
-    }
+    };
 
     Input.prototype.appendTo = function (element) {
         this.toggle.appendTo(element);

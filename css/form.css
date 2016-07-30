@@ -6,26 +6,26 @@ form.right {
     text-align: right;
 }
 
-form table {
+form > table {
     width: 100%;
 }
 
-form table td {
+form > table td {
     vertical-align: top;
     padding: 0.5rem 1rem 0.5rem 0;
 }
 
-form table td:first-child {
+form > table td:first-child {
     width: 16rem;
     padding: 0.9rem 1rem 0.9rem 0;
 }
 
-form table h3 {
+form > table h3 {
     margin: 0;
     font-size: 1rem;
 }
 
-form table td p {
+form > table td p {
     margin: 0;
     font-size: 0.9rem;
     color: #666;

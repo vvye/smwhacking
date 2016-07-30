@@ -62,6 +62,11 @@ class DefaultCodeDefinitionSet implements CodeDefinitionSet
         $builder = new CodeDefinitionBuilder('color', '<span style="color: {option}">{param}</span>');
         $builder->setUseOption(true)->setOptionValidator(new validators\CssColorValidator());
         array_push($this->definitions, $builder->build());
+
+	    /* [color] color tag */
+	    $builder = new CodeDefinitionBuilder('highlight', '<span style="background-color: {option}">{param}</span>');
+	    $builder->setUseOption(true)->setOptionValidator(new validators\CssColorValidator());
+	    array_push($this->definitions, $builder->build());
     }
 
     /**

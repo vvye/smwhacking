@@ -1,5 +1,7 @@
 <?php
 
+	// unused
+
 
 	define('BBCODES', [
 		[
