@@ -80,3 +80,20 @@
 
 		return $text;
 	}
+
+
+	function removeBBCode($text)
+	{
+		global $parser;
+		if ($parser === null)
+		{
+			$parser = getBBCodeParser();
+		}
+
+		$text = nl2br($text);
+
+		$parser->parse($text);
+		$text = $parser->getAsText();
+
+		return $text;
+	}

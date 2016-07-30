@@ -6,6 +6,8 @@
 	require_once __DIR__ . '/forums.php';
 	require_once __DIR__ . '/post.php';
 	require_once __DIR__ . '/permissions.php';
+	require_once __DIR__ . '/bbcode.php';
+	require_once __DIR__ . '/notifications.php';
 	require_once __DIR__ . '/session.php';
 
 
@@ -341,6 +343,11 @@
 	{
 		global $database;
 
+		if (!isLoggedIn())
+		{
+			return false;
+		}
+
 		return $database->count('watched_threads', [
 			'AND' => [
 				'user'   => $_SESSION['userId'],
@@ -371,4 +378,35 @@
 				'thread' => $threadId
 			]
 		]);
+	}
+
+
+	function notifyThreadWatchers($thread, $author, $postText)
+	{
+		global $database;
+
+		$watcherIds = $database->select('watched_threads', 'user', [
+			'thread' => $thread['id']
+		]);
+
+		$postText = removeBBCode($postText);
+		$postTextTeaser = substr($postText, 0, 200) . (strlen($postText) > 200 ? '...' : '');
+
+		ob_start();
+		renderTemplate('watch_notification_subject', [
+			'threadName' => $thread['name']
+		]);
+		$subject = ob_get_clean();
+
+		ob_start();
+		renderTemplate('watch_notification_body', [
+			'authorId'       => $author['id'],
+			'authorName'     => $author['name'],
+			'threadId'       => $thread['id'],
+			'threadName'     => $thread['name'],
+			'postTextTeaser' => $postTextTeaser
+		]);
+		$message = ob_get_clean();
+
+		sendNotification($watcherIds, $subject, $message);
 	}

@@ -7,6 +7,7 @@
 	require_once __DIR__ . '/../functions/bbcode.php';
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/avatar.php';
+	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
 
@@ -80,15 +81,15 @@
 					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
 					'content'  => parseBBCode($postText),
 					'author'   => [
-						'id'             => $_SESSION['userId'],
-						'name'           => $_SESSION['username'],
-						'powerlevelId'   => (int)$_SESSION['powerlevel'],
-						'powerlevel'     => POWERLEVEL_DESCRIPTIONS[$_SESSION['powerlevel']],
-						'banned'         => $_SESSION['banned'],
-						'title'          => $_SESSION['title'],
-						'rank'           => getRank($_SESSION['userId']),
-						'hasAvatar'      => hasAvatar($_SESSION['userId']),
-						'signature'      => $_SESSION['signature']
+						'id'           => $_SESSION['userId'],
+						'name'         => $_SESSION['username'],
+						'powerlevelId' => (int)$_SESSION['powerlevel'],
+						'powerlevel'   => POWERLEVEL_DESCRIPTIONS[$_SESSION['powerlevel']],
+						'banned'       => $_SESSION['banned'],
+						'title'        => $_SESSION['title'],
+						'rank'         => getRank($_SESSION['userId']),
+						'hasAvatar'    => hasAvatar($_SESSION['userId']),
+						'signature'    => $_SESSION['signature']
 					]
 				]);
 			}
@@ -108,6 +109,14 @@
 					'page'     => getPostPageInThread($newPostId, $threadId),
 					'postId'   => $newPostId
 				]);
+
+				notifyThreadWatchers([
+					'id'   => $threadId,
+					'name' => $thread['name']
+				], [
+					'id'   => $_SESSION['userId'],
+					'name' => $_SESSION['username']
+				], $postText);
 			}
 		}
 		if (!$success)
@@ -153,6 +162,8 @@
 					]
 				]);
 			}
+
+			renderTemplate('spoiler_js', []);
 		}
 	}
 	while (false);

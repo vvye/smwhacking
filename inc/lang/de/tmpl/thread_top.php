@@ -9,9 +9,9 @@
 		<a href="?p=forum&id=<?= $forumId ?>"><?= $forumName ?></a> &rarr;
 		<strong><?= $threadName ?></strong>
 	</p>
-	<?php if ($canTakeAction): ?>
-		<div class="column">
+	<div class="column">
 
+		<?php if ($canWatch): ?>
 			<?php if (!$watched): ?>
 				<a class="subtle button"
 				   href="?p=watch-thread&id=<?= $threadId ?>">Thema abonnieren</a>
@@ -19,6 +19,9 @@
 				<a class="subtle button"
 				   href="?p=watch-thread&id=<?= $threadId ?>&action=unwatch">Abo kündigen</a>
 			<?php endif; ?>
+		<?php endif; ?>
+
+		<?php if ($canTakeAction): ?>
 
 			<?php if ($moderator): ?>
 
@@ -50,6 +53,6 @@
 				<a class="primary button" href="?p=new-post&thread=<?= $threadId ?>">Antworten</a>
 			<?php endif; ?>
 
-		</div>
-	<?php endif; ?>
+		<?php endif; ?>
+	</div>
 </div>
