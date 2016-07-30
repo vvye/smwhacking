@@ -57,6 +57,7 @@
 			$signature = htmlspecialchars_decode($user['signature']);
 			$powerlevel = (int)$user['powerlevel'];
 			$banned = (bool)$user['banned'];
+			$enableNotifications = (bool)$user['enable_notifications'];
 
 			$favoriteMedalsRaw = getFavoriteMedals($userId);
 			$favoriteMedalRanks = [];
@@ -64,8 +65,6 @@
 			{
 				$favoriteMedalRanks[$medal['id']] = $medal['rank'];
 			}
-
-
 		}
 		else
 		{
@@ -78,6 +77,7 @@
 			$website = trim(getFieldValue('website'));
 			$bio = trim(getFieldValue('bio'));
 			$signature = trim(getFieldValue('signature'));
+			$enableNotifications = (bool)getFieldValue('enable_notifications');
 
 			$powerlevel = (int)getFieldValue('powerlevel');
 			$banned = (bool)getFieldValue('banned');
@@ -159,11 +159,12 @@
 			if (!$error)
 			{
 				setUserData($userId, [
-					'email'     => $email,
-					'location'  => $location,
-					'website'   => $website,
-					'bio'       => $bio,
-					'signature' => $signature
+					'email'               => $email,
+					'location'            => $location,
+					'website'             => $website,
+					'bio'                 => $bio,
+					'signature'           => $signature,
+					'enableNotifications' => $enableNotifications
 				]);
 
 				setFavoriteMedals($userId, $favoriteMedalRanks);
@@ -211,6 +212,7 @@
 			'medalsByCategory'    => $medalsByCategory,
 			'numAwardedMedals'    => count($medals),
 			'favoriteMedals'      => $favoriteMedalRanks,
+			'enableNotifications' => $enableNotifications,
 			'token'               => $token
 		]);
 	}

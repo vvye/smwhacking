@@ -43,7 +43,7 @@
 	</fieldset>
 
 	<fieldset>
-		<legend>Persönliche Daten</legend>
+		<legend>Persönliche Daten und Einstellungen</legend>
 		<table class="form">
 			<tr>
 				<td>
@@ -113,7 +113,6 @@
 					<label><textarea class="bio" name="bio" id="bio"><?= $bio ?></textarea></label>
 				</td>
 			</tr>
-
 			<tr>
 				<td>
 					<h3>Signatur:</h3>
@@ -122,6 +121,22 @@
 				<td>
 					<label><textarea class="signature" name="signature" id="signature"
 					                 maxlength="1024"><?= $signature ?></textarea></label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Benachrichtigungen aktivieren</h3>
+					<p>Wähle aus, ob du per Mail benachrichtigt werden willst, wenn du eine Medaille oder private
+						Nachricht erhältst oder wenn jemand in einem Thema, das du abonniert hast, einen Beitrag
+						schreibt.</p>
+				</td>
+				<td>
+					<div class="custom-checkbox-group">
+						<input type="checkbox" class="custom-checkbox" name="enable-notifications"
+						       id="enable-notifications" <?= $enableNotifications ? 'checked="checked"' : '' ?> />
+						<label class=" custom-checkbox-label" for="enable-notifications"> Benachrichtigungen
+							aktivieren</label>
+					</div>
 				</td>
 			</tr>
 		</table>

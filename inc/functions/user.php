@@ -59,7 +59,8 @@
 			'bio',
 			'website',
 			'email',
-			'banned'
+			'banned',
+			'enable_notifications'
 		], [
 			'id'    => $userId,
 			'LIMIT' => 1
@@ -180,11 +181,12 @@
 		global $database;
 
 		$database->update('users', [
-			'email'     => strtolower(htmlspecialchars($data['email'])),
-			'location'  => htmlspecialchars($data['location']),
-			'website'   => htmlspecialchars($data['website']),
-			'bio'       => htmlspecialchars($data['bio']),
-			'signature' => htmlspecialchars($data['signature'])
+			'email'                => strtolower(htmlspecialchars($data['email'])),
+			'location'             => htmlspecialchars($data['location']),
+			'website'              => htmlspecialchars($data['website']),
+			'bio'                  => htmlspecialchars($data['bio']),
+			'signature'            => htmlspecialchars($data['signature']),
+			'enable_notifications' => $data['enableNotifications'] ? 1 : 0
 		], [
 			'id' => $userId
 		]);
