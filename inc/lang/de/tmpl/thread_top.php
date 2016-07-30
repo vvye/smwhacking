@@ -10,7 +10,16 @@
 		<strong><?= $threadName ?></strong>
 	</p>
 	<?php if ($canTakeAction): ?>
-		<form class="column">
+		<div class="column">
+
+			<?php if (!$watched): ?>
+				<a class="subtle button"
+				   href="?p=watch-thread&id=<?= $threadId ?>">Thema abonnieren</a>
+			<?php else: ?>
+				<a class="subtle button"
+				   href="?p=watch-thread&id=<?= $threadId ?>&action=unwatch">Abo kündigen</a>
+			<?php endif; ?>
+
 			<?php if ($moderator): ?>
 
 				<?php if (!$closed): ?>
@@ -41,6 +50,6 @@
 				<a class="primary button" href="?p=new-post&thread=<?= $threadId ?>">Antworten</a>
 			<?php endif; ?>
 
-		</form>
+		</div>
 	<?php endif; ?>
 </div>

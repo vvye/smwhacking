@@ -436,3 +436,23 @@
 
 	define('MSG_MOVE_THREAD_SUCCESS',
 		'Das Thema wurde verschoben.');
+
+
+	define('MSG_WATCH_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um Themen abonnieren zu können.');
+
+
+	define('MSG_THREAD_NOT_WATCHED',
+		'Du hast dieses Thema noch nicht abonniert.');
+
+
+	define('MSG_THREAD_ALREADY_WATCHED',
+		'Du hast dieses Thema schon abonniert.');
+
+
+	define('MSG_WATCH_SUCCESS',
+		'Du hast das Thema abonniert. Du wirst über neue Beiträge in diesem Thema per Mail benachrichtigt.');
+
+
+	define('MSG_UNWATCH_SUCCESS',
+		'Du hast dein Abo für das Thema gekündigt.');

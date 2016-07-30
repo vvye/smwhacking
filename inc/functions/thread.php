@@ -335,3 +335,40 @@
 		updateLastPostInForum($sourceForumId);
 		updateLastPostInForum($targetForumId);
 	}
+
+
+	function isThreadWatched($threadId)
+	{
+		global $database;
+
+		return $database->count('watched_threads', [
+			'AND' => [
+				'user'   => $_SESSION['userId'],
+				'thread' => $threadId
+			]
+		]) === 1;
+	}
+
+
+	function watchThread($threadId)
+	{
+		global $database;
+
+		$database->insert('watched_threads', [
+			'user'   => $_SESSION['userId'],
+			'thread' => $threadId
+		]);
+	}
+
+
+	function unwatchThread($threadId)
+	{
+		global $database;
+
+		$database->delete('watched_threads', [
+			'AND' => [
+				'user'   => $_SESSION['userId'],
+				'thread' => $threadId
+			]
+		]);
+	}

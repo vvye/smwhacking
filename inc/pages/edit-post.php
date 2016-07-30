@@ -7,7 +7,6 @@
 	require_once __DIR__ . '/../functions/bbcode.php';
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/avatar.php';
-	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
 
@@ -91,7 +90,6 @@
 						'title'          => $_SESSION['title'],
 						'rank'           => getRank($_SESSION['userId']),
 						'hasAvatar'      => hasAvatar($_SESSION['userId']),
-						'favoriteMedals' => getFavoriteMedals($_SESSION['userId']),
 						'signature'      => $_SESSION['signature']
 					]
 				]);

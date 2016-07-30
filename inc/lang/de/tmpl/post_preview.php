@@ -1,5 +1,4 @@
-<h2>Vorschau</h2>
-<div class="post">
+<div class="post preview">
 
 	<div class="sidebar">
 		<h3>

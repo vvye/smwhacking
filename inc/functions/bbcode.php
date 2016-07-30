@@ -51,6 +51,14 @@
 		$parser->addCodeDefinition($builder->build());
 
 		$builder = new JBBCode\CodeDefinitionBuilder('youtube', '<iframe width="480" height="320" src="https://www.youtube-nocookie.com/embed/{param}" frameborder="0" allowfullscreen></iframe>');
+		$builder->setParseContent(false);
+		$builder->setBodyValidator(new class implements JBBCode\InputValidator
+		{
+			function validate($input)
+			{
+				return preg_match('/^[a-zA-Z0-9_-]{11}$/', $input) === 1;
+			}
+		});
 		$parser->addCodeDefinition($builder->build());
 
 		return $parser;

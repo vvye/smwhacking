@@ -44,6 +44,7 @@
 		$forumName = $thread['forum_name'];
 		$closed = $thread['closed'];
 		$sticky = $thread['sticky'];
+		$watched = isThreadWatched($threadId);
 
 		$canPost = isBanned() ? false : isModerator() || !$closed;
 
@@ -58,6 +59,7 @@
 			'canPost'       => $canPost,
 			'closed'        => $closed,
 			'sticky'        => $sticky,
+			'watched'       => $watched,
 			'token'         => getCsrfToken()
 		]);
 
@@ -121,6 +123,7 @@
 			'canPost'       => $canPost,
 			'closed'        => $closed,
 			'sticky'        => $sticky,
+			'watched'       => $watched,
 			'token'         => getCsrfToken()
 		]);
 
