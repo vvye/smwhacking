@@ -23,5 +23,5 @@
 		mail($email, $subject, $message, 'From: ' . NOTIFICATION_SENDER_ADDRESS);
 
 		// debug
-		file_put_contents(__DIR__ . '/../../' . $email . '.email', $subject . "\n\n" . $message);
+		file_put_contents(__DIR__ . '/../tmp/emails/' . $email . '.email', $subject . "\n\n" . $message);
 	}

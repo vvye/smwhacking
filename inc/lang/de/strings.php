@@ -463,7 +463,7 @@
 
 
 	define('NOTIFICATION_AUTOMATIC_MEDAL_AWARD_BODY',
-		'Dir wurde die Medaille "{{medalName}} verliehen!');
+		'Dir wurde die Medaille "{{medalName}}" verliehen!');
 
 
 	define('NOTIFICATION_MEDAL_STATUS_CHANGED_SUBJECT',
