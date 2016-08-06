@@ -19,7 +19,7 @@
 
 		if (isset($_GET['id']) && is_int($_GET['id'] * 1))
 		{
-			$pmId = $_GET['id'];
+			$pmId = $_GET['id'] * 1;
 
 			$pm = getPm($pmId);
 

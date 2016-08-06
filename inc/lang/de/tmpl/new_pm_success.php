@@ -1,0 +1,1 @@
+<a href="?p=pm&id=<?= $pmId ?>">&rarr; Die Nachricht ansehen</a>

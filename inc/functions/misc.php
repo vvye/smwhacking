@@ -10,7 +10,7 @@
 	{
 		return str_ireplace(['@', '.'], [' <i class="fa fa-at"></i> ', ' <i class="fa fa-circle"></i> '], $email);
 	}
-	
+
 
 	function makeBetween(&$var, $min, $max)
 	{
@@ -32,10 +32,16 @@
 	}
 
 
+	function startsWith($haystack, $needle)
+	{
+		return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+	}
+
+
 	function renderMessage($msg)
 	{
 		renderTemplate('message', [
-			'type' => '',
+			'type'    => '',
 			'message' => $msg
 		]);
 	}
@@ -44,7 +50,7 @@
 	function renderSuccessMessage($msg)
 	{
 		renderTemplate('message', [
-			'type' => 'success',
+			'type'    => 'success',
 			'message' => $msg
 		]);
 	}
@@ -53,7 +59,7 @@
 	function renderErrorMessage($msg)
 	{
 		renderTemplate('message', [
-			'type' => 'error',
+			'type'    => 'error',
 			'message' => $msg
 		]);
 	}

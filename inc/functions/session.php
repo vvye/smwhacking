@@ -44,7 +44,7 @@
 		$_SESSION['powerlevel'] = $user['powerlevel'];
 		$_SESSION['banned'] = $user['banned'];
 		$_SESSION['title'] = $user['title'];
-		$_SESSION['signature'] = $user['title'];
+		$_SESSION['signature'] = $user['signature'];
 
 		$_SESSION['csrfToken'] = renewCsrfToken();
 

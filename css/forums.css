@@ -406,3 +406,16 @@
     text-align: center;
 }
 
+.pm-form table {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.pm-form table td:first-child {
+    min-width: 6rem;
+}
+
+.pm-form #subject {
+    width: 30rem;
+}
+

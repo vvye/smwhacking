@@ -136,3 +136,26 @@
 			'id' => $pmId
 		]);
 	}
+
+
+	function createPm($recipientId, $subject, $pmText)
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			return null;
+		}
+
+		$newPmId = $database->insert('private_messages', [
+			'id'        => null,
+			'send_time' => time(),
+			'author'    => $_SESSION['userId'],
+			'recipient' => $recipientId,
+			'subject'   => $subject,
+			'content'   => $pmText,
+			'unread'    => 1
+		]);
+
+		return $newPmId;
+	}

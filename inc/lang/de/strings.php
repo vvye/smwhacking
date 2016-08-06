@@ -480,3 +480,27 @@
 
 	define('MSG_PM_NOT_ALLOWED',
 		'Du darfst diese Nachricht nicht anzeigen.');
+
+
+	define('MSG_NEW_PM_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um private Nachrichten schreiben zu können.');
+
+
+	define('MSG_PM_TEXT_EMPTY',
+		'Der Nachrichten-Text darf nicht leer sein.');
+
+
+	define('MSG_PM_SUBJECT_EMPTY',
+		'Der Betreff darf nicht leer sein.');
+
+
+	define('MSG_PM_UNKNOWN_RECIPIENT',
+		'Den Empfänger gibt es nicht.');
+
+
+	define('MSG_NEW_PM_SUCCESS',
+		'Die Nachricht wurde versendet!');
+
+
+	define('NOTIFICATION_NEW_PM',
+		'Neue private Nachricht erhalten!');

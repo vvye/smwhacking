@@ -239,3 +239,20 @@
 			'id' => $userId
 		]);
 	}
+
+
+	function getUserIdByName($username)
+	{
+		global $database;
+
+		$ids = $database->select('users', 'id', [
+			'name' => $username
+		]);
+
+		if ($ids === false || count($ids) !== 1)
+		{
+			return null;
+		}
+
+		return $ids[0];
+	}
