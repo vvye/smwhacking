@@ -152,8 +152,8 @@
 			'send_time' => time(),
 			'author'    => $_SESSION['userId'],
 			'recipient' => $recipientId,
-			'subject'   => $subject,
-			'content'   => $pmText,
+			'subject'   => htmlspecialchars($subject),
+			'content'   => htmlspecialchars($pmText),
 			'unread'    => 1
 		]);
 
