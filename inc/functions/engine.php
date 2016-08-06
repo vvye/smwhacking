@@ -3,6 +3,7 @@
 	require_once __DIR__ . '/../config/engine.php';
 
 	require_once __DIR__ . '/session.php';
+	require_once __DIR__ . '/pm.php';
 	require_once __DIR__ . '/misc.php';
 
 
@@ -82,12 +83,15 @@
 
 	function renderUserMenu()
 	{
+		$numUnreadPms = isLoggedIn() ? getNumUnreadPmsToUser($_SESSION['userId']) : 0;
+
 		renderTemplate('user_menu', [
-			'loggedIn' => isLoggedIn(),
-			'admin'    => isAdmin(),
-			'userId'   => $_SESSION['userId'] ?? '',
-			'username' => $_SESSION['username'] ?? '',
-			'token'    => getCsrfToken()
+			'loggedIn'     => isLoggedIn(),
+			'admin'        => isAdmin(),
+			'userId'       => $_SESSION['userId'] ?? '',
+			'username'     => $_SESSION['username'] ?? '',
+			'numUnreadPms' => $numUnreadPms,
+			'token'        => getCsrfToken()
 		]);
 	}
 

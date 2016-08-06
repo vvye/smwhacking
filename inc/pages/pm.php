@@ -35,8 +35,14 @@
 				break;
 			}
 
+			$isOwnPm = $pm['author_id'] === $_SESSION['userId'];
+			if (!$isOwnPm)
+			{
+				markPmAsRead($pmId);
+			}
+
 			renderTemplate('pm', [
-				'ownPm'    => $pm['author_id'] === $_SESSION['userId'],
+				'ownPm'    => $isOwnPm,
 				'id'       => $pmId,
 				'sendTime' => date(DEFAULT_DATE_FORMAT, $pm['send_time']),
 				'subject'  => $pm['subject'],
