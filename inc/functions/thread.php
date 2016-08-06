@@ -39,7 +39,7 @@
 			GROUP BY threads.id
 			ORDER BY threads.sticky DESC,
 			threads.last_post_time DESC
-			LIMIT ' . (int)(($page - 1) * THREADS_PER_PAGE) . ', ' . POSTS_PER_PAGE . '
+			LIMIT ' . (int)(($page - 1) * THREADS_PER_PAGE) . ', ' . THREADS_PER_PAGE . '
 		');
 
 		return $threads;

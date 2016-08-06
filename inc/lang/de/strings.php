@@ -468,3 +468,15 @@
 
 	define('NOTIFICATION_MEDAL_STATUS_CHANGED_SUBJECT',
 		'Neues bei deinen Medaillen!');
+
+
+	define('MSG_PM_NOT_LOGGED_IN',
+		'Du musst eingeloggt sein, um private Nachrichten lesen zu können.');
+
+
+	define('MSG_PM_NOT_FOUND',
+		'Diese Nachricht gibt es nicht.');
+
+
+	define('MSG_PM_NOT_ALLOWED',
+		'Du darfst diese Nachricht nicht anzeigen.');

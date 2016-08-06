@@ -14,6 +14,13 @@
 
 	function makeBetween(&$var, $min, $max)
 	{
+		if ($max < $min)
+		{
+			$tmp = $max;
+			$max = $min;
+			$min = $tmp;
+		}
+
 		if ($var < $min)
 		{
 			$var = $min;

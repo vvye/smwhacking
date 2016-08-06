@@ -347,3 +347,62 @@
     text-align: center;
 }
 
+/* pms */
+
+.pms {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.pms th {
+    background-color: #096AC9;
+    padding: 0.35rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.pms th a {
+    color: white !important;
+}
+
+.pms th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.pms th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.pms tr {
+    background-color: white;
+}
+
+.pms td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.4rem 0.2rem;
+}
+
+.pms .status {
+    width: 3rem;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+.pms .status .new {
+    font-weight: bold;
+    color: #FF6528;
+}
+
+.pms .author,
+.pms .recipient {
+    width: 12rem;
+    text-align: center;
+}
+
+.pms .send-time {
+    width: 12rem;
+    text-align: center;
+}
+
