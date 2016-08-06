@@ -59,7 +59,7 @@
 
 				renderTemplate('post_preview', [
 					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
-					'content'  => parseBBCode($pmText),
+					'content'  => parseBBCode(htmlspecialchars($pmText)),
 					'author'   => [
 						'id'           => $_SESSION['userId'],
 						'name'         => $_SESSION['username'],
@@ -75,9 +75,9 @@
 			}
 
 			renderTemplate('new_pm', [
-				'recipientName' => $recipientName,
-				'subject'       => $subject,
-				'pmText'        => $pmText
+				'recipientName' => htmlspecialchars($recipientName),
+				'subject'       => htmlspecialchars($subject),
+				'pmText'        => htmlspecialchars($pmText)
 			]);
 		}
 		else
@@ -117,9 +117,9 @@
 			if ($error)
 			{
 				renderTemplate('new_pm', [
-					'recipientName' => $recipientName,
-					'subject'       => $subject,
-					'pmText'        => $pmText
+					'recipientName' => htmlspecialchars($recipientName),
+					'subject'       => htmlspecialchars($subject),
+					'pmText'        => htmlspecialchars($pmText)
 				]);
 			}
 			else
@@ -133,7 +133,7 @@
 				renderTemplate('pm_notification_body', [
 					'pmId'       => $newPmId,
 					'authorName' => $_SESSION['username'],
-					'subject'    => $subject
+					'subject'    => htmlspecialchars($subject)
 				]);
 				$notificationBody = ob_get_clean();
 
