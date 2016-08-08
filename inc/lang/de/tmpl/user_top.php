@@ -20,7 +20,7 @@
 
 	<?php endif; ?>
 	<?php if ($canGiveMedal): ?>
-	<a class="subtle button" href="?p=award-medal&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-certificate"></i>
+		<a class="subtle button" href="?p=award-medal&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-trophy"></i>
 		Medaille verleihen</a>
 	<?php endif; ?>
 </form>
