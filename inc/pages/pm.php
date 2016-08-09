@@ -71,7 +71,8 @@
 			$inbox = !isset($_GET['outbox']);
 
 			renderTemplate('pm_top', [
-				'inbox' => $inbox
+				'inbox' => $inbox,
+				'token' => getCsrfToken()
 			]);
 
 			$userId = $_SESSION['userId'];

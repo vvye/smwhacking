@@ -19,6 +19,13 @@
 			break;
 		}
 
+		if (!isset($_GET['token']) || !isCsrfTokenCorrect($_GET['token']))
+		{
+			renderErrorMessage(MSG_BAD_TOKEN);
+			break;
+		}
+		$token = $_GET['token'];
+
 		if (!isset($_POST['submit']))
 		{
 			if (isset($_GET['reply']) && is_int($_GET['reply'] * 1))
@@ -77,7 +84,8 @@
 			renderTemplate('new_pm', [
 				'recipientName' => htmlspecialchars($recipientName),
 				'subject'       => htmlspecialchars($subject),
-				'pmText'        => htmlspecialchars($pmText)
+				'pmText'        => htmlspecialchars($pmText),
+				'token'         => $token
 			]);
 		}
 		else
@@ -107,13 +115,6 @@
 				$error = true;
 			}
 
-			$newPmId = createPm($recipientId, $subject, $pmText);
-			if ($newPmId === null)
-			{
-				renderErrorMessage(MSG_GENERAL_ERROR);
-				break;
-			}
-
 			if ($error)
 			{
 				renderTemplate('new_pm', [
@@ -124,6 +125,13 @@
 			}
 			else
 			{
+				$newPmId = createPm($recipientId, $subject, $pmText);
+				if ($newPmId === null)
+				{
+					renderErrorMessage(MSG_GENERAL_ERROR);
+					break;
+				}
+
 				renderSuccessMessage(MSG_NEW_PM_SUCCESS);
 				renderTemplate('new_pm_success', [
 					'pmId' => $newPmId

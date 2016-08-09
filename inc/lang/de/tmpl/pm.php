@@ -9,7 +9,8 @@
 	</p>
 	<?php if ($canReply && !$ownPm): ?>
 		<div class="column">
-			<a class="primary button" href="?p=new-pm&reply=<?= $id ?>"><i class="fa fa-send"></i> Antworten</a>
+			<a class="primary button" href="?p=new-pm&reply=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-send"></i>
+				Antworten</a>
 		</div>
 	<?php endif; ?>
 </div>

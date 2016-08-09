@@ -1,6 +1,6 @@
 <h2>Neue private Nachricht</h2>
 
-<form class="pm-form post-form" method="post" action="?p=new-pm">
+<form class="pm-form post-form" method="post" action="?p=new-pm&token=<?= $token ?>">
 	<table>
 		<tr>
 			<td>Empfänger:</td>
