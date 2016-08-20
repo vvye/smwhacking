@@ -31,7 +31,7 @@
 
 		$lastPost = getLastPostByUser($userId);
 		$lastPostPage = ($lastPost !== null) ? getPostPageInThread($lastPost['id'], $lastPost['thread_id']) : '';
-		$canViewLastPost = canView($lastPost['min_powerlevel']);
+		$canViewLastPost = canView($lastPost['view_powerlevel']);
 
 		renderTemplate('user_top', [
 			'canEditProfile' => !isBanned() && ($isOwnProfile || isAdmin()),

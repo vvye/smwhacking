@@ -26,11 +26,38 @@
 		{
 			return false;
 		}
+		if (!canView($thread['view_powerlevel']))
+		{
+			return false;
+		}
+		if ((int)$thread['post_powerlevel'] > $_SESSION['powerlevel'])
+		{
+			return false;
+		}
 		if (isModerator())
 		{
 			return true;
 		}
-		if (!canView($thread['min_powerlevel']) || $thread['closed'])
+		if ($thread['closed'])
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+
+	function canMakeThread($forum)
+	{
+		if (!isLoggedIn() || isBanned())
+		{
+			return false;
+		}
+		if (!canView($forum['view_powerlevel']))
+		{
+			return false;
+		}
+		if ((int)$forum['thread_powerlevel'] > $_SESSION['powerlevel'])
 		{
 			return false;
 		}

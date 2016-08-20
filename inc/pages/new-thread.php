@@ -35,7 +35,13 @@
 			break;
 		}
 
-		if (!canView($forum['min_powerlevel']))
+		if (!canView($forum['view_powerlevel']))
+		{
+			renderErrorMessage(MSG_NEW_THREAD_NOT_ALLOWED);
+			break;
+		}
+
+		if (!canMakeThread($forum))
 		{
 			renderErrorMessage(MSG_NEW_THREAD_NOT_ALLOWED);
 			break;

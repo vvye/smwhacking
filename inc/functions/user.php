@@ -88,7 +88,7 @@
 			'posts.content',
 			'threads.id(thread_id)',
 			'threads.name(thread_name)',
-			'forums.min_powerlevel(min_powerlevel)'
+			'forums.view_powerlevel(view_powerlevel)'
 		], [
 			'AND'   => [
 				'author'        => $userId,
@@ -160,7 +160,7 @@
 			'posts.post_time',
 			'threads.id(thread_id)',
 			'threads.name(thread_name)',
-			'forums.min_powerlevel'
+			'forums.view_powerlevel'
 		], [
 			'author' => $userId,
 			'ORDER'  => 'post_time DESC',

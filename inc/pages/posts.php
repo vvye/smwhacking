@@ -44,7 +44,7 @@
 
 		foreach ($posts as $post)
 		{
-			if (!canView($post['min_powerlevel']))
+			if (!canView($post['view_powerlevel']))
 			{
 				renderTemplate('forbidden_post', []);
 				continue;

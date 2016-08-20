@@ -14,7 +14,7 @@
 		$forumsForTemplate = [];
 		foreach ($forums as $forum)
 		{
-			if (!canView($forum['min_powerlevel']))
+			if (!canView($forum['view_powerlevel']))
 			{
 				continue;
 			}

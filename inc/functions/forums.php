@@ -19,11 +19,12 @@
 			'forums.id',
 			'forums.name',
 			'forums.description',
-			'forums.min_powerlevel',
 			'forums.threads',
 			'forums.posts',
 			'forums.last_post',
-			'forums.min_powerlevel',
+			'forums.view_powerlevel',
+			'forums.post_powerlevel',
+			'forums.thread_powerlevel',
 			'forum_categories.name(category_name)'
 		], [
 			'ORDER' => ['forum_categories.sort_order ASC', 'forums.sort_order ASC']
@@ -51,8 +52,8 @@
 			'forums.id',
 			'forums.name'
 		], [
-			'min_powerlevel[<=]' => $powerlevel,
-			'ORDER' => ['forum_categories.sort_order ASC', 'forums.sort_order ASC']
+			'view_powerlevel[<=]' => $powerlevel,
+			'ORDER'               => ['forum_categories.sort_order ASC', 'forums.sort_order ASC']
 		]);
 
 		return $forums;

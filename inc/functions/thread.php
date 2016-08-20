@@ -61,7 +61,9 @@
 				threads.sticky,
 				forums.id AS forum_id,
 				forums.name AS forum_name,
-				forums.min_powerlevel,
+				forums.view_powerlevel,
+				forums.post_powerlevel,
+				forums.thread_powerlevel,
 				threads_read.last_read_time
 				FROM threads
 				LEFT JOIN forums ON threads.forum = forums.id
@@ -80,7 +82,9 @@
 				threads.sticky,
 				forums.id AS forum_id,
 				forums.name AS forum_name,
-				forums.min_powerlevel
+				forums.view_powerlevel,
+				forums.post_powerlevel,
+				forums.thread_powerlevel
 				FROM threads
 				LEFT JOIN forums ON threads.forum = forums.id
 				WHERE threads.id = ' . $database->quote($threadId) . ' AND threads.deleted = 0;		

@@ -40,7 +40,7 @@
 			break;
 		}
 
-		if (!canView($thread['min_powerlevel']))
+		if (!canView($thread['view_powerlevel']))
 		{
 			renderErrorMessage(MSG_VIEW_THREAD_NOT_ALLOWED);
 			break;

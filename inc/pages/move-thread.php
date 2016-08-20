@@ -29,7 +29,7 @@
 
 		$thread = getThread($threadId);
 
-		if (!canView($thread['min_powerlevel']))
+		if (!canView($thread['view_powerlevel']))
 		{
 			renderErrorMessage(MSG_MOVE_THREAD_NOT_ALLOWED);
 			break;
@@ -58,7 +58,7 @@
 				$error = true;
 			}
 
-			if (!canView($targetForum['min_powerlevel']))
+			if (!canView($targetForum['view_powerlevel']))
 			{
 				renderErrorMessage(MSG_MOVE_THREAD_NOT_ALLOWED);
 				$error = true;

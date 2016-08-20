@@ -24,7 +24,7 @@
 			break;
 		}
 
-		if (!canView($forum['min_powerlevel']))
+		if (!canView($forum['view_powerlevel']))
 		{
 			renderErrorMessage(MSG_VIEW_FORUM_NOT_ALLOWED);
 			break;
@@ -41,7 +41,7 @@
 			'forumName'     => $forumName,
 			'forumId'       => $forumId,
 			'loggedIn'      => isLoggedIn(),
-			'canMakeThread' => !isBanned()
+			'canMakeThread' => canMakeThread($forum)
 		]);
 
 		$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
