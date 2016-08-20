@@ -504,3 +504,7 @@
 
 	define('NOTIFICATION_NEW_PM',
 		'Neue private Nachricht erhalten!');
+
+
+	define('MSG_MANAGE_RANKS_SUCCESS',
+		'DIe Änderungen wurden gespeichert.');

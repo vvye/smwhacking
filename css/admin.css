@@ -1,0 +1,73 @@
+.ranks {
+    width: 56rem;
+    max-width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.ranks th {
+    background-color: #096AC9;
+    padding: 0.35rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.ranks th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.ranks th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.ranks tr {
+    background-color: white;
+}
+
+.ranks td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.ranks .name {
+    width: 10rem;
+}
+
+.ranks .min-posts {
+    width: 5rem;
+}
+
+.ranks .custom-checkbox-group {
+    margin: 0 0 0.5rem;
+}
+
+.ranks img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1rem;
+}
+
+.ranks img + .custom-checkbox-group {
+    display: inline-block;
+}
+
+.ranks .custom-checkbox + .custom-checkbox-label {
+    font-size: 0.9rem;
+}
+
+.ranks .custom-checkbox + .custom-checkbox-label:before {
+    width: 0.75rem;
+    height: 0.75rem;
+    line-height: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.ranks .file-input {
+    font-size: 0.9rem;
+}
+
+.ranks .button {
+    padding: 0.2rem 0.5rem;
+}

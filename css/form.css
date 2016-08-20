@@ -67,6 +67,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 
 input[type="number"] {
     min-width: 3rem;
+}
+
+input[type="number"].favorite-medal-rank {
+    min-width: 3rem;
     padding: 0.1rem 0.3rem;
 }
 

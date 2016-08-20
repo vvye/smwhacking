@@ -3,6 +3,7 @@
 	require_once __DIR__ . '/../config/user.php';
 	require_once __DIR__ . '/../config/forums.php';
 
+	require_once __DIR__ . '/avatar.php';
 	require_once __DIR__ . '/session.php';
 
 
@@ -255,4 +256,65 @@
 		}
 
 		return $ids[0];
+	}
+
+
+	function getAllRanks()
+	{
+		global $database;
+
+		$ranks = $database->select('ranks', '*');
+
+		return $ranks;
+	}
+
+
+	function editRanks($newRanks)
+	{
+		global $database;
+
+		$database->query('TRUNCATE TABLE ranks');
+		$database->query('ALTER TABLE ranks AUTO_INCREMENT = 1');
+
+		$database->insert('ranks', $newRanks);
+	}
+
+
+	function processUploadedRankImage($id)
+	{
+		$file = $_FILES['image-' . $id];
+
+		if (!isset($file['error'])
+			|| is_array($file['error'])
+			|| $file['error'] !== UPLOAD_ERR_OK
+		)
+		{
+			return false;
+		}
+
+		$finfo = new finfo(FILEINFO_MIME_TYPE);
+		$fileExtension = array_search($finfo->file($file['tmp_name']), [
+			'jpg' => 'image/jpeg',
+			'png' => 'image/png',
+			'gif' => 'image/gif',
+		], true);
+
+		if ($fileExtension === false)
+		{
+			return false;
+		}
+
+		$filename = $file['tmp_name'];
+
+		$rankImage = loadImage($filename, $fileExtension);
+		if ($rankImage === null)
+		{
+			return false;
+		}
+
+		$rankImage = resizeImage($rankImage, 150);
+		imagepng($rankImage, __DIR__ . '/../../img/ranks/' . $id . '.png');
+		imagedestroy($rankImage);
+
+		return true;
 	}
