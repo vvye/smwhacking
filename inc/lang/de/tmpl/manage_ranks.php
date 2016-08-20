@@ -1,7 +1,7 @@
 <h2>Ränge verwalten</h2>
 <p>Ränge, bei denen die Felder "Name" oder "Beiträge" nicht ausgefüllt sind, werden beim Speichern gelöscht.</p>
 
-<form action="?p=admin&s=manage-ranks" method="post" enctype="multipart/form-data">
+<form action="?p=admin&s=manage-ranks&token=<?= $token ?>" method="post" enctype="multipart/form-data">
 	<table class="ranks">
 		<thead>
 		<tr>
