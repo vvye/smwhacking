@@ -1,5 +1,10 @@
 <?php
 
+	require_once __DIR__ . '/../config/medals.php';
+
+	require_once __DIR__ . '/avatar.php';
+
+
 	function getAllMedals()
 	{
 		global $database;
@@ -12,6 +17,8 @@
 			'medals.name',
 			'medals.description',
 			'medals.image_filename',
+			'medals.award_condition',
+			'medals.value',
 		]);
 
 		return $medals;
@@ -303,4 +310,75 @@
 		$userIds = array_diff($userIds, $userIdsWithMedal);
 
 		return $userIds;
+	}
+
+
+	function getMedalCategories()
+	{
+		global $database;
+
+		$categories = $database->select('medal_categories', [
+			'id',
+			'name',
+		]);
+
+		return $categories;
+	}
+
+
+	function getMedalImageFilenames()
+	{
+		$filenames = glob(__DIR__ . '/../../img/medals/*.*');
+		$filenames = array_map('basename', $filenames);
+
+		return $filenames;
+	}
+
+
+	function processUploadedMedalImage()
+	{
+		$file = $_FILES['medal-image'];
+
+		if (!isset($file['error'])
+			|| is_array($file['error'])
+			|| $file['error'] !== UPLOAD_ERR_OK
+		)
+		{
+			return '';
+		}
+
+		$finfo = new finfo(FILEINFO_MIME_TYPE);
+		$fileExtension = array_search($finfo->file($file['tmp_name']), [
+			'jpg' => 'image/jpeg',
+			'png' => 'image/png',
+			'gif' => 'image/gif',
+		], true);
+
+		if ($fileExtension === false)
+		{
+			return '';
+		}
+
+		$filename = $file['tmp_name'];
+
+		$medalImage = loadImage($filename, $fileExtension);
+		if ($medalImage === null)
+		{
+			return '';
+		}
+
+		$medalImage = resizeImage($medalImage, 64);
+		$filename = pathinfo($file['name'], PATHINFO_FILENAME);
+		imagepng($medalImage, __DIR__ . '/../../img/medals/' . $filename . '.png');
+		imagedestroy($medalImage);
+
+		return $filename . '.png';
+	}
+
+
+	function createMedal($medal)
+	{
+		global $database;
+
+		$database->insert('medals', $medal);
 	}

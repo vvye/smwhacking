@@ -508,3 +508,23 @@
 
 	define('MSG_MANAGE_RANKS_SUCCESS',
 		'DIe Änderungen wurden gespeichert.');
+
+
+	define('MEDAL_MANUAL',
+		'manuell');
+
+
+	define('MEDAL_POST_COUNT',
+		'Anzahl Beiträge');
+
+
+	define('MEDAL_REGISTRATION_TIME',
+		'Registrierungszeit');
+
+
+	define('MSG_ENTER_NAME_AND_DESCRIPTION',
+		'Gib einen Namen und eine Beschreibung ein.');
+
+
+	define('MSG_MEDAL_CREATED',
+		'Die Medaille wurde erstellt.');

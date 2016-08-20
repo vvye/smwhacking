@@ -1,3 +1,5 @@
+/* ranks */
+
 .ranks {
     width: 56rem;
     max-width: 100%;
@@ -70,4 +72,45 @@
 
 .ranks .button {
     padding: 0.2rem 0.5rem;
+}
+
+/* medals */
+
+.medals {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.medals th {
+    background-color: #096AC9;
+    padding: 0.35rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.medals th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.medals th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.medals tr {
+    background-color: white;
+}
+
+.medals td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.medals .image {
+}
+
+.medals .image p {
+    margin: 0;
+    font-size: 0.9rem;
 }

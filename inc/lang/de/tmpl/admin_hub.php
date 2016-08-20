@@ -13,4 +13,8 @@
 		<i class="fa fa-li fa-trophy"></i>
 		<a href="?p=admin&s=manage-medals">Medaillen verwalten</a>
 	</li>
+	<li>
+		<i class="fa fa-li fa-trophy"></i>
+		<a href="?p=admin&s=manage-medal-categories">Medaillen-Kategorien verwalten</a>
+	</li>
 </ul>

@@ -49,7 +49,7 @@
 						<div class="custom-checkbox-group">
 							<input type="checkbox" class="custom-checkbox" name="remove[<?= $medal['id'] ?>]"
 							       id="remove-<?= $medal['id'] ?>" />
-							<label class="custom-checkbox-label" for="remove-<?= $medal['id'] ?>">entfernen</label>
+							<label class="custom-checkbox-label" for="remove-<?= $medal['id'] ?>">aberkennen</label>
 						</div>
 					</div>
 				<?php endforeach; ?>

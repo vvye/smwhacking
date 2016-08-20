@@ -18,6 +18,13 @@
 			'manage-forums',
 			'manage-ranks',
 			'manage-medals',
+			'new-medal',
+			'edit-medal',
+			'delete-medal',
+			'manage-medal-categories',
+			'new-medal-category',
+			'edit-medal-category',
+			'delete-medal-category',
 		];
 
 		$subpageName = getCurrentSubpageName();
