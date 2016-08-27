@@ -1,6 +1,6 @@
 <?php
 
-	require_once __DIR__ . '/../functions/medals.php';
+	require_once __DIR__ . '/../../functions/medals.php';
 
 
 	if (isset($_POST['submit']))

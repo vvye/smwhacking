@@ -41,7 +41,7 @@
 		}
 		else
 		{
-			include __DIR__ . '/' . $subpageName . '.php';
+			include __DIR__ . '/admin/' . $subpageName . '.php';
 		}
 	}
 	while (false);

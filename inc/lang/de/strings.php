@@ -540,3 +540,15 @@
 
 	define('MSG_MEDAL_DOESNT_EXIST',
 		'Diese Medaille gibt es nicht.');
+
+
+	define('MSG_MEDAL_CATEGORY_DOESNT_EXIST',
+		'Diese Kategorie gibt es nicht.');
+
+
+	define('MSG_NAME_EMPTY',
+		'Gib einen Namen ein.');
+
+
+	define('MSG_CATEGORY_EDITED',
+		'Die Kategorie wurde bearbeitet.');

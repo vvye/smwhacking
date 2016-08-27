@@ -425,3 +425,32 @@
 
 		return $numRemovedMedals;
 	}
+
+
+	function getMedalCategory($id)
+	{
+		global $database;
+
+		$categories = $database->select('medal_categories', '*', [
+			'id' => $id
+		]);
+
+		if ($categories === false || count($categories) !== 1)
+		{
+			return null;
+		}
+
+		return $categories[0];
+	}
+
+
+	function editCategoryName($id, $name)
+	{
+		global $database;
+
+		$database->update('medal_categories', [
+			'name' => htmlspecialchars($name)
+		], [
+			'id' => $id
+		]);
+	}
