@@ -454,3 +454,19 @@
 			'id' => $id
 		]);
 	}
+
+
+	function deleteCategory($id, $replacement)
+	{
+		global $database;
+
+		$database->update('medals', [
+			'category' => $replacement
+		], [
+			'category' => $id
+		]);
+
+		$database->delete('medal_categories', [
+			'id' => $id
+		]);
+	}

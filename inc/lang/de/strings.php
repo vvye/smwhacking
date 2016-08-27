@@ -552,3 +552,11 @@
 
 	define('MSG_CATEGORY_EDITED',
 		'Die Kategorie wurde bearbeitet.');
+
+
+	define('MSG_CATEGORY_DELETED',
+		'Die Kategorie wurde gelöscht.');
+
+
+	define('MSG_INVALID_REPLACEMENT',
+		'Gib eine gültige Kategorie zum Verschieben an.');
