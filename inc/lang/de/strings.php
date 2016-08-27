@@ -528,3 +528,11 @@
 
 	define('MSG_MEDAL_CREATED',
 		'Die Medaille wurde erstellt.');
+
+
+	define('MSG_MEDAL_EDITED',
+		'Die Medaille wurde bearbeitet.');
+
+
+	define('MSG_MEDAL_DOESNT_EXIST',
+		'Diese Medaille gibt es nicht.');

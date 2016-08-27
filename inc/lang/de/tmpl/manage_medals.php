@@ -26,8 +26,8 @@
 			<td><?= $medal['category_name'] ?></td>
 			<td><?= $medal['award_condition_text'] ?></td>
 			<td>
-				<a class="small button" href="?p=admin&s=edit-medal&id=<?= $medal['id'] ?>&token=">bearbeiten</a>
-				<a class="small button" href="?p=admin&s=delete-medal&id=<?= $medal['id'] ?>&token=">löschen</a>
+				<a class="small button" href="?p=admin&s=edit-medal&id=<?= $medal['id'] ?>&token=<?= $token ?>">bearbeiten</a>
+				<a class="small button" href="?p=admin&s=delete-medal&id=<?= $medal['id'] ?>&token=<?= $token ?>">löschen</a>
 			</td>
 		</tr>
 	<?php endforeach; ?>

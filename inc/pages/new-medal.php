@@ -28,12 +28,12 @@
 			$imageFilename = isset($_POST['upload-image']) ? processUploadedMedalImage() : $_POST['image-filename'];
 
 			createMedal([
-				'name'            => $name,
-				'description'     => $description,
-				'category'        => $categoryId,
-				'award_condition' => $awardCondition,
-				'value'           => $value,
-				'image_filename'  => $imageFilename
+				'name'            => htmlspecialchars($name),
+				'description'     => htmlspecialchars($description),
+				'category'        => htmlspecialchars($categoryId),
+				'award_condition' => htmlspecialchars($awardCondition),
+				'value'           => htmlspecialchars($value),
+				'image_filename'  => htmlspecialchars($imageFilename)
 			]);
 
 			renderSuccessMessage(MSG_MEDAL_CREATED);

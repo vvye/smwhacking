@@ -14,7 +14,7 @@
 				$newMedal['award_condition_text'] = MEDAL_MANUAL;
 				break;
 			case 'registration_time':
-				$newMedal['award_condition_text'] = MEDAL_REGISTRATION_TIME . ' (' . $medal['value'] . ' Sekunden)';
+				$newMedal['award_condition_text'] = MEDAL_REGISTRATION_TIME . '<br />(' . $medal['value'] . ' Sekunden)';
 				break;
 			case 'post_count':
 				$newMedal['award_condition_text'] = MEDAL_POST_COUNT . ' (' . $medal['value'] . ')';
@@ -27,5 +27,6 @@
 	}
 
 	renderTemplate('manage_medals', [
-		'medals' => $medalsForTemplate
+		'medals' => $medalsForTemplate,
+		'token'  => getCsrfToken()
 	]);

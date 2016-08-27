@@ -382,3 +382,30 @@
 
 		$database->insert('medals', $medal);
 	}
+
+
+	function editMedal($id, $data)
+	{
+		global $database;
+
+		$database->update('medals', $data, [
+			'id' => $id
+		]);
+	}
+
+
+	function getMedal($id)
+	{
+		global $database;
+
+		$medals = $database->select('medals', '*', [
+			'id' => $id
+		]);
+
+		if ($medals === false || count($medals) !== 1)
+		{
+			return null;
+		}
+
+		return $medals[0];
+	}
