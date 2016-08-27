@@ -534,5 +534,9 @@
 		'Die Medaille wurde bearbeitet.');
 
 
+	define('MSG_MEDAL_DELETED',
+		'Die Medaille wurde gelöscht. Den {{NUM}} Nutzern, die sie besaßen, wurde sie aberkannt.');
+
+
 	define('MSG_MEDAL_DOESNT_EXIST',
 		'Diese Medaille gibt es nicht.');

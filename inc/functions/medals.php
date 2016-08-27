@@ -409,3 +409,19 @@
 
 		return $medals[0];
 	}
+
+
+	function deleteMedal($id)
+	{
+		global $database;
+
+		$numRemovedMedals = $database->delete('awarded_medals', [
+			'medal' => $id
+		]);
+
+		$database->delete('medals', [
+			'id' => $id
+		]);
+
+		return $numRemovedMedals;
+	}
