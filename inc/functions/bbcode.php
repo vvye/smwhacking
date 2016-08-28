@@ -97,3 +97,18 @@
 
 		return $text;
 	}
+
+
+	function removeBBCodeAndLineBreaks($text)
+	{
+		global $parser;
+		if ($parser === null)
+		{
+			$parser = getBBCodeParser();
+		}
+
+		$parser->parse($text);
+		$text = $parser->getAsText();
+
+		return $text;
+	}

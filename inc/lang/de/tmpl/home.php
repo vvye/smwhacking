@@ -28,39 +28,31 @@
 
 	<div class="news">
 		<h2>Neueste Ankündigungen</h2>
-		<div class="news-article">
-			<h3>Lorem ipsum</h3>
-			<p class="news-subtitle">von <a href="?p=user&id=2">WYE</a> am 01.01.1970 1:23:45 &bull;
-				<strong>3</strong> Antworten</p>
-			<p>Est peritus calceus, cesaris. Fidelis, albus clabulares foris manifestum de audax, festus pulchritudine.
-				Cur
-				competition trabem? Est bi-color lura, cesaris. Est velox zelus, cesaris. Calceus salvus luna est.
-				Hercle,
-				ionicis tormento velox!, fluctus! Hercle, bubo rusticus!, gemna! Cum nix crescere, omnes indexes
-				transferre
-				ferox, altus omniaes. Cur musa studere? Cum domina ortum, omnes rationees pugna albus, audax zirbuses.
-				Primus torus absolute captiss cacula est. Favere aliquando ducunt ad gratis axona. Hydra peritus luna
-				est.
-				Est altus fides, cesaris. </p>
-			<p><a href="?p=thread&id=1234">&rarr; gesamten Beitrag lesen</a></p>
-		</div>
-		<div class="news-article">
-			<h3>Lorem ipsum</h3>
-			<p class="news-subtitle">von <a href="?p=user&id=2">WYE</a> am 01.01.1970 1:23:45 &bull;
-				<strong>3</strong> Antworten</p>
-			<p>Est peritus calceus, cesaris. Fidelis, albus clabulares foris manifestum de audax, festus pulchritudine.
-				Cur
-				competition trabem? Est bi-color lura, cesaris. Est velox zelus, cesaris. Calceus salvus luna est.
-				Hercle,
-				ionicis tormento velox!, fluctus! Hercle, bubo rusticus!, gemna! Cum nix crescere, omnes indexes
-				transferre
-				ferox, altus omniaes. Cur musa studere? Cum domina ortum, omnes rationees pugna albus, audax zirbuses.
-				Primus torus absolute captiss cacula est. Favere aliquando ducunt ad gratis axona. Hydra peritus luna
-				est.
-				Est altus fides, cesaris. </p>
-			<p><a href="?p=thread&id=1234">&rarr; gesamten Beitrag lesen</a></p>
-		</div>
-	</div>
 
+		<?php if ($numNews === 0): ?>
+			<em>Es gibt noch keine Ankündigungen.</em>
+		<?php endif; ?>
+
+		<?php foreach ($news as $newsArticle): ?>
+			<div class="news-article">
+				<h3><?= $newsArticle['name'] ?></h3>
+				<p class="news-subtitle">von <a
+						href="?p=user&id=<?= $newsArticle['author'] ?>"><?= $newsArticle['author_name'] ?></a> am
+					<?= date(DEFAULT_DATE_FORMAT, $newsArticle['creation_time']) ?> &bull;
+					<strong><?= $newsArticle['replies'] ?></strong> <?= $newsArticle['replies'] == 1 ? 'Antwort' : 'Antworten' ?>
+				</p>
+				<p>
+					<?php if ($newsArticle['author_has_avatar']): ?>
+						<img class="avatar" src="img/avatars/<?= $newsArticle['author'] ?>.png" />
+					<?php else: ?>
+						<img class="avatar" src="img/avatars/default.png" />
+					<?php endif; ?>
+					<?= $newsArticle['content'] ?>
+				</p>
+				<p><a href="?p=thread&id=<?= $newsArticle['id'] ?>">&rarr; gesamten Beitrag lesen</a></p>
+			</div>
+		<?php endforeach; ?>
+
+	</div>
 </div>
 

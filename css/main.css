@@ -233,16 +233,22 @@ hr {
     font-size: 1.3rem;
 }
 
-.news .news-article {
+.news-article {
     margin-bottom: 2rem;
 }
 
-.news .news-article:not(:last-child) {
+.news-article:not(:last-child) {
     padding-bottom: 2rem;
     border-bottom: 1px solid #AAA;
 }
 
-.news .news-subtitle {
+.news-article img.avatar {
+    float: left;
+    width: 5rem;
+    margin: 0 1rem 0.2rem 0;
+}
+
+.news-subtitle {
     margin: 0;
     font-size: 0.9rem;
     color: #666;
