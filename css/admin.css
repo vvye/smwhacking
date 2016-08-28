@@ -76,7 +76,7 @@
 
 /* medals */
 
-.medals {
+table.medals {
     width: 100%;
     margin: 2rem 0 3rem;
     border-collapse: collapse;

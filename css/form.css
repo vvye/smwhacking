@@ -273,5 +273,6 @@ option {
 
 textarea.bio,
 textarea.signature {
-    width: 80%
+    width: 80%;
+    height: 16rem;
 }

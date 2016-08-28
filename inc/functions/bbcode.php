@@ -1,6 +1,9 @@
 <?php
 
+	require_once __DIR__ . '/smileys.php';
+
 	require_once __DIR__ . '/../config/bbcode.php';
+
 	require_once __DIR__ . '/../vendor/JBBCode/Parser.php';
 
 
@@ -77,6 +80,8 @@
 
 		$parser->parse($text);
 		$text = $parser->getAsHTML();
+
+		$text = parseSmileys($text);
 
 		return $text;
 	}

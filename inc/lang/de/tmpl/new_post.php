@@ -13,6 +13,7 @@
 </form>
 
 <script type="text/javascript" src="js/cuteedit.js"></script>
+<script type="text/javascript" src="js/smiley_editor.js.php"></script>
 <script type="text/javascript">
 
 	var editor = new CuteEdit('post-text');

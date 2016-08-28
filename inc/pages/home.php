@@ -20,7 +20,7 @@
 			'author'            => $newsArticle['author'],
 			'author_name'       => $newsArticle['author_name'],
 			'author_has_avatar' => hasAvatar($newsArticle['author']),
-			'content'           => truncateNewsPost(removeBBCodeAndLineBreaks($newsArticle['content']))
+			'content'           => parseSmileys(truncateNewsPost(removeBBCodeAndLineBreaks($newsArticle['content'])))
 		];
 	}
 

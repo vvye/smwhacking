@@ -121,7 +121,7 @@
 }
 
 .cuteedit-toolbar-emoticon {
-    background-position: -107px -81px;
+    background-position: -107px -55px;
     width: 24px;
 }
 
@@ -239,10 +239,10 @@
     cursor: pointer;
     border-right: 1px solid white;
     border-bottom: 1px solid white;
-    padding: 0;
-    width: 1rem;
-    height: 1rem;
-    line-height: 1rem;
+    padding: 0 !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    line-height: 1rem !important;
 }
 
 .cuteedit-input {
@@ -266,13 +266,13 @@
 }
 
 .cuteedit-list {
-    background-color: #242a33;
-    border: 1px solid #b5b5b5;
-    border-radius: 2px 2px 2px 2px;
-    color: #b5b5b5;
+    background-color: white;
+    border: 1px solid #AAAAAA;
+    box-shadow: 0 0 2px #AAAAAA;
+    border-radius: 1px;
+    padding: 1rem;
     list-style-type: none;
     margin: 0;
-    padding: 6px;
     width: 360px;
     max-height: 400px;
     overflow-y: auto;
@@ -283,14 +283,12 @@
 }
 
 .cuteedit-list-item {
-    border-color: #404e59 #090b0c #090b0c #404e59;
-    border-radius: 2px 3px 2px 3px;
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid transparent;
+    border-radius: 1px;
     cursor: pointer;
     float: left;
-    margin: 2px;
-    padding: 2px;
+    margin: 1px;
+    padding: 3px;
     text-align: center;
 }
 
@@ -301,17 +299,13 @@
 }
 
 .cuteedit-list-item:hover {
-    background-color: #2c343d;
-    border-color: #404e59 #404e59 #404e59 #404e59;
-    border-radius: 2px 2px 2px 2px;
+    background-color: #EEEEEE;
+    border-color: #AAAAAA;
 }
 
 .cuteedit-list-parent span {
-    border-bottom: 1px solid;
     display: block;
-    font-size: 14px;
-    font-variant: small-caps;
-    font-weight: bold;
-    margin-left: 3px;
     width: 95%;
+    margin-left: 3px;
+    border-bottom: 1px solid #AAAAAA;
 }

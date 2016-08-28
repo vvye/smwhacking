@@ -210,7 +210,7 @@ hr {
     -webkit-align-self: flex-start;
     -ms-flex-item-align: start;
     align-self: flex-start;
-    padding-right: 2rem;
+    padding-right: 4rem;
 }
 
 .news {

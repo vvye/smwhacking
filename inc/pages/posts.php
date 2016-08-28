@@ -56,7 +56,7 @@
 				'threadId'      => $post['thread_id'],
 				'threadName'    => $post['thread_name'],
 				'postTime'      => date(DEFAULT_DATE_FORMAT, $post['post_time']),
-				'content'       => nl2br($post['content']),
+				'content'       => parseBBCode($post['content']),
 				'pageInThread'  => getPostPageInThread($post['id'], $post['thread_id']),
 				'lastEdit'      => getLastEdit($post['id']),
 				'canPost'       => isLoggedIn(),
