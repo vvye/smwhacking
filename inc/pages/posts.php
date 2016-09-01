@@ -81,5 +81,6 @@
 
 		renderPagination('?p=posts&user=' . $userId, $page, $numPages);
 
+		renderTemplate('spoiler_js', []);
 	}
 	while (false);
