@@ -64,7 +64,7 @@
 		});
 		$parser->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('list', '<ul>{param}</ul>');
+		$builder = new JBBCode\CodeDefinitionBuilder('list', '<ul class="bbcode-list">{param}</ul>');
 		$parser->addCodeDefinition($builder->build());
 
 		$builder = new JBBCode\CodeDefinitionBuilder('*', '<li>{param}</li>');

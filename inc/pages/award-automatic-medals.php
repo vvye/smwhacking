@@ -6,6 +6,9 @@
 	require_once __DIR__ . '/../config/misc.php';
 
 
+	set_time_limit(300);
+
+
 	do
 	{
 		if (!isLoggedIn())

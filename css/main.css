@@ -175,6 +175,14 @@ hr {
     border-bottom: none;
 }
 
+ul.bbcode-list {
+    font-size: 0;
+}
+
+ul.bbcode-list li {
+    font-size: 1rem;
+}
+
 .fa {
     font-size: 14px !important;
 }

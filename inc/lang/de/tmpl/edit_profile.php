@@ -202,6 +202,8 @@
 					<a class="button" href="?p=award-automatic-medals" target="_blank"><i
 							class="fa fa-external-link"></i> Auf neue Medaillen prüfen</a>
 					<p>(öffnet sich in einem neuen Fenster)</p>
+					<p>&nbsp;</p>
+					<p>Das Prüfen kann einige Zeit dauern! Manchmal brauchst du ein bis zwei Minuten Geduld.</p>
 				</td>
 			</tr>
 		</table>
