@@ -50,7 +50,7 @@
 		$success = false;
 
 		$threadTitle = trim(getFieldValue('thread-title'));
-		$postText = trim(getFieldValue('post-text'));
+		$postText = delimitSmileys(trim(getFieldValue('post-text')));
 
 		if (isset($_POST['submit']))
 		{

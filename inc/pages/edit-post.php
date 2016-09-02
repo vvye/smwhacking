@@ -5,6 +5,7 @@
 	require_once __DIR__ . '/../functions/post.php';
 	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/bbcode.php';
+	require_once __DIR__ . '/../functions/smileys.php';
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/avatar.php';
 	require_once __DIR__ . '/../functions/misc.php';
@@ -65,6 +66,8 @@
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
 			$postText = trim(getFieldValue('post-text'));
+
+			$postText = delimitSmileys($postText);
 
 			if ($isThread && $threadTitle === '')
 			{

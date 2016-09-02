@@ -5,6 +5,7 @@
 	require_once __DIR__ . '/../functions/post.php';
 	require_once __DIR__ . '/../functions/permissions.php';
 	require_once __DIR__ . '/../functions/bbcode.php';
+	require_once __DIR__ . '/../functions/smileys.php';
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/avatar.php';
 	require_once __DIR__ . '/../functions/medals.php';
@@ -95,7 +96,7 @@
 			$subject = trim(getFieldValue('subject'));
 			$recipientId = getUserIdByName(trim(getFieldValue('recipient')));
 			$recipientName = trim(getFieldValue('recipient'));
-			$pmText = trim(getFieldValue('pm-text'));
+			$pmText = delimitSmileys(trim(getFieldValue('pm-text')));
 
 			if ($recipientId === null)
 			{

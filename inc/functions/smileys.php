@@ -19,7 +19,9 @@
 	}
 
 
-	function parseSmileys($text)
+	// mark smileys with delimiters (called before saving text to the database)
+	// without delimiters, smileys would mistakenly be parsed in cases like (&gt;)
+	function delimitSmileys($text)
 	{
 		global $smileys;
 		if ($smileys === null)
@@ -32,12 +34,39 @@
 			return $smiley['code'];
 		}, $smileys);
 
+		$smileyCodesWithDelimiter = array_map(function ($smiley)
+		{
+			$delimiter = '<!-- s' . $smiley['code'] . ' -->';
+
+			return $delimiter . $smiley['code'] . $delimiter;
+		}, $smileys);
+
+		return str_replace($smileyCodes, $smileyCodesWithDelimiter, $text);
+	}
+
+
+	// turn smileys with delimiters into images (called before displaying text)
+	function parseSmileys($text)
+	{
+		global $smileys;
+		if ($smileys === null)
+		{
+			$smileys = getSmileys();
+		}
+
+		$smileyCodesWithDelimiter = array_map(function ($smiley)
+		{
+			$delimiter = '<!-- s' . $smiley['code'] . ' -->';
+
+			return $delimiter . $smiley['code'] . $delimiter;
+		}, $smileys);
+
 		$smileyImages = array_map(function ($smiley)
 		{
 			return '<img src="img/smileys/' . $smiley['image_filename'] . '" />';
 		}, $smileys);
 
-		$text = str_replace($smileyCodes, $smileyImages, $text);
+		$text = str_replace($smileyCodesWithDelimiter, $smileyImages, $text);
 
 		return $text;
 	}

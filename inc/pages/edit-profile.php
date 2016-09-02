@@ -3,6 +3,7 @@
 	require_once __DIR__ . '/../functions/user.php';
 	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
+	require_once __DIR__ . '/../functions/smileys.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
 
@@ -75,8 +76,8 @@
 			$title = trim(getFieldValue('title'));
 			$location = trim(getFieldValue('location'));
 			$website = trim(getFieldValue('website'));
-			$bio = trim(getFieldValue('bio'));
-			$signature = trim(getFieldValue('signature'));
+			$bio = delimitSmileys(trim(getFieldValue('bio')));
+			$signature = delimitSmileys(trim(getFieldValue('signature')));
 			$enableNotifications = getFieldValue('enable-notifications');
 
 			$powerlevel = (int)getFieldValue('powerlevel');
