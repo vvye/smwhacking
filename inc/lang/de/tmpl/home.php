@@ -9,10 +9,10 @@
 			und Ressourcen, die du in deinen eigenen Hacks benutzen kannst (Grafiken, Blöcke, Musik und einiges
 			mehr). Wir haben auch ein <a href="?p=forums">Forum</a>, in dem du mitdiskutieren und Fragen zum Hacken
 			stellen kannst!</p>
-		<p>Ich bin <em>WYE</em> (oder auch <em>WhiteYoshiEgg</em>, oder auch <em>vvye</em>, oder auch
+		<p>Ich bin <a href="?p=user&id=2">WYE</a> (oder auch <em>WhiteYoshiEgg</em>, oder auch <em>vvye</em>, oder auch
 			<em>mebamme</em>). Im Jahr 2008 habe ich das Forum gegründet, etwas später kam dann diese Seite hier
-			dazu. Danke auch an <em>Suyo</em>, der das damalige Backend programmiert hat, und an <em>RPG Hacker</em>,
-			der sich um das Hosting kümmert!</p>
+			dazu. Danke auch an <a href="?p=user&id=53">Suyo</a>, der das damalige Backend programmiert hat, und an <a
+				href="?p=user&id=56">RPG Hacker</a>, der sich um das Hosting kümmert!</p>
 		<p>Wir sollten nicht verschweigen, dass die deutsche SMW-Hacking-Gemeinde ihre besten Zeiten hinter sich
 			hat &mdash; das Forum ist nicht mehr besonders aktiv, und auf dieser Seite lädt fast niemand mehr neue
 			Hacking-Materialien mehr hoch. Die zentrale Anlaufstelle für das SMW-Hacken ist nach wie vor die

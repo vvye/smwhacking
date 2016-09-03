@@ -30,11 +30,11 @@
 	Beispiel selbst gemachte Objekte und Gegner ins Spiel einfügen, oder sogar neue Musik. Auf diese Weise kann man aus
 	der ROM von SMW sein ganz eigenes Mario-Spiel erstellen.</p>
 <p>Das Verändern einer ROM wird <em>Hacken</em> (englisch <em>Hacking</em>) genannt, und das Spiel, das man daraus
-	macht, heißt <em>Hack</em>. Das hört sich illegal an, ist es aber nicht wirklich &mdash; zumindest nicht, wenn man
-	weiß, was man tut. Das Hacken selbst ist nicht verboten, aber ROM-Dateien (originale und auch bearbeitete) oder
-	Links zu Websites, die ROMs anbieten, sollte man nicht weitergeben.<br />
-	Um einen Hack zu veröffentlichen, musst du aus der ROM einen <em>Patch</em> erstellen, das kannst du zum Beispiel
-	mit einem Programm namens <em>Lunar IPS</em>.</p>
+	macht, heißt <em>Hack</em>. Das hat nichts mit dem "Einhacken" in fremde Computer zu tun, aber aufpassen sollte man
+	trotzdem &mdash; ROM-Dateien weiterzugeben (originale und auch bearbeitete) oder Links zu Websites, die ROMs
+	anbieten, wird hier und auch anderswo nicht gern gesehen.<br />
+	Deshalb musst du, um einen Hack zu veröffentlichen, aus deiner ROM einen <em>Patch</em> erstellen. Das kannst du zum
+	Beispiel mit einem Programm namens <em>Lunar IPS</em>.</p>
 <p>Mehr übers Hacken, wo man die Tools herbekommt und wie man einen Patch erstellt, kannst du im Tutorial-Bereich des
 	Forums oder auf der englischsprachigen Seite <a href="http://www.smwcentral.net">SMW Central</a> herausfinden.
 </p>
