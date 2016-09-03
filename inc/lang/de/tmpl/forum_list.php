@@ -1,4 +1,13 @@
-<h2>Forum</h2>
+<div class="grid">
+	<div class="column">
+		<h2>Forum</h2>
+	</div>
+	<div class="column">
+		<?php if ($loggedIn): ?>
+			<a class="subtle button" href="?p=forums&mark-read">Alle Foren als gelesen markieren</a>
+		<?php endif; ?>
+	</div>
+</div>
 
 <?php foreach ($categories as $category): ?>
 

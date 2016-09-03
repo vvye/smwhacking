@@ -5,6 +5,11 @@
 	require_once __DIR__ . '/../functions/permissions.php';
 
 
+	if (isset($_GET['mark-read']))
+	{
+		markAllForumsAsRead();
+	}
+
 	$forumsByCategory = getForumsByCategory();
 	$unreadForums = getUnreadForumIds();
 
@@ -41,5 +46,6 @@
 	}
 
 	renderTemplate('forum_list', [
+		'loggedIn'   => isLoggedIn(),
 		'categories' => $categories
 	]);
