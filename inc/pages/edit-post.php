@@ -67,8 +67,6 @@
 		{
 			$postText = trim(getFieldValue('post-text'));
 
-			$postText = delimitSmileys($postText);
-
 			if ($isThread && $threadTitle === '')
 			{
 				renderErrorMessage(MSG_THREAD_TITLE_EMPTY);
@@ -83,17 +81,17 @@
 			{
 				renderTemplate('post_preview', [
 					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
-					'content'  => parseBBCode($postText),
+					'content'  => parseBBCode(delimitSmileys(htmlspecialchars($postText))),
 					'author'   => [
-						'id'             => $_SESSION['userId'],
-						'name'           => $_SESSION['username'],
-						'powerlevelId'   => (int)$_SESSION['powerlevel'],
-						'powerlevel'     => POWERLEVEL_DESCRIPTIONS[$_SESSION['powerlevel']],
-						'banned'         => $_SESSION['banned'],
-						'title'          => $_SESSION['title'],
-						'rank'           => getRank($_SESSION['userId']),
-						'hasAvatar'      => hasAvatar($_SESSION['userId']),
-						'signature'      => $_SESSION['signature']
+						'id'           => $_SESSION['userId'],
+						'name'         => $_SESSION['username'],
+						'powerlevelId' => (int)$_SESSION['powerlevel'],
+						'powerlevel'   => POWERLEVEL_DESCRIPTIONS[$_SESSION['powerlevel']],
+						'banned'       => $_SESSION['banned'],
+						'title'        => $_SESSION['title'],
+						'rank'         => getRank($_SESSION['userId']),
+						'hasAvatar'    => hasAvatar($_SESSION['userId']),
+						'signature'    => parseBBCode($_SESSION['signature'])
 					]
 				]);
 			}
@@ -124,7 +122,7 @@
 				'threadTitle' => $threadTitle,
 				'forumId'     => $thread['forum_id'],
 				'forumName'   => $thread['forum_name'],
-				'postText'    => $postText,
+				'postText'    => removeSmileyDelimiters($postText),
 				'token'       => $token
 			]);
 		}

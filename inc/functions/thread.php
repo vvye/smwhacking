@@ -9,6 +9,7 @@
 	require_once __DIR__ . '/bbcode.php';
 	require_once __DIR__ . '/notifications.php';
 	require_once __DIR__ . '/session.php';
+	require_once __DIR__ . '/smileys.php';
 
 
 	function getThreadsInForum($forumId, $page)

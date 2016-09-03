@@ -76,8 +76,8 @@
 			$title = trim(getFieldValue('title'));
 			$location = trim(getFieldValue('location'));
 			$website = trim(getFieldValue('website'));
-			$bio = delimitSmileys(trim(getFieldValue('bio')));
-			$signature = delimitSmileys(trim(getFieldValue('signature')));
+			$bio = trim(getFieldValue('bio'));
+			$signature = trim(getFieldValue('signature'));
 			$enableNotifications = getFieldValue('enable-notifications');
 
 			$powerlevel = (int)getFieldValue('powerlevel');
@@ -208,8 +208,8 @@
 			'title'               => $title,
 			'location'            => $location,
 			'website'             => $website,
-			'bio'                 => $bio,
-			'signature'           => $signature,
+			'bio'                 => removeSmileyDelimiters($bio),
+			'signature'           => removeSmileyDelimiters($signature),
 			'medalsByCategory'    => $medalsByCategory,
 			'numAwardedMedals'    => count($medals),
 			'favoriteMedals'      => $favoriteMedalRanks,

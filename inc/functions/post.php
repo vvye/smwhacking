@@ -7,6 +7,7 @@
 	require_once __DIR__ . '/thread.php';
 	require_once __DIR__ . '/permissions.php';
 	require_once __DIR__ . '/session.php';
+	require_once __DIR__ . '/smileys.php';
 
 
 	function getPostById($postId)
@@ -165,7 +166,7 @@
 			'thread'    => $threadId,
 			'author'    => $_SESSION['userId'],
 			'post_time' => $postTime,
-			'content'   => htmlspecialchars($postText),
+			'content'   => delimitSmileys(htmlspecialchars($postText)),
 			'deleted'   => 0
 		]);
 		$database->update('threads', [
@@ -199,7 +200,7 @@
 		}
 
 		$newPostId = $database->update('posts', [
-			'content' => htmlspecialchars($postText),
+			'content' => delimitSmileys(htmlspecialchars($postText)),
 		], [
 			'id' => $postId
 		]);

@@ -5,6 +5,7 @@
 
 	require_once __DIR__ . '/avatar.php';
 	require_once __DIR__ . '/session.php';
+	require_once __DIR__ . '/smileys.php';
 
 
 	function getNumUsers()
@@ -185,8 +186,8 @@
 			'email'                => strtolower(htmlspecialchars($data['email'])),
 			'location'             => htmlspecialchars($data['location']),
 			'website'              => htmlspecialchars($data['website']),
-			'bio'                  => htmlspecialchars($data['bio']),
-			'signature'            => htmlspecialchars($data['signature']),
+			'bio'                  => delimitSmileys(htmlspecialchars($data['bio'])),
+			'signature'            => delimitSmileys(htmlspecialchars($data['signature'])),
 			'enable_notifications' => $data['enableNotifications'] ? 1 : 0
 		], [
 			'id' => $userId

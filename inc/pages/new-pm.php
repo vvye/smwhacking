@@ -96,7 +96,7 @@
 			$subject = trim(getFieldValue('subject'));
 			$recipientId = getUserIdByName(trim(getFieldValue('recipient')));
 			$recipientName = trim(getFieldValue('recipient'));
-			$pmText = delimitSmileys(trim(getFieldValue('pm-text')));
+			$pmText = trim(getFieldValue('pm-text'));
 
 			if ($recipientId === null)
 			{

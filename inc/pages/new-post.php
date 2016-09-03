@@ -71,8 +71,6 @@
 		{
 			$postText = trim(getFieldValue('post-text'));
 
-			$postText = delimitSmileys($postText);
-
 			if ($postText === '')
 			{
 				renderErrorMessage(MSG_POST_TEXT_EMPTY);
@@ -82,7 +80,7 @@
 			{
 				renderTemplate('post_preview', [
 					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
-					'content'  => parseBBCode($postText),
+					'content'  => parseBBCode(delimitSmileys(htmlspecialchars($postText))),
 					'author'   => [
 						'id'           => $_SESSION['userId'],
 						'name'         => $_SESSION['username'],
@@ -92,7 +90,7 @@
 						'title'        => $_SESSION['title'],
 						'rank'         => getRank($_SESSION['userId']),
 						'hasAvatar'    => hasAvatar($_SESSION['userId']),
-						'signature'    => $_SESSION['signature']
+						'signature'    => parseBBCode($_SESSION['signature'])
 					]
 				]);
 			}

@@ -7,7 +7,7 @@
 			eigenes Spiel &mdash; zu bauen.<br />
 			Auf dieser Seite findest du Hacks, die andere Leute erstellt haben, Infos und Tutorials rund ums Hacken,
 			und Ressourcen, die du in deinen eigenen Hacks benutzen kannst (Grafiken, Blöcke, Musik und einiges
-			mehr). Wir haben auch ein <a href="?p=forum">Forum</a>, in dem du mitdiskutieren und Fragen zum Hacken
+			mehr). Wir haben auch ein <a href="?p=forums">Forum</a>, in dem du mitdiskutieren und Fragen zum Hacken
 			stellen kannst!</p>
 		<p>Ich bin <em>WYE</em> (oder auch <em>WhiteYoshiEgg</em>, oder auch <em>vvye</em>, oder auch
 			<em>mebamme</em>). Im Jahr 2008 habe ich das Forum gegründet, etwas später kam dann diese Seite hier

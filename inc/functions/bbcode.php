@@ -49,10 +49,6 @@
 		$builder->setUseOption(true);
 		$parser->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('spoiler', '<div class="spoiler"><span class="head">{option} <a class="small button">' . BBCODE_SPOILER_SHOW . '</a></span><div class="box">{param}</div></div>');
-		$builder->setUseOption(true);
-		$parser->addCodeDefinition($builder->build());
-
 		$builder = new JBBCode\CodeDefinitionBuilder('youtube', '<iframe width="480" height="320" src="https://www.youtube-nocookie.com/embed/{param}" frameborder="0" allowfullscreen></iframe>');
 		$builder->setParseContent(false);
 		$builder->setBodyValidator(new class implements JBBCode\InputValidator

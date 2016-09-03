@@ -80,6 +80,8 @@
 			'favoriteMedals'    => $favoriteMedals,
 			'numFavoriteMedals' => $numFavoriteMedals
 		]);
+
+		renderTemplate('spoiler_js', []);
 	}
 	while (false);
 

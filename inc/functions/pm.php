@@ -1,5 +1,8 @@
 <?php
 
+	require_once __DIR__ . '/smileys.php';
+
+
 	function getNumPmsToUser($userId)
 	{
 		global $database;
@@ -153,7 +156,7 @@
 			'author'    => $_SESSION['userId'],
 			'recipient' => $recipientId,
 			'subject'   => htmlspecialchars($subject),
-			'content'   => htmlspecialchars($pmText),
+			'content'   => delimitSmileys(htmlspecialchars($pmText)),
 			'unread'    => 1
 		]);
 

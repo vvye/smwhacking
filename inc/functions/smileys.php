@@ -70,3 +70,22 @@
 
 		return $text;
 	}
+
+
+	function removeSmileyDelimiters($text)
+	{
+		global $smileys;
+		if ($smileys === null)
+		{
+			$smileys = getSmileys();
+		}
+
+		$smileyDelimiters = array_map(function ($smiley)
+		{
+			return '<!-- s' . $smiley['code'] . ' -->';
+		}, $smileys);
+
+		$text = str_replace($smileyDelimiters, '', $text);
+
+		return $text;
+	}
