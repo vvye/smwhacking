@@ -131,7 +131,7 @@
 
 
 	define('CAPTION_FILES',
-		'Uploader');
+		'Dateiablage');
 
 
 	define('CAPTION_USERS',
@@ -560,3 +560,7 @@
 
 	define('MSG_INVALID_REPLACEMENT',
 		'Gib eine gültige Kategorie zum Verschieben an.');
+
+
+	define('MSG_FILE_DOESNT_EXIST',
+		'Diese Datei scheint es nicht zu geben.');
