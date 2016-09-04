@@ -19,6 +19,12 @@
 			$id = $_GET['id'] * 1;
 			$file = getFileById($id);
 
+			if ($file === null)
+			{
+				renderErrorMessage(MSG_FILE_DOESNT_EXIST);
+				break;
+			}
+
 			if (!canDeleteFile($file))
 			{
 				renderErrorMessage(MSG_NOT_ALLOWED);

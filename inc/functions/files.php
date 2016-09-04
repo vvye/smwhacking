@@ -43,7 +43,7 @@
 	{
 		global $database;
 
-		return $database->get('files', [
+		$file = $database->get('files', [
 			'[>]users' => ['user' => 'id']
 		], [
 			'files.id',
@@ -57,6 +57,13 @@
 		], [
 			'files.id' => $id
 		]);
+
+		if ($file === false)
+		{
+			return null;
+		}
+
+		return $file;
 	}
 
 
