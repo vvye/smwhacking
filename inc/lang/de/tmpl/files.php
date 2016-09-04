@@ -19,7 +19,7 @@
 	</thead>
 	<tbody>
 	<?php foreach ($files as $file): ?>
-		<tr>
+		<tr id="file-<?= $file['id'] ?>">
 			<td class="name"><?= $file['name'] ?></td>
 			<td class="description">
 				<?= $file['short_description'] ?>

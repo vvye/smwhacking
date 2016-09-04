@@ -276,3 +276,7 @@ textarea.signature {
     width: 80%;
     height: 16rem;
 }
+
+.upload textarea {
+    width: 25rem;
+}

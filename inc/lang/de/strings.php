@@ -568,3 +568,23 @@
 
 	define('MSG_FILE_DELETED',
 		'Die Datei wurde gelöscht.');
+
+
+	define('MSG_FILE_NAME_MISSING',
+		'Bitte gib einen Namen für die Datei ein.');
+
+
+	define('MSG_NO_FILE_SELECTED',
+		'Bitte wähle eine Datei zum Hochladen aus.');
+
+
+	define('MSG_SHORT_DESCRIPTION_MISSING',
+		'Bitte gib eine kurze Beschreibung für die Datei ein.');
+
+
+	define('MSG_UPLOAD_GENERAL_ERROR',
+		'Beim Hochladen ist ein Fehler aufgetreten.');
+
+
+	define('MSG_FILE_UPLOADED',
+		'Die Datei wurde hochgeladen.');

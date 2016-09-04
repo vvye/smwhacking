@@ -1,0 +1,1 @@
+<a href="?p=files#file-<?= $id ?>">&rarr; Datei in der Liste ansehen</a>
