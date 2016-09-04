@@ -3,6 +3,10 @@
 <p>Hier können alle möglichen Dateien zwischengelagert werden, die sonst nirgends hingehören (außer ROMs natürlich, und
 	allem, was sonst irgendwie unerwünscht ist). Sie müssen nicht mal mit Hacking zu tun haben.</p>
 
+<?php if ($loggedIn): ?>
+	<a class="primary button" href="?p=upload"><i class="fa fa-upload"></i> Datei hochladen</a>
+<?php endif ?>
+
 <table class="files">
 	<thead>
 	<tr>
@@ -27,9 +31,11 @@
 			<td class="upload-date"><?= date(DEFAULT_DATE_FORMAT, $file['upload_time']) ?></td>
 			<td class="uploader"><a href="?p=user&id=<?= $file['user_id'] ?>"><?= $file['username'] ?></a></td>
 			<td class="actions">
-				<a class="small button" href="download.php?id=<?= $file['id'] ?>">Download</a>
+				<a class="small button" href="download.php?id=<?= $file['id'] ?>">
+					<?= $file['can_open_directly'] ? 'Ansehen' : 'Download' ?>
+				</a>
 				<?php if ($file['can_delete']): ?>
-					<a class="small subtle button">Löschen</a>
+					<a class="small subtle button" href="?p=files&action=delete&id=<?= $file['id'] ?>">Löschen</a>
 				<?php endif ?>
 			</td>
 		</tr>

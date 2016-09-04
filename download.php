@@ -17,22 +17,12 @@
 
 	$fileName = $file['id'] . '_' . sanitizeFilename($file['name']) . '.' . $file['extension'];
 	$filePath = 'files/' . $fileName;
-	echo $filePath . '<br>';
 	if (!file_exists($filePath))
 	{
 		die(MSG_FILE_DOESNT_EXIST);
 	}
 
-	$fileTypesToOpenInBrowser = [
-		'png',
-		'jpg',
-		'jpeg',
-		'gif',
-		'bmp',
-		'txt'
-	];
-
-	if (in_array(strtolower($file['extension']), $fileTypesToOpenInBrowser))
+	if (in_array(strtolower($file['extension']), FILE_TYPES_TO_OPEN_IN_BROWSER))
 	{
 		header('Location: ' . $filePath);
 	}

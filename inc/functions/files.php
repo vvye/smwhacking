@@ -2,6 +2,7 @@
 
 	require_once __DIR__ . '/misc.php';
 
+	require_once __DIR__ . '/../config/files.php';
 	require_once __DIR__ . '/../config/misc.php';
 
 
@@ -71,4 +72,19 @@
 		}
 
 		return $file['user_id'] = $_SESSION['userId'];
+	}
+
+
+	function deleteFile($file)
+	{
+		global $database;
+
+		$database->delete('files', [
+			'id' => $file['id']
+		]);
+
+		$fileName = $file['id'] . '_' . sanitizeFilename($file['name']) . '.' . $file['extension'];
+		$filePath = 'files/' . $fileName;
+
+		unlink($filePath);
 	}

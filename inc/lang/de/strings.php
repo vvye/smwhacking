@@ -564,3 +564,7 @@
 
 	define('MSG_FILE_DOESNT_EXIST',
 		'Diese Datei scheint es nicht zu geben.');
+
+
+	define('MSG_FILE_DELETED',
+		'Die Datei wurde gelöscht.');
