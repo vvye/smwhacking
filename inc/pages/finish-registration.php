@@ -27,16 +27,11 @@
 			break;
 		}
 
-		var_dump($_GET['id']);
-
 		$database->update('users', [
 			'activated' => 1
 		], [
 			'id' => $_GET['id']
 		]);
-
-		print_r($database->last_query());
-		print_r($database->error());
 
 		renderSuccessMessage(MSG_FINISH_REGISTRATION_SUCCESS);
 
