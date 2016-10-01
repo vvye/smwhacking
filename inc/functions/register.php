@@ -96,9 +96,6 @@
 		]);
 		$messageBody = ob_get_clean();
 
-		// TODO remove this
-		echo $messageBody . '<br />';
-
 		mail($email, MSG_REGISTRATION_EMAIL_SUBJECT, $messageBody);
 	}
 	
