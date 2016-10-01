@@ -22,7 +22,7 @@
 			<?php if ($admin): ?>
 				<li><a href="?p=admin">Administration</a></li>
 			<?php endif; ?>
-			<li><a href="?p=logout">Ausloggen</a></li>
+			<li><a href="session.php?action=logout">Ausloggen</a></li>
 		</ul>
 	</nav>
 <?php endif; ?>

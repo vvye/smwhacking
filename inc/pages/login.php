@@ -10,23 +10,12 @@
 			break;
 		}
 
-		if (isset($_POST['submit']))
+		if (isset($_GET['error']))
 		{
-			$loginSuccess = doLogin();
-
-			if (!$loginSuccess)
-			{
-				renderErrorMessage(MSG_LOGIN_FAILURE);
-
-			}
-			else
-			{
-				header('Location: ?p=home');
-			}
+			renderErrorMessage(MSG_LOGIN_FAILURE);
 		}
-
 		renderTemplate('login_form', []);
-		
+
 	}
 	while (false);
 
