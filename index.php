@@ -34,6 +34,7 @@
 		<link rel="stylesheet" type="text/css" href="css/user.css" />
 		<link rel="stylesheet" type="text/css" href="css/cuteedit.css" />
 		<link rel="stylesheet" type="text/css" href="css/files.css" />
+		<link rel="stylesheet" type="text/css" href="css/chat.css" />
 
 		<?php if (isAdmin()): ?>
 			<link rel="stylesheet" type="text/css" href="css/admin.css" />
