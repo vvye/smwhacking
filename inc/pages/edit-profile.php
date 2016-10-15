@@ -4,6 +4,7 @@
 	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/avatar.php';
 	require_once __DIR__ . '/../functions/smileys.php';
+	require_once __DIR__ . '/../functions/register.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
 

@@ -98,6 +98,11 @@
 		]);
 		$messageBody = ob_get_clean();
 
+		if (isLocalEnv())
+		{
+			echo $messageBody;
+		}
+
 		mail($email, MSG_REGISTRATION_EMAIL_SUBJECT, $messageBody);
 	}
 	

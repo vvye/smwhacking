@@ -4,6 +4,7 @@
 
 	require_once __DIR__ . '/inc/lang/de/strings.php';
 
+	require_once __DIR__ . '/inc/functions/environment.php';
 	require_once __DIR__ . '/inc/functions/engine.php';
 	require_once __DIR__ . '/inc/functions/template.php';
 	require_once __DIR__ . '/inc/functions/database.php';
