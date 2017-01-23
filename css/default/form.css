@@ -231,7 +231,7 @@ select {
     display: inline-block;
     border: 1px solid #AAAAAA;
     border-radius: 2px;
-    background: url('../img/arrow_down.png') right 1rem center no-repeat;
+    background: url('../../img/arrow_down.png') right 1rem center no-repeat;
     padding: 0.5rem 1rem;
     cursor: pointer;
     color: #333333 !important;

@@ -1,0 +1,263 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background: url('../../img/hills.png') bottom repeat-x;
+    color: #333;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.main a:link, .main a:visited {
+    color: #096AC9;
+}
+
+.main a:hover, .main a:active {
+    color: #096AC9;
+    background-color: rgba(9, 106, 201, 0.1);
+}
+
+.banner {
+    display: flex;
+    margin: 0;
+    height: 14rem;
+    background: url('../../img/banner/105.png') bottom;
+    box-shadow: 0 0 1rem black inset;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 0 0 1px black, 0 0 5px black, 0 0 10px black;
+}
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.grid .column {
+    margin: 0;
+}
+
+.grid .column:last-child {
+    text-align: right;
+}
+
+.message {
+    margin: 1rem 0;
+    border: 1px solid #097EDF;
+    border-left-width: 0.5rem;
+    border-radius: 2px;
+    padding: 0.5rem 1rem;
+}
+
+.message.error {
+    border-color: #FF6528;
+}
+
+.message.success {
+    border-color: #00CB00;
+}
+
+h1 {
+    margin: 0;
+    font-size: 4rem;
+    font-weight: normal;
+}
+
+.banner p {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+nav {
+    position: relative;
+    background-color: #096AC9;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    text-align: center;
+    list-style-type: none;
+}
+
+nav li {
+    font-size: 1rem;
+    display: inline-block;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+nav li.active a {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.user-menu {
+    position: static;
+    background-color: #ABD7FF;
+    box-shadow: 0 -0.5rem 0.5rem 0.5rem black;
+}
+
+.user-menu a {
+    color: #0F477B;
+}
+
+.user-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.badge {
+    margin-left: 0.2rem;
+    background-color: #FF241C;
+    box-shadow: 0 0 2px #FF241C;
+    border-radius: 2px;
+    padding: 0 0.3rem;
+    color: white;
+}
+
+.main {
+    max-width: 100rem;
+    padding: 3rem;
+    margin: auto;
+}
+
+h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.image-container {
+    padding-bottom: 1rem;
+}
+
+.image-container p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.image-container.left {
+    float: left;
+    margin-right: 1rem;
+}
+
+.image-container.right {
+    float: right;
+    margin-left: 1rem;
+}
+
+.clearfix {
+    clear: both;
+}
+
+hr {
+    border-top: 1px solid;
+    border-bottom: none;
+}
+
+ul.bbcode-list {
+    font-size: 0;
+}
+
+ul.bbcode-list li {
+    font-size: 1rem;
+}
+
+.fa {
+    font-size: 14px !important;
+}
+
+.home-page-grid {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.welcome {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    padding-right: 4rem;
+}
+
+.news {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    border-left: 1px solid #AAA;
+    padding-left: 2rem;
+    max-width: 36rem;
+}
+
+.news h3 {
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
+
+.news-article {
+    margin-bottom: 2rem;
+}
+
+.news-article:not(:last-child) {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #AAA;
+}
+
+.news-article img.avatar {
+    float: left;
+    width: 5rem;
+    margin: 0 1rem 0.2rem 0;
+}
+
+.news-subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}

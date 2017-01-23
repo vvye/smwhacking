@@ -1,0 +1,99 @@
+.chat {
+    margin-top: 1rem;
+    border: 1px solid #DDDDDD;
+    border-radius: 1px;
+}
+
+.chat .chat-header {
+    background-color: #3471AD;
+    padding: 0.5rem 1rem;
+    color: white;
+}
+
+.chat .chat-header .grid {
+    margin: 0;
+}
+
+.chat .chat-header .column > button.primary,
+.chat .chat-footer form > button.primary {
+    background-color: white;
+    color: #3471AD !important;
+    border: 1px solid transparent;
+}
+
+.chat .chat-header .column > button.subtle,
+.chat .chat-footer form > button.subtle {
+    border-color: #d1e8ff;
+    color: white !important;
+}
+
+.chat .chat-header .column > button:hover,
+.chat .chat-footer form > button:hover {
+    background-color: #d1e8ff !important;
+    color: #3471AD !important;
+}
+
+.chat .chat-header span {
+    margin-left: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.chat .chat-messages {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.chat .chat-message {
+    border-bottom: 1px solid #DDDDDD;
+    background-color: white;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.chat .chat-message:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
+.chat .chat-message .chat-sidebar {
+    float: left;
+    width: 3rem;
+    margin-right: 0.3rem;
+}
+
+.chat .chat-message .chat-sidebar .avatar {
+    max-width: 2rem;
+}
+
+.chat .chat-message .chat-topbar {
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+    color: #888888;
+}
+
+.chat .chat-message .chat-topbar .username {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.chat .chat-message .chat-message-content {
+    padding-left: 3.3rem;
+}
+
+.chat .chat-footer {
+    background-color: #3471AD;
+    padding: 1rem;
+}
+
+.chat .chat-footer form {
+    margin: 0;
+}
+
+.chat .chat-footer form > button {
+    display: inline-block;
+    margin-top: 1rem;
+    vertical-align: top;
+    height: 2.2rem;
+    padding: 0.4rem 1rem;
+}
+

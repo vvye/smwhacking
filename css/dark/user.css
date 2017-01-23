@@ -1,0 +1,93 @@
+.user-section h3 {
+    margin-bottom: 0;
+    border-radius: 2px 2px 0 0;
+    background-color: #3471AD;
+    padding: 0.2rem 1rem;
+    color: white;
+}
+
+.user-section .content {
+    border-bottom: 1px solid #CCCCCC;
+    background-color: white;
+    padding: 1rem;
+}
+
+.user-section .content .sidebar {
+    float: left;
+    width: 10rem;
+    text-align: center;
+}
+
+.user-section .content table {
+    margin-left: 11rem;
+}
+
+.user-section .content td {
+    padding-right: 1rem;
+}
+
+.user-section .signature {
+    margin-top: 2rem;
+    border-top: 1px solid #888888;
+    padding-top: 0.5rem;
+    color: #aaa666;
+    font-size: 0.9rem;
+}
+
+.medals h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.medals h4:not(:first-of-type) {
+    margin-top: 2rem;
+}
+
+.all-medals h3 {
+    margin: 2rem 0 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.medal {
+    display: inline-block;
+    width: 18rem;
+    margin: 1rem 3rem 1rem 0;
+    vertical-align: top;
+}
+
+.medal img {
+    float: left;
+    max-width: 3rem;
+}
+
+.medal div {
+    padding-left: 4rem;
+}
+
+.medal h5,
+.all-medals h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.medal p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #aaa666;
+}
+
+.medal .got-medal {
+    margin-top: 0.2rem;
+    border: 1px solid #00CB00;
+    border-left-width: 0.4rem;
+    border-radius: 1px;
+    padding: 0.1rem 0.2rem;
+}
+
+.medal .got-medal i {
+    color: #00AA00;
+}

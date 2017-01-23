@@ -1,0 +1,61 @@
+/* files table */
+
+.files {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.files th {
+    background-color: #3471AD;
+    padding: 0.35rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.files th a {
+    color: white !important;
+}
+
+.files th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.files th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.files tr {
+    background-color: white;
+}
+
+.files td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.6rem 0.2rem;
+    vertical-align: top;
+}
+
+.files .name {
+    width: 15rem;
+    max-width: 15rem;
+    overflow-x: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.files .upload-date,
+.files .uploader {
+    width: 10rem;
+    text-align: center;
+}
+
+.files .actions {
+    width: 10rem;
+    text-align: center;
+}
+
+.files p.long-description {
+    display: none;
+    font-size: 0.9rem;
+    color: #aaa;
+}

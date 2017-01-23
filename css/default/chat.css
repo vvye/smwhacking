@@ -14,21 +14,21 @@
     margin: 0;
 }
 
-.chat .chat-header button.primary,
-.chat .chat-footer button.primary {
+.chat .chat-header .column > button.primary,
+.chat .chat-footer form > button.primary {
     background-color: white;
     color: #096AC9 !important;
     border: 1px solid transparent;
 }
 
-.chat .chat-header button.subtle,
-.chat .chat-footer button.subtle {
+.chat .chat-header .column > button.subtle,
+.chat .chat-footer form > button.subtle {
     border-color: #d1e8ff;
     color: white !important;
 }
 
-.chat .chat-header button:hover,
-.chat .chat-footer button:hover {
+.chat .chat-header .column > button:hover,
+.chat .chat-footer form > button:hover {
     background-color: #d1e8ff !important;
     color: #096AC9 !important;
 }
@@ -56,12 +56,12 @@
 
 .chat .chat-message .chat-sidebar {
     float: left;
-    width: 5rem;
-    margin-right: 0.5rem;
+    width: 3rem;
+    margin-right: 0.3rem;
 }
 
 .chat .chat-message .chat-sidebar .avatar {
-    max-width: 4rem;
+    max-width: 2rem;
 }
 
 .chat .chat-message .chat-topbar {
@@ -77,20 +77,19 @@
 }
 
 .chat .chat-message .chat-message-content {
-    padding-left: 5.5rem;
+    padding-left: 3.3rem;
 }
 
 .chat .chat-footer {
     background-color: #096AC9;
     padding: 1rem;
-    color: white;
 }
 
 .chat .chat-footer form {
     margin: 0;
 }
 
-.chat .chat-footer button {
+.chat .chat-footer form > button {
     display: inline-block;
     margin-top: 1rem;
     vertical-align: top;

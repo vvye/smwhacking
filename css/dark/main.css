@@ -7,26 +7,26 @@ html {
 }
 
 body {
-    background: url('../img/hills.png') bottom repeat-x;
-    color: #333;
+    background-color: #222;
     font-family: 'Source Sans Pro', sans-serif;
+    color: #ddd;
 }
 
 .main a:link, .main a:visited {
-    color: #096AC9;
+    color: #7EAFE0;
 }
 
 .main a:hover, .main a:active {
-    color: #096AC9;
-    background-color: rgba(9, 106, 201, 0.1);
+    color: #93C0ED;
+    background-color: rgba(55, 136, 215, 0.33);
 }
 
 .banner {
     display: flex;
     margin: 0;
     height: 14rem;
-    background: url('../img/banner/105.png') bottom;
-    box-shadow: 0 0 1rem black inset;
+    background: url('../../img/banner/135.png') bottom;
+    box-shadow: 0 0 2rem black inset;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -55,15 +55,18 @@ body {
     border: 1px solid #097EDF;
     border-left-width: 0.5rem;
     border-radius: 2px;
+    background-color: #19304a;
     padding: 0.5rem 1rem;
 }
 
 .message.error {
-    border-color: #FF6528;
+    border-color: #952A00;
+    background-color: #381e1e;
 }
 
 .message.success {
-    border-color: #00CB00;
+    border-color: #368A66;
+    background-color: #183228;
 }
 
 h1 {
@@ -79,7 +82,7 @@ h1 {
 
 nav {
     position: relative;
-    background-color: #096AC9;
+    background-color: #3471AD;
 }
 
 nav ul {
@@ -112,22 +115,22 @@ nav a:hover {
 
 .user-menu {
     position: static;
-    background-color: #ABD7FF;
+    background-color: #18406C;
     box-shadow: 0 -0.5rem 0.5rem 0.5rem black;
 }
 
 .user-menu a {
-    color: #0F477B;
+    color: #aec8ea;
 }
 
 .user-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgb(46, 94, 149);
 }
 
 .badge {
     margin-left: 0.2rem;
-    background-color: #FF241C;
-    box-shadow: 0 0 2px #FF241C;
+    background-color: #D54F4B;
+    box-shadow: 0 0 2px #D54F4B;
     border-radius: 2px;
     padding: 0 0.3rem;
     color: white;
@@ -231,7 +234,7 @@ ul.bbcode-list li {
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
-    border-left: 1px solid #AAA;
+    border-left: 1px solid #666;
     padding-left: 2rem;
     max-width: 36rem;
 }
@@ -247,7 +250,7 @@ ul.bbcode-list li {
 
 .news-article:not(:last-child) {
     padding-bottom: 2rem;
-    border-bottom: 1px solid #AAA;
+    border-bottom: 1px solid #666;
 }
 
 .news-article img.avatar {
@@ -259,5 +262,5 @@ ul.bbcode-list li {
 .news-subtitle {
     margin: 0;
     font-size: 0.9rem;
-    color: #666;
+    color: #aaa;
 }

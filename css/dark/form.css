@@ -1,0 +1,288 @@
+form {
+    margin: 1rem 0;
+}
+
+form.right {
+    text-align: right;
+}
+
+table.form {
+    width: 100%;
+}
+
+table.form td {
+    vertical-align: top;
+    padding: 0.5rem 1rem 0.5rem 0;
+}
+
+table.form td:first-child {
+    width: 16rem;
+    padding: 0.9rem 1rem 0.9rem 0;
+}
+
+table.form h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+table.form td p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+form .final-action {
+    text-align: right;
+}
+
+fieldset {
+    margin: 1rem 0 3rem;
+    border: 1px solid #666;
+    border-radius: 2px;
+    padding: 0.5rem 1.5rem 2rem;
+    background-color: #222;
+}
+
+legend {
+    margin-left: -1rem;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="number"], textarea {
+    min-width: 15rem;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    padding: 0.4rem 0.5rem;
+}
+
+input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover, input[type="url"]:hover, input[type="number"]:hover, textarea:hover {
+    border: 1px solid #B0B0B0;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="number"]:focus, textarea:focus {
+    border: 1px solid #999999;
+    box-shadow: 0 1px 1px #DDDDDD inset;
+}
+
+input[type="number"] {
+    min-width: 3rem;
+}
+
+input[type="number"].favorite-medal-rank {
+    min-width: 3rem;
+    padding: 0.1rem 0.3rem;
+}
+
+.file-input span {
+    margin-left: 1rem;
+}
+
+.stacked-input input {
+    display: block;
+    margin: -1px 0 0;
+    border-radius: 0;
+}
+
+.stacked-input label:first-of-type input {
+    margin: 0;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.stacked-input label:last-of-type input {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+textarea {
+    display: block;
+    height: 8rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+button, .button, input[type="button"], input[type="submit"] {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: #DDDDDD;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: #222 !important;
+    text-decoration: none;
+}
+
+button.subtle, .button.subtle, input[type="button"].subtle, input[type="submit"].subtle {
+    background: none;
+    border: 1px solid #666;
+    color: #ddd !important;
+}
+
+button.subtle:hover, .button.subtle:hover, input[type="button"].subtle:hover, input[type="submit"].subtle:hover {
+    color: #222 !important;
+}
+
+button.small, .button.small, input[type="button"].small, input[type="submit"].small {
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+}
+
+button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    background-color: #E4E4E4 !important;
+}
+
+button.primary, .button.primary, input[type="button"].primary, input[type="submit"].primary {
+    background-color: #3471AD;
+    color: white !important;
+}
+
+button.primary:hover, .button.primary:hover, input[type="button"].primary:hover, input[type="submit"].primary:hover {
+    background-color: #3F7DBA !important;
+    border: 1px solid transparent;
+}
+
+.custom-checkbox-group {
+    margin: 1rem 0 1.5rem;
+}
+
+.custom-checkbox, .custom-radio {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+}
+
+.custom-checkbox, .custom-checkbox-label, .custom-radio, .custom-radio-label {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.custom-checkbox-label, .custom-radio-label {
+    position: relative;
+    margin-left: 0 !important;
+}
+
+.custom-checkbox + .custom-checkbox-label:before, .custom-radio + .custom-radio-label:before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    border: 2px solid #DDD;
+    border-radius: 2px;
+    background: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5rem;
+}
+
+.custom-checkbox:disabled + .custom-checkbox-label, .custom-radio:disabled + .custom-radio-label {
+    font-style: italic;
+}
+
+.custom-checkbox:checked + .custom-checkbox-label:before {
+    content: '\f00c';
+    font-family: 'FontAwesome', sans-serif;
+    color: white;
+    background-color: #3471AD;
+}
+
+.custom-radio + .custom-radio-label:before {
+    border-radius: 50%;
+}
+
+.custom-radio:checked + .custom-radio-label:before {
+    content: '\f00c';
+    border-color: #3471AD;
+    font-family: 'FontAwesome', sans-serif;
+    color: #3471AD;
+}
+
+.custom-checkbox:focus + .custom-checkbox-label, .custom-radio:focus + .custom-radio-label {
+    outline: 1px dotted #888;
+}
+
+.custom-checkbox-label span, .custom-radio-label span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+.medals .custom-checkbox-group {
+    margin: 0.5rem 0 0;
+}
+
+.medals .custom-checkbox + .custom-checkbox-label {
+    font-size: 0.9rem;
+}
+
+.medals .custom-checkbox + .custom-checkbox-label:before {
+    width: 0.75rem;
+    height: 0.75rem;
+    line-height: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.favorite-medal-rank {
+    display: none;
+    margin-top: 0.5rem;
+    width: 5rem;
+}
+
+select {
+    display: inline-block;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    background: url('../../img/arrow_down_white.png') right 1rem center no-repeat;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: #ddd;
+}
+
+select:hover, select:focus {
+    background-color: #333;
+}
+
+option {
+    background-color: #222;
+    color: #ddd;
+    padding-right: 1.5rem;
+}
+
+/* specific elements */
+
+.post-form {
+    margin-bottom: 4rem;
+}
+
+.form.login,
+.form.login td:first-child {
+    width: auto;
+}
+
+.post-text {
+    width: 80%;
+    height: 20rem;
+}
+
+.thread-title {
+    width: 80%;
+    font-weight: bold;
+}
+
+textarea.bio,
+textarea.signature {
+    width: 80%;
+    height: 16rem;
+}
+
+.upload textarea {
+    width: 25rem;
+}

@@ -1,0 +1,421 @@
+/* pagination */
+
+.pagination {
+    margin: 1rem 0 2rem;
+    list-style-type: none;
+    font-size: 0;
+    text-align: center;
+}
+
+.pagination li {
+    display: inline-block;
+    margin: 0 1px;
+    font-size: 1rem;
+}
+
+.pagination li.elision {
+    padding: 0.6rem;
+}
+
+.pagination li a {
+    display: inline-block;
+    border: 1px solid #3471AD;
+    background-color: white;
+    padding: 0.6rem 0.8rem;
+    color: #3471AD;
+    text-decoration: none;
+}
+
+.pagination li:first-child a {
+    border-radius: 3px 0 0 3px;
+}
+
+.pagination li:last-child a {
+    border-radius: 0 3px 3px 0;
+}
+
+.pagination li a:hover {
+    background-color: #D5E8FF;
+}
+
+.pagination li.selected a,
+.pagination li.selected a:hover {
+    background-color: #3471AD;
+    color: white;
+    font-weight: bold;
+}
+
+/* forum list */
+
+.forum {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.forum tr {
+    background-color: white;
+}
+
+.forum th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.forum th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.forum th {
+    background-color: #3471AD;
+    padding: 0.2rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.forum td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.5rem 0.2rem;
+}
+
+.forum-category .category-name {
+    text-align: left;
+}
+
+.forum .status {
+    width: 3rem;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+.forum .status .new {
+    color: #FF6528;
+}
+
+.forum .status .closed {
+    color: #aaa666;
+}
+
+.forum .num-threads,
+.forum .num-posts {
+    width: 5rem;
+    text-align: center;
+}
+
+.forum .last-post {
+    width: 11rem;
+    text-align: center;
+}
+
+.forum h3 {
+    margin: 0;
+}
+
+.forum p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* thread list */
+
+.thread-list .thread {
+    text-align: left;
+}
+
+.thread-list .num-replies,
+.thread-list .num-views {
+    width: 5rem;
+    text-align: center;
+}
+
+.thread-list h3 {
+    font-size: 1rem;
+}
+
+.thread-list .last.sticky {
+    border-bottom: 3px solid #666;
+}
+
+/* thread */
+
+.post {
+    background-color: white;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 1rem 1rem 1rem 0;
+}
+
+.post:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
+.post .sidebar {
+    float: left;
+    width: 10rem;
+    margin: 0 1rem;
+    text-align: center;
+}
+
+.post .sidebar h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.post .sidebar p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.post .sidebar p.powerlevel {
+    font-weight: bold;
+}
+
+.post .status {
+    font-weight: bold;
+    color: #FF6528;
+}
+
+.post.forbidden {
+    padding-top: 2.5rem;
+    text-align: center;
+}
+
+.avatar {
+    display: block;
+    max-width: 150px;
+    margin: 0.3rem auto 0.5rem;
+}
+
+.post .content {
+    overflow-x: hidden;
+}
+
+.post .content img {
+    max-width: 100%;
+}
+
+.post.preview {
+    margin-bottom: 4rem;
+}
+
+.post .signature {
+    margin-top: 2rem;
+    border-top: 1px solid #888888;
+    padding-top: 0.5rem;
+    color: #aaa666;
+    font-size: 0.9rem;
+}
+
+.topbar {
+    font-size: 0.8rem;
+    color: gray;
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+}
+
+/* BBCode */
+
+.quote,
+.code,
+.spoiler {
+    margin: 0.5rem 1rem;
+}
+
+.quote .head,
+.code .head,
+.spoiler .head {
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.spoiler .head .button {
+    margin-left: 0.3rem;
+}
+
+.quote > .box,
+.code > .box,
+.spoiler > .box {
+    border: 1px solid #666;
+    border-radius: 1px;
+    background-color: #F8F8F8;
+    padding: 0.5rem 1rem;
+}
+
+.code > .box {
+    max-height: 20rem;
+    overflow-y: auto;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.code > .box br {
+    display: none;
+}
+
+.spoiler > .box {
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.inline-spoiler {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background-color: #333 !important;
+    padding: 2px 3px;
+}
+
+.inline-spoiler .inner {
+    visibility: hidden !important;
+}
+
+.inline-spoiler:hover {
+    border-color: #666;
+    background: none !important;
+}
+
+.inline-spoiler:hover > .inner {
+    visibility: visible !important;
+}
+
+/* user list */
+
+.users {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.users th {
+    background-color: #3471AD;
+    padding: 0.35rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.users th a {
+    color: white !important;
+}
+
+.users th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.users th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.users tr {
+    background-color: white;
+}
+
+.users td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.4rem 0.2rem;
+}
+
+.users .id {
+    width: 3rem;
+    text-align: center;
+}
+
+.users .name {
+    width: 10rem;
+}
+
+.users .registration-time,
+.users .last-login-time {
+    width: 12rem;
+    text-align: center;
+}
+
+.users .num-posts {
+    width: 4rem;
+    text-align: center;
+}
+
+.users .rank {
+    width: 8rem;
+}
+
+.users .location,
+.users .website {
+    width: 14rem;
+    text-align: center;
+}
+
+.users .status {
+    text-align: center;
+}
+
+/* pms */
+
+.pms {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    border-collapse: collapse;
+}
+
+.pms th {
+    background-color: #3471AD;
+    padding: 0.35rem 1rem;
+    color: white;
+    font-weight: normal;
+}
+
+.pms th a {
+    color: white !important;
+}
+
+.pms th:first-child {
+    border-radius: 2px 0 0 0;
+}
+
+.pms th:last-child {
+    border-radius: 0 2px 0 0;
+}
+
+.pms tr {
+    background-color: white;
+}
+
+.pms td {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0.4rem 0.2rem;
+}
+
+.pms .status {
+    width: 3rem;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+.pms .status .new {
+    font-weight: bold;
+    color: #FF6528;
+}
+
+.pms .author,
+.pms .recipient {
+    width: 12rem;
+    text-align: center;
+}
+
+.pms .send-time {
+    width: 12rem;
+    text-align: center;
+}
+
+.pm-form table {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.pm-form table td:first-child {
+    min-width: 6rem;
+}
+
+.pm-form #subject {
+    width: 30rem;
+}
+

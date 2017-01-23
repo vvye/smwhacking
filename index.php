@@ -10,11 +10,14 @@
 	require_once 'inc/functions/environment.php';
 	require_once 'inc/functions/engine.php';
 	require_once 'inc/functions/template.php';
+	require_once 'inc/functions/theme.php';
 	require_once 'inc/functions/database.php';
 
 	$database = getDatabase();
 
 	session_start();
+
+	$theme = getTheme();
 
 ?>
 <!doctype html>
@@ -25,19 +28,19 @@
 		<title>smwhacking.de - die deutschsprachige Seite übers SMW-Hacken</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet"
-		      type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/normalize.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
-		<link rel="stylesheet" type="text/css" href="css/form.css" />
-		<link rel="stylesheet" type="text/css" href="css/forums.css" />
-		<link rel="stylesheet" type="text/css" href="css/user.css" />
-		<link rel="stylesheet" type="text/css" href="css/cuteedit.css" />
-		<link rel="stylesheet" type="text/css" href="css/files.css" />
-		<link rel="stylesheet" type="text/css" href="css/chat.css" />
+			  type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/common/normalize.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/form.css" />
+		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/forums.css" />
+		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/user.css" />
+		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/cuteedit.css" />
+		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/files.css" />
+		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/chat.css" />
 
 		<?php if (isAdmin()): ?>
-			<link rel="stylesheet" type="text/css" href="css/admin.css" />
+			<link rel="stylesheet" type="text/css" href="css/default/admin.css" />
 		<?php endif; ?>
 
 	</head>
