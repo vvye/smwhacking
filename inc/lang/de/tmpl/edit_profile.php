@@ -36,7 +36,7 @@
 				<td class="stacked-input">
 					<label><input type="password" name="new-password" value="<?= $newPassword ?>" /></label>
 					<label><input type="password" name="new-password-confirm"
-					              value="<?= $newPasswordConfirm ?>" /></label>
+								  value="<?= $newPasswordConfirm ?>" /></label>
 				</td>
 			</tr>
 		</table>
@@ -68,7 +68,7 @@
 							<input type="file" class="file-input" name="avatar" id="avatar" />
 							<div class="custom-checkbox-group">
 								<input type="checkbox" class="custom-checkbox" name="delete-avatar"
-								       id="delete-avatar" />
+									   id="delete-avatar" />
 								<label class="custom-checkbox-label" for="delete-avatar"> Avatar löschen</label>
 							</div>
 						</div>
@@ -120,7 +120,23 @@
 				</td>
 				<td>
 					<label><textarea class="signature" name="signature" id="signature"
-					                 maxlength="1024"><?= $signature ?></textarea></label>
+									 maxlength="1024"><?= $signature ?></textarea></label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Theme:</h3>
+					<p>Wähle ein Theme aus, in dem die Seite für dich dargestellt wird.</p>
+				</td>
+				<td>
+					<label>
+						<select name="theme">
+							<?php foreach ($themes as $theme): ?>
+								<option value="<?= $theme ?>" <?= $theme == $selectedTheme ? 'selected="selected"' :
+									'' ?>><?= $theme ?></option>
+							<?php endforeach; ?>
+						</select>
+					</label>
 				</td>
 			</tr>
 			<tr>
@@ -133,7 +149,7 @@
 				<td>
 					<div class="custom-checkbox-group">
 						<input type="checkbox" class="custom-checkbox" name="enable-notifications"
-						       id="enable-notifications" <?= $enableNotifications ? 'checked="checked"' : '' ?> />
+							   id="enable-notifications" <?= $enableNotifications ? 'checked="checked"' : '' ?> />
 						<label class=" custom-checkbox-label" for="enable-notifications"> Benachrichtigungen
 							aktivieren</label>
 					</div>
@@ -174,16 +190,18 @@
 								</div>
 								<div class="custom-checkbox-group">
 									<input type="checkbox" class="custom-checkbox" name="favorite[<?= $medal['id'] ?>]"
-									       id="favorite-<?= $medal['id'] ?>" <?= array_key_exists($medal['id'], $favoriteMedals) ? 'checked="checked"' : '' ?>/>
+										   id="favorite-<?= $medal['id'] ?>" <?= array_key_exists($medal['id'], $favoriteMedals) ?
+										'checked="checked"' : '' ?>/>
 									<label class="custom-checkbox-label"
-									       for="favorite-<?= $medal['id'] ?>">auswählen</label>
+										   for="favorite-<?= $medal['id'] ?>">auswählen</label>
 									<br />
 									<label><input type="number" class="favorite-medal-rank"
-									              name="favorite-rank[<?= $medal['id'] ?>]"
-									              id="favorite-rank-<?= $medal['id'] ?>" min="1"
-									              max="<?= MAX_FAVORITE_MEDALS ?>"
-									              style="display: <?= array_key_exists($medal['id'], $favoriteMedals) ? 'block' : 'none' ?>"
-									              value="<?= $favoriteMedals[$medal['id']] ?? '' ?>" placeholder="Rang"></label>
+												  name="favorite-rank[<?= $medal['id'] ?>]"
+												  id="favorite-rank-<?= $medal['id'] ?>" min="1"
+												  max="<?= MAX_FAVORITE_MEDALS ?>"
+												  style="display: <?= array_key_exists($medal['id'], $favoriteMedals) ?
+													  'block' : 'none' ?>"
+												  value="<?= $favoriteMedals[$medal['id']] ?? '' ?>" placeholder="Rang"></label>
 								</div>
 							</div>
 						<?php endforeach; ?>
@@ -200,7 +218,7 @@
 				</td>
 				<td style="vertical-align: middle;">
 					<a class="button" href="?p=award-automatic-medals" target="_blank"><i
-							class="fa fa-external-link"></i> Auf neue Medaillen prüfen</a>
+								class="fa fa-external-link"></i> Auf neue Medaillen prüfen</a>
 					<p>(öffnet sich in einem neuen Fenster)</p>
 					<p>&nbsp;</p>
 					<p>Das Prüfen kann einige Zeit dauern! Manchmal brauchst du ein bis zwei Minuten Geduld.</p>
@@ -247,48 +265,48 @@
 <script type="text/javascript" src="js/smiley_editor.js.php"></script>
 <script type="text/javascript">
 
-	var bioEditor = new CuteEdit('bio');
-	var signatureEditor = new CuteEdit('signature');
+    var bioEditor = new CuteEdit('bio');
+    var signatureEditor = new CuteEdit('signature');
 
-	fileInput('file-input', {
-		buttonText: 'Durchsuchen&hellip;',
-		noFileText: 'Keine Datei ausgewählt.'
-	});
+    fileInput('file-input', {
+        buttonText: 'Durchsuchen&hellip;',
+        noFileText: 'Keine Datei ausgewählt.'
+    });
 
-	// avatar checkboxes
-	var editAvatarBox = document.getElementById('edit-avatar');
-	var avatarInput = document.getElementById('avatar');
-	var changeAvatarCheckbox = document.getElementById('change-avatar');
-	var deleteAvatarCheckbox = document.getElementById('delete-avatar');
+    // avatar checkboxes
+    var editAvatarBox = document.getElementById('edit-avatar');
+    var avatarInput = document.getElementById('avatar');
+    var changeAvatarCheckbox = document.getElementById('change-avatar');
+    var deleteAvatarCheckbox = document.getElementById('delete-avatar');
 
-	(changeAvatarCheckbox.onchange = function () {
-		editAvatarBox.style.display = changeAvatarCheckbox.checked ? '' : 'none';
-	})();
+    (changeAvatarCheckbox.onchange = function () {
+        editAvatarBox.style.display = changeAvatarCheckbox.checked ? '' : 'none';
+    })();
 
-	(deleteAvatarCheckbox.onchange = function () {
-		avatarInput.style.display = deleteAvatarCheckbox.checked ? 'none' : '';
-	})();
+    (deleteAvatarCheckbox.onchange = function () {
+        avatarInput.style.display = deleteAvatarCheckbox.checked ? 'none' : '';
+    })();
 
-	// medal checkboxes
-	var medalCheckboxes = document.querySelectorAll('input[name*="favorite"]');
-	var limit = <?= MAX_FAVORITE_MEDALS ?>;
-	for (var i = 0; i < medalCheckboxes.length; i++) {
-		(function (i) {
-			medalCheckboxes[i].onchange = function () {
-				var rankInputId = this.id.replace('favorite', 'favorite-rank');
-				var rankInput = document.getElementById(rankInputId);
-				rankInput.style.display = this.checked ? 'block' : 'none';
+    // medal checkboxes
+    var medalCheckboxes = document.querySelectorAll('input[name*="favorite"]');
+    var limit = <?= MAX_FAVORITE_MEDALS ?>;
+    for (var i = 0; i < medalCheckboxes.length; i++) {
+        (function (i) {
+            medalCheckboxes[i].onchange = function () {
+                var rankInputId = this.id.replace('favorite', 'favorite-rank');
+                var rankInput = document.getElementById(rankInputId);
+                rankInput.style.display = this.checked ? 'block' : 'none';
 
-				var numChecked = 0;
-				for (var i = 0; i < medalCheckboxes.length; i++) {
-					numChecked += medalCheckboxes[i].checked;
-				}
-				if (numChecked > limit) {
-					this.checked = false;
-					rankInput.style.display = 'none';
-				}
-			};
-		})(i);
-	}
+                var numChecked = 0;
+                for (var i = 0; i < medalCheckboxes.length; i++) {
+                    numChecked += medalCheckboxes[i].checked;
+                }
+                if (numChecked > limit) {
+                    this.checked = false;
+                    rankInput.style.display = 'none';
+                }
+            };
+        })(i);
+    }
 
 </script>

@@ -60,6 +60,7 @@
 			$powerlevel = (int)$user['powerlevel'];
 			$banned = (bool)$user['banned'];
 			$enableNotifications = (bool)$user['enable_notifications'];
+			$theme = $user['theme'];
 
 			$favoriteMedalsRaw = getFavoriteMedals($userId);
 			$favoriteMedalRanks = [];
@@ -80,6 +81,7 @@
 			$bio = trim(getFieldValue('bio'));
 			$signature = trim(getFieldValue('signature'));
 			$enableNotifications = getFieldValue('enable-notifications');
+			$theme = getFieldValue('theme');
 
 			$powerlevel = (int)getFieldValue('powerlevel');
 			$banned = (bool)getFieldValue('banned');
@@ -166,8 +168,15 @@
 					'website'             => $website,
 					'bio'                 => $bio,
 					'signature'           => $signature,
-					'enableNotifications' => $enableNotifications
+					'enableNotifications' => $enableNotifications,
+					'theme'               => $theme
 				]);
+
+				if ((int)$userId === (int)$_SESSION['userId'])
+				{
+					$_SESSION['signature'] = $signature;
+					$_SESSION['theme'] = $theme;
+				}
 
 				setFavoriteMedals($userId, $favoriteMedalRanks);
 
@@ -179,12 +188,20 @@
 				if ($canChangeTitle)
 				{
 					setUserTitle($userId, $title);
+					if ((int)$userId === (int)$_SESSION['userId'])
+					{
+						$_SESSION['title'] = $title;
+					}
 				}
 
 				if ($canChangePowerlevel)
 				{
 					makeBetween($powerlevel, 0, 2);
 					setPowerlevel($userId, $powerlevel);
+					if ((int)$userId === (int)$_SESSION['userId'])
+					{
+						$_SESSION['powerlevel'] = $powerlevel;
+					}
 				}
 
 				renderSuccessMessage(MSG_USERCP_SUCCESS);
@@ -192,7 +209,8 @@
 		}
 
 		renderTemplate('edit_profile', [
-			'action'              => '?p=edit-profile' . ($isOwnProfile ? '' : ('&user=' . $userId)) . '&token=' . getCsrfToken(),
+			'action'              => '?p=edit-profile' . ($isOwnProfile ? '' : ('&user=' . $userId)) . '&token='
+				. getCsrfToken(),
 			'isOwnProfile'        => $isOwnProfile,
 			'canEditProfile'      => $canEditProfile,
 			'canChangeTitle'      => $canChangeTitle,
@@ -215,7 +233,8 @@
 			'numAwardedMedals'    => count($medals),
 			'favoriteMedals'      => $favoriteMedalRanks,
 			'enableNotifications' => $enableNotifications,
-			'token'               => $token
+			'token'               => $token,
+			'themes'              => getAllThemes(),
+			'selectedTheme'       => $theme
 		]);
-	}
-	while (false);
+	} while (false);

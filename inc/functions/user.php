@@ -62,7 +62,8 @@
 			'website',
 			'email',
 			'banned',
-			'enable_notifications'
+			'enable_notifications',
+			'theme'
 		], [
 			'id'    => $userId,
 			'LIMIT' => 1
@@ -188,10 +189,12 @@
 			'website'              => htmlspecialchars($data['website']),
 			'bio'                  => delimitSmileys(htmlspecialchars($data['bio'])),
 			'signature'            => delimitSmileys(htmlspecialchars($data['signature'])),
-			'enable_notifications' => $data['enableNotifications'] ? 1 : 0
+			'enable_notifications' => $data['enableNotifications'] ? 1 : 0,
+			'theme'                => $data['theme']
 		], [
 			'id' => $userId
 		]);
+
 	}
 
 

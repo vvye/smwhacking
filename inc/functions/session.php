@@ -20,7 +20,8 @@
 			'banned',
 			'title',
 			'signature',
-			'csrf_token'
+			'csrf_token',
+			'theme'
 		], [
 			'AND' => [
 				'email'     => $givenEmail,
@@ -45,6 +46,7 @@
 		$_SESSION['banned'] = $user['banned'];
 		$_SESSION['title'] = $user['title'];
 		$_SESSION['signature'] = $user['signature'];
+		$_SESSION['theme'] = $user['theme'];
 
 		$_SESSION['csrfToken'] = renewCsrfToken();
 
