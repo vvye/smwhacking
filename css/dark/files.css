@@ -26,11 +26,11 @@
 }
 
 .files tr {
-    background-color: white;
+    background-color: #222;
 }
 
 .files td {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #444;
     padding: 0.6rem 0.2rem;
     vertical-align: top;
 }

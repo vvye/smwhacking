@@ -7,8 +7,8 @@
 }
 
 .user-section .content {
-    border-bottom: 1px solid #CCCCCC;
-    background-color: white;
+    border-bottom: 1px solid #444;
+    background-color: #222;
     padding: 1rem;
 }
 
@@ -30,7 +30,7 @@
     margin-top: 2rem;
     border-top: 1px solid #888888;
     padding-top: 0.5rem;
-    color: #aaa666;
+    color: #aaa;
     font-size: 0.9rem;
 }
 
@@ -77,17 +77,18 @@
 .medal p {
     margin: 0;
     font-size: 0.8rem;
-    color: #aaa666;
+    color: #aaa;
 }
 
 .medal .got-medal {
     margin-top: 0.2rem;
-    border: 1px solid #00CB00;
+    border: 1px solid #368A66;
+    background-color: #183228;
     border-left-width: 0.4rem;
     border-radius: 1px;
     padding: 0.1rem 0.2rem;
 }
 
 .medal .got-medal i {
-    color: #00AA00;
+    color: #368A66;
 }

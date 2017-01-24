@@ -1,6 +1,5 @@
 .chat {
     margin-top: 1rem;
-    border: 1px solid #DDDDDD;
     border-radius: 1px;
 }
 
@@ -44,14 +43,14 @@
 }
 
 .chat .chat-message {
-    border-bottom: 1px solid #DDDDDD;
-    background-color: white;
+    border-bottom: 1px solid #444;
+    background-color: #222;
     padding: 0.3rem;
     font-size: 0.9rem;
 }
 
 .chat .chat-message:nth-child(even) {
-    background-color: #F8F8F8;
+    background-color: #2A2A2A;
 }
 
 .chat .chat-message .chat-sidebar {

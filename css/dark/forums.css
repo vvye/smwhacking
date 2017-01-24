@@ -20,7 +20,7 @@
 .pagination li a {
     display: inline-block;
     border: 1px solid #3471AD;
-    background-color: white;
+    background-color: #222;
     padding: 0.6rem 0.8rem;
     color: #3471AD;
     text-decoration: none;
@@ -35,7 +35,7 @@
 }
 
 .pagination li a:hover {
-    background-color: #D5E8FF;
+    background-color: #233C5A;
 }
 
 .pagination li.selected a,
@@ -54,7 +54,7 @@
 }
 
 .forum tr {
-    background-color: white;
+    background-color: #222;
 }
 
 .forum th:first-child {
@@ -73,7 +73,7 @@
 }
 
 .forum td {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #444;
     padding: 0.5rem 0.2rem;
 }
 
@@ -93,7 +93,7 @@
 }
 
 .forum .status .closed {
-    color: #aaa666;
+    color: #aaa;
 }
 
 .forum .num-threads,
@@ -139,13 +139,13 @@
 /* thread */
 
 .post {
-    background-color: white;
-    border-bottom: 1px solid #CCCCCC;
+    background-color: #222;
+    border-bottom: 1px solid #444;
     padding: 1rem 1rem 1rem 0;
 }
 
 .post:nth-child(even) {
-    background-color: #F8F8F8;
+    background-color: #2A2A2A;
 }
 
 .post .sidebar {
@@ -201,13 +201,13 @@
     margin-top: 2rem;
     border-top: 1px solid #888888;
     padding-top: 0.5rem;
-    color: #aaa666;
+    color: #aaa;
     font-size: 0.9rem;
 }
 
 .topbar {
     font-size: 0.8rem;
-    color: gray;
+    color: #aaa;
     margin-top: 0;
     margin-bottom: 0.3rem;
 }
@@ -224,7 +224,7 @@
 .code .head,
 .spoiler .head {
     font-size: 0.9rem;
-    color: #555555;
+    color: #aaa;
 }
 
 .spoiler .head .button {
@@ -236,7 +236,7 @@
 .spoiler > .box {
     border: 1px solid #666;
     border-radius: 1px;
-    background-color: #F8F8F8;
+    background-color: #2A2A2A;
     padding: 0.5rem 1rem;
 }
 
@@ -258,9 +258,9 @@
 
 .inline-spoiler {
     display: inline-block;
-    border: 1px solid transparent;
+    border: 1px solid #666;
     border-radius: 1px;
-    background-color: #333 !important;
+    background-color: black !important;
     padding: 2px 3px;
 }
 
@@ -305,11 +305,11 @@
 }
 
 .users tr {
-    background-color: white;
+    background-color: #222;
 }
 
 .users td {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #444;
     padding: 0.4rem 0.2rem;
 }
 
@@ -375,11 +375,11 @@
 }
 
 .pms tr {
-    background-color: white;
+    background-color: #222;
 }
 
 .pms td {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #444;
     padding: 0.4rem 0.2rem;
 }
 

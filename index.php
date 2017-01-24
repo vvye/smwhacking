@@ -40,7 +40,7 @@
 		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/chat.css" />
 
 		<?php if (isAdmin()): ?>
-			<link rel="stylesheet" type="text/css" href="css/default/admin.css" />
+			<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/admin.css" />
 		<?php endif; ?>
 
 	</head>

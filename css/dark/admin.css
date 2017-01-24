@@ -23,11 +23,11 @@
 }
 
 .ranks tr {
-    background-color: white;
+    background-color: #222;
 }
 
 .ranks td {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #444;
     padding: 0.5rem 1rem;
     text-align: left;
     vertical-align: top;
@@ -98,11 +98,11 @@ table.medals {
 }
 
 .medals tr {
-    background-color: white;
+    background-color: #222;
 }
 
 .medals td {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #444;
     padding: 0.5rem 1rem;
     text-align: center;
 }
