@@ -35,7 +35,7 @@
 				break;
 			}
 
-			$isOwnPm = $pm['author_id'] === $_SESSION['userId'];
+			$isOwnPm = $pm['author_id'] === $_SESSION['userId'] && $pm['recipient_id'] !== $_SESSION['userId'];
 			if (!$isOwnPm)
 			{
 				markPmAsRead($pmId);
