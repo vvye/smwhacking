@@ -258,6 +258,10 @@ option {
 
 /* specific elements */
 
+.register-form .final-action div {
+    max-width: 31rem;
+}
+
 .post-form {
     margin-bottom: 4rem;
 }

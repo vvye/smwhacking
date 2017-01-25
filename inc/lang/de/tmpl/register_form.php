@@ -1,7 +1,7 @@
 <h2>Registrieren</h2>
 
 <form action="?p=register" method="post">
-	<table class="form">
+	<table class="form register-form">
 		<tr>
 			<td>
 				<h3>E-Mail-Adresse:</h3>
@@ -10,9 +10,9 @@
 			</td>
 			<td class="stacked-input">
 				<label><input type="email" name="email" value="<?= $email ?>"
-				              required="required" /></label>
+							  required="required" /></label>
 				<label><input type="email" name="email-confirm" value="<?= $emailConfirm ?>"
-				              required="required" /></label>
+							  required="required" /></label>
 			</td>
 		</tr>
 		<tr>
@@ -22,7 +22,7 @@
 					Buchstaben, Zahlen und Leerzeichen.)</p>
 			</td>
 			<td><label><input type="text" name="username" value="<?= $username ?>"
-			                  required="required" /></label></td>
+							  required="required" /></label></td>
 		</tr>
 		<tr>
 			<td>
@@ -32,9 +32,9 @@
 			</td>
 			<td class="stacked-input">
 				<label><input type="password" name="password" value="<?= $password ?>"
-				              required="required" /></label>
+							  required="required" /></label>
 				<label><input type="password" name="password-confirm"
-				              value="<?= $passwordConfirm ?>" required="required" /></label>
+							  value="<?= $passwordConfirm ?>" required="required" /></label>
 			</td>
 		</tr>
 		<tr>
@@ -45,12 +45,14 @@
 			</td>
 			<td>
 				<label><input type="text" name="security-answer" value="<?= $securityAnswer ?>"
-				              required="required" /></label>
+							  required="required" /></label>
 			</td>
 		</tr>
 		<tr>
 			<td class="final-action" colspan="2">
-				<button class="primary" type="submit" name="submit">Registrieren</button>
+				<div>
+					<button class="primary" type="submit" name="submit">Registrieren</button>
+				</div>
 			</td>
 		</tr>
 	</table>
