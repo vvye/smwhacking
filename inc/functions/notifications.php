@@ -25,7 +25,7 @@
 		$token = bin2hex(random_bytes(16));
 		file_put_contents(__DIR__ . '/../../notification_token', $token);
 
-		$url = 'localhost' . dirname($_SERVER['REQUEST_URI']) . "/?p=send-notification&emails=$emails&subject=$subject&message=$message&token=$token";
+		$url = WEBSITE_URL . "/?p=send-notification&emails=$emails&subject=$subject&message=$message&token=$token";
 
 		$ch = curl_init();
 
