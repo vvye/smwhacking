@@ -2,8 +2,8 @@
 
 <form>
 	<a class="subtle button" href="?p=posts&user=<?= $id ?>"><i class="fa fa-list"></i> Beiträge ansehen</a>
-	<a class="subtle button" href="?p=new-pm&user=<?= $id ?>"><i class="fa fa-envelope"></i> Nachricht
-		schreiben</a>
+	<a class="subtle button" href="?p=new-pm&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-envelope"></i>
+		Nachricht schreiben</a>
 	<?php if ($canEditProfile): ?>
 		<a class="subtle button" href="?p=edit-profile&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-edit"></i>
 			Profil bearbeiten</a>
@@ -12,7 +12,7 @@
 
 		<?php if ($banned): ?>
 			<a class="subtle button" href="?p=ban&user=<?= $id ?>&action=unban&token=<?= $token ?>"><i
-					class="fa fa-ban"></i> Nutzer entsperren</a>
+						class="fa fa-ban"></i> Nutzer entsperren</a>
 		<?php else: ?>
 			<a class="subtle button" href="?p=ban&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-ban"></i> Nutzer
 				sperren</a>
@@ -21,6 +21,6 @@
 	<?php endif; ?>
 	<?php if ($canGiveMedal): ?>
 		<a class="subtle button" href="?p=award-medal&user=<?= $id ?>&token=<?= $token ?>"><i class="fa fa-trophy"></i>
-		Medaille verleihen</a>
+			Medaille verleihen</a>
 	<?php endif; ?>
 </form>
