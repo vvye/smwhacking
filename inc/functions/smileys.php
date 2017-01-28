@@ -34,14 +34,14 @@
 			return '/(^|[^a-z0-9])' . preg_quote($smiley['code']) . '([^a-z0-9]|$)/i';
 		}, $smileys);
 
-		$smileyCodesWithDelimiterRegex = array_map(function ($smiley)
+		$smileyCodeWithDelimiterRegexes = array_map(function ($smiley)
 		{
 			$delimiter = '<!-- s' . $smiley['code'] . ' -->';
 
 			return '$1' . $delimiter . $smiley['code'] . $delimiter . '$2';
 		}, $smileys);
 
-		return preg_replace($smileyCodeRegexes, $smileyCodesWithDelimiterRegex, $text);
+		return preg_replace($smileyCodeRegexes, $smileyCodeWithDelimiterRegexes, $text);
 	}
 
 

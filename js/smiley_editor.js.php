@@ -18,7 +18,7 @@ var CuteEdit_Emoticons = [
 			<?php foreach ($smileys as $smiley): ?>
 			{
 				name: '<?= $smiley['name'] ?>',
-				text: '<?= $smiley['code'] ?>',
+                text: ' <?= $smiley['code'] ?> ',
 				url: 'img/smileys/<?= $smiley['image_filename'] ?>'
 			},
 			<?php endforeach; ?>
