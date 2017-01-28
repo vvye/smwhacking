@@ -90,7 +90,7 @@
 						'title'        => $_SESSION['title'],
 						'rank'         => getRank($_SESSION['userId']),
 						'hasAvatar'    => hasAvatar($_SESSION['userId']),
-						'signature'    => parseBBCode($_SESSION['signature'])
+						'signature'    => parseBBCode(delimitSmileys($_SESSION['signature']))
 					]
 				]);
 			}

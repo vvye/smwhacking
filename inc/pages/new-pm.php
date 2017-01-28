@@ -67,7 +67,7 @@
 
 				renderTemplate('post_preview', [
 					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
-					'content'  => parseBBCode(htmlspecialchars($pmText)),
+					'content'  => parseBBCode(delimitSmileys(htmlspecialchars($pmText))),
 					'author'   => [
 						'id'           => $_SESSION['userId'],
 						'name'         => $_SESSION['username'],
@@ -77,7 +77,7 @@
 						'title'        => $_SESSION['title'],
 						'rank'         => getRank($_SESSION['userId']),
 						'hasAvatar'    => hasAvatar($_SESSION['userId']),
-						'signature'    => $_SESSION['signature']
+						'signature'    => parseBBCode(delimitSmileys($_SESSION['signature']))
 					]
 				]);
 			}
