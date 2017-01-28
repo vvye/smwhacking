@@ -7,6 +7,10 @@
 	</li>
 	<li>
 		<i class="fa fa-li fa-user"></i>
+		<a href="?p=users">Nutzer verwalten</a>
+	</li>
+	<li>
+		<i class="fa fa-li fa-user"></i>
 		<a href="?p=admin&s=manage-ranks">Ränge verwalten</a>
 	</li>
 	<li>
