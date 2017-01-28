@@ -61,7 +61,7 @@
 			{
 				// TODO outsource to template? 
 				$postText = '[quote=' . $quotedPost['author_name'] . ']'
-					. htmlspecialchars_decode($quotedPost['content']) . '[/quote]';
+					. htmlspecialchars_decode(removeSmileyDelimiters($quotedPost['content'])) . '[/quote]';
 			}
 		}
 
