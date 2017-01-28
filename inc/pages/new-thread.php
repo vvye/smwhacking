@@ -4,6 +4,11 @@
 	require_once __DIR__ . '/../functions/thread.php';
 	require_once __DIR__ . '/../functions/post.php';
 	require_once __DIR__ . '/../functions/permissions.php';
+	require_once __DIR__ . '/../functions/bbcode.php';
+	require_once __DIR__ . '/../functions/smileys.php';
+	require_once __DIR__ . '/../functions/user.php';
+	require_once __DIR__ . '/../functions/avatar.php';
+	require_once __DIR__ . '/../functions/medals.php';
 	require_once __DIR__ . '/../functions/misc.php';
 
 
@@ -52,7 +57,7 @@
 		$threadTitle = trim(getFieldValue('thread-title'));
 		$postText = trim(getFieldValue('post-text'));
 
-		if (isset($_POST['submit']))
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			if ($threadTitle === '')
 			{
@@ -63,6 +68,24 @@
 			{
 				renderErrorMessage(MSG_POST_TEXT_EMPTY);
 				$error = true;
+			}
+			else if (isset($_POST['preview']))
+			{
+				renderTemplate('post_preview', [
+					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
+					'content'  => parseBBCode(delimitSmileys(htmlspecialchars($postText))),
+					'author'   => [
+						'id'           => $_SESSION['userId'],
+						'name'         => $_SESSION['username'],
+						'powerlevelId' => (int)$_SESSION['powerlevel'],
+						'powerlevel'   => POWERLEVEL_DESCRIPTIONS[$_SESSION['powerlevel']],
+						'banned'       => $_SESSION['banned'],
+						'title'        => $_SESSION['title'],
+						'rank'         => getRank($_SESSION['userId']),
+						'hasAvatar'    => hasAvatar($_SESSION['userId']),
+						'signature'    => parseBBCode(delimitSmileys($_SESSION['signature']))
+					]
+				]);
 			}
 			else
 			{

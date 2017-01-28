@@ -9,6 +9,7 @@
 	<input type="text" class="thread-title" name="thread-title" placeholder="Titel" value="<?=  $threadTitle ?>" />
 	<textarea class="post-text" name="post-text" id="post-text" placeholder="Beitrags-Text"><?= $postText ?></textarea>
 	<button class="primary" type="submit" name="submit">Thema erstellen</button>
+	<button type="submit" name="preview">Vorschau</button>
 </form>
 
 <script type="text/javascript" src="js/cuteedit.js"></script>
