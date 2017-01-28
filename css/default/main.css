@@ -236,6 +236,10 @@ ul.bbcode-list li {
     max-width: 36rem;
 }
 
+.news h2, .news h2 + a {
+    display: inline-block;
+}
+
 .news h3 {
     margin-bottom: 0;
     font-size: 1.3rem;
