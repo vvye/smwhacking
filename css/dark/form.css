@@ -278,6 +278,7 @@ option {
 
 .thread-title {
     width: 80%;
+    margin-bottom: 1.5rem;
     font-weight: bold;
 }
 
