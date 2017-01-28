@@ -19,6 +19,6 @@
 <script type="text/javascript" src="js/smiley_editor.js.php"></script>
 <script type="text/javascript">
 
-	var editor = new CuteEdit('post-text');
+    var editor = new CuteEdit('post-text');
 
 </script>

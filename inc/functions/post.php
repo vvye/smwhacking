@@ -224,11 +224,10 @@
 				'thread'  => $threadId,
 				'deleted' => 0
 			],
-			'ORDER' => 'id ASC',
-			'LIMIT' => 1
+			'ORDER' => 'id ASC'
 		]);
 
-		return $id[0] === $postId;
+		return $id === $postId;
 	}
 
 
