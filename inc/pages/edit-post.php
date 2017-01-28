@@ -94,6 +94,8 @@
 						'signature'    => parseBBCode($_SESSION['signature'])
 					]
 				]);
+
+				renderTemplate('spoiler_js', []);
 			}
 			else
 			{
