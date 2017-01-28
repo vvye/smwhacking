@@ -27,7 +27,8 @@
 	</div>
 
 	<div class="news">
-		<h2>Neueste Ankündigungen</h2> <a href="p=forum&id=<?= NEWS_FORUM_ID ?>">(alle ansehen)</a>
+		<h2>Neueste Ankündigungen</h2>
+		<a href="?p=forum&id=<?= NEWS_FORUM_ID ?>">(alle ansehen)</a>
 
 		<?php if ($numNews === 0): ?>
 			<em>Es gibt noch keine Ankündigungen.</em>
