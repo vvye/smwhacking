@@ -79,19 +79,21 @@
 			}
 			else if (isset($_POST['preview']))
 			{
+				$author = getUser($post['author_id']);
+
 				renderTemplate('post_preview', [
 					'postTime' => date(DEFAULT_DATE_FORMAT, time()),
 					'content'  => parseBBCode(delimitSmileys(htmlspecialchars($postText))),
 					'author'   => [
-						'id'           => $_SESSION['userId'],
-						'name'         => $_SESSION['username'],
-						'powerlevelId' => (int)$_SESSION['powerlevel'],
-						'powerlevel'   => POWERLEVEL_DESCRIPTIONS[$_SESSION['powerlevel']],
-						'banned'       => $_SESSION['banned'],
-						'title'        => $_SESSION['title'],
-						'rank'         => getRank($_SESSION['userId']),
-						'hasAvatar'    => hasAvatar($_SESSION['userId']),
-						'signature'    => parseBBCode($_SESSION['signature'])
+						'id'           => $author['id'],
+						'name'         => $author['name'],
+						'powerlevelId' => (int)$author['powerlevel'],
+						'powerlevel'   => POWERLEVEL_DESCRIPTIONS[$author['powerlevel']],
+						'banned'       => $author['banned'],
+						'title'        => $author['title'],
+						'rank'         => getRank($author['id']),
+						'hasAvatar'    => hasAvatar($author['id']),
+						'signature'    => parseBBCode($author['signature'])
 					]
 				]);
 
@@ -129,5 +131,4 @@
 			]);
 		}
 
-	}
-	while (false);
+	} while (false);
