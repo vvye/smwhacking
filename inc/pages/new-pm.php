@@ -88,6 +88,8 @@
 				'pmText'        => htmlspecialchars($pmText),
 				'token'         => $token
 			]);
+
+			renderTemplate('spoiler_js', []);
 		}
 		else
 		{

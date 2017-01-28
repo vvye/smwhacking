@@ -65,6 +65,8 @@
 					'signature'        => parseBBCode($pm['author_signature'])
 				]
 			]);
+
+			renderTemplate('spoiler_js', []);
 		}
 		else
 		{
