@@ -588,3 +588,39 @@
 
 	define('MSG_FILE_UPLOADED',
 		'Die Datei wurde hochgeladen.');
+
+
+	define('MSG_THREAD',
+		'Thema');
+
+
+	define('MSG_REPLIES',
+		'Antworten');
+
+
+	define('MSG_VIEWS',
+		'Zugriffe');
+
+
+	define('MSG_LAST_POST',
+		'Letzter Beitrag');
+
+
+	define('MSG_NO_THREADS',
+		'In diesem Forum gibt es noch keine Themen.');
+
+
+	define('MSG_STICKY',
+		'Wichtig');
+
+
+	define('MSG_BY',
+		'von');
+
+
+	define('MSG_CREATED_BY',
+		'erstellt von');
+
+
+	define('MSG_AT',
+		'am');

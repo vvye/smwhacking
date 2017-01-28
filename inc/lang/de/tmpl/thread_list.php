@@ -1,10 +1,10 @@
 <table class="forum thread-list">
 	<thead>
 	<tr>
-		<th class="thread" colspan="2">Thema</th>
-		<th class="num-replies">Antworten</th>
-		<th class="num-views">Zugriffe</th>
-		<th class="last-post">letzter Beitrag</th>
+		<th class="thread" colspan="2"><?= MSG_THREAD ?></th>
+		<th class="num-replies"><?= MSG_REPLIES ?></th>
+		<th class="num-views"><?= MSG_VIEWS ?></th>
+		<th class="last-post"><?= MSG_LAST_POST ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -12,7 +12,7 @@
 	<?php if ($numTotalThreads === 0): ?>
 		<tr>
 			<td colspan="5" style="text-align: center;">
-				<em>In diesem Forum gibt es noch keine Themen.</em>
+				<em><?= MSG_NO_THREADS ?></em>
 			</td>
 		</tr>
 	<?php endif; ?>
@@ -37,12 +37,12 @@
 		<td>
 			<h3>
 				<?php if ($thread['sticky']): ?>
-					Wichtig:
+					<?= MSG_STICKY ?>
 				<?php endif; ?>
 				<a href="?p=thread&id=<?= $thread['id'] ?>"><?= $thread['name'] ?></a>
 			</h3>
-			<p>erstellt von <a href="?p=user&id=<?= $thread['authorId'] ?>"><?= $thread['authorName'] ?></a>
-				am <?= $thread['creationTime'] ?></p>
+			<p><?= MSG_CREATED_BY ?> <a href="?p=user&id=<?= $thread['authorId'] ?>"><?= $thread['authorName'] ?></a>
+				<?= MSG_AT ?> <?= $thread['creationTime'] ?></p>
 		</td>
 		<td class="num-replies"><?= $thread['numReplies'] ?></td>
 		<td class="num-views"><?= $thread['numViews'] ?></td>
@@ -50,7 +50,7 @@
 			<?php if ($thread['lastPost'] === null): ?>
 				<em><?= MSG_NONE ?></em>
 			<?php else: ?>
-				von <a href="?p=user&id=<?= $thread['lastPost']['author_id'] ?>">
+				<?= MSG_BY ?> <a href="?p=user&id=<?= $thread['lastPost']['author_id'] ?>">
 					<?= $thread['lastPost']['author_name'] ?>
 				</a>
 				<a href="?p=thread&id=<?= $thread['lastPost']['thread_id'] ?>&page=<?= $thread['lastPostPage'] ?>#post-<?= $thread['lastPost']['id'] ?>">
