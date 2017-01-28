@@ -29,19 +29,19 @@
 			$smileys = getSmileys();
 		}
 
-		$smileyCodes = array_map(function ($smiley)
+		$smileyCodeRegexes = array_map(function ($smiley)
 		{
-			return $smiley['code'];
+			return '/(^|[^a-z0-9])' . preg_quote($smiley['code']) . '([^a-z0-9]|$)/i';
 		}, $smileys);
 
-		$smileyCodesWithDelimiter = array_map(function ($smiley)
+		$smileyCodesWithDelimiterRegex = array_map(function ($smiley)
 		{
 			$delimiter = '<!-- s' . $smiley['code'] . ' -->';
 
-			return $delimiter . $smiley['code'] . $delimiter;
+			return '$1' . $delimiter . $smiley['code'] . $delimiter . '$2';
 		}, $smileys);
 
-		return str_replace($smileyCodes, $smileyCodesWithDelimiter, $text);
+		return preg_replace($smileyCodeRegexes, $smileyCodesWithDelimiterRegex, $text);
 	}
 
 
