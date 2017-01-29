@@ -444,6 +444,16 @@
 	}
 
 
+	function addCategory($name)
+	{
+		global $database;
+
+		$database->insert('medal_categories', [
+			'name' => htmlspecialchars($name)
+		]);
+	}
+
+
 	function editCategoryName($id, $name)
 	{
 		global $database;

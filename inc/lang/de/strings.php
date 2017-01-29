@@ -625,3 +625,7 @@
 
 	define('MSG_AT',
 		'am');
+
+
+	define('MSG_CATEGORY_ADDED',
+		'Die Kategorie wurde hinzugefügt.');
