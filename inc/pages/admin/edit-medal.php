@@ -34,6 +34,7 @@
 			$categoryId = $_POST['category'];
 			$awardCondition = $_POST['award-condition'];
 			$value = ($awardCondition === 'manual') ? 0 : $_POST['value'];
+			$secret = isset($_POST['secret']) ? 1 : 0;
 
 			if ($name === '' || $description === '')
 			{
@@ -51,7 +52,8 @@
 					'category'        => htmlspecialchars($categoryId),
 					'award_condition' => htmlspecialchars($awardCondition),
 					'value'           => htmlspecialchars($value),
-					'image_filename'  => htmlspecialchars($imageFilename)
+					'image_filename'  => htmlspecialchars($imageFilename),
+					'secret'          => htmlspecialchars($secret)
 				]);
 
 				renderSuccessMessage(MSG_MEDAL_EDITED);
@@ -70,6 +72,7 @@
 					'awardCondition'  => $awardCondition,
 					'value'           => $value,
 					'imageFilename'   => $imageFilename,
+					'secret'          => $secret,
 					'token'           => getCsrfToken()
 				]);
 				break;
@@ -87,8 +90,8 @@
 			'awardCondition'  => $medal['award_condition'],
 			'value'           => $medal['value'],
 			'imageFilename'   => $medal['image_filename'],
+			'secret'          => $medal['secret'],
 			'token'           => getCsrfToken()
 		]);
 
-	}
-	while (false);
+	} while (false);
