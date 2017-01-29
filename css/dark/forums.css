@@ -123,7 +123,8 @@
 }
 
 .thread-list .num-replies,
-.thread-list .num-views {
+.thread-list .num-views,
+.thread-list .page-selection {
     width: 5rem;
     text-align: center;
 }
