@@ -109,6 +109,58 @@
 	}
 
 
+	function getFirstUnreadPostIdInThread($thread)
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			return null;
+		}
+
+		$unread = ($thread['last_read_time'] < $thread['last_post_time']);
+
+		$threadId = $database->quote($thread['id']);
+		$userId = $database->quote($_SESSION['userId']);
+
+		$id = $database->query('
+			SELECT id
+			FROM posts
+			LEFT JOIN threads_read ON posts.thread = threads_read.thread
+			AND posts.post_time > threads_read.last_read_time
+			WHERE posts.thread = ' . $threadId . ' AND threads_read.user = ' . $userId . '
+			ORDER BY post_time ASC
+			LIMIT 1'
+		)->fetchAll();
+
+		if (!isset($id[0]['id']) && $unread)
+		{
+			return getFirstPostIdInThread($thread['id']);
+		}
+		else if (!isset($id[0]['id']))
+		{
+			return null;
+		}
+
+		return $id[0]['id'];
+	}
+
+
+	function getFirstPostIdInThread($threadId)
+	{
+		global $database;
+
+		$id = $database->select('posts', [
+			'id'
+		], [
+			'thread' => $threadId,
+			'ORDER'  => 'post_time ASC',
+			'LIMIT'  => 1
+		]);
+
+		return $id[0]['id'] ?? null;
+	}
+
 	function getPostPageInThread($postId, $threadId)
 	{
 		global $database;

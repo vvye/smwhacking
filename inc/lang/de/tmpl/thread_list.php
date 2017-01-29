@@ -40,6 +40,12 @@
 					<?= MSG_STICKY ?>
 				<?php endif; ?>
 				<a href="?p=thread&id=<?= $thread['id'] ?>"><?= $thread['name'] ?></a>
+				<?php if ($thread['firstUnreadPostId'] !== null): ?>
+					<a href="?p=thread&id=<?= $thread['id'] ?>&page=<?= $thread['firstUnreadPostPage'] ?>#post-<?= $thread['firstUnreadPostId'] ?>"
+					   title="Ersten ungelesen Post anzeigen">
+						<i class="fa fa-arrow-right"></i>
+					</a>
+				<?php endif ?>
 			</h3>
 			<p><?= MSG_CREATED_BY ?> <a href="?p=user&id=<?= $thread['authorId'] ?>"><?= $thread['authorName'] ?></a>
 				<?= MSG_AT ?> <?= $thread['creationTime'] ?></p>
@@ -65,7 +71,8 @@
 				<?= MSG_BY ?> <a href="?p=user&id=<?= $thread['lastPost']['author_id'] ?>">
 					<?= $thread['lastPost']['author_name'] ?>
 				</a>
-				<a href="?p=thread&id=<?= $thread['lastPost']['thread_id'] ?>&page=<?= $thread['lastPostPage'] ?>#post-<?= $thread['lastPost']['id'] ?>">
+				<a href="?p=thread&id=<?= $thread['lastPost']['thread_id'] ?>&page=<?= $thread['lastPostPage'] ?>#post-<?= $thread['lastPost']['id'] ?>"
+				   title="Letzten Post anzeigen">
 					<i class="fa fa-arrow-right"></i>
 				</a>
 				<p><?= date(DEFAULT_DATE_FORMAT, $thread['lastPost']['post_time']) ?></p>

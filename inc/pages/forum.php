@@ -65,21 +65,26 @@
 
 			$numPagesInThread = (int)ceil($thread['posts'] / POSTS_PER_PAGE);
 
+			$firstUnreadPostId = getFirstUnreadPostIdInThread($thread);
+			$firstUnreadPostPage = getPostPageInThread($firstUnreadPostId, $thread['id']);
+
 			$threadsForTemplate[] = [
-				'closed'       => $thread['closed'],
-				'sticky'       => $thread['sticky'],
-				'lastSticky'   => $thread['sticky'] && $index === $numStickies - 1,
-				'unread'       => $unread,
-				'id'           => $thread['id'],
-				'name'         => $thread['name'],
-				'numPages'     => $numPagesInThread,
-				'numReplies'   => $thread['posts'] - 1,
-				'numViews'     => $thread['views'],
-				'lastPost'     => $lastPost,
-				'lastPostPage' => $lastPostPage,
-				'authorId'     => $thread['author_id'],
-				'authorName'   => $thread['author_name'],
-				'creationTime' => date(DEFAULT_DATE_FORMAT, $thread['creation_time']),
+				'closed'              => $thread['closed'],
+				'sticky'              => $thread['sticky'],
+				'lastSticky'          => $thread['sticky'] && $index === $numStickies - 1,
+				'unread'              => $unread,
+				'id'                  => $thread['id'],
+				'name'                => $thread['name'],
+				'numPages'            => $numPagesInThread,
+				'numReplies'          => $thread['posts'] - 1,
+				'numViews'            => $thread['views'],
+				'lastPost'            => $lastPost,
+				'lastPostPage'        => $lastPostPage,
+				'authorId'            => $thread['author_id'],
+				'authorName'          => $thread['author_name'],
+				'creationTime'        => date(DEFAULT_DATE_FORMAT, $thread['creation_time']),
+				'firstUnreadPostId'   => $firstUnreadPostId,
+				'firstUnreadPostPage' => $firstUnreadPostPage,
 			];
 		}
 
