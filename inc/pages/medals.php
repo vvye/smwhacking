@@ -4,6 +4,7 @@
 
 
 	$medals = getAllMedals();
+	$medals = filterVisibleMedals($medals);
 	$medalsByCategory = getMedalsByCategory($medals);
 
 	$awardedMedals = isLoggedIn() ? getAwardedMedalsByUser($_SESSION['userId']) : [];

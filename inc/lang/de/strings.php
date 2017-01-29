@@ -629,3 +629,7 @@
 
 	define('MSG_CATEGORY_ADDED',
 		'Die Kategorie wurde hinzugefügt.');
+
+
+	define('MSG_SECRET_MEDAL_DESCRIPTION',
+		'<em>[geheim!]</em>');

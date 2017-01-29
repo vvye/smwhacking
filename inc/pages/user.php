@@ -67,10 +67,20 @@
 		]);
 
 		$medals = getAwardedMedalsByUser($userId);
+		$visibleMedals = filterVisibleMedals($medals);
+		foreach ($medals as $key => $medal)
+		{
+			$medals[$key]['visible'] = in_array($medal, $visibleMedals);
+		}
 		$numTotalMedals = count($medals);
 		$medalsByCategory = getMedalsByCategory($medals);
 
 		$favoriteMedals = getFavoriteMedals($userId);
+		$visibleFavoriteMedals = filterVisibleMedals($favoriteMedals);
+		foreach ($favoriteMedals as $key => $medal)
+		{
+			$favoriteMedals[$key]['visible'] = in_array($medal, $visibleFavoriteMedals);
+		}
 		$numFavoriteMedals = count($favoriteMedals);
 		$favoriteMedalsByCategory = getMedalsByCategory($favoriteMedals);
 
@@ -82,6 +92,5 @@
 		]);
 
 		renderTemplate('spoiler_js', []);
-	}
-	while (false);
+	} while (false);
 

@@ -8,7 +8,11 @@
 					<img src="img/medals/<?= $medal['image_filename'] ?>" alt="<?= $medal['name'] ?>" />
 					<div>
 						<h5><?= $medal['name'] ?></h5>
-						<p><?= $medal['description'] ?></p>
+						<?php if ($medal['visible']): ?>
+							<p><?= $medal['description'] ?></p>
+						<?php else: ?>
+							<p><?= MSG_SECRET_MEDAL_DESCRIPTION ?></p>
+						<?php endif; ?>
 						<p>verliehen am <?= date(DEFAULT_DATE_FORMAT, $medal['award_time']) ?></p>
 					</div>
 				</div>
@@ -43,7 +47,11 @@
 					<img src="img/medals/<?= $medal['image_filename'] ?>" alt="<?= $medal['name'] ?>" />
 					<div>
 						<h5><?= $medal['name'] ?></h5>
-						<p><?= $medal['description'] ?></p>
+						<?php if ($medal['visible']): ?>
+							<p><?= $medal['description'] ?></p>
+						<?php else: ?>
+							<p><?= MSG_SECRET_MEDAL_DESCRIPTION ?></p>
+						<?php endif; ?>
 						<p>verliehen am <?= date(DEFAULT_DATE_FORMAT, $medal['award_time']) ?></p>
 					</div>
 				</div>

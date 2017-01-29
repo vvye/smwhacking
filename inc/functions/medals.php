@@ -19,9 +19,35 @@
 			'medals.image_filename',
 			'medals.award_condition',
 			'medals.value',
+			'medals.secret'
 		]);
 
 		return $medals;
+	}
+
+
+	function filterVisibleMedals($medals)
+	{
+		if (isAdmin())
+		{
+			return $medals;
+		}
+
+		if (!isLoggedIn())
+		{
+			return array_filter($medals, function ($medal)
+			{
+				return !$medal['secret'];
+			});
+		}
+
+		$awardedMedals = getAwardedMedalsByUser($_SESSION['userId']);
+		$awardedMedalIds = array_map('getMedalId', $awardedMedals);
+
+		return array_filter($medals, function ($medal) use ($awardedMedalIds)
+		{
+			return !$medal['secret'] || in_array($medal['id'], $awardedMedalIds);
+		});
 	}
 
 
@@ -72,6 +98,7 @@
 			'medals.id',
 			'medal_categories.name(category_name)',
 			'medals.name',
+			'medals.secret',
 			'medals.description',
 			'medals.image_filename',
 			'awarded_medals.award_time'
@@ -229,6 +256,7 @@
 			'medals.id',
 			'medal_categories.name(category_name)',
 			'medals.name',
+			'medals.secret',
 			'medals.description',
 			'medals.image_filename',
 			'awarded_medals.award_time',
