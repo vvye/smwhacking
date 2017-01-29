@@ -79,7 +79,8 @@
 
 	define('MSG_REGISTER_SUCCESS',
 		'Alles klar! Wir haben dir eine Mail geschickt. '
-		. 'Klicke auf den Link in der Mail, um die Registrierung abzuschließen.');
+		. 'Klicke auf den Link in der Mail, um die Registrierung abzuschließen.'
+		. '<br />Wenn du keine Mail bekommen hast, wende dich an info@smwhacking.de.');
 
 
 	define('MSG_NONE',

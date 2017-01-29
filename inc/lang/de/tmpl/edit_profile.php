@@ -227,30 +227,48 @@
 		</table>
 	</fieldset>
 
-	<?php if ($canChangePowerlevel): ?>
+	<?php if ($canChangePowerlevel || $canActivate): ?>
 		<fieldset>
 			<legend>Administration</legend>
 			<table class="form">
-				<tr>
-					<td>
-						<h3>Powerlevel:</h3>
-						<p>Moderatoren können alle Beiträge bearbeiten, Nutzer bannen und Medaillen verleihen,
-							Administratoren können alle Profile bearbeiten und Foren und Medaillen verwalten.</p>
-					</td>
-					<td>
-						<select name="powerlevel">
-							<option value="0" <?= $powerlevel === 0 ? 'selected="selected"' : '' ?>>
-								Normaler Nutzer
-							</option>
-							<option value="1" <?= $powerlevel === 1 ? 'selected="selected"' : '' ?>>
-								Moderator
-							</option>
-							<option value="2" <?= $powerlevel === 2 ? 'selected="selected"' : '' ?>>
-								Administrator
-							</option>
-						</select>
-					</td>
-				</tr>
+				<?php if ($canChangePowerlevel): ?>
+					<tr>
+						<td>
+							<h3>Powerlevel:</h3>
+							<p>Moderatoren können alle Beiträge bearbeiten, Nutzer bannen und Medaillen verleihen,
+								Administratoren können alle Profile bearbeiten und Foren und Medaillen verwalten.</p>
+						</td>
+						<td>
+							<select name="powerlevel">
+								<option value="0" <?= $powerlevel === 0 ? 'selected="selected"' : '' ?>>
+									Normaler Nutzer
+								</option>
+								<option value="1" <?= $powerlevel === 1 ? 'selected="selected"' : '' ?>>
+									Moderator
+								</option>
+								<option value="2" <?= $powerlevel === 2 ? 'selected="selected"' : '' ?>>
+									Administrator
+								</option>
+							</select>
+						</td>
+					</tr>
+				<?php endif ?>
+				<?php if ($canActivate): ?>
+					<tr>
+						<td>
+							<h3>Registrierung abschließen:</h3>
+							<p>Neu registrierte Nutzer müssen den Link in einer E-Mail öffnen, um die Registrierung
+								abzuschließen. Wenn das nicht klappen sollte, kann ein Administrator die Registrierung
+								hier von Hand abschließen.</p>
+						</td>
+						<td>
+							<a class="button"
+							   href="?p=finish-registration&id=<?= $userId ?>&token=<?= $activationToken ?>"
+							   target="_blank"><i class="fa fa-external-link"></i> Registrierung abschließen</a>
+							<p>(öffnet sich in einem neuen Fenster)</p>
+						</td>
+					</tr>
+				<?php endif ?>
 			</table>
 		</fieldset>
 	<?php endif; ?>

@@ -63,7 +63,28 @@
 			'email',
 			'banned',
 			'enable_notifications',
-			'theme'
+			'theme',
+		], [
+			'id'    => $userId,
+			'LIMIT' => 1
+		]);
+
+		if (count($users) !== 1)
+		{
+			return null;
+		}
+
+		return $users[0];
+	}
+
+
+	function getUserActivation($userId)
+	{
+		global $database;
+
+		$users = $database->select('users', [
+			'activated',
+			'activation_token'
 		], [
 			'id'    => $userId,
 			'LIMIT' => 1

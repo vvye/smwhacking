@@ -44,6 +44,18 @@
 		$user = getUser($userId);
 		$username = htmlspecialchars_decode($user['name']);
 
+		if ($canChangePowerlevel)
+		{
+			$activation = getUserActivation($userId);
+			$canActivate = !$activation['activated'];
+			$activationToken = $activation['activation_token'];
+		}
+		else
+		{
+			$canActivate = false;
+			$activationToken = null;
+		}
+
 		$medals = getAwardedMedalsByUser($userId);
 		$medalsByCategory = getMedalsByCategory($medals);
 
@@ -215,6 +227,8 @@
 			'canEditProfile'      => $canEditProfile,
 			'canChangeTitle'      => $canChangeTitle,
 			'canChangePowerlevel' => $canChangePowerlevel,
+			'canActivate'         => $canActivate,
+			'activationToken'     => $activationToken,
 			'userId'              => $userId,
 			'username'            => $username,
 			'powerlevel'          => $powerlevel,

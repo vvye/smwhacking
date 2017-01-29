@@ -7,7 +7,9 @@
 
 	do
 	{
-		if (isLoggedIn() || !isset($_GET['id']) || !isset($_GET['token']))
+		$canActivate = !isLoggedIn() || isAdmin();
+
+		if (!$canActivate || !isset($_GET['id']) || !isset($_GET['token']))
 		{
 			renderErrorMessage(MSG_FINISH_REGISTRATION_GENERAL_FAILURE);
 			break;
