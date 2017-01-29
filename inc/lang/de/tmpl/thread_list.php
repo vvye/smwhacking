@@ -97,7 +97,7 @@
     function addFirstUnreadPostLink(threadId) {
 
         nanoajax.ajax({
-            url: 'inc/ajax/first_unread_post.php?thread=' + threadId
+            url: 'inc/ajax/thread.php?action=first_unread_post&thread=' + threadId
         }, function (status, response) {
 
             if (status !== 200) {
