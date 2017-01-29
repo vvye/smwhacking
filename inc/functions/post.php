@@ -177,6 +177,9 @@
 			'id' => $threadId
 		]);
 
+		$thread = getThread($threadId);
+		updateThreadLastReadTime($threadId, $thread['last_read_time'], $postTime);
+
 		$forumId = getForumIdByThreadId($threadId);
 
 		$database->update('forums', [
@@ -252,11 +255,11 @@
 		global $database;
 
 		return $database->count('posts', [
-			'AND' => [
-				'id'      => $postId,
-				'deleted' => 1
-			]
-		]) === 1;
+				'AND' => [
+					'id'      => $postId,
+					'deleted' => 1
+				]
+			]) === 1;
 	}
 
 
