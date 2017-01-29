@@ -1,7 +1,7 @@
 <table class="forum thread-list">
 	<thead>
 	<tr>
-		<th class="thread" colspan="2"><?= MSG_THREAD ?></th>
+		<th class="thread" colspan="3"><?= MSG_THREAD ?></th>
 		<th class="num-replies"><?= MSG_REPLIES ?></th>
 		<th class="num-views"><?= MSG_VIEWS ?></th>
 		<th class="last-post"><?= MSG_LAST_POST ?></th>
@@ -43,6 +43,18 @@
 			</h3>
 			<p><?= MSG_CREATED_BY ?> <a href="?p=user&id=<?= $thread['authorId'] ?>"><?= $thread['authorName'] ?></a>
 				<?= MSG_AT ?> <?= $thread['creationTime'] ?></p>
+		</td>
+		<td class="page-selection">
+			<?php if ($thread['numPages'] > 1): ?>
+				<label>
+					<select class="small" onchange="window.location.href = this.value;">
+						<option value="?p=thread&id=<?= $thread['id'] ?>">Seite&hellip;</option>
+						<?php for ($page = 1; $page <= $thread['numPages']; $page++): ?>
+							<option value="?p=thread&id=<?= $thread['id'] ?>&page=<?= $page ?>"><?= $page ?></option>
+						<?php endfor ?>
+					</select>
+				</label>
+			<?php endif ?>
 		</td>
 		<td class="num-replies"><?= $thread['numReplies'] ?></td>
 		<td class="num-views"><?= $thread['numViews'] ?></td>

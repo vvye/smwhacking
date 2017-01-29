@@ -63,6 +63,8 @@
 			$lastPost = getPostById($thread['last_post']);
 			$lastPostPage = ($lastPost !== null) ? getPostPageInThread($lastPost['id'], $thread['id']) : '';
 
+			$numPagesInThread = (int)ceil($thread['posts'] / POSTS_PER_PAGE);
+
 			$threadsForTemplate[] = [
 				'closed'       => $thread['closed'],
 				'sticky'       => $thread['sticky'],
@@ -70,6 +72,7 @@
 				'unread'       => $unread,
 				'id'           => $thread['id'],
 				'name'         => $thread['name'],
+				'numPages'     => $numPagesInThread,
 				'numReplies'   => $thread['posts'] - 1,
 				'numViews'     => $thread['views'],
 				'lastPost'     => $lastPost,
@@ -86,5 +89,4 @@
 		]);
 
 		renderPagination('?p=forum&id=' . $forumId, $page, $numPages);
-	}
-	while (false);
+	} while (false);

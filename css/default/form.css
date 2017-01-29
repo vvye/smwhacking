@@ -250,6 +250,12 @@ option {
     padding-right: 1.5rem;
 }
 
+select.small {
+    padding: 0 0 0 0.5rem;
+    font-size: 0.9rem;
+    background-position: right 0.5rem center;
+}
+
 /* specific elements */
 
 .register-form .final-action div {
@@ -284,4 +290,8 @@ textarea.signature {
 
 .upload textarea {
     width: 25rem;
+}
+
+.page-selection select {
+    min-width: 4rem;
 }

@@ -611,7 +611,7 @@
 
 
 	define('MSG_STICKY',
-		'Wichtig');
+		'Wichtig:');
 
 
 	define('MSG_BY',
