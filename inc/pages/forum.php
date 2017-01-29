@@ -65,9 +65,6 @@
 
 			$numPagesInThread = (int)ceil($thread['posts'] / POSTS_PER_PAGE);
 
-			$firstUnreadPostId = getFirstUnreadPostIdInThread($thread);
-			$firstUnreadPostPage = getPostPageInThread($firstUnreadPostId, $thread['id']);
-
 			$threadsForTemplate[] = [
 				'closed'              => $thread['closed'],
 				'sticky'              => $thread['sticky'],
@@ -83,8 +80,6 @@
 				'authorId'            => $thread['author_id'],
 				'authorName'          => $thread['author_name'],
 				'creationTime'        => date(DEFAULT_DATE_FORMAT, $thread['creation_time']),
-				'firstUnreadPostId'   => $firstUnreadPostId,
-				'firstUnreadPostPage' => $firstUnreadPostPage,
 			];
 		}
 

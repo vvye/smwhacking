@@ -35,17 +35,11 @@
 			<?php endif; ?>
 		</td>
 		<td>
-			<h3>
+			<h3 id="thread-<?= $thread['id'] ?>">
 				<?php if ($thread['sticky']): ?>
 					<?= MSG_STICKY ?>
 				<?php endif; ?>
 				<a href="?p=thread&id=<?= $thread['id'] ?>"><?= $thread['name'] ?></a>
-				<?php if ($thread['firstUnreadPostId'] !== null): ?>
-					<a href="?p=thread&id=<?= $thread['id'] ?>&page=<?= $thread['firstUnreadPostPage'] ?>#post-<?= $thread['firstUnreadPostId'] ?>"
-					   title="Ersten ungelesen Post anzeigen">
-						<i class="fa fa-arrow-right"></i>
-					</a>
-				<?php endif ?>
 			</h3>
 			<p><?= MSG_CREATED_BY ?> <a href="?p=user&id=<?= $thread['authorId'] ?>"><?= $thread['authorName'] ?></a>
 				<?= MSG_AT ?> <?= $thread['creationTime'] ?></p>
@@ -84,3 +78,45 @@
 
 	</tbody>
 </table>
+
+
+<script type="text/javascript" src="js/nanoajax.min.js"></script>
+<script type="text/javascript">
+
+    var threadIds = [
+		<?php foreach ($threads as $thread): ?>
+		<?= $thread['id'] ?>,
+		<?php endforeach; ?>
+    ];
+
+    for (var i = 0; i < threadIds.length; i++) {
+        var threadId = threadIds[i];
+        addFirstUnreadPostLink(threadId);
+    }
+
+    function addFirstUnreadPostLink(threadId) {
+
+        nanoajax.ajax({
+            url: 'inc/ajax/first_unread_post.php?thread=' + threadId
+        }, function (status, response) {
+
+            if (status !== 200) {
+                return;
+            }
+
+            var post = JSON.parse(response);
+            if (!post.id) {
+                return;
+            }
+
+            document.getElementById('thread-' + threadId).innerHTML +=
+                '<a href="?p=thread&id=' + threadId + '&page=' + post.page + '#post-' + post.id + '"'
+                + ' title="Ersten ungelesen Post anzeigen">'
+                + '<i class="fa fa-arrow-right"></i>'
+                + '</a>';
+
+        });
+    }
+
+
+</script>

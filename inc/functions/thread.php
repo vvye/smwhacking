@@ -58,6 +58,7 @@
 				threads.name,
 				threads.posts,
 				threads.last_post,
+				threads.last_post_time,
 				threads.closed,
 				threads.sticky,
 				forums.id AS forum_id,
