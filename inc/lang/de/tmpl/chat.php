@@ -37,13 +37,18 @@
 		<?php endforeach; ?>
 
 	</div>
-	<div class="chat-footer">
-		<form>
-			<textarea id="message" name="message"
-					  style="display: inline-block; width: 50rem; height: 2.2rem; font-size: 0.9rem;"></textarea>
-			<button class="primary" type="submit">Senden</button>
-		</form>
-	</div>
+
+	<?php if ($loggedIn): ?>
+
+		<div class="chat-footer">
+			<form>
+				<textarea id="message" name="message"></textarea>
+				<button class="primary" type="submit">Senden</button>
+			</form>
+		</div>
+
+	<?php endif; ?>
+
 </div>
 
 <script type="text/javascript" src="js/cuteedit.js"></script>

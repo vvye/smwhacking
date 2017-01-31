@@ -22,9 +22,7 @@
 			'ORDER'   => 'id DESC',
 			'LIMIT'   => MAX_CHAT_MESSAGES,
 		]);
-
-		// we could also use ORDER BY id DESC LIMIT [...] ORDER BY id ASC,
-		// but not with medoo apparently
+		
 		$messages = array_reverse($messages);
 
 		return $messages;

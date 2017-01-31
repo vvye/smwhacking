@@ -6,5 +6,6 @@
 	$messages = getChatMessages();
 
 	renderTemplate('chat', [
+		'loggedIn' => isLoggedIn(),
 		'messages' => $messages
 	]);

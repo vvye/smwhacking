@@ -97,3 +97,10 @@
     padding: 0.4rem 1rem;
 }
 
+.chat .chat-footer textarea {
+    display: inline-block;
+    width: 50rem;
+    height: 2.2rem;
+    font-size: 0.9rem;
+}
+
