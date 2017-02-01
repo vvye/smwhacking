@@ -145,7 +145,7 @@ refreshButton.onclick = function () {
 };
 
 
-messageContent.onkeyup = function () {
+messageContent.onkeyup = messageContent.onchange = function () {
 
     if (this.value.trim() === '') {
         sendButton.setAttribute('disabled', 'disabled');
@@ -168,6 +168,8 @@ sendButton.onclick = function () {
             alert('Das Senden hat nicht geklappt.');
             return;
         }
+
+        messageContent.value = '';
 
         var messages = JSON.parse(response);
         addMessages(messages);

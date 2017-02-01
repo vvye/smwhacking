@@ -6,6 +6,8 @@
 
 	require_once __DIR__ . '/../vendor/JBBCode/Parser.php';
 
+	require_once __DIR__ . '/../lang/de/strings.php';
+
 
 	function getBBCodeParser()
 	{

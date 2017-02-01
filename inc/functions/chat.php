@@ -35,6 +35,11 @@
 
 		$messages = array_reverse($messages);
 
+		foreach ($messages as $key => $message)
+		{
+			$messages[$key]['content'] = parseBBCode($messages[$key]['content']);
+		}
+
 		return $messages;
 	}
 
