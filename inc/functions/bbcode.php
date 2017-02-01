@@ -25,7 +25,7 @@
 		{
 			function validate($input)
 			{
-				return ctype_digit($input);
+				return ctype_digit($input) && $input > 0 && $input <= 300;
 			}
 		});
 		$parser->addCodeDefinition($builder->build());
