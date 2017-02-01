@@ -1,0 +1,134 @@
+<?php
+
+require_once __DIR__ . '/../inc/config/chat.php';
+require_once __DIR__ . '/../inc/config/ajax.php';
+
+?>
+
+
+var container = document.getElementsByClassName('chat-messages')[0];
+var refreshButton = document.getElementById('refresh');
+var refreshIcon = document.getElementById('refresh-icon');
+
+scrollToLastMessage();
+
+
+function scrollToLastMessage() {
+
+    container.scrollTop = container.scrollHeight;
+
+}
+
+
+function getMessages() {
+
+    return document.getElementsByClassName('chat-message');
+
+}
+
+
+function removeFirstMessage() {
+
+    var firstMessage = getMessages()[0];
+    container.removeChild(firstMessage);
+
+}
+
+
+function addMessage(message) {
+
+    var container = document.getElementsByClassName('chat-messages')[0];
+    container.innerHTML += '<div class="chat-message" id="message-' + message.id + '" data-id="' + message.id + '">'
+        + '<div class="chat-sidebar">'
+        + '<img class="avatar" src="img/avatars/' + message.author_id + '.png" />'
+        + '</div>'
+        + '<div class="chat-topbar">'
+        + '<a href="?p=user&id=' + message.author_id + '" class="username">' + message.author_name + '</a> '
+        + '<span>' + message.post_time + ' (<a href="#">bearbeiten</a> | '
+        + '<a href="#">löschen</a>)</span>'
+        + '</div>'
+        + '<div class="chat-message-content">' + message.content + '</div>'
+        + '<div class="clearfix"></div>'
+        + '</div>';
+
+}
+
+
+function getNumMessages() {
+
+    var messages = getMessages();
+    return messages.length;
+
+}
+
+
+function getLastMessageId() {
+
+    var messages = getMessages();
+    return messages[messages.length - 1].dataset.id;
+
+}
+
+
+function deactivateRefreshButton() {
+
+    refreshButton.setAttribute('disabled', 'disabled');
+    refreshIcon.classList.add('fa-spin');
+
+}
+
+
+function showCheckmark() {
+
+    refreshIcon.classList.remove('fa-spin');
+    refreshIcon.classList.remove('fa-refresh');
+    refreshIcon.classList.add('fa-check');
+
+    setTimeout(activateRefreshButton, <?= REQUEST_COOLDOWN_TIME * 1000 ?>);
+
+}
+
+
+function activateRefreshButton() {
+
+    refreshButton.removeAttribute('disabled');
+    refreshIcon.classList.remove('fa-check');
+    refreshIcon.classList.add('fa-refresh');
+
+}
+
+
+function refresh() {
+
+    deactivateRefreshButton();
+
+    nanoajax.ajax({
+        url: 'inc/ajax/chat.php?action=last_unread_messages&last_id=' + getLastMessageId()
+    }, function (status, response) {
+
+        showCheckmark();
+
+        if (status !== 200) {
+            return;
+        }
+        if (response === undefined || response === '') {
+            return;
+        }
+
+        var messages = JSON.parse(response);
+
+        for (var i = 0; i < messages.length; i++) {
+            addMessage(messages[i]);
+        }
+
+        while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
+            removeFirstMessage();
+        }
+
+        if (messages.length) {
+            scrollToLastMessage();
+        }
+
+    });
+
+}
