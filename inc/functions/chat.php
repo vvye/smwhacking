@@ -1,7 +1,10 @@
 <?php
 
+	require_once __DIR__ . '/bbcode.php';
+
 	require_once __DIR__ . '/../config/chat.php';
 	require_once __DIR__ . '/../config/misc.php';
+	require_once __DIR__ . '/../config/bbcode.php';
 
 
 	function getRecentChatMessages($lastId = null)
@@ -42,13 +45,16 @@
 
 		if (!isLoggedIn() || isBanned())
 		{
-			return;
+			return '';
 		}
+
+		$postTime = time();
+		$content = delimitSmileys(htmlspecialchars($content));
 
 		$database->insert('chat_messages', [
 			'id'        => null,
-			'author_id' => $_SESSION['userId'],
-			'post_time' => time(),
+			'author'    => $_SESSION['userId'],
+			'post_time' => $postTime,
 			'content'   => $content,
 			'deleted'   => 0
 		]);

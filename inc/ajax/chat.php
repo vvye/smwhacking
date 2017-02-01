@@ -39,12 +39,18 @@
 	}
 
 
-	function post()
+	function postMessage()
 	{
 		if (!isLoggedIn() || isBanned())
 		{
 			die();
 		}
+
+		if (!isset($_GET['last_id']))
+		{
+			die();
+		}
+		$lastId = (int)$_GET['last_id'] * 1;
 
 		$content = $_GET['content'] ?? '';
 		if (trim($content) === '')
@@ -53,6 +59,10 @@
 		}
 
 		createMessage($content);
+
+		$unreadMessages = getRecentChatMessages($lastId);
+
+		echo json_encode($unreadMessages);
 	}
 
 
@@ -66,8 +76,8 @@
 		case 'last_unread_messages':
 			lastUnreadMessages();
 			break;
-		case 'post':
-			post();
+		case 'post_message':
+			postMessage();
 			break;
 		default:
 			break;

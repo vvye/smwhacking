@@ -43,10 +43,10 @@
 	<?php if ($loggedIn): ?>
 
 		<div class="chat-footer">
-			<form>
-				<textarea id="message" name="message"></textarea>
-				<button class="primary" type="submit">Senden</button>
-			</form>
+			<div class="message-form">
+				<textarea id="message-content" name="message"></textarea>
+				<button id="send" class="primary" disabled="disabled">Senden</button>
+			</div>
 		</div>
 
 	<?php endif; ?>
@@ -59,8 +59,6 @@
 <script type="text/javascript" src="js/chat.js.php"></script>
 <script type="text/javascript">
 
-    var editor = new CuteEdit('message');
-
-    document.getElementById('refresh').onclick = refresh;
+    var editor = new CuteEdit('message-content');
 
 </script>

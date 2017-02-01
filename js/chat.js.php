@@ -9,6 +9,9 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 var container = document.getElementsByClassName('chat-messages')[0];
 var refreshButton = document.getElementById('refresh');
 var refreshIcon = document.getElementById('refresh-icon');
+var refreshDate = document.getElementById('refresh-date');
+var messageContent = document.getElementById('message-content');
+var sendButton = document.getElementById('send');
 
 scrollToLastMessage();
 
@@ -98,15 +101,34 @@ function activateRefreshButton() {
 }
 
 
-function refresh() {
+function addMessages(messages) {
+
+    for (var i = 0; i < messages.length; i++) {
+        addMessage(messages[i]);
+    }
+
+    while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
+        removeFirstMessage();
+    }
+
+    if (messages.length) {
+        scrollToLastMessage();
+    }
+
+}
+
+
+refreshButton.onclick = function () {
 
     deactivateRefreshButton();
 
     nanoajax.ajax({
-        url: 'inc/ajax/chat.php?action=last_unread_messages&last_id=' + getLastMessageId()
+        url: 'inc/ajax/chat.php?action=last_unread_messages'
+        + '&last_id=' + getLastMessageId()
     }, function (status, response) {
 
         showCheckmark();
+        refreshDate.innerHTML = new Date();
 
         if (status !== 200) {
             return;
@@ -116,19 +138,40 @@ function refresh() {
         }
 
         var messages = JSON.parse(response);
-
-        for (var i = 0; i < messages.length; i++) {
-            addMessage(messages[i]);
-        }
-
-        while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
-            removeFirstMessage();
-        }
-
-        if (messages.length) {
-            scrollToLastMessage();
-        }
+        addMessages(messages);
 
     });
 
-}
+};
+
+
+messageContent.onkeyup = function () {
+
+    if (this.value.trim() === '') {
+        sendButton.setAttribute('disabled', 'disabled');
+    } else {
+        sendButton.removeAttribute('disabled');
+    }
+
+};
+
+
+sendButton.onclick = function () {
+
+    nanoajax.ajax({
+        url: 'inc/ajax/chat.php?action=post_message'
+        + '&content=' + messageContent.value
+        + '&last_id=' + getLastMessageId()
+    }, function (status, response) {
+
+        if (status !== 200) {
+            alert('Das Senden hat nicht geklappt.');
+            return;
+        }
+
+        var messages = JSON.parse(response);
+        addMessages(messages);
+
+    });
+
+};

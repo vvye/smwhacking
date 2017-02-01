@@ -18,38 +18,38 @@
 }
 
 .chat .chat-header .column > button.primary,
-.chat .chat-footer form > button.primary,
+.chat .chat-footer .message-form > button.primary,
 .chat .chat-header .column > .button.primary,
-.chat .chat-footer form > .button.primary {
+.chat .chat-footer .message-form > .button.primary {
     background-color: white;
     color: #3471AD !important;
     border: 1px solid transparent;
 }
 
 .chat .chat-header .column > button.subtle,
-.chat .chat-footer form > button.subtle,
+.chat .chat-footer .message-form > button.subtle,
 .chat .chat-header .column > .button.subtle,
-.chat .chat-footer form > .button.subtle {
+.chat .chat-footer .message-form > .button.subtle {
     border-color: #d1e8ff;
     color: white !important;
 }
 
 .chat .chat-header .column > button:hover,
-.chat .chat-footer form > button:hover,
+.chat .chat-footer .message-form > button:hover,
 .chat .chat-header .column > .button:hover,
-.chat .chat-footer form > .button:hover {
+.chat .chat-footer .message-form > .button:hover {
     background-color: #d1e8ff !important;
     color: #3471AD !important;
 }
 
 .chat .chat-header .column > button:disabled,
-.chat .chat-footer form > button:disabled,
+.chat .chat-footer .message-form > button:disabled,
 .chat .chat-header .column > .button:disabled,
-.chat .chat-footer form > .button:disabled,
+.chat .chat-footer .message-form > .button:disabled,
 .chat .chat-header .column > button:disabled:hover,
-.chat .chat-footer form > button:disabled:hover,
+.chat .chat-footer .message-form > button:disabled:hover,
 .chat .chat-header .column > .button:disabled:hover,
-.chat .chat-footer form > .button:disabled:hover {
+.chat .chat-footer .message-form > .button:disabled:hover {
     background-color: #DDDDDD !important;
     color: #888 !important;
     cursor: default;
@@ -111,11 +111,11 @@
     padding: 1rem;
 }
 
-.chat .chat-footer form {
+.chat .chat-footer .message-form {
     margin: 0;
 }
 
-.chat .chat-footer form > button {
+.chat .chat-footer .message-form > button {
     display: inline-block;
     margin-top: 1rem;
     vertical-align: top;
@@ -126,6 +126,7 @@
 .chat .chat-footer textarea {
     display: inline-block;
     width: 50rem;
+    max-width: 80rem;
     height: 2.2rem;
     font-size: 0.9rem;
 }
