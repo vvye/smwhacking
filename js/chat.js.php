@@ -93,6 +93,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
     function activateSendButton() {
         sendButton.removeAttribute('disabled');
+        messageContent.onchange();
     }
 
     // http://stackoverflow.com/questions/11076975/insert-text-into-textarea-at-cursor-position-javascript
