@@ -625,3 +625,11 @@
 
 	define('MSG_SECRET_MEDAL_DESCRIPTION',
 		'<em>[geheim!]</em>');
+
+
+	define('MSG_INBOX_EMPTY',
+		'Dein Posteingang ist leer.');
+
+
+	define('MSG_OUTBOX_EMPTY',
+		'Dein Postausgang ist leer.');

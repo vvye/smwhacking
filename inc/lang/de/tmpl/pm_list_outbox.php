@@ -1,5 +1,5 @@
 <?php if ($numPms === 0): ?>
-	<em>Dein Posteingang ist leer.</em>
+	<em><?= MSG_OUTBOX_EMPTY ?></em>
 <?php else: ?>
 	<table class="pms">
 		<thead>
