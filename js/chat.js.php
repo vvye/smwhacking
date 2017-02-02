@@ -160,7 +160,7 @@ sendButton.onclick = function () {
 
     nanoajax.ajax({
         url: 'inc/ajax/chat.php?action=post_message'
-        + '&content=' + messageContent.value
+        + '&content=' + encodeURIComponent(messageContent.value)
         + '&last_id=' + getLastMessageId()
     }, function (status, response) {
 

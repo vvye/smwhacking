@@ -107,6 +107,11 @@
     padding-left: 3.3rem;
 }
 
+.chat .chat-message .chat-message-content img {
+    max-width: 100%;
+    max-height: 250px;
+}
+
 .chat .chat-footer {
     background-color: #096AC9;
     padding: 1rem;

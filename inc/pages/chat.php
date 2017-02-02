@@ -11,3 +11,5 @@
 		'loggedIn' => isLoggedIn(),
 		'messages' => $messages
 	]);
+
+	renderTemplate('spoiler_js', []);
