@@ -5,179 +5,177 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
 ?>
 
-
-var container = document.getElementsByClassName('chat-messages')[0];
-var refreshButton = document.getElementById('refresh');
-var refreshIcon = document.getElementById('refresh-icon');
-var refreshDate = document.getElementById('refresh-date');
-var messageContent = document.getElementById('message-content');
-var sendButton = document.getElementById('send');
-
-scrollToLastMessage();
-
-
-function scrollToLastMessage() {
-
-    container.scrollTop = container.scrollHeight;
-
-}
-
-
-function getMessages() {
-
-    return document.getElementsByClassName('chat-message');
-
-}
-
-
-function removeFirstMessage() {
-
-    var firstMessage = getMessages()[0];
-    container.removeChild(firstMessage);
-
-}
-
-
-function addMessage(message) {
+(function () {
 
     var container = document.getElementsByClassName('chat-messages')[0];
+    var refreshButton = document.getElementById('refresh');
+    var refreshIcon = document.getElementById('refresh-icon');
+    var refreshDate = document.getElementById('refresh-date');
+    var messageContent = document.getElementById('message-content');
+    var sendButton = document.getElementById('send');
 
-    var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
-        + '<div class="chat-sidebar">'
-        + (message.has_avatar ? '<img class="avatar" src="img/avatars/{author_id}.png" />' : '<img class="avatar" src="img/avatars/default.png" />')
-        + '</div>'
-        + '<div class="chat-topbar">'
-        + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
-        + '<span> {post_time} (<a href="#">bearbeiten</a> | <a href="#">löschen</a>)</span>'
-        + '</div>'
-        + '<div class="chat-message-content">{content}</div>'
-        + '<div class="clearfix"></div>'
-        + '</div>';
-
-    var messageHTML = nano(messageTemplate, message);
-
-    container.innerHTML += messageHTML;
-
-}
+    scrollToLastMessage();
 
 
-function getNumMessages() {
-
-    var messages = getMessages();
-    return messages.length;
-
-}
-
-
-function getLastMessageId() {
-
-    var messages = getMessages();
-    return messages[messages.length - 1].dataset.id;
-
-}
-
-
-function deactivateRefreshButton() {
-
-    refreshButton.setAttribute('disabled', 'disabled');
-    refreshIcon.classList.add('fa-spin');
-
-}
-
-
-function showCheckmark() {
-
-    refreshIcon.classList.remove('fa-spin');
-    refreshIcon.classList.remove('fa-refresh');
-    refreshIcon.classList.add('fa-check');
-
-    setTimeout(activateRefreshButton, <?= REQUEST_COOLDOWN_TIME * 1000 ?>);
-
-}
-
-
-function activateRefreshButton() {
-
-    refreshButton.removeAttribute('disabled');
-    refreshIcon.classList.remove('fa-check');
-    refreshIcon.classList.add('fa-refresh');
-
-}
-
-
-function addMessages(messages) {
-
-    for (var i = 0; i < messages.length; i++) {
-        addMessage(messages[i]);
+    function scrollToLastMessage() {
+        container.scrollTop = container.scrollHeight;
     }
 
-    while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
-        removeFirstMessage();
+    function getMessages() {
+        return document.getElementsByClassName('chat-message');
     }
 
-    if (messages.length) {
-        scrollToLastMessage();
+    function removeFirstMessage() {
+
+        var firstMessage = getMessages()[0];
+        container.removeChild(firstMessage);
+
     }
 
-}
+    function addMessage(message) {
 
+        var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
+            + '<div class="chat-sidebar">'
+            + (message.has_avatar ? '<img class="avatar" src="img/avatars/{author_id}.png" />' : '<img class="avatar" src="img/avatars/default.png" />')
+            + '</div>'
+            + '<div class="chat-topbar">'
+            + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
+            + '<span> {post_time} (<a href="#">bearbeiten</a> | <a href="#">löschen</a>)</span>'
+            + '</div>'
+            + '<div class="chat-message-content">{content}</div>'
+            + '<div class="clearfix"></div>'
+            + '</div>';
+        var messageHTML = nano(messageTemplate, message);
+        container.innerHTML += messageHTML;
 
-refreshButton.onclick = function () {
+    }
 
-    deactivateRefreshButton();
+    function getNumMessages() {
 
-    nanoajax.ajax({
-        url: 'inc/ajax/chat.php?action=last_unread_messages'
-        + '&last_id=' + getLastMessageId()
-    }, function (status, response) {
+        var messages = getMessages();
+        return messages.length;
 
-        showCheckmark();
-        refreshDate.innerHTML = new Date();
+    }
 
-        if (status !== 200) {
-            return;
-        }
-        if (response === undefined || response === '') {
-            return;
-        }
+    function getLastMessageId() {
 
-        var messages = JSON.parse(response);
-        addMessages(messages);
+        var messages = getMessages();
+        return messages[messages.length - 1].dataset.id;
 
-    });
+    }
 
-};
+    function deactivateRefreshButton() {
 
+        refreshButton.setAttribute('disabled', 'disabled');
+        refreshIcon.classList.add('fa-spin');
 
-messageContent.onkeyup = messageContent.onchange = function () {
+    }
 
-    if (this.value.trim() === '') {
+    function showCheckmark() {
+
+        refreshIcon.classList.remove('fa-spin');
+        refreshIcon.classList.remove('fa-refresh');
+        refreshIcon.classList.add('fa-check');
+
+    }
+
+    function activateRefreshButton() {
+
+        refreshButton.removeAttribute('disabled');
+        refreshIcon.classList.remove('fa-check');
+        refreshIcon.classList.add('fa-refresh');
+
+    }
+
+    function deactivateSendButton() {
         sendButton.setAttribute('disabled', 'disabled');
-    } else {
+    }
+
+    function activateSendButton() {
         sendButton.removeAttribute('disabled');
     }
 
-};
+    function addMessages(messages) {
 
-
-sendButton.onclick = function () {
-
-    nanoajax.ajax({
-        url: 'inc/ajax/chat.php?action=post_message'
-        + '&content=' + encodeURIComponent(messageContent.value)
-        + '&last_id=' + getLastMessageId()
-    }, function (status, response) {
-
-        if (status !== 200) {
-            alert('Das Senden hat nicht geklappt.');
-            return;
+        for (var i = 0; i < messages.length; i++) {
+            addMessage(messages[i]);
         }
 
-        messageContent.value = '';
+        while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
+            removeFirstMessage();
+        }
 
-        var messages = JSON.parse(response);
-        addMessages(messages);
+        if (messages.length) {
+            scrollToLastMessage();
+        }
 
-    });
+    }
 
-};
+    refreshButton.onclick = function () {
+
+        deactivateRefreshButton();
+
+        nanoajax.ajax({
+            url: 'inc/ajax/chat.php?action=last_unread_messages'
+            + '&last_id=' + getLastMessageId()
+        }, function (status, response) {
+
+            showCheckmark();
+            setTimeout(activateRefreshButton, <?= CHAT_REFRESH_COOLDOWN_TIME * 1000 ?>);
+            refreshDate.innerHTML = new Date();
+
+            if (status !== 200) {
+                return;
+            }
+            if (response === undefined || response === '') {
+                return;
+            }
+
+            var messages = JSON.parse(response);
+            addMessages(messages);
+
+        });
+
+    };
+
+    messageContent.oninput = messageContent.onchange = messageContent.onpropertychange = function () {
+
+        if (this.value.trim() === '') {
+            sendButton.setAttribute('disabled', 'disabled');
+        } else {
+            sendButton.removeAttribute('disabled');
+        }
+
+    };
+
+    sendButton.onclick = function () {
+
+        deactivateSendButton();
+
+        nanoajax.ajax({
+            url: 'inc/ajax/chat.php?action=post_message'
+            + '&content=' + encodeURIComponent(messageContent.value)
+            + '&last_id=' + getLastMessageId()
+        }, function (status, response) {
+
+            if (status === 403) {
+                alert('Die Nachricht wurde zu schnell nach der letzten gesendet. Lass dir etwas mehr Zeit.');
+                return;
+            }
+            if (status !== 200) {
+                alert('Das Senden hat nicht geklappt.');
+                return;
+            }
+
+            setTimeout(activateSendButton, <?= CHAT_MESSAGE_POST_COOLDOWN_TIME * 1000 ?>);
+
+            messageContent.value = '';
+
+            var messages = JSON.parse(response);
+            addMessages(messages);
+
+        });
+
+    };
+
+})();

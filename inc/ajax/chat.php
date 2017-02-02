@@ -21,7 +21,7 @@
 			die();
 		}
 
-		if (isset($_SESSION['lastRequestTime']) && $_SESSION['lastRequestTime'] > time() - REQUEST_COOLDOWN_TIME)
+		if (isset($_SESSION['lastRequestTime']) && $_SESSION['lastRequestTime'] > time() - CHAT_REFRESH_COOLDOWN_TIME)
 		{
 			die();
 		}
@@ -45,6 +45,15 @@
 		{
 			die();
 		}
+
+		if (isset($_SESSION['lastMessagePostTime'])
+			&& $_SESSION['lastMessagePostTime'] > time() - CHAT_MESSAGE_POST_COOLDOWN_TIME
+		)
+		{
+			http_response_code(403);
+			die();
+		}
+		$_SESSION['lastMessagePostTime'] = time();
 
 		if (!isset($_GET['last_id']))
 		{

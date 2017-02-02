@@ -1,3 +1,5 @@
 <?php
 
-	define('REQUEST_COOLDOWN_TIME', 3);
+	define('CHAT_REFRESH_COOLDOWN_TIME', 3);
+
+	define('CHAT_MESSAGE_POST_COOLDOWN_TIME', 1);
