@@ -95,6 +95,28 @@ require_once __DIR__ . '/../inc/config/ajax.php';
         sendButton.removeAttribute('disabled');
     }
 
+    // http://stackoverflow.com/questions/11076975/insert-text-into-textarea-at-cursor-position-javascript
+    function insertAtCursor(myField, myValue) {
+        //IE support
+        if (document.selection) {
+            myField.focus();
+            sel = document.selection.createRange();
+            sel.text = myValue;
+        }
+        //MOZILLA and others
+        else if (myField.selectionStart || myField.selectionStart == '0') {
+            var startPos = myField.selectionStart;
+            var endPos = myField.selectionEnd;
+            myField.value = myField.value.substring(0, startPos)
+                + myValue
+                + myField.value.substring(endPos, myField.value.length);
+            myField.selectionStart = startPos + myValue.length;
+            myField.selectionEnd = startPos + myValue.length;
+        } else {
+            myField.value += myValue;
+        }
+    }
+
     function addMessages(messages) {
 
         for (var i = 0; i < messages.length; i++) {
@@ -148,7 +170,24 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
     };
 
-    sendButton.onclick = function () {
+    messageContent.onkeydown = function (e) {
+
+        // ctrl+enter
+        if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
+            insertAtCursor(this, '\n');
+            if (this.value.length === this.selectionEnd) {
+                this.style.height = (this.offsetHeight + 16) + 'px';
+            }
+        }
+
+        else if (e.keyCode == 13) {
+            postMessage();
+        }
+
+    };
+
+
+    function postMessage() {
 
         deactivateSendButton();
 
@@ -176,6 +215,8 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
         });
 
-    };
+    }
+
+    sendButton.onclick = postMessage;
 
 })();
