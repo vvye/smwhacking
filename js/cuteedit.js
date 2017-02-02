@@ -434,10 +434,12 @@ var CuteEdit = (function () {
         else {
             Selection.set(this.textarea, before.length + textLength);
         }
+        this.textarea.onchange();
     };
 
     Editor.prototype.storeSelection = function () {
         this.selection = Selection.get(this.textarea);
+        this.textarea.onchange();
     };
 
     Editor.prototype.restoreSelection = function () {
