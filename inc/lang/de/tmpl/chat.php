@@ -22,7 +22,11 @@
 
 			<div class="chat-message" id="message-<?= $message['id'] ?>" data-id="<?= $message['id'] ?>">
 				<div class="chat-sidebar">
-					<img class="avatar" src="img/avatars/<?= $message['author_id'] ?>.png" />
+					<?php if ($message['has_avatar']): ?>
+						<img class="avatar" src="img/avatars/<?= $message['author_id'] ?>.png" />
+					<?php else: ?>
+						<img class="avatar" src="img/avatars/default.png" />
+					<?php endif; ?>
 				</div>
 				<div class="chat-topbar">
 					<a href="?p=user&id=<?= $message['author_id'] ?>"
@@ -55,6 +59,7 @@
 
 <script type="text/javascript" src="js/cuteedit.js"></script>
 <script type="text/javascript" src="js/smiley_editor.js.php"></script>
+<script type="text/javascript" src="js/nano.js"></script>
 <script type="text/javascript" src="js/nanoajax.min.js"></script>
 <script type="text/javascript" src="js/chat.js.php"></script>
 <script type="text/javascript">

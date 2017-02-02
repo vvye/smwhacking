@@ -1,10 +1,11 @@
 <?php
 
+	require_once __DIR__ . '/avatar.php';
 	require_once __DIR__ . '/bbcode.php';
 
 	require_once __DIR__ . '/../config/chat.php';
-	require_once __DIR__ . '/../config/misc.php';
 	require_once __DIR__ . '/../config/bbcode.php';
+	require_once __DIR__ . '/../config/misc.php';
 
 
 	function getRecentChatMessages($lastId = null)
@@ -37,7 +38,8 @@
 
 		foreach ($messages as $key => $message)
 		{
-			$messages[$key]['content'] = parseBBCode($messages[$key]['content']);
+			$messages[$key]['content'] = parseBBCode($message['content']);
+			$messages[$key]['has_avatar'] = hasAvatar($message['author_id']);
 		}
 
 		return $messages;

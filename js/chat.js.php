@@ -41,18 +41,22 @@ function removeFirstMessage() {
 function addMessage(message) {
 
     var container = document.getElementsByClassName('chat-messages')[0];
-    container.innerHTML += '<div class="chat-message" id="message-' + message.id + '" data-id="' + message.id + '">'
+
+    var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
         + '<div class="chat-sidebar">'
-        + '<img class="avatar" src="img/avatars/' + message.author_id + '.png" />'
+        + (message.has_avatar ? '<img class="avatar" src="img/avatars/{author_id}.png" />' : '<img class="avatar" src="img/avatars/default.png" />')
         + '</div>'
         + '<div class="chat-topbar">'
-        + '<a href="?p=user&id=' + message.author_id + '" class="username">' + message.author_name + '</a> '
-        + '<span>' + message.post_time + ' (<a href="#">bearbeiten</a> | '
-        + '<a href="#">löschen</a>)</span>'
+        + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
+        + '<span> {post_time} (<a href="#">bearbeiten</a> | <a href="#">löschen</a>)</span>'
         + '</div>'
-        + '<div class="chat-message-content">' + message.content + '</div>'
+        + '<div class="chat-message-content">{content}</div>'
         + '<div class="clearfix"></div>'
         + '</div>';
+
+    var messageHTML = nano(messageTemplate, message);
+
+    container.innerHTML += messageHTML;
 
 }
 
