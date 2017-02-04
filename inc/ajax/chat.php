@@ -75,6 +75,25 @@
 	}
 
 
+	function delete()
+	{
+
+		if (!isset($_GET['id']))
+		{
+			die();
+		}
+		$id = (int)$_GET['id'] * 1;
+
+		$success = deleteMessage($id);
+		if (!$success)
+		{
+			http_response_code(403);
+			die();
+		}
+
+	}
+
+
 	if (!isset($_GET['action']))
 	{
 		die();
@@ -87,6 +106,9 @@
 			break;
 		case 'post_message':
 			postMessage();
+			break;
+		case 'delete':
+			delete();
 			break;
 		default:
 			break;

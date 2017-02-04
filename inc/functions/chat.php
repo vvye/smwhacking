@@ -75,3 +75,34 @@
 			'deleted'   => 0
 		]);
 	}
+
+
+	function deleteMessage($id)
+	{
+		global $database;
+
+		if (isAdmin())
+		{
+			$canDelete = true;
+		}
+		else
+		{
+			$authorId = $database->get('chat_messages', 'author', [
+				'id' => $id
+			]);
+			$canDelete = ($authorId === $_SESSION['userId']);
+		}
+
+		if (!$canDelete)
+		{
+			return false;
+		}
+
+		$database->update('chat_messages', [
+			'deleted' => 1
+		], [
+			'id' => $id
+		]);
+
+		return true;
+	}

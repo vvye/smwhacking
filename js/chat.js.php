@@ -15,6 +15,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
     var sendButton = document.getElementById('send');
 
     scrollToLastMessage();
+    setupDeleteLinks();
 
 
     function scrollToLastMessage() {
@@ -40,7 +41,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
             + '</div>'
             + '<div class="chat-topbar">'
             + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
-            + '<span> {post_time} (<a href="#" title="löschen"><i class="fa fa-trash"></i></a>)</span>'
+            + '<span> {post_time} (<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>)</span>'
             + '</div>'
             + '<div class="chat-message-content">{content}</div>'
             + '<div class="clearfix"></div>'
@@ -99,10 +100,9 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
         for (var i = 0; i < messages.length; i++) {
             addMessage(messages[i]);
-        }
-
-        while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
-            removeFirstMessage();
+            while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
+                removeFirstMessage();
+            }
         }
 
         if (messages.length) {
@@ -110,6 +110,51 @@ require_once __DIR__ . '/../inc/config/ajax.php';
         }
 
     }
+
+    function setupDeleteLinks() {
+        var deleteLinks = document.getElementsByClassName('delete');
+        for (var i = 0; i < deleteLinks.length; i++) {
+            (function (i) {
+                var link = deleteLinks[i];
+                link.onclick = function () {
+                    var id = this.parentNode.parentNode.parentNode.dataset.id;
+                    deleteMessage(id);
+                }
+            })(i);
+        }
+    }
+
+    function deleteMessage(id) {
+
+        var doDelete = confirm('Willst du die Nachricht wirklich löschen?');
+        if (doDelete) {
+            nanoajax.ajax({
+                url: 'inc/ajax/chat.php?action=delete'
+                + '&id=' + id
+            }, function (status) {
+
+                if (status === 403) {
+                    alert('Du darfst diese Nachricht nicht löschen.');
+                    return;
+                }
+                else if (status !== 200) {
+                    return;
+                }
+
+                var messages = getMessages();
+                for (var i = 0; i < messages.length; i++) {
+                    var message = messages[i];
+                    if (message.dataset.id === id) {
+                        message.remove();
+                        break;
+                    }
+                }
+
+            });
+        }
+
+    }
+
 
     refreshButton.onclick = function () {
 
@@ -133,6 +178,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
             var data = JSON.parse(response);
             addMessages(data.messages);
             refreshTime.innerHTML = data.refreshTime;
+            setupDeleteLinks();
 
         });
 
@@ -191,12 +237,12 @@ require_once __DIR__ . '/../inc/config/ajax.php';
             var data = JSON.parse(response);
             addMessages(data.messages);
             refreshTime.innerHTML = data.refreshTime;
+            setupDeleteLinks();
 
         });
 
     }
 
     sendButton.onclick = postMessage;
-
 
 })();
