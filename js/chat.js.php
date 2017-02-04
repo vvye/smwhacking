@@ -175,14 +175,15 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
         // ctrl+enter
         if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
-            insertAtCursor(this, '\n');
+            postMessage();
+        }
+
+        // enter
+        else if (e.keyCode == 13) {
+            // insertAtCursor(this, '\n');
             if (this.value.length === this.selectionEnd) {
                 this.style.height = (this.offsetHeight + 16) + 'px';
             }
-        }
-
-        else if (e.keyCode == 13) {
-            postMessage();
         }
 
     };

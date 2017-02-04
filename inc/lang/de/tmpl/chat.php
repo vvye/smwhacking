@@ -49,7 +49,9 @@
 		<div class="chat-footer">
 			<div class="message-form">
 				<textarea id="message-content" name="message"></textarea>
-				<button id="send" class="primary" disabled="disabled">Senden</button>
+				<button id="send" class="primary" disabled="disabled"><i class="fa fa-send"></i> Senden
+					<small>(<kbd>Strg</kbd>+<kbd>Enter</kbd>)</small>
+				</button>
 			</div>
 		</div>
 
