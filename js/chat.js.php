@@ -45,8 +45,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
             + '<div class="chat-message-content">{content}</div>'
             + '<div class="clearfix"></div>'
             + '</div>';
-        var messageHTML = nano(messageTemplate, message);
-        container.innerHTML += messageHTML;
+        container.innerHTML += nano(messageTemplate, message);
 
     }
 
@@ -94,28 +93,6 @@ require_once __DIR__ . '/../inc/config/ajax.php';
     function activateSendButton() {
         sendButton.removeAttribute('disabled');
         messageContent.onchange();
-    }
-
-    // http://stackoverflow.com/questions/11076975/insert-text-into-textarea-at-cursor-position-javascript
-    function insertAtCursor(myField, myValue) {
-        //IE support
-        if (document.selection) {
-            myField.focus();
-            sel = document.selection.createRange();
-            sel.text = myValue;
-        }
-        //MOZILLA and others
-        else if (myField.selectionStart || myField.selectionStart == '0') {
-            var startPos = myField.selectionStart;
-            var endPos = myField.selectionEnd;
-            myField.value = myField.value.substring(0, startPos)
-                + myValue
-                + myField.value.substring(endPos, myField.value.length);
-            myField.selectionStart = startPos + myValue.length;
-            myField.selectionEnd = startPos + myValue.length;
-        } else {
-            myField.value += myValue;
-        }
     }
 
     function addMessages(messages) {
@@ -180,7 +157,6 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
         // enter
         else if (e.keyCode == 13) {
-            // insertAtCursor(this, '\n');
             if (this.value.length === this.selectionEnd) {
                 this.style.height = (this.offsetHeight + 16) + 'px';
             }
