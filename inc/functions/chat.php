@@ -41,6 +41,7 @@
 			$messages[$key]['content'] = parseBBCode($message['content']);
 			$messages[$key]['has_avatar'] = hasAvatar($message['author_id']);
 			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
+			$messages[$key]['can_delete'] = isAdmin() || $message['author_id'] === $_SESSION['userId'];
 		}
 
 		if ($returnRefreshTime)

@@ -31,8 +31,12 @@
 				<div class="chat-topbar">
 					<a href="?p=user&id=<?= $message['author_id'] ?>"
 					   class="username"><?= $message['author_name'] ?></a>
-					<span><?= $message['post_time'] ?> (<a class="delete" href="#"
-														   title="löschen"><i class="fa fa-trash"></i></a>)</span>
+					<span>
+						<?= $message['post_time'] ?>
+						<?php if ($message['can_delete']): ?>
+							(<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>)
+						<?php endif ?>
+					</span>
 				</div>
 				<div class="chat-message-content">
 					<?= $message['content'] ?>
