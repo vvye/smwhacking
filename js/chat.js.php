@@ -10,7 +10,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
     var container = document.getElementsByClassName('chat-messages')[0];
     var refreshButton = document.getElementById('refresh');
     var refreshIcon = document.getElementById('refresh-icon');
-    var refreshDate = document.getElementById('refresh-date');
+    var refreshTime = document.getElementById('refresh-date');
     var messageContent = document.getElementById('message-content');
     var sendButton = document.getElementById('send');
 
@@ -145,7 +145,6 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
             showCheckmark();
             setTimeout(activateRefreshButton, <?= CHAT_REFRESH_COOLDOWN_TIME * 1000 ?>);
-            refreshDate.innerHTML = new Date();
 
             if (status !== 200) {
                 return;
@@ -154,8 +153,9 @@ require_once __DIR__ . '/../inc/config/ajax.php';
                 return;
             }
 
-            var messages = JSON.parse(response);
-            addMessages(messages);
+            var data = JSON.parse(response);
+            addMessages(data.messages);
+            refreshTime.innerHTML = data.refreshTime;
 
         });
 
@@ -212,8 +212,9 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
             messageContent.value = '';
 
-            var messages = JSON.parse(response);
-            addMessages(messages);
+            var data = JSON.parse(response);
+            addMessages(data.messages);
+            refreshTime.innerHTML = data.refreshTime;
 
         });
 

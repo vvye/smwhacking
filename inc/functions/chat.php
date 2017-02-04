@@ -8,7 +8,7 @@
 	require_once __DIR__ . '/../config/misc.php';
 
 
-	function getRecentChatMessages($lastId = null)
+	function getRecentChatMessages($lastId = null, $returnRefreshTime = false)
 	{
 		global $database;
 
@@ -40,6 +40,15 @@
 		{
 			$messages[$key]['content'] = parseBBCode($message['content']);
 			$messages[$key]['has_avatar'] = hasAvatar($message['author_id']);
+			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
+		}
+
+		if ($returnRefreshTime)
+		{
+			return [
+				'refreshTime' => date(DEFAULT_DATE_FORMAT),
+				'messages'    => $messages
+			];
 		}
 
 		return $messages;
@@ -52,7 +61,7 @@
 
 		if (!isLoggedIn() || isBanned())
 		{
-			return '';
+			return;
 		}
 
 		$postTime = time();
@@ -65,5 +74,4 @@
 			'content'   => $content,
 			'deleted'   => 0
 		]);
-
 	}

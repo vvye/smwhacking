@@ -33,7 +33,7 @@
 		}
 		$lastId = (int)$_GET['last_id'] * 1;
 
-		$unreadMessages = getRecentChatMessages($lastId);
+		$unreadMessages = getRecentChatMessages($lastId, true);
 
 		echo json_encode($unreadMessages);
 	}
@@ -69,7 +69,7 @@
 
 		createMessage($content);
 
-		$unreadMessages = getRecentChatMessages($lastId);
+		$unreadMessages = getRecentChatMessages($lastId, true);
 
 		echo json_encode($unreadMessages);
 	}

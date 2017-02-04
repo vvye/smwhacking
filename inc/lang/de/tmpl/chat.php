@@ -31,7 +31,7 @@
 				<div class="chat-topbar">
 					<a href="?p=user&id=<?= $message['author_id'] ?>"
 					   class="username"><?= $message['author_name'] ?></a>
-					<span><?= date(DEFAULT_DATE_FORMAT, $message['post_time']) ?> (<a href="#">bearbeiten</a> | <a
+					<span><?= $message['post_time'] ?> (<a href="#">bearbeiten</a> | <a
 								href="#">löschen</a>)</span>
 				</div>
 				<div class="chat-message-content">
