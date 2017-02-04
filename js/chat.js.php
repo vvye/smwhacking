@@ -7,7 +7,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
 (function () {
 
-    var container = document.getElementsById('chat-container');
+    var container = document.getElementById('chat-container');
     var refreshButton = document.getElementById('refresh');
     var refreshIcon = document.getElementById('refresh-icon');
     var refreshTime = document.getElementById('refresh-date');
