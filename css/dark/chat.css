@@ -136,3 +136,11 @@
     font-size: 0.9rem;
 }
 
+.chat-archive {
+    margin-bottom: 0;
+}
+
+.chat-archive .chat-messages {
+    max-height: none;
+}
+
