@@ -29,7 +29,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
     function removeFirstMessage() {
 
         var firstMessage = getMessages()[0];
-        container.removeChild(firstMessage);
+        firstMessage.remove();
 
     }
 

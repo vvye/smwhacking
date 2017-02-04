@@ -8,6 +8,16 @@
 	require_once __DIR__ . '/../config/misc.php';
 
 
+	function getNumChatMessages()
+	{
+		global $database;
+
+		return $database->count('chat_messages', [
+			'deleted' => 0
+		]);
+	}
+
+
 	function getRecentChatMessages($lastId = null, $returnRefreshTime = false)
 	{
 		global $database;
@@ -36,13 +46,7 @@
 
 		$messages = array_reverse($messages);
 
-		foreach ($messages as $key => $message)
-		{
-			$messages[$key]['content'] = parseBBCode($message['content']);
-			$messages[$key]['avatar_url'] = getAvatarUrlFromMessage($message);
-			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
-			$messages[$key]['can_delete'] = isAdmin() || $message['author_id'] === $_SESSION['userId'];
-		}
+		$messages = processMessages($messages);
 
 		if ($returnRefreshTime)
 		{
@@ -51,6 +55,44 @@
 				'messages'    => $messages
 			];
 		}
+
+		return $messages;
+	}
+
+
+	function processMessages($messages)
+	{
+		foreach ($messages as $key => $message)
+		{
+			$messages[$key]['content'] = parseBBCode($message['content']);
+			$messages[$key]['avatar_url'] = getAvatarUrlFromMessage($message);
+			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
+			$messages[$key]['can_delete'] = isAdmin() || $message['author_id'] === $_SESSION['userId'];
+		}
+
+		return $messages;
+	}
+
+
+	function getChatMessagesForAchive($page)
+	{
+		global $database;
+
+		$messages = $database->select('chat_messages', [
+			'[>]users' => ['author' => 'id']
+		], [
+			'chat_messages.id',
+			'chat_messages.author(author_id)',
+			'users.name(author_name)',
+			'chat_messages.post_time',
+			'chat_messages.content',
+		], [
+			'deleted' => 0,
+			'ORDER'   => 'post_time ASC',
+			'LIMIT'   => [($page - 1) * MAX_CHAT_MESSAGES, MAX_CHAT_MESSAGES]
+		]);
+
+		$messages = processMessages($messages);
 
 		return $messages;
 	}

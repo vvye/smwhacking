@@ -11,7 +11,7 @@
 				<span>zuletzt aktualisiert am <span id="refresh-date"><?= date(DEFAULT_DATE_FORMAT) ?></span></span>
 			</div>
 			<div class="column">
-				<a class="small subtle button" href="#"><i class="fa fa-list"></i> Chat-Archiv</a>
+				<a class="small subtle button" href="?p=chat-archive"><i class="fa fa-list"></i> Chat-Archiv</a>
 			</div>
 		</div>
 	</div>
