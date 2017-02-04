@@ -43,7 +43,7 @@
 			</tr>
 			<tr>
 				<td>Beiträge:</td>
-				<td><?php echo $numMessages; ?></td>
+				<td><?php echo $numPosts; ?></td>
 			</tr>
 			<tr>
 				<td>Letzter Beitrag:</td>
