@@ -37,7 +37,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
         var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
             + '<div class="chat-sidebar">'
-            + (message.has_avatar ? '<img class="avatar" src="img/avatars/{author_id}.png" />' : '<img class="avatar" src="img/avatars/default.png" />')
+            + '<img class="avatar" src="{avatar_url}" />'
             + '</div>'
             + '<div class="chat-topbar">'
             + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'

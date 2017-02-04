@@ -54,8 +54,7 @@
 			imagepng($avatar, __DIR__ . '/../../img/avatars/' . $userId . '.png');
 
 			imagedestroy($avatar);
-		}
-		while (false);
+		} while (false);
 
 		return $errorMessages;
 	}
@@ -97,4 +96,14 @@
 		imagecopyresampled($dest, $src, 0, 0, 0, 0, $destWidth, $destHeight, $srcWidth, $srcHeight);
 
 		return $dest;
+	}
+
+
+	function getRandomFuerstAvatarFilename()
+	{
+		$dir = __DIR__ . '/../../img/avatars/fuersten';
+		$filenames = glob($dir . '/*.png');
+		$index = array_rand($filenames);
+
+		return basename($filenames[$index]);
 	}

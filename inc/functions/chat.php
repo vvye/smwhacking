@@ -39,7 +39,7 @@
 		foreach ($messages as $key => $message)
 		{
 			$messages[$key]['content'] = parseBBCode($message['content']);
-			$messages[$key]['has_avatar'] = hasAvatar($message['author_id']);
+			$messages[$key]['avatar_url'] = getAvatarUrlFromMessage($message);
 			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
 			$messages[$key]['can_delete'] = isAdmin() || $message['author_id'] === $_SESSION['userId'];
 		}
@@ -106,4 +106,16 @@
 		]);
 
 		return true;
+	}
+
+
+	function getAvatarUrlFromMessage($message)
+	{
+		if (preg_match('/\bf(?:ü|ue)rst\b/i', $message['content']))
+		{
+			return 'img/avatars/fuersten/' . getRandomFuerstAvatarFilename();
+		}
+
+		return hasAvatar($message['author_id']) ? 'img/avatars/' . $message['author_id'] . '.png' :
+			'img/avatars/default.png';
 	}

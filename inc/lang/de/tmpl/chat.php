@@ -22,11 +22,7 @@
 
 			<div class="chat-message" id="message-<?= $message['id'] ?>" data-id="<?= $message['id'] ?>">
 				<div class="chat-sidebar">
-					<?php if ($message['has_avatar']): ?>
-						<img class="avatar" src="img/avatars/<?= $message['author_id'] ?>.png" />
-					<?php else: ?>
-						<img class="avatar" src="img/avatars/default.png" />
-					<?php endif; ?>
+					<img class="avatar" src="<?= $message['avatar_url'] ?>" />
 				</div>
 				<div class="chat-topbar">
 					<a href="?p=user&id=<?= $message['author_id'] ?>"
