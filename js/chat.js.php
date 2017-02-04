@@ -40,7 +40,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
             + '</div>'
             + '<div class="chat-topbar">'
             + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
-            + '<span> {post_time} (<a href="#">bearbeiten</a> | <a href="#">löschen</a>)</span>'
+            + '<span> {post_time} (<a href="#" title="löschen"><i class="fa fa-trash"></i></a>)</span>'
             + '</div>'
             + '<div class="chat-message-content">{content}</div>'
             + '<div class="clearfix"></div>'
