@@ -16,7 +16,7 @@
 		</div>
 	</div>
 
-	<div class="chat-messages">
+	<div id="chat-container" class="chat-messages">
 
 		<?php foreach ($messages as $message): ?>
 

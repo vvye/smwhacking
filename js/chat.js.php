@@ -7,7 +7,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
 (function () {
 
-    var container = document.getElementsByClassName('chat-messages')[0];
+    var container = document.getElementsById('chat-container');
     var refreshButton = document.getElementById('refresh');
     var refreshIcon = document.getElementById('refresh-icon');
     var refreshTime = document.getElementById('refresh-date');
@@ -221,5 +221,6 @@ require_once __DIR__ . '/../inc/config/ajax.php';
     }
 
     sendButton.onclick = postMessage;
+
 
 })();
