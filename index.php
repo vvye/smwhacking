@@ -43,6 +43,8 @@
 			<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/admin.css" />
 		<?php endif; ?>
 
+		<link rel="icon" type="image/x-icon" href="favicon.ico">
+
 	</head>
 
 	<body>
