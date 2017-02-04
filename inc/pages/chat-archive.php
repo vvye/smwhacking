@@ -19,3 +19,5 @@
 	]);
 
 	renderPagination('?p=chat-archive', $page, $numPages);
+
+	renderTemplate('spoiler_js', []);
