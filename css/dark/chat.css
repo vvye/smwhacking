@@ -111,6 +111,11 @@
     max-height: 250px;
 }
 
+.chat .chat-message .chat-message-content iframe {
+    width: 240px;
+    height: 160px;
+}
+
 .chat .chat-footer {
     background-color: #3471AD;
     padding: 1rem;
