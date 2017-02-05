@@ -246,10 +246,10 @@
 }
 
 .cuteedit-input {
-    background-color: white;
+    background-color: #222;
     border: 1px solid #666;
     box-shadow: 0 0 2px #666;
-    color: #333333;
+    color: #ddd;
     border-radius: 1px;
     padding: 0.5rem 1rem;
 }
@@ -266,7 +266,7 @@
 }
 
 .cuteedit-list {
-    background-color: white;
+    background-color: #222;
     border: 1px solid #666;
     box-shadow: 0 0 2px #666;
     border-radius: 1px;
@@ -299,7 +299,7 @@
 }
 
 .cuteedit-list-item:hover {
-    background-color: #EEEEEE;
+    background-color: #333;
     border-color: #666;
 }
 
