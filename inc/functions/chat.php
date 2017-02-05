@@ -67,7 +67,8 @@
 			$messages[$key]['content'] = parseBBCode($message['content']);
 			$messages[$key]['avatar_url'] = getAvatarUrlFromMessage($message);
 			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
-			$messages[$key]['can_delete'] = isAdmin() || $message['author_id'] === $_SESSION['userId'];
+			$messages[$key]['can_delete'] = isLoggedIn()
+				&& (isAdmin() || $message['author_id'] === $_SESSION['userId']);
 		}
 
 		return $messages;
