@@ -2,7 +2,7 @@
 
 	/*
 		smwhacking.de
-		WYE, 2016
+		WYE, 2016-17
 	*/
 
 	require_once 'inc/lang/de/strings.php';
@@ -13,10 +13,9 @@
 	require_once 'inc/functions/theme.php';
 	require_once 'inc/functions/database.php';
 
-	$database = getDatabase();
-
 	session_start();
 
+	$database = getDatabase();
 	$theme = getTheme();
 
 ?>
