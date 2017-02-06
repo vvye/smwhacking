@@ -152,3 +152,64 @@
     max-height: none;
 }
 
+.chat-excerpt {
+    position: static;
+    background-color: #DFF0FF;
+}
+
+.chat-excerpt .chat-message-container {
+    display: flex;
+}
+
+.chat-excerpt::after {
+    display: block;
+    content: '';
+    box-shadow: 0 -0.5rem 0.5rem 0.5rem black;
+    position: relative;
+    z-index: -1;
+}
+
+.chat-excerpt .chat-message {
+    display: inline-block;
+    margin: auto;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.chat-excerpt .chat-message:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
+.chat-excerpt .chat-message .chat-sidebar {
+    float: left;
+    width: 3rem;
+    margin-right: 0.3rem;
+}
+
+.chat-excerpt .chat-message .chat-sidebar .avatar {
+    max-width: 2rem;
+}
+
+.chat-excerpt .chat-message .chat-topbar {
+    font-size: 0.8rem;
+    color: #888888;
+}
+
+.chat-excerpt .chat-message .chat-topbar .username {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.chat-excerpt .chat-message .chat-message-content {
+    padding-left: 3.3rem;
+}
+
+.chat-excerpt .chat-message .chat-message-content img {
+    max-height: 50px;
+}
+
+.chat-excerpt .chat-message .chat-message-content iframe {
+    display: none;
+}
+

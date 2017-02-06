@@ -51,9 +51,9 @@
 				<textarea id="message-content" name="message"></textarea>
 				<button id="send" class="primary" disabled="disabled"><i class="fa fa-send"></i> Senden
 					<?php if ($_SESSION['chatKeyBehavior'] === 'enter-to-send'): ?>
-						<small>(<kbd>Enter</kbd>)</small>
+						<small>(Enter)</small>
 					<?php else: ?>
-						<small>(<kbd>Strg</kbd>+<kbd>Enter</kbd>)</small>
+						<small>(Strg+Enter)</small>
 					<?php endif ?>
 				</button>
 			</div>

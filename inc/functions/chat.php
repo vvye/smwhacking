@@ -60,6 +60,27 @@
 	}
 
 
+	function getLatestChatMessage()
+	{
+		global $database;
+
+		$messages = $database->select('chat_messages', [
+			'[>]users' => ['author' => 'id']
+		], [
+			'chat_messages.id',
+			'chat_messages.author(author_id)',
+			'users.name(author_name)',
+			'chat_messages.post_time',
+			'chat_messages.content',
+		], [
+			'ORDER' => 'chat_messages.id DESC',
+			'LIMIT' => 1
+		]);
+
+		return $messages[0];
+	}
+
+
 	function processMessages($messages)
 	{
 		foreach ($messages as $key => $message)
@@ -161,4 +182,33 @@
 
 		return hasAvatar($message['author_id']) ? 'img/avatars/' . $message['author_id'] . '.png' :
 			'img/avatars/default.png';
+	}
+
+
+	function renderChatExcerpt()
+	{
+		if (!isLoggedIn() || !$_SESSION['showChatExcerpt'])
+		{
+			return;
+		}
+
+		$message = getLatestChatMessage();
+		$message['content'] = truncateChatMessage($message['content']);
+		$message = processMessages([$message])[0];
+
+		renderTemplate('chat_excerpt', [
+			'message' => $message
+		]);
+	}
+
+	function truncateChatMessage($text)
+	{
+		$text = str_replace(["\r", "\n", '<br>', '<br />'], ' ', $text);
+
+		if (strlen($text) <= CHAT_EXCERPT_TRUNCATE_LENGTH)
+		{
+			return $text;
+		}
+
+		return substr($text, 0, CHAT_EXCERPT_TRUNCATE_LENGTH) . '&hellip;';
 	}

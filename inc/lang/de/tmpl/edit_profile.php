@@ -255,13 +255,13 @@
 				<td>
 					<div class="custom-checkbox-group">
 						<input type="radio" class="custom-radio" name="chat-key-behavior" value="enter-to-send"
-							   id="enter-to-send" <?= $chatKeyBehavior == 'enter-to-send' ? 'checked="checked"' :
+							   id="enter-to-send" <?= $chatKeyBehavior === 'enter-to-send' ? 'checked="checked"' :
 							'' ?> /> <label class="custom-radio-label" for="enter-to-send"> <kbd>Enter</kbd> zum
 							Senden, <kbd>Strg</kbd>+<kbd>Enter</kbd> für Zeilenumbruch</label>
 					</div>
 					<div class="custom-checkbox-group">
 						<input type="radio" class="custom-radio" name="chat-key-behavior" value="ctrl-enter-to-send"
-							   id="ctrl-enter-to-send" <?= $chatKeyBehavior == 'ctrl-enter-to-send' ?
+							   id="ctrl-enter-to-send" <?= $chatKeyBehavior === 'ctrl-enter-to-send' ?
 							'checked="checked"' : '' ?> /> <label class="custom-radio-label" for="ctrl-enter-to-send">
 							<kbd>Strg</kbd>+<kbd>Enter</kbd> zum Senden, <kbd>Enter</kbd> für Zeilenumbruch</label>
 					</div>

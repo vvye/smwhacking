@@ -96,7 +96,7 @@
 			$signature = trim(getFieldValue('signature'));
 			$enableNotifications = getFieldValue('enable-notifications');
 			$theme = getFieldValue('theme');
-			$showChatExcerpt = getFieldValue('show-chat-excerpt');
+			$showChatExcerpt = getFieldValue('show-chat-excerpt') ? 1 : 0;
 			$chatKeyBehavior = getFieldValue('chat-key-behavior');
 
 			$powerlevel = (int)getFieldValue('powerlevel');

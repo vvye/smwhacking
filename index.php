@@ -11,6 +11,7 @@
 	require_once 'inc/functions/engine.php';
 	require_once 'inc/functions/template.php';
 	require_once 'inc/functions/theme.php';
+	require_once 'inc/functions/chat.php';
 	require_once 'inc/functions/database.php';
 
 	session_start();
@@ -57,6 +58,7 @@
 
 				renderMenu();
 				renderUserMenu();
+				renderChatExcerpt();
 
 			?>
 		</header>
