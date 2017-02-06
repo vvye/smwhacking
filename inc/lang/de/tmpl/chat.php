@@ -63,6 +63,7 @@
 <script type="text/javascript" src="js/smiley_editor.js.php"></script>
 <script type="text/javascript" src="js/nano.js"></script>
 <script type="text/javascript" src="js/nanoajax.min.js"></script>
+<script type="text/javascript" src="js/onresize.js"></script>
 <script type="text/javascript" src="js/chat.js.php"></script>
 <script type="text/javascript">
 

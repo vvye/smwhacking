@@ -14,12 +14,25 @@ require_once __DIR__ . '/../inc/config/ajax.php';
     var messageContent = document.getElementById('message-content');
     var sendButton = document.getElementById('send');
 
-    scrollToLastMessage();
     setupDeleteLinks();
+    resizeMessageList();
+    scrollToLastMessage();
 
+    function resizeMessageList() {
+
+        var height = localStorage.getItem('smwh-chat-height') || 400;
+        container.style.height = height + 'px';
+        addResizeListener(container, function () {
+            var newHeight = container.offsetHeight;
+            localStorage.setItem('smwh-chat-height', newHeight);
+        });
+
+    }
 
     function scrollToLastMessage() {
-        container.scrollTop = container.scrollHeight;
+        setTimeout(function () {
+            container.scrollTop = container.scrollHeight;
+        }, 100); // why is timeout needed
     }
 
     function getMessages() {
@@ -115,6 +128,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
     }
 
     function setupDeleteLinks() {
+
         var deleteLinks = document.getElementsByClassName('delete');
         for (var i = 0; i < deleteLinks.length; i++) {
             (function (i) {
@@ -125,6 +139,7 @@ require_once __DIR__ . '/../inc/config/ajax.php';
                 }
             })(i);
         }
+
     }
 
     function deleteMessage(id) {
