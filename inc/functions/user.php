@@ -37,7 +37,7 @@
 			FROM users
 			LEFT JOIN posts ON users.id = posts.author AND posts.deleted = 0
 			GROUP BY users.id
-			ORDER BY ' . $sortColumn . ' ' . $sortDirection . ', id ' . $sortDirection . '
+			ORDER BY ' . $sortColumn . ' ' . $sortDirection . ', users.id ' . $sortDirection . '
 			LIMIT ' . $offset . ', ' . $numRows . '
 		')->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,6 +64,8 @@
 			'banned',
 			'enable_notifications',
 			'theme',
+			'show_chat_excerpt',
+			'chat_key_behavior'
 		], [
 			'id'    => $userId,
 			'LIMIT' => 1
@@ -211,7 +213,9 @@
 			'bio'                  => delimitSmileys(htmlspecialchars($data['bio'])),
 			'signature'            => delimitSmileys(htmlspecialchars($data['signature'])),
 			'enable_notifications' => $data['enableNotifications'] ? 1 : 0,
-			'theme'                => $data['theme']
+			'theme'                => $data['theme'],
+			'show_chat_excerpt'    => $data['showChatExcerpt'],
+			'chat_key_behavior'    => $data['chatKeyBehavior'],
 		], [
 			'id' => $userId
 		]);

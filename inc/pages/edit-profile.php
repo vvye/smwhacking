@@ -73,6 +73,8 @@
 			$banned = (bool)$user['banned'];
 			$enableNotifications = (bool)$user['enable_notifications'];
 			$theme = $user['theme'];
+			$showChatExcerpt = $user['show_chat_excerpt'];
+			$chatKeyBehavior = $user['chat_key_behavior'];
 
 			$favoriteMedalsRaw = getFavoriteMedals($userId);
 			$favoriteMedalRanks = [];
@@ -94,6 +96,8 @@
 			$signature = trim(getFieldValue('signature'));
 			$enableNotifications = getFieldValue('enable-notifications');
 			$theme = getFieldValue('theme');
+			$showChatExcerpt = getFieldValue('show-chat-excerpt');
+			$chatKeyBehavior = getFieldValue('chat-key-behavior');
 
 			$powerlevel = (int)getFieldValue('powerlevel');
 			$banned = (bool)getFieldValue('banned');
@@ -181,13 +185,17 @@
 					'bio'                 => $bio,
 					'signature'           => $signature,
 					'enableNotifications' => $enableNotifications,
-					'theme'               => $theme
+					'theme'               => $theme,
+					'showChatExcerpt'     => $showChatExcerpt,
+					'chatKeyBehavior'     => $chatKeyBehavior
 				]);
 
 				if ((int)$userId === (int)$_SESSION['userId'])
 				{
 					$_SESSION['signature'] = $signature;
 					$_SESSION['theme'] = $theme;
+					$_SESSION['showChatExcerpt'] = $showChatExcerpt;
+					$_SESSION['chatKeyBehavior'] = $chatKeyBehavior;
 				}
 
 				setFavoriteMedals($userId, $favoriteMedalRanks);
@@ -249,6 +257,8 @@
 			'enableNotifications' => $enableNotifications,
 			'token'               => $token,
 			'themes'              => getAllThemes(),
-			'selectedTheme'       => $theme
+			'selectedTheme'       => $theme,
+			'showChatExcerpt'     => $showChatExcerpt,
+			'chatKeyBehavior'     => $chatKeyBehavior
 		]);
 	} while (false);

@@ -21,7 +21,9 @@
 			'title',
 			'signature',
 			'csrf_token',
-			'theme'
+			'theme',
+			'show_chat_excerpt',
+			'chat_key_behavior'
 		], [
 			'AND' => [
 				'email'     => $givenEmail,
@@ -47,6 +49,8 @@
 		$_SESSION['title'] = $user['title'];
 		$_SESSION['signature'] = $user['signature'];
 		$_SESSION['theme'] = $user['theme'];
+		$_SESSION['showChatExcerpt'] = $user['show_chat_excerpt'];
+		$_SESSION['chatKeyBehavior'] = $user['chat_key_behavior'];
 
 		$_SESSION['csrfToken'] = renewCsrfToken();
 

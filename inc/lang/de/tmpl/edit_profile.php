@@ -227,6 +227,49 @@
 		</table>
 	</fieldset>
 
+	<fieldset>
+		<legend>Chat</legend>
+		<table class="form">
+			<tr>
+				<td>
+					<h3>Neueste Chat-Nachricht auf jeder Seite anzeigen:</h3>
+					<p>Wähle aus, ob ein Ausschnitt der neuesten Chat-Nachricht oben auf jeder Seite angezeigt werden
+						soll.</p>
+				</td>
+				<td>
+					<div class="custom-checkbox-group">
+						<input type="checkbox" class="custom-checkbox" name="show-chat-excerpt"
+							   id="show-chat-excerpt" <?= $showChatExcerpt ? 'checked="checked"' : '' ?> />
+						<label class="custom-checkbox-label" for="show-chat-excerpt"> Neueste Chat-Nachricht auf jeder
+							Seite anzeigen</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Tastaturkürzel</h3>
+					<p>Mit Tastendrücken kannst du die Nachricht absenden und im Textfeld einen Zeilenumbruch
+						einfügen.</p>
+					<p>Wähle aus, welches Tastenkürzel was tun soll.</p>
+				</td>
+				<td>
+					<div class="custom-checkbox-group">
+						<input type="radio" class="custom-radio" name="chat-key-behavior" value="enter-to-send"
+							   id="enter-to-send" <?= $chatKeyBehavior == 'enter-to-send' ? 'checked="checked"' :
+							'' ?> /> <label class="custom-radio-label" for="enter-to-send"> <kbd>Enter</kbd> zum
+							Senden, <kbd>Strg</kbd>+<kbd>Enter</kbd> für Zeilenumbruch</label>
+					</div>
+					<div class="custom-checkbox-group">
+						<input type="radio" class="custom-radio" name="chat-key-behavior" value="ctrl-enter-to-send"
+							   id="ctrl-enter-to-send" <?= $chatKeyBehavior == 'ctrl-enter-to-send' ?
+							'checked="checked"' : '' ?> /> <label class="custom-radio-label" for="ctrl-enter-to-send">
+							<kbd>Strg</kbd>+<kbd>Enter</kbd> zum Senden, <kbd>Enter</kbd> für Zeilenumbruch</label>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+
 	<?php if ($canChangePowerlevel || $canActivate): ?>
 		<fieldset>
 			<legend>Administration</legend>

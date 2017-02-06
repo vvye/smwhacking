@@ -50,7 +50,11 @@
 			<div class="message-form">
 				<textarea id="message-content" name="message"></textarea>
 				<button id="send" class="primary" disabled="disabled"><i class="fa fa-send"></i> Senden
-					<small>(<kbd>Strg</kbd>+<kbd>Enter</kbd>)</small>
+					<?php if ($_SESSION['chatKeyBehavior'] === 'enter-to-send'): ?>
+						<small>(<kbd>Enter</kbd>)</small>
+					<?php else: ?>
+						<small>(<kbd>Strg</kbd>+<kbd>Enter</kbd>)</small>
+					<?php endif ?>
 				</button>
 			</div>
 		</div>

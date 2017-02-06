@@ -3,6 +3,8 @@
 require_once __DIR__ . '/../inc/config/chat.php';
 require_once __DIR__ . '/../inc/config/ajax.php';
 
+session_start();
+
 ?>
 
 (function () {
@@ -112,6 +114,26 @@ require_once __DIR__ . '/../inc/config/ajax.php';
         messageContent.onchange();
     }
 
+    // http://stackoverflow.com/questions/11076975/insert-text-into-textarea-at-cursor-position-javascript
+    function insertAtCursor(myField, myValue) {
+        if (document.selection) {
+            myField.focus();
+            sel = document.selection.createRange();
+            sel.text = myValue;
+        }
+        else if (myField.selectionStart || myField.selectionStart == '0') {
+            var startPos = myField.selectionStart;
+            var endPos = myField.selectionEnd;
+            myField.value = myField.value.substring(0, startPos)
+                + myValue
+                + myField.value.substring(endPos, myField.value.length);
+            myField.selectionStart = startPos + myValue.length;
+            myField.selectionEnd = startPos + myValue.length;
+        } else {
+            myField.value += myValue;
+        }
+    }
+
     function addMessages(messages) {
 
         for (var i = 0; i < messages.length; i++) {
@@ -214,17 +236,31 @@ require_once __DIR__ . '/../inc/config/ajax.php';
 
     messageContent.onkeydown = function (e) {
 
-        // ctrl+enter
+		<?php if ($_SESSION['chatKeyBehavior'] === 'enter-to-send'): ?>
+
         if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
+            insertAtCursor(messageContent, '\n');
+            if (this.value.length === this.selectionEnd) {
+                this.style.height = (this.offsetHeight + 16) + 'px';
+            }
+        }
+        else if (e.keyCode == 13) {
+            e.preventDefault();
             postMessage();
         }
 
-        // enter
+		<?php else: ?>
+
+        if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
+            postMessage();
+        }
         else if (e.keyCode == 13) {
             if (this.value.length === this.selectionEnd) {
                 this.style.height = (this.offsetHeight + 16) + 'px';
             }
         }
+
+		<?php endif ?>
 
     };
 

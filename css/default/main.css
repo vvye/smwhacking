@@ -175,6 +175,16 @@ hr {
     border-bottom: none;
 }
 
+kbd {
+    margin: 0 0.1rem;
+    border: 1px solid #666;
+    border-radius: 2px;
+    background-color: #eee;
+    padding: 0 0.3rem;
+    font-family: inherit;
+    color: #444;
+}
+
 ul.bbcode-list {
     font-size: 0;
 }
