@@ -8,9 +8,9 @@
 	$messages = getRecentChatMessages();
 
 	renderTemplate('chat', [
-		'loggedIn'        => isLoggedIn(),
-		'chatKeyBehavior' => $_SESSION['chatKeyBehavior'],
-		'messages'        => $messages
+		'loggedIn'    => isLoggedIn(),
+		'enterToSend' => isLoggedIn() && $_SESSION['chatKeyBehavior'] === 'enter-to-send',
+		'messages'    => $messages
 	]);
 
 	renderTemplate('spoiler_js', []);

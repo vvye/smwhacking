@@ -236,7 +236,7 @@ session_start();
 
     messageContent.onkeydown = function (e) {
 
-		<?php if ($_SESSION['chatKeyBehavior'] === 'enter-to-send'): ?>
+		<?php if (isset($_SESSION['chatKeyBehavior']) && $_SESSION['chatKeyBehavior'] === 'enter-to-send'): ?>
 
         if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
             insertAtCursor(messageContent, '\n');
