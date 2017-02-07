@@ -171,13 +171,10 @@
 
 .chat-bar .chat-message {
     display: inline-block;
+    min-width: 14rem;
     margin: auto;
     padding: 0.3rem;
     font-size: 0.9rem;
-}
-
-.chat-bar .chat-message:nth-child(even) {
-    background-color: #F8F8F8;
 }
 
 .chat-bar .chat-message .chat-sidebar {
