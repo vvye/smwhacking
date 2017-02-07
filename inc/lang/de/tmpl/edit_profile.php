@@ -238,9 +238,9 @@
 				</td>
 				<td>
 					<div class="custom-checkbox-group">
-						<input type="checkbox" class="custom-checkbox" name="show-chat-excerpt"
-							   id="show-chat-excerpt" <?= $showChatExcerpt ? 'checked="checked"' : '' ?> />
-						<label class="custom-checkbox-label" for="show-chat-excerpt"> Neueste Chat-Nachricht auf jeder
+						<input type="checkbox" class="custom-checkbox" name="show-chat-bar"
+							   id="show-chat-bar" <?= $showChatBar ? 'checked="checked"' : '' ?> />
+						<label class="custom-checkbox-label" for="show-chat-bar"> Neueste Chat-Nachricht auf jeder
 							Seite anzeigen</label>
 					</div>
 				</td>

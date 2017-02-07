@@ -1,4 +1,4 @@
-<div class="chat-excerpt">
+<div class="chat-bar">
 	<div class="chat-message-container">
 		<div class="chat-message">
 			<div class="chat-sidebar">

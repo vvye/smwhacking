@@ -58,7 +58,7 @@
 
 				renderMenu();
 				renderUserMenu();
-				renderChatExcerpt();
+				renderChatBar();
 
 			?>
 		</header>

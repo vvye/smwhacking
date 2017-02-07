@@ -64,7 +64,7 @@
 			'banned',
 			'enable_notifications',
 			'theme',
-			'show_chat_excerpt',
+			'show_chat_bar',
 			'chat_key_behavior'
 		], [
 			'id'    => $userId,
@@ -214,7 +214,7 @@
 			'signature'            => delimitSmileys(htmlspecialchars($data['signature'])),
 			'enable_notifications' => $data['enableNotifications'] ? 1 : 0,
 			'theme'                => $data['theme'],
-			'show_chat_excerpt'    => $data['showChatExcerpt'],
+			'show_chat_bar'        => $data['showChatBar'],
 			'chat_key_behavior'    => $data['chatKeyBehavior'],
 		], [
 			'id' => $userId

@@ -73,7 +73,7 @@
 			$banned = (bool)$user['banned'];
 			$enableNotifications = (bool)$user['enable_notifications'];
 			$theme = $user['theme'];
-			$showChatExcerpt = $user['show_chat_excerpt'];
+			$showChatBar = $user['show_chat_bar'];
 			$chatKeyBehavior = $user['chat_key_behavior'];
 
 			$favoriteMedalsRaw = getFavoriteMedals($userId);
@@ -96,7 +96,7 @@
 			$signature = trim(getFieldValue('signature'));
 			$enableNotifications = getFieldValue('enable-notifications');
 			$theme = getFieldValue('theme');
-			$showChatExcerpt = getFieldValue('show-chat-excerpt') ? 1 : 0;
+			$showChatBar = getFieldValue('show-chat-bar') ? 1 : 0;
 			$chatKeyBehavior = getFieldValue('chat-key-behavior');
 
 			$powerlevel = (int)getFieldValue('powerlevel');
@@ -186,7 +186,7 @@
 					'signature'           => $signature,
 					'enableNotifications' => $enableNotifications,
 					'theme'               => $theme,
-					'showChatExcerpt'     => $showChatExcerpt,
+					'showChatBar'         => $showChatBar,
 					'chatKeyBehavior'     => $chatKeyBehavior
 				]);
 
@@ -194,7 +194,7 @@
 				{
 					$_SESSION['signature'] = $signature;
 					$_SESSION['theme'] = $theme;
-					$_SESSION['showChatExcerpt'] = $showChatExcerpt;
+					$_SESSION['showChatBar'] = $showChatBar;
 					$_SESSION['chatKeyBehavior'] = $chatKeyBehavior;
 				}
 
@@ -258,7 +258,7 @@
 			'token'               => $token,
 			'themes'              => getAllThemes(),
 			'selectedTheme'       => $theme,
-			'showChatExcerpt'     => $showChatExcerpt,
+			'showChatBar'         => $showChatBar,
 			'chatKeyBehavior'     => $chatKeyBehavior
 		]);
 	} while (false);

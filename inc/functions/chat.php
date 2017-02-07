@@ -185,9 +185,9 @@
 	}
 
 
-	function renderChatExcerpt()
+	function renderChatBar()
 	{
-		if (!isLoggedIn() || !$_SESSION['showChatExcerpt'])
+		if (!isLoggedIn() || !$_SESSION['showChatBar'])
 		{
 			return;
 		}
@@ -196,7 +196,7 @@
 		$message['content'] = truncateChatMessage($message['content']);
 		$message = processMessages([$message])[0];
 
-		renderTemplate('chat_excerpt', [
+		renderTemplate('chat_bar', [
 			'message' => $message
 		]);
 	}
@@ -205,10 +205,10 @@
 	{
 		$text = str_replace(["\r", "\n", '<br>', '<br />'], ' ', $text);
 
-		if (strlen($text) <= CHAT_EXCERPT_TRUNCATE_LENGTH)
+		if (strlen($text) <= CHAT_BAR_TRUNCATE_LENGTH)
 		{
 			return $text;
 		}
 
-		return substr($text, 0, CHAT_EXCERPT_TRUNCATE_LENGTH) . '&hellip;';
+		return substr($text, 0, CHAT_BAR_TRUNCATE_LENGTH) . '&hellip;';
 	}
