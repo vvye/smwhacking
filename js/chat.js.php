@@ -275,12 +275,12 @@ session_start();
             + '&last_id=' + getLastMessageId()
         }, function (status, response) {
 
-            if (status === 403) {
+            if (status === 429) {
                 alert('Die Nachricht wurde zu schnell nach der letzten gesendet. Lass dir etwas mehr Zeit.');
                 return;
             }
             if (status !== 200) {
-                alert('Das Senden hat nicht geklappt.');
+                alert('Das Senden hat nicht geklappt. Bist du vielleicht schon ausgeloggt?');
                 return;
             }
 

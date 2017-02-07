@@ -43,6 +43,7 @@
 	{
 		if (!isLoggedIn() || isBanned())
 		{
+			http_response_code(403);
 			die();
 		}
 
@@ -50,13 +51,14 @@
 			&& $_SESSION['lastMessagePostTime'] > time() - CHAT_MESSAGE_POST_COOLDOWN_TIME
 		)
 		{
-			http_response_code(403);
+			http_response_code(429);
 			die();
 		}
 		$_SESSION['lastMessagePostTime'] = time();
 
 		if (!isset($_GET['last_id']))
 		{
+			http_response_code(403);
 			die();
 		}
 		$lastId = (int)$_GET['last_id'] * 1;
@@ -64,6 +66,7 @@
 		$content = $_GET['content'] ?? '';
 		if (trim($content) === '')
 		{
+			http_response_code(403);
 			die();
 		}
 
