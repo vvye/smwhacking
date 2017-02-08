@@ -1,0 +1,4 @@
+<?php
+
+	define('ONLINE_ACTIVITY_TIME_THRESHOLD', 5 * 60);
+	

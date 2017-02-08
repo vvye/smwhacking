@@ -4,6 +4,7 @@
 
 	require_once __DIR__ . '/session.php';
 	require_once __DIR__ . '/pm.php';
+	require_once __DIR__ . '/user.php';
 	require_once __DIR__ . '/misc.php';
 
 
@@ -102,7 +103,8 @@
 		{
 			include $pageFile;
 		}
-		else if (file_exists($subpageFile = __DIR__ . '/../pages/' . getCurrentPageName() . '/' . getCurrentSubpageName() . '.php'))
+		else if (file_exists($subpageFile = __DIR__ . '/../pages/' . getCurrentPageName() . '/'
+			. getCurrentSubpageName() . '.php'))
 		{
 			include $subpageFile;
 		}
@@ -110,4 +112,15 @@
 		{
 			include __DIR__ . '/../pages/404.php';
 		}
+	}
+
+
+	function renderFooter()
+	{
+		$onlineUsers = getOnlineUsers();
+
+		renderTemplate('footer', [
+			'onlineUsers'    => $onlineUsers,
+			'numOnlineUsers' => count($onlineUsers)
+		]);
 	}

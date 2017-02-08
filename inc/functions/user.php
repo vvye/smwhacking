@@ -347,3 +347,16 @@
 
 		return true;
 	}
+
+
+	function getOnlineUsers()
+	{
+		global $database;
+
+		return $database->select('users', [
+			'id',
+			'name'
+		], [
+			'last_activity_time[>]' => time() - ONLINE_ACTIVITY_TIME_THRESHOLD
+		]);
+	}

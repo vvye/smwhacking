@@ -1,5 +1,7 @@
 <?php
 
+	require_once __DIR__ . '/../config/session.php';
+
 	require_once __DIR__ . '/form.php';
 	require_once __DIR__ . '/phpbb_auth.php';
 
@@ -101,6 +103,24 @@
 			'id' => $userId
 		]);
 	}
+
+
+	function updateLastActivityTime()
+	{
+		global $database;
+
+		if (!isLoggedIn())
+		{
+			return;
+		}
+
+		$database->update('users', [
+			'last_activity_time' => time()
+		], [
+			'id' => $_SESSION['userId']
+		]);
+	}
+
 
 	function getCsrfToken()
 	{

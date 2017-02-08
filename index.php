@@ -19,6 +19,8 @@
 	$database = getDatabase();
 	$theme = getTheme();
 
+	updateLastActivityTime();
+
 ?>
 <!doctype html>
 <html>
@@ -70,6 +72,12 @@
 
 			?>
 		</div>
+
+		<?php
+
+			renderFooter();
+
+		?>
 
 	</body>
 
