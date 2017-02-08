@@ -187,7 +187,7 @@
 
 	function renderChatBar()
 	{
-		if (!isLoggedIn() || !$_SESSION['showChatBar'])
+		if (!isLoggedIn() || !$_SESSION['showChatBar'] || getCurrentPageName() === 'chat')
 		{
 			return;
 		}

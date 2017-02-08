@@ -4,7 +4,7 @@
 
 	<p>
 		<?php if ($numOnlineUsers === 0): ?>
-			<em>Momentan sind keine registrierten Nutzer online.</em>
+			<em>Momentan ist niemand eingeloggt.</em>
 		<?php else: ?>
 			<?= $numOnlineUsers ?> Nutzer online:
 			<?php foreach ($onlineUsers as $i => $user): ?>
