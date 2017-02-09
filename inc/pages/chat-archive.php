@@ -8,7 +8,7 @@
 	$page = (isset($_GET['page']) && is_int($_GET['page'] * 1)) ? ($_GET['page'] * 1) : 1;
 
 	$numMessages = getNumChatMessages();
-	$numPages = (int)ceil($numMessages / MAX_CHAT_MESSAGES);
+	$numPages = (int)ceil($numMessages / INIT_CHAT_MESSAGES);
 	makeBetween($page, 1, $numPages);
 	renderPagination('?p=chat-archive', $page, $numPages);
 

@@ -27,7 +27,7 @@
 				'deleted' => 0
 			],
 			'ORDER' => 'chat_messages.id DESC',
-			'LIMIT' => MAX_CHAT_MESSAGES,
+			'LIMIT' => INIT_CHAT_MESSAGES,
 		];
 		if ($lastId !== null)
 		{
@@ -111,7 +111,7 @@
 		], [
 			'deleted' => 0,
 			'ORDER'   => 'post_time ASC',
-			'LIMIT'   => [($page - 1) * MAX_CHAT_MESSAGES, MAX_CHAT_MESSAGES]
+			'LIMIT'   => [($page - 1) * INIT_CHAT_MESSAGES, INIT_CHAT_MESSAGES]
 		]);
 
 		$messages = processMessages($messages);
