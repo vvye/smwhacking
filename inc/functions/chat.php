@@ -51,12 +51,32 @@
 		if ($returnRefreshTime)
 		{
 			return [
-				'refreshTime' => date(DEFAULT_DATE_FORMAT),
-				'messages'    => $messages
+				'refreshTime'    => date(DEFAULT_DATE_FORMAT),
+				'unreadMessages' => $messages
 			];
 		}
 
 		return $messages;
+	}
+
+
+	function getDeletedMessages($firstId, $lastId)
+	{
+		global $database;
+
+		$deletedMessages = $database->select('chat_messages', [
+			'[>]users' => ['author' => 'id']
+		], [
+			'chat_messages.id'
+		], [
+			'AND' => [
+				'deleted'              => 1,
+				'chat_messages.id[>=]' => $firstId,
+				'chat_messages.id[<=]' => $lastId
+			]
+		]);
+
+		return $deletedMessages;
 	}
 
 
@@ -200,6 +220,7 @@
 			'message' => $message
 		]);
 	}
+
 
 	function truncateChatMessage($text)
 	{

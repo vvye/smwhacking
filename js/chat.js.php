@@ -58,7 +58,7 @@ session_start();
             + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
             + '<span>'
             + ' {post_time} '
-            + (message.can_delete ? '(<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>)' : '')
+            + (message.can_delete ? '<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>' : '')
             + '</span>'
             + '</div>'
             + '<div class="chat-message-content">{content}</div>'
@@ -80,6 +80,14 @@ session_start();
         var messages = getMessages();
         return messages[messages.length - 1].dataset.id;
 
+    }
+
+    function removeMessageById(id) {
+
+        var message = document.getElementById('message-' + id);
+        if (message) {
+            message.remove();
+        }
     }
 
     function deactivateRefreshButton() {
@@ -134,19 +142,25 @@ session_start();
         }
     }
 
-    function addMessages(messages) {
+    function updateMessages(data) {
 
-        for (var i = 0; i < messages.length; i++) {
-            addMessage(messages[i]);
+        var unreadMessages = data.unreadMessages;
+        var deletedMessages = data.deletedMessages;
+
+        for (var i = 0; i < deletedMessages.length; i++) {
+            removeMessageById(deletedMessages[i].id);
+        }
+
+        for (var j = 0; j < unreadMessages.length; j++) {
+            addMessage(unreadMessages[j]);
             while (getNumMessages() > <?= MAX_CHAT_MESSAGES ?>) {
                 removeFirstMessage();
             }
         }
 
-        if (messages.length) {
+        if (unreadMessages.length) {
             scrollToLastMessage();
         }
-
     }
 
     function setupDeleteLinks() {
@@ -201,7 +215,7 @@ session_start();
         deactivateRefreshButton();
 
         nanoajax.ajax({
-            url: 'inc/ajax/chat.php?action=last_unread_messages'
+            url: 'inc/ajax/chat.php?action=update_messages'
             + '&last_id=' + getLastMessageId()
         }, function (status, response) {
 
@@ -216,7 +230,7 @@ session_start();
             }
 
             var data = JSON.parse(response);
-            addMessages(data.messages);
+            updateMessages(data);
             refreshTime.innerHTML = data.refreshTime;
             setupDeleteLinks();
 
@@ -289,7 +303,7 @@ session_start();
             messageContent.value = '';
 
             var data = JSON.parse(response);
-            addMessages(data.messages);
+            updateMessages(data);
             refreshTime.innerHTML = data.refreshTime;
             setupDeleteLinks();
 

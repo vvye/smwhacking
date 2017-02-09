@@ -14,7 +14,7 @@
 	header('Content-type: text/json');
 
 
-	function lastUnreadMessages()
+	function updateMessages()
 	{
 		if (!isLoggedIn() || isBanned())
 		{
@@ -33,9 +33,10 @@
 		}
 		$lastId = (int)$_GET['last_id'] * 1;
 
-		$unreadMessages = getRecentChatMessages($lastId, true);
+		$messages = getRecentChatMessages($lastId, true);
+		$messages['deletedMessages'] = getDeletedMessages($lastId - MAX_CHAT_MESSAGES, $lastId);
 
-		echo json_encode($unreadMessages);
+		echo json_encode($messages);
 	}
 
 
@@ -72,9 +73,10 @@
 
 		createMessage($content);
 
-		$unreadMessages = getRecentChatMessages($lastId, true);
+		$messages = getRecentChatMessages($lastId, true);
+		$messages['deletedMessages'] = getDeletedMessages($lastId - MAX_CHAT_MESSAGES, $lastId);
 
-		echo json_encode($unreadMessages);
+		echo json_encode($messages);
 	}
 
 
@@ -104,8 +106,8 @@
 
 	switch ($_GET['action'])
 	{
-		case 'last_unread_messages':
-			lastUnreadMessages();
+		case 'update_messages':
+			updateMessages();
 			break;
 		case 'post_message':
 			postMessage();
