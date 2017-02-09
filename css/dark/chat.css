@@ -1,5 +1,5 @@
 .chat {
-    margin: 1rem 0 20rem;
+    margin: 1rem 0;
     border-radius: 1px;
 }
 
@@ -102,6 +102,10 @@
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
+}
+
+.chat .chat-message .chat-topbar .delete {
+    float: right;
 }
 
 .chat .chat-message .chat-message-content {

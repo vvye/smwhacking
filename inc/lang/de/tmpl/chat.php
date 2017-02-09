@@ -1,6 +1,6 @@
 <h2>Chat</h2>
 
-<div class="chat">
+<div class="chat" <?= $loggedIn ? 'style="margin-bottom: 20rem;"' : '' ?>>
 
 	<div class="chat-header">
 		<div class="grid">
@@ -30,7 +30,7 @@
 					<span>
 						<?= $message['post_time'] ?>
 						<?php if ($message['can_delete']): ?>
-							(<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>)
+							<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>
 						<?php endif ?>
 					</span>
 				</div>

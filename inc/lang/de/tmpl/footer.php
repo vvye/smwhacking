@@ -9,8 +9,7 @@
 			<?= $numOnlineUsers ?> Nutzer online:
 			<?php foreach ($onlineUsers as $i => $user): ?>
 				<a class="username" href="?p=user&id=<?= $user['id'] ?>"><?= $user['name'] ?></a><?= ($i
-					!== $numOnlineUsers
-					- 1) ? ', ' : '' ?>
+					!== $numOnlineUsers - 1) ? ', ' : '' ?>
 			<?php endforeach ?>
 		<?php endif ?>
 	</p>
