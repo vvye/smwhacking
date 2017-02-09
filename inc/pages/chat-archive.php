@@ -12,7 +12,7 @@
 	makeBetween($page, 1, $numPages);
 	renderPagination('?p=chat-archive', $page, $numPages);
 
-	$messages = getChatMessagesForAchive($page);
+	$messages = getChatMessagesForArchive($page);
 
 	renderTemplate('chat_archive', [
 		'messages' => $messages

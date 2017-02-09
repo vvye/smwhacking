@@ -2,6 +2,7 @@
 
 	require_once __DIR__ . '/../config/database.php';
 	require_once __DIR__ . '/../config/notifications.php';
+	require_once __DIR__ . '/../config/user.php';
 	require_once __DIR__ . '/../config/misc.php';
 
 
@@ -17,7 +18,7 @@
 		{
 			$errorMessages[] = MSG_EMAILS_DONT_MATCH;
 		}
-		if (!preg_match('/^[a-zA-Z0-9 _-]{3,30}$/', getFieldValue('username')))
+		if (!preg_match('/^' . VALID_USERNAME_REGEX . '$/', getFieldValue('username')))
 		{
 			$errorMessages[] = MSG_INVALID_USERNAME;
 		}

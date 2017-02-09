@@ -5,6 +5,7 @@
 
 	require_once __DIR__ . '/../config/chat.php';
 	require_once __DIR__ . '/../config/bbcode.php';
+	require_once __DIR__ . '/../config/user.php';
 	require_once __DIR__ . '/../config/misc.php';
 
 
@@ -71,8 +72,7 @@
 		], [
 			'AND' => [
 				'deleted'              => 1,
-				'chat_messages.id[>=]' => $firstId,
-				'chat_messages.id[<=]' => $lastId
+				'chat_messages.id[<>]' => [$firstId, $lastId]
 			]
 		]);
 
@@ -97,6 +97,8 @@
 			'LIMIT' => 1
 		]);
 
+		processMessages($messages);
+
 		return $messages[0];
 	}
 
@@ -105,7 +107,7 @@
 	{
 		foreach ($messages as $key => $message)
 		{
-			$messages[$key]['content'] = parseBBCode($message['content']);
+			$messages[$key]['content'] = linkifyMentions(parseBBCode($message['content']));
 			$messages[$key]['avatar_url'] = getAvatarUrlFromMessage($message);
 			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
 			$messages[$key]['can_delete'] = isLoggedIn()
@@ -116,7 +118,7 @@
 	}
 
 
-	function getChatMessagesForAchive($page)
+	function getChatMessagesForArchive($page)
 	{
 		global $database;
 
@@ -232,4 +234,39 @@
 		}
 
 		return substr($text, 0, CHAT_BAR_TRUNCATE_LENGTH) . '&hellip;';
+	}
+
+
+	function linkifyMentions($text)
+	{
+		global $database;
+
+		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database)
+		{
+
+			$matchedUsername = $match[1];
+			$possibleUsernames = [];
+			for ($i = strlen($matchedUsername); $i > 0; $i--)
+			{
+				$possibleUsernames[] = substr($matchedUsername, 0, $i);
+			}
+
+			$user = $database->get('users', [
+				'id',
+				'name'
+			], [
+				'name' => $possibleUsernames
+			]);
+
+			if ($user !== null && $user !== false && !empty($user))
+			{
+				return '@' . '<a href="?p=user&id=' . $user['id'] . '">' . $user['name'] . '</a>'
+					. substr($matchedUsername, strlen($user['name']));
+			}
+
+			return $match[0];
+
+		}, $text);
+
+		return $text;
 	}
