@@ -37,17 +37,21 @@
 		$builder->setParseContent(false);
 		$parser->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('quote', '<div class="quote"><span class="head">' . BBCODE_QUOTE . '</span><div class="box">{param}</div></div>');
+		$builder = new JBBCode\CodeDefinitionBuilder('quote', '<div class="quote"><span class="head">'
+			. BBCODE_QUOTE . '</span><div class="box">{param}</div></div>');
 		$parser->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('quote', '<div class="quote"><span class="head">' . BBCODE_QUOTE_BY . ' {option}: </span><div class="box">{param}</div></div>');
+		$builder = new JBBCode\CodeDefinitionBuilder('quote', '<div class="quote"><span class="head">'
+			. BBCODE_QUOTE_BY . ' {option}: </span><div class="box">{param}</div></div>');
 		$builder->setUseOption(true);
 		$parser->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('spoiler', '<div class="spoiler"><span class="head">' . BBCODE_SPOILER . ' <a class="small button">anzeigen</a></span><div class="box">{param}</div></div>');
+		$builder = new JBBCode\CodeDefinitionBuilder('spoiler', '<div class="spoiler"><span class="head">'
+			. BBCODE_SPOILER . ' <a class="small button">anzeigen</a></span><div class="box">{param}</div></div>');
 		$parser->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('spoiler', '<div class="spoiler"><span class="head">{option} <a class="small button">' . BBCODE_SPOILER_SHOW . '</a></span><div class="box">{param}</div></div>');
+		$builder = new JBBCode\CodeDefinitionBuilder('spoiler', '<div class="spoiler"><span class="head">{option} <a class="small button">'
+			. BBCODE_SPOILER_SHOW . '</a></span><div class="box">{param}</div></div>');
 		$builder->setUseOption(true);
 		$parser->addCodeDefinition($builder->build());
 
@@ -67,6 +71,40 @@
 
 		$builder = new JBBCode\CodeDefinitionBuilder('*', '<li>{param}</li>');
 		$parser->addCodeDefinition($builder->build());
+
+		$parser->addCodeDefinition(new class extends JBBCode\CodeDefinition
+		{
+			public function __construct()
+			{
+				parent::__construct();
+				$this->setTagName("simg");
+				$this->useOption = true;
+				$this->parseContent = false;
+			}
+
+
+			public function asHtml(JBBCode\ElementNode $el)
+			{
+				$attr = $el->getAttribute()['simg'];
+
+				$content = "";
+				foreach ($el->getChildren() as $child)
+				{
+					$content .= $child->getAsText();
+				}
+
+				$foundMatch = preg_match('/^(\d+),(\d+)$/i', $attr, $matches);
+				if (!$foundMatch)
+				{
+					return $el->getAsBBCode();
+				}
+				else
+				{
+					return '<img src="' . $content . '" style="width: ' . $matches[1] . 'px; height: ' . $matches[2]
+						. 'px;" />';
+				}
+			}
+		});
 
 		return $parser;
 	}
