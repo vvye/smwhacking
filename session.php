@@ -15,6 +15,9 @@
 
 	$baseUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']);
 
+	$previousPage = $_SESSION['referrer'];
+	unset($_SESSION['referrer']);
+
 
 	if (isset($_GET['action']) && $_GET['action'] === 'login')
 	{
@@ -26,7 +29,7 @@
 		}
 		else
 		{
-			header('Location: ' . $baseUrl . '?p=home');
+			header('Location: ' . $previousPage);
 		}
 	}
 	else if (isset($_GET['action']) && $_GET['action'] === 'logout')

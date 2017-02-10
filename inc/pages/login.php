@@ -14,9 +14,9 @@
 		{
 			renderErrorMessage(MSG_LOGIN_FAILURE);
 		}
+
+		$_SESSION['referrer'] = $_SERVER['HTTP_REFERER'];
+
 		renderTemplate('login_form', []);
 
-	}
-	while (false);
-
-
+	} while (false);
