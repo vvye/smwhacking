@@ -74,7 +74,7 @@
     font-size: 0.9rem;
 }
 
-.chat .chat-message:last-child {
+.chat .chat-message:last-of-type {
     border-bottom: none;
 }
 
