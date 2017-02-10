@@ -12,5 +12,3 @@
 		'enterToSend' => isLoggedIn() && $_SESSION['chatKeyBehavior'] === 'enter-to-send',
 		'messages'    => $messages
 	]);
-
-	renderTemplate('spoiler_js', []);

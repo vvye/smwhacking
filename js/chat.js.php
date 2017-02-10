@@ -1,9 +1,16 @@
 <?php
 
+require_once __DIR__ . '/../inc/functions/template.php';
+
 require_once __DIR__ . '/../inc/config/chat.php';
 require_once __DIR__ . '/../inc/config/ajax.php';
+require_once __DIR__ . '/../inc/lang/de/strings.php';
 
 session_start();
+
+renderTemplate('spoiler_js', [
+	'inlineFunction' => true
+])
 
 ?>
 
@@ -161,6 +168,8 @@ session_start();
         if (unreadMessages.length) {
             scrollToLastMessage();
         }
+
+        initSpoilerButtons();
     }
 
     function setupDeleteLinks() {
