@@ -13,10 +13,14 @@
 	require_once 'inc/functions/theme.php';
 	require_once 'inc/functions/chat.php';
 	require_once 'inc/functions/database.php';
+	require_once 'inc/functions/session.php';
 
 	session_start();
 
 	$database = getDatabase();
+
+	handlePersistentLogin();
+
 	$theme = getTheme();
 
 	updateLastActivityTime();
