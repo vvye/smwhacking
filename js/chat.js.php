@@ -294,6 +294,10 @@ session_start();
 
     function postMessage() {
 
+        if (messageContent.value.trim() === '') {
+            return;
+        }
+
         deactivateSendButton();
 
         nanoajax.ajax({
