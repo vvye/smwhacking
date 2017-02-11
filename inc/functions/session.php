@@ -242,6 +242,11 @@
 	{
 		global $database;
 
+		if (isLoggedIn())
+		{
+			return;
+		}
+
 		if (!isset($_COOKIE['remember_me']) || !isset($_COOKIE['remember_me_token']))
 		{
 			return;
@@ -251,9 +256,9 @@
 		$password = getPasswordByUserId($userId);
 
 		$actualRememberMeToken = hash('sha256', $password . '|' . $userId);
-		$givenRememberMeTokenHash = $_COOKIE['remember_me_token'];
+		$givenRememberMeToken = $_COOKIE['remember_me_token'];
 
-		if ($actualRememberMeToken !== $givenRememberMeTokenHash)
+		if ($actualRememberMeToken !== $givenRememberMeToken)
 		{
 			return;
 		}
@@ -277,6 +282,11 @@
 				'activated' => 1
 			]
 		]);
+
+		if (!is_array($user) || empty($user))
+		{
+			return;
+		}
 
 		$_SESSION['userId'] = $user['id'];
 		$_SESSION['username'] = $user['name'];
