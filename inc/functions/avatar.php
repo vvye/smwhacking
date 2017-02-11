@@ -104,5 +104,5 @@
 		$filenames = glob($dir . '/*.png');
 		$index = array_rand($filenames);
 
-		return $filenames[$index];
+		return $dir . basename($filenames[$index]);
 	}
