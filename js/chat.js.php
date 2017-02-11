@@ -8,10 +8,6 @@ require_once __DIR__ . '/../inc/lang/de/strings.php';
 
 session_start();
 
-renderTemplate('spoiler_js', [
-	'inlineFunction' => true
-])
-
 ?>
 
 (function () {
@@ -26,6 +22,14 @@ renderTemplate('spoiler_js', [
     setupDeleteLinks();
     resizeMessageList();
     scrollToLastMessage();
+
+	<?php
+	renderTemplate('spoiler_js', [
+		'inlineFunction' => true
+	]);
+	?>
+    initSpoilerButtons();
+
 
     function resizeMessageList() {
 
