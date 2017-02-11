@@ -99,11 +99,10 @@
 	}
 
 
-	function getRandomFuerstAvatarFilename()
+	function getRandomImageFilename($dir)
 	{
-		$dir = __DIR__ . '/../../img/avatars/fuersten';
 		$filenames = glob($dir . '/*.png');
 		$index = array_rand($filenames);
 
-		return basename($filenames[$index]);
+		return $filenames[$index];
 	}

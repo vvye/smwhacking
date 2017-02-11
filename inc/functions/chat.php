@@ -198,9 +198,13 @@
 
 	function getAvatarUrlFromMessage($message)
 	{
-		if (preg_match('/\bf(?:ü|ue)rst\b/i', $message['content']))
+		$avatarEasterEggs = AVATAR_EASTER_EGGS;
+		foreach ($avatarEasterEggs as $regex => $directory)
 		{
-			return 'img/avatars/fuersten/' . getRandomFuerstAvatarFilename();
+			if (preg_match($regex, $message['content']))
+			{
+				return getRandomImageFilename($directory);
+			}
 		}
 
 		return hasAvatar($message['author_id']) ? 'img/avatars/' . $message['author_id'] . '.png' :
