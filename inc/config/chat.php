@@ -7,6 +7,6 @@
 	define('CHAT_BAR_TRUNCATE_LENGTH', 100);
 
 	define('AVATAR_EASTER_EGGS', [
-		'/\bf(?:ü|ue)rst\b/i' => __DIR__ . '/../../img/avatars/fuersten',
-		'/\bpenis\b/i'        => __DIR__ . '/../../img/avatars/carefully-cropped',
+		'/\bf(?:ü|ue)rst\b/i' => 'fuersten',
+		'/\bpenis\b/i'        => 'carefully-cropped',
 	]);

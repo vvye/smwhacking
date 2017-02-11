@@ -101,8 +101,10 @@
 
 	function getRandomImageFilename($dir)
 	{
-		$filenames = glob($dir . '/*.png');
+		$fullDir = __DIR__ . '/../../img/avatars/' . $dir;
+
+		$filenames = glob($fullDir . '/*.png');
 		$index = array_rand($filenames);
 
-		return $dir . basename($filenames[$index]);
+		return 'img/avatars/' . $dir . '/' . basename($filenames[$index]);
 	}
