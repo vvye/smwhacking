@@ -93,8 +93,9 @@
 			'chat_messages.post_time',
 			'chat_messages.content',
 		], [
-			'ORDER' => 'chat_messages.id DESC',
-			'LIMIT' => 1
+			'deleted' => 0,
+			'ORDER'   => 'chat_messages.id DESC',
+			'LIMIT'   => 1
 		]);
 
 		processMessages($messages);
