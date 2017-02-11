@@ -152,7 +152,10 @@
 }
 
 .chat-archive .chat-messages {
+    height: auto;
+    min-height: unset;
     max-height: none;
+    resize: none;
 }
 
 .chat-bar {
