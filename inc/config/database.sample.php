@@ -5,3 +5,4 @@
 	define('DB_PASSWORD', '');
 	define('DB_DATABASENAME', '');
 	define('DB_CHARSET', '');
+
