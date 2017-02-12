@@ -220,7 +220,7 @@
 		}
 
 		$currentPageName = getCurrentPageName();
-		if (in_array($currentPageName, ['home', 'chat']))
+		if (in_array($currentPageName, ['chat']))
 		{
 			return;
 		}
