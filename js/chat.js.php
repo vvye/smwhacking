@@ -43,15 +43,18 @@ session_start();
 
     }
 
+
     function scrollToLastMessage() {
         setTimeout(function () {
             container.scrollTop = container.scrollHeight;
         }, 100); // why is timeout needed
     }
 
+
     function getMessages() {
         return document.getElementsByClassName('chat-message');
     }
+
 
     function removeFirstMessage() {
 
@@ -59,6 +62,7 @@ session_start();
         firstMessage.remove();
 
     }
+
 
     function addMessage(message) {
 
@@ -80,6 +84,7 @@ session_start();
 
     }
 
+
     function getNumMessages() {
 
         var messages = getMessages();
@@ -87,12 +92,14 @@ session_start();
 
     }
 
+
     function getLastMessageId() {
 
         var messages = getMessages();
         return messages[messages.length - 1].dataset.id;
 
     }
+
 
     function removeMessageById(id) {
 
@@ -102,12 +109,14 @@ session_start();
         }
     }
 
+
     function deactivateRefreshButton() {
 
         refreshButton.setAttribute('disabled', 'disabled');
         refreshIcon.classList.add('fa-spin');
 
     }
+
 
     function showCheckmark() {
 
@@ -117,6 +126,7 @@ session_start();
 
     }
 
+
     function activateRefreshButton() {
 
         refreshButton.removeAttribute('disabled');
@@ -125,14 +135,17 @@ session_start();
 
     }
 
+
     function deactivateSendButton() {
         sendButton.setAttribute('disabled', 'disabled');
     }
+
 
     function activateSendButton() {
         sendButton.removeAttribute('disabled');
         messageContent.onchange();
     }
+
 
     // http://stackoverflow.com/questions/11076975/insert-text-into-textarea-at-cursor-position-javascript
     function insertAtCursor(myField, myValue) {
