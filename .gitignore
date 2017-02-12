@@ -2,7 +2,7 @@
 img/avatars/
 inc/tmp/
 ***REMOVED***
-***REMOVED***
+inc/config/database.php
 ***REMOVED***
 import.php
 notification_token

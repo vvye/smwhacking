@@ -253,6 +253,7 @@ session_start();
 
     };
 
+
     messageContent.oninput = messageContent.onchange = messageContent.onpropertychange = function () {
 
         if (this.value.trim() === '') {
@@ -262,6 +263,7 @@ session_start();
         }
 
     };
+
 
     messageContent.onkeydown = function (e) {
 
