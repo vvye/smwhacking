@@ -42,7 +42,7 @@
 
 	function postMessage()
 	{
-		if (!isLoggedIn() || isBanned())
+		if (!isLoggedIn() || isBanned() || !isCsrfTokenCorrect($_GET['token']))
 		{
 			http_response_code(403);
 			die();
@@ -82,12 +82,17 @@
 
 	function delete()
 	{
-
 		if (!isset($_GET['id']))
 		{
 			die();
 		}
 		$id = (int)$_GET['id'] * 1;
+
+		if (!isCsrfTokenCorrect($_GET['token']))
+		{
+			http_response_code(403);
+			die();
+		}
 
 		$success = deleteMessage($id);
 		if (!$success)
@@ -95,7 +100,6 @@
 			http_response_code(403);
 			die();
 		}
-
 	}
 
 

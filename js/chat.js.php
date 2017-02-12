@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../inc/functions/template.php';
+require_once __DIR__ . '/../inc/functions/session.php';
 
 require_once __DIR__ . '/../inc/config/chat.php';
 require_once __DIR__ . '/../inc/config/ajax.php';
@@ -198,6 +199,7 @@ session_start();
             nanoajax.ajax({
                 url: 'inc/ajax/chat.php?action=delete'
                 + '&id=' + id
+                + '&token=' + '<?= getCsrfToken() ?>'
             }, function (status) {
 
                 if (status === 403) {
@@ -304,6 +306,7 @@ session_start();
             url: 'inc/ajax/chat.php?action=post_message'
             + '&content=' + encodeURIComponent(messageContent.value)
             + '&last_id=' + getLastMessageId()
+            + '&token=' + '<?= getCsrfToken() ?>'
         }, function (status, response) {
 
             if (status === 429) {
