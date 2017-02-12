@@ -633,3 +633,8 @@
 
 	define('MSG_OUTBOX_EMPTY',
 		'Dein Postausgang ist leer.');
+
+
+	define('MSG_DATABASE_ERROR',
+		'Die Verbindung zur Datenbank ist fehlgeschlagen. Wenn das Problem weiterhin auftritt, wende dich an
+		info@smwhacking.de.');
