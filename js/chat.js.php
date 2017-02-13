@@ -167,6 +167,7 @@ session_start();
         }
     }
 
+
     function updateMessages(data) {
 
         var unreadMessages = data.unreadMessages;

@@ -1,7 +1,7 @@
 .idea
 img/avatars/
 inc/tmp/
-***REMOVED***
+inc/local_db_config.php
 inc/config/database.php
 css/*/editor_skin.pdn
 import.php
