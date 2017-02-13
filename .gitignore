@@ -6,5 +6,5 @@ inc/config/database.php
 css/*/editor_skin.pdn
 import.php
 notification_token
-***REMOVED***
+inc/last_medal_update_time
 files/
