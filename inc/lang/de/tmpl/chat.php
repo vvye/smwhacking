@@ -48,14 +48,16 @@
 
 		<div class="chat-footer">
 			<div class="message-form">
-				<textarea id="message-content" name="message"></textarea>
-				<button id="send" class="primary" disabled="disabled"><i class="fa fa-send"></i> Senden
-					<?php if ($enterToSend): ?>
-						<small>(Enter)</small>
-					<?php else: ?>
-						<small>(Strg+Enter)</small>
-					<?php endif ?>
-				</button>
+				<div id="message-content-wrapper">
+					<textarea id="message-content" name="message"></textarea>
+					<button id="send" class="primary" disabled="disabled"><i class="fa fa-send"></i> Senden
+						<?php if ($enterToSend): ?>
+							<small>(Enter)</small>
+						<?php else: ?>
+							<small>(Strg+Enter)</small>
+						<?php endif ?>
+					</button>
+				</div>
 			</div>
 		</div>
 

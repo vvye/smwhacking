@@ -18,6 +18,7 @@ session_start();
     var refreshIcon = document.getElementById('refresh-icon');
     var refreshTime = document.getElementById('refresh-date');
     var messageContent = document.getElementById('message-content');
+    var messageContentWrapper = document.getElementById('message-content-wrapper');
     var sendButton = document.getElementById('send');
 
     setupDeleteLinks();
@@ -267,8 +268,18 @@ session_start();
 
     };
 
+    window.messageContentResizedManually = false;
+    addResizeListener(messageContentWrapper, function () {
+        console.log(window.messageContentResizedManually);
+        window.messageContentResizedManually = true;
+    });
 
     messageContent.oninput = messageContent.onchange = messageContent.onpropertychange = function () {
+
+        if (!messageContentResizedManually && this.scrollHeight > this.offsetHeight) {
+            var padding = parseFloat(window.getComputedStyle(this, null).getPropertyValue('padding-top'));
+            this.style.height = (this.scrollHeight + padding) + 'px';
+        }
 
         if (this.value.trim() === '') {
             sendButton.setAttribute('disabled', 'disabled');

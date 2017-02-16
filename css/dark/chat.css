@@ -18,7 +18,7 @@
 }
 
 .chat .chat-header .column > button.primary,
-.chat .chat-footer .message-form > button.primary,
+button#send.primary,
 .chat .chat-header .column > .button.primary,
 .chat .chat-footer .message-form > .button.primary {
     background-color: white;
@@ -27,7 +27,7 @@
 }
 
 .chat .chat-header .column > button.subtle,
-.chat .chat-footer .message-form > button.subtle,
+button#send.subtle,
 .chat .chat-header .column > .button.subtle,
 .chat .chat-footer .message-form > .button.subtle {
     border-color: #d1e8ff;
@@ -35,7 +35,7 @@
 }
 
 .chat .chat-header .column > button:hover,
-.chat .chat-footer .message-form > button:hover,
+button#send:hover,
 .chat .chat-header .column > .button:hover,
 .chat .chat-footer .message-form > .button:hover {
     background-color: #d1e8ff !important;
@@ -43,11 +43,11 @@
 }
 
 .chat .chat-header .column > button:disabled,
-.chat .chat-footer .message-form > button:disabled,
+button#send:disabled,
 .chat .chat-header .column > .button:disabled,
 .chat .chat-footer .message-form > .button:disabled,
 .chat .chat-header .column > button:disabled:hover,
-.chat .chat-footer .message-form > button:disabled:hover,
+button#send:disabled:hover,
 .chat .chat-header .column > .button:disabled:hover,
 .chat .chat-footer .message-form > .button:disabled:hover {
     background-color: #DDDDDD !important;
@@ -131,7 +131,7 @@
     margin: 0;
 }
 
-.chat .chat-footer .message-form > button {
+button#send {
     display: inline-block;
     margin-top: 1rem;
     vertical-align: top;
@@ -145,6 +145,10 @@
     max-width: 80rem;
     height: 2.2rem;
     font-size: 0.9rem;
+}
+
+#message-content-wrapper {
+    display: inline-block;
 }
 
 .chat-archive {
