@@ -7,4 +7,4 @@ Save for a few third-party libraries, this site was written completely from scra
 
 ---
 
-I'd be surprised if this software didn't contain any emberrassing bugs or glaring security issues. If you come across one, let me know in whatever way you like.
+I'd be surprised if this software didn't contain any embarrassing bugs or glaring security issues. If you come across one, let me know in whatever way you like.
