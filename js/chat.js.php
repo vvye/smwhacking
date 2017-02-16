@@ -74,7 +74,7 @@ session_start();
             + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
             + '<span>'
             + ' {post_time} '
-            + (message.can_delete ? '<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>' : '')
+            + (message.can_delete ? '<a class="delete" href="#" title="löschen"><i class="fa fa-trash-o"></i></a>' : '')
             + '</span>'
             + '</div>'
             + '<div class="chat-message-content">{content}</div>'

@@ -30,7 +30,7 @@
 					<span>
 						<?= $message['post_time'] ?>
 						<?php if ($message['can_delete']): ?>
-							<a class="delete" href="#" title="löschen"><i class="fa fa-trash"></i></a>
+							<a class="delete" href="#" title="löschen"><i class="fa fa-trash-o"></i></a>
 						<?php endif ?>
 					</span>
 				</div>
