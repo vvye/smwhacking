@@ -17,9 +17,12 @@ session_start();
     var refreshButton = document.getElementById('refresh');
     var refreshIcon = document.getElementById('refresh-icon');
     var refreshTime = document.getElementById('refresh-date');
+
+	<?php if (isLoggedIn()): ?>
     var messageContent = document.getElementById('message-content');
     var messageContentWrapper = document.getElementById('message-content-wrapper');
     var sendButton = document.getElementById('send');
+	<?php endif; ?>
 
     setupDeleteLinks();
     resizeMessageList();
@@ -48,7 +51,7 @@ session_start();
     function scrollToLastMessage() {
         setTimeout(function () {
             container.scrollTop = container.scrollHeight;
-        }, 100); // why is timeout needed
+        }, 200); // why is timeout needed
     }
 
 
@@ -268,6 +271,8 @@ session_start();
 
     };
 
+	<?php if (isLoggedIn()): ?>
+
     window.messageContentResizedManually = false;
     addResizeListener(messageContentWrapper, function () {
         console.log(window.messageContentResizedManually);
@@ -359,5 +364,7 @@ session_start();
     }
 
     sendButton.onclick = postMessage;
+
+	<?php endif; ?>
 
 })();

@@ -71,8 +71,11 @@
 <script type="text/javascript" src="js/nanoajax.min.js"></script>
 <script type="text/javascript" src="js/onresize.js"></script>
 <script type="text/javascript" src="js/chat.js.php"></script>
-<script type="text/javascript">
 
-    var editor = new CuteEdit('message-content');
+<?php if ($loggedIn): ?>
+	<script type="text/javascript">
 
-</script>
+        var editor = new CuteEdit('message-content');
+
+	</script>
+<?php endif; ?>
