@@ -73,7 +73,7 @@
 		{
 			return false;
 		}
-		if (!isAdmin())
+		if (isAdmin())
 		{
 			return true;
 		}
