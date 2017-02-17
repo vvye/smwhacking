@@ -7,7 +7,7 @@ Save for a few third-party libraries, this site was written completely from scra
 
 ---
 
-As of now, this code isn't actually in production yet &mdash; smwhacking.de still has the static site + phpBB combo. I expect that to change in March,
+As of now, this code isn't actually in production yet &mdash; smwhacking.de still has the static site + phpBB combo. I expect that to change in March.
 
 ---
 
