@@ -11,4 +11,4 @@ As of now, this code isn't actually in production yet &mdash; smwhacking.de stil
 
 ---
 
-I'd be surprised if this software didn't contain any embarrassing bugs or glaring security issues. If you come across one, let me know in whatever way you like.
+I'd be surprised if this software didn't contain any embarrassing bugs or glaring security issues. If you come across one, let me know in whatever way you like. (Other than exploiting it, please!)
