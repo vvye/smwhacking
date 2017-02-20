@@ -275,7 +275,6 @@ session_start();
 
     window.messageContentResizedManually = false;
     addResizeListener(messageContentWrapper, function () {
-        console.log(window.messageContentResizedManually);
         window.messageContentResizedManually = true;
     });
 
