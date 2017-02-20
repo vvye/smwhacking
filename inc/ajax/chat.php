@@ -42,7 +42,7 @@
 
 	function postMessage()
 	{
-		if (!isLoggedIn() || isBanned() || !isCsrfTokenCorrect($_GET['token']))
+		if (!isLoggedIn() || isBanned() || !isset($_POST['token']) || !isCsrfTokenCorrect($_POST['token']))
 		{
 			http_response_code(403);
 			die();
@@ -57,14 +57,14 @@
 		}
 		$_SESSION['lastMessagePostTime'] = time();
 
-		if (!isset($_GET['last_id']))
+		if (!isset($_POST['last_id']))
 		{
 			http_response_code(403);
 			die();
 		}
-		$lastId = (int)$_GET['last_id'] * 1;
+		$lastId = (int)$_POST['last_id'] * 1;
 
-		$content = $_GET['content'] ?? '';
+		$content = $_POST['content'] ?? '';
 		if (trim($content) === '')
 		{
 			http_response_code(403);

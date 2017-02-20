@@ -335,8 +335,9 @@ session_start();
         deactivateSendButton();
 
         nanoajax.ajax({
-            url: 'inc/ajax/chat.php?action=post_message'
-            + '&content=' + encodeURIComponent(messageContent.value)
+            url: 'inc/ajax/chat.php?action=post_message',
+            method: 'POST',
+            body: 'content=' + encodeURIComponent(messageContent.value)
             + '&last_id=' + getLastMessageId()
             + '&token=' + '<?= getCsrfToken() ?>'
         }, function (status, response) {
