@@ -30,6 +30,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<title>smwhacking.de - die deutschsprachige Seite übers SMW-Hacken</title>
 
@@ -44,6 +45,7 @@
 		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/cuteedit.css" />
 		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/files.css" />
 		<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/chat.css" />
+		<link rel="stylesheet" type="text/css" href="css/common/responsive.css" />
 
 		<?php if (isAdmin()): ?>
 			<link rel="stylesheet" type="text/css" href="css/<?= $theme ?>/admin.css" />
