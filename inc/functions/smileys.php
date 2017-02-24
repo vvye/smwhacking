@@ -63,7 +63,7 @@
 
 		$smileyImages = array_map(function ($smiley)
 		{
-			return '<img src="img/smileys/' . $smiley['image_filename'] . '" />';
+			return '<img class="smiley" src="img/smileys/' . $smiley['image_filename'] . '" />';
 		}, $smileys);
 
 		$text = str_replace($smileyCodesWithDelimiter, $smileyImages, $text);

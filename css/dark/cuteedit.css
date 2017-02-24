@@ -1,3 +1,10 @@
+.cuteedit {
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+}
+
 .cuteedit ul {
     list-style-type: none;
     margin: 0;

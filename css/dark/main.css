@@ -295,3 +295,10 @@ ul.bbcode-list li {
 .footer a.username {
     font-weight: bold;
 }
+
+.smiley {
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+}
