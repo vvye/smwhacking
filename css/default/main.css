@@ -137,6 +137,20 @@ nav a:hover {
     color: white;
 }
 
+.menu-toggle-label {
+    display: block;
+    cursor: pointer;
+    background-color: #096AC9;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    color: white;
+}
+
+.user-menu-toggle-label {
+    background-color: #ABD7FF;
+    color: #0F477B;
+}
+
 .main {
     max-width: 100rem;
     padding: 3rem;

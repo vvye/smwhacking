@@ -124,7 +124,7 @@ nav a:hover {
 }
 
 .user-menu a {
-    color: #aec8ea;
+    color: #AEC8EA;
 }
 
 .user-menu a:hover {
@@ -138,6 +138,19 @@ nav a:hover {
     border-radius: 2px;
     padding: 0 0.3rem;
     color: white;
+}
+
+.menu-toggle-label {
+    cursor: pointer;
+    background-color: #3471AD;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    color: white;
+}
+
+.user-menu-toggle-label {
+    background-color: #18406C;
+    color: #AEC8EA;
 }
 
 .main {

@@ -1,11 +1,18 @@
 <?php if (!$loggedIn): ?>
-	<nav class="user-menu">
+	<nav class="user-menu not-logged-in">
 		<ul>
 			<li><a href="?p=login">Einloggen</a></li>
 			<li><a href="?p=register">Registrieren</a></li>
 		</ul>
 	</nav>
 <?php else: ?>
+	<input type="checkbox" class="menu-toggle" id="user-menu-toggle">
+	<label for="user-menu-toggle" class="menu-toggle-label user-menu-toggle-label">
+		<span>&#9776;</span> <strong><?= $username ?></strong>
+		<?php if ($numUnreadPms > 0): ?>
+			<span class="badge"><?= $numUnreadPms ?></span>
+		<?php endif; ?>
+	</label>
 	<nav class="user-menu">
 		<ul>
 			<li>

@@ -1,3 +1,8 @@
+.menu-toggle,
+.menu-toggle-label {
+    display: none;
+}
+
 @media screen and (max-width: 64rem) {
 
     /* general */
@@ -30,6 +35,22 @@
 
     .main {
         padding: 1rem 3vw;
+    }
+
+    /* menu */
+    nav {
+        display: none;
+        box-shadow: none !important;
+    }
+
+    .menu-toggle-label {
+        display: block;
+    }
+
+    .menu-toggle:checked + label + nav,
+    .user-menu.not-logged-in {
+        display: block;
+        overflow: auto;
     }
 
     /* home page */

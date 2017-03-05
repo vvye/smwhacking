@@ -24,6 +24,8 @@
 	{
 		$menuItems = MENU_ITEMS;
 
+		echo '<input type="checkbox" class="menu-toggle" id="main-menu-toggle">';
+		echo '<label for="main-menu-toggle" class="menu-toggle-label"><span>&#9776;</span> Menü</label>';
 		echo '<nav>';
 		echo '<ul>';
 		foreach ($menuItems as $item)
