@@ -6,6 +6,7 @@
 @media screen and (max-width: 64rem) {
 
     /* general */
+
     body {
         font-size: 0.9rem;
     }
@@ -37,6 +38,19 @@
         padding: 1rem 3vw;
     }
 
+    .grid, .grid .column {
+        display: block;
+        text-align: center !important;
+    }
+
+    .grid .column:first-child {
+        margin-bottom: 1.5rem;
+    }
+
+    .form td {
+        display: block;
+    }
+
     /* menu */
     nav {
         display: none;
@@ -66,6 +80,86 @@
         margin-top: 2rem;
         border-left: 0;
         padding-left: 0;
+    }
+
+    /* about */
+    .image-container {
+        float: none !important;
+        text-align: center;
+    }
+
+    .image-container img {
+        max-height: 35vh;
+    }
+
+    /* forum */
+    .post {
+        margin: 0 -3vh 0;
+        padding-left: 3vh;
+        padding-right: 3vh;
+    }
+
+    .post .sidebar {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        font-size: 0;
+    }
+
+    .post .sidebar p,
+    .post .sidebar img:not(.avatar) {
+        display: none;
+    }
+
+    .post .avatar {
+        display: inline-block;
+        max-height: 10vh;
+    }
+
+    .post .content {
+        padding-bottom: 2rem;
+    }
+
+    .post .content .topbar.grid {
+        margin-bottom: 1rem;
+    }
+
+    .post .content .topbar.grid .column:first-child {
+        margin: 0.5rem 0 0;
+    }
+
+    .signature {
+        display: none;
+    }
+
+    /* chat */
+    .chat-heading {
+        display: none;
+    }
+
+    .chat {
+        margin: -1rem 3vw 0 -3vw;
+        border: none;
+    }
+
+    .chat-message {
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    #refresh {
+        padding: 0.3rem 0.6rem;
+        display: block;
+        margin: auto;
+    }
+
+    #message-content-wrapper {
+        text-align: right;
+    }
+
+    #message-content {
+        width: 100%;
+        height: 10rem;
     }
 
 }

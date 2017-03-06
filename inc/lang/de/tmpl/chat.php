@@ -1,4 +1,4 @@
-<h2>Chat</h2>
+<h2 class="chat-heading">Chat</h2>
 
 <div class="chat" <?= $loggedIn ? 'style="margin-bottom: 20rem;"' : '' ?>>
 
