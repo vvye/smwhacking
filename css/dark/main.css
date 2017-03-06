@@ -140,15 +140,18 @@ nav a:hover {
     color: white;
 }
 
-.menu-toggle-label {
+.menu-toggle-label h2 {
     cursor: pointer;
     background-color: #3471AD;
     padding: 0.6rem 1rem;
     font-size: 1rem;
     color: white;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
-.user-menu-toggle-label {
+.user-menu-toggle-label h2 {
     background-color: #18406C;
     color: #AEC8EA;
 }

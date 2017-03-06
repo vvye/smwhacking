@@ -8,10 +8,12 @@
 <?php else: ?>
 	<input type="checkbox" class="menu-toggle" id="user-menu-toggle">
 	<label for="user-menu-toggle" class="menu-toggle-label user-menu-toggle-label">
-		<span>&#9776;</span> <strong><?= $username ?></strong>
-		<?php if ($numUnreadPms > 0): ?>
-			<span class="badge"><?= $numUnreadPms ?></span>
-		<?php endif; ?>
+		<h2>
+			<span>☰</span> <strong><?= $username ?></strong>
+			<?php if ($numUnreadPms > 0): ?>
+				<span class="badge"><?= $numUnreadPms ?></span>
+			<?php endif; ?>
+		</h2>
 	</label>
 	<nav class="user-menu">
 		<ul>
