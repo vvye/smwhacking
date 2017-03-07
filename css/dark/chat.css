@@ -200,6 +200,7 @@ button#send {
 .chat-bar .chat-message .chat-topbar {
     font-size: 0.8rem;
     color: #888888;
+    white-space: nowrap;
 }
 
 .chat-bar .chat-message .chat-topbar .username {
