@@ -114,6 +114,7 @@
 				], $postText);
 
 				$page = getPostPageInThread($newPostId, $threadId);
+				// TODO
 				header('Location: ?p=thread&id=' . $threadId . '&page=' . $page . '#post-' . $newPostId);
 			}
 		}

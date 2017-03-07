@@ -22,9 +22,11 @@
 
 	foreach ($emails as $email)
 	{
+		$message = nl2br($message);
+
 		$headers = 'From: ' . NOTIFICATION_SENDER_ADDRESS . "\r\n";
 		$headers .= 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-Type: text/plain; charset=UTF-8' . "\r\n";
+		$headers .= 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 
 		mail($email, $subject, $message, $headers);
 
