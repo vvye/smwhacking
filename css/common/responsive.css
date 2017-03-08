@@ -137,8 +137,15 @@
     }
 
     .chat {
-        margin: -1rem 3vw 0 -3vw;
+        margin: -1rem -3vw 0;
         border: none;
+    }
+
+    .chat-messages {
+        resize: none;
+        height: auto !important;
+        min-height: 0;
+        overflow-y: auto;
     }
 
     .chat-message {
