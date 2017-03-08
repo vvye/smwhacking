@@ -94,13 +94,14 @@
 
     /* forum */
     .forum {
+        display: block;
         width: auto;
         margin: 0 -3vw 0;
     }
 
     .forum thead {
         display: block;
-        margin: -2rem 0;
+        margin: 0 0 -2rem;
     }
 
     .forum tr,
@@ -109,6 +110,7 @@
         display: block;
         width: auto !important;
         border-radius: 0 !important;
+        border: none;
     }
 
     .forum tr {
@@ -133,7 +135,6 @@
 
     .forum td.status {
         float: left;
-        border: none;
         padding: 1.5rem 0.2rem 0 3vw;
         font-size: 1rem;
         line-height: 150%;
@@ -147,7 +148,6 @@
 
     .forum td.num-threads {
         display: inline;
-        border: none;
         padding-left: 3vw;
     }
 
@@ -157,7 +157,6 @@
 
     .forum td.num-posts {
         display: inline;
-        border: none;
         padding: 0;
     }
 
@@ -166,7 +165,6 @@
     }
 
     .forum td.last-post {
-        border: none;
         padding: 0 3vw;
         text-align: left;
     }
@@ -177,6 +175,54 @@
 
     .forum td.last-post p {
         display: inline;
+    }
+
+    .forum.thread-list {
+        width: 100%;
+    }
+
+    .forum tr.last.sticky {
+        margin: 0;
+        padding-bottom: 1rem;
+    }
+
+    .forum .thread {
+        padding: 0;
+    }
+
+    .forum .thread h3 {
+        padding: 1.5rem 0 0 3vw;
+    }
+
+    .forum .thread h3 + p {
+        padding-left: 3vw;
+    }
+
+    .forum td.num-replies {
+        display: inline;
+        padding-left: 3vw;
+    }
+
+    .forum td.num-replies:after {
+        content: ' Antworten •'
+    }
+
+    .forum td.num-views {
+        display: inline;
+        padding: 0;
+    }
+
+    .forum td.num-views:after {
+        content: ' Zugriffe'
+    }
+
+    .forum td.page-selection {
+        padding: 0 6vw 0 0;
+        text-align: right;
+    }
+
+    .forum td.page-selection select {
+        margin: 0.5rem;
     }
 
     .post {

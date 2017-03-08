@@ -34,7 +34,7 @@
 				<span class="new"><?= MSG_NEW ?></span><br />
 			<?php endif; ?>
 		</td>
-		<td>
+		<td class="thread">
 			<h3 id="thread-<?= $thread['id'] ?>">
 				<?php if ($thread['sticky']): ?>
 					<?= MSG_STICKY ?>
