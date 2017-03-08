@@ -104,6 +104,10 @@
         margin: 0 0 -2rem;
     }
 
+    .forum tbody {
+        display: block;
+    }
+
     .forum tr,
     .forum th,
     .forum td {
@@ -177,13 +181,9 @@
         display: inline;
     }
 
-    .forum.thread-list {
-        width: 100%;
-    }
-
     .forum tr.last.sticky {
         margin: 0;
-        padding-bottom: 1rem;
+        padding-bottom: 1.5rem;
     }
 
     .forum .thread {
