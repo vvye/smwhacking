@@ -93,6 +93,92 @@
     }
 
     /* forum */
+    .forum {
+        width: auto;
+        margin: 0 -3vw 0;
+    }
+
+    .forum thead {
+        display: block;
+        margin: -2rem 0;
+    }
+
+    .forum tr,
+    .forum th,
+    .forum td {
+        display: block;
+        width: auto !important;
+        border-radius: 0 !important;
+    }
+
+    .forum tr {
+        margin-bottom: 1.5rem;
+    }
+
+    .forum tr:not(:first-child) {
+        border-top: 1px solid #CCCCCC;
+    }
+
+    .forum th:not(.category-name) {
+        display: none;
+    }
+
+    .forum th.category-name {
+        margin: 2rem 0;
+        padding: 0.5rem 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .forum td.status {
+        float: left;
+        border: none;
+        padding: 1.5rem 0.2rem 0 3vw;
+        font-size: 1rem;
+        line-height: 150%;
+        margin-bottom: -0.2rem;
+    }
+
+    .forum td.forum-description {
+        border: 0;
+        padding: 1.5rem 3vw 0.5rem;
+    }
+
+    .forum td.num-threads {
+        display: inline;
+        border: none;
+        padding-left: 3vw;
+    }
+
+    .forum td.num-threads:after {
+        content: ' Themen •'
+    }
+
+    .forum td.num-posts {
+        display: inline;
+        border: none;
+        padding: 0;
+    }
+
+    .forum td.num-posts:after {
+        content: ' Beiträge'
+    }
+
+    .forum td.last-post {
+        border: none;
+        padding: 0 3vw;
+        text-align: left;
+    }
+
+    .forum td.last-post:before {
+        content: 'letzter Beitrag'
+    }
+
+    .forum td.last-post p {
+        display: inline;
+    }
+
     .post {
         margin: 0 -3vh 0;
         padding-left: 3vh;
