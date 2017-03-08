@@ -122,6 +122,11 @@ button#send:disabled:hover,
     height: 160px;
 }
 
+.chat .chat-message .chat-message-content ul.bbcode-list li,
+.chat-bar .chat-message .chat-message-content ul.bbcode-list li {
+    font-size: 0.9rem;
+}
+
 .chat .chat-footer {
     background-color: #3471AD;
     padding: 1rem;

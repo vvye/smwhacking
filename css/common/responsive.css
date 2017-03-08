@@ -6,7 +6,8 @@
 @media screen and (max-width: 64rem) {
 
     /* general */
-    body {
+    body,
+    ul.bbcode-list li {
         font-size: 0.9rem;
     }
 
