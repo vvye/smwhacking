@@ -51,6 +51,11 @@
         display: block;
     }
 
+    button,
+    .button {
+        margin-bottom: 0.3rem;
+    }
+
     /* menu */
     nav {
         display: none;
@@ -262,6 +267,40 @@
 
     .signature {
         display: none;
+    }
+
+    /* user */
+    .user-section h3 {
+        border-radius: 0;
+        margin-left: -3vw;
+        margin-right: -3vw;
+    }
+
+    .user-section .content {
+        border: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .user-section .content .sidebar {
+        float: none;
+        width: auto;
+    }
+
+    .user-section .content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+    .user-section .content table td {
+        border-bottom: 1px solid #CCC;
+        padding: 0.5rem 0;
+        vertical-align: top;
+    }
+
+    .user-section .content table td:last-child {
+        text-align: right;
     }
 
     /* chat */
