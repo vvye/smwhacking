@@ -87,6 +87,10 @@
         padding-left: 0;
     }
 
+    .news h3 {
+        font-size: 1rem;
+    }
+
     /* about */
     .image-container {
         float: none !important;
