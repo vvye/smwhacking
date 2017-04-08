@@ -5,6 +5,8 @@
 	require_once __DIR__ . '/../inc/functions/database.php';
 	require_once __DIR__ . '/../inc/functions/post.php';
 
+	require_once __DIR__ . '/../inc/config/misc.php';
+
 	$database = getDatabase();
 
 
@@ -12,7 +14,7 @@
 	{
 		$threadId = $_GET['t'] * 1;
 
-		$newUrl = '?p=thread&id=' . $threadId;
+		$newUrl = WEBSITE_URL . '/?p=thread&id=' . $threadId;
 
 		if (isset($_GET['p']) && is_int($_GET['p'] * 1))
 		{
@@ -24,7 +26,7 @@
 	}
 	else
 	{
-		$newUrl = '?p=forums';
+		$newUrl = WEBSITE_URL . '/?p=forums';
 	}
 
 	header('Location: ' . $newUrl);
