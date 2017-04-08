@@ -97,8 +97,10 @@
 				}
 
 				$success = true;
-
-				header('Location: ?p=thread&id=' . $newThreadId);
+				renderSuccessMessage(MSG_NEW_THREAD_SUCCESS);
+				renderTemplate('new_thread_success', [
+					'threadId' => $newThreadId
+				]);
 			}
 		}
 
