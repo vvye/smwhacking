@@ -27,7 +27,4 @@
 		$headers .= 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 
 		mail($email, $subject, $message, $headers);
-
-		// debug
-		file_put_contents(__DIR__ . '/../tmp/emails/' . $email . '.email', $subject . "\n\n" . $message);
 	}
