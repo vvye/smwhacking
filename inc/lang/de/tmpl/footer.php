@@ -1,6 +1,6 @@
 <div class="footer">
 
-	<p>2016-<?= date('Y') ?> WhiteYoshiEgg/WYE.</p>
+	<p>2016-<?= date('Y') ?> WhiteYoshiEgg/WYE. &bull; <a href="?p=disclaimer">Disclaimer</a></p>
 
 	<p>
 		<?php if ($numOnlineUsers === 0): ?>
