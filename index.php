@@ -25,6 +25,9 @@
 
 	updateLastActivityTime();
 
+	// but why
+	date_default_timezone_set('Europe/Berlin');
+
 ?>
 <!doctype html>
 <html>
