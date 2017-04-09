@@ -239,12 +239,7 @@
 	{
 		$text = str_replace(["\r", "\n", '<br>', '<br />'], ' ', $text);
 
-		if (strlen($text) <= CHAT_BAR_TRUNCATE_LENGTH)
-		{
-			return $text;
-		}
-
-		return substr($text, 0, CHAT_BAR_TRUNCATE_LENGTH) . '&hellip;';
+		return truncatePreservingHtml($text, CHAT_BAR_TRUNCATE_LENGTH);
 	}
 
 
