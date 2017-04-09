@@ -10,6 +10,9 @@
 
 	$database = getDatabase();
 
+	// but why
+	date_default_timezone_set('Europe/Berlin');
+
 
 	header('Content-type: text/json');
 
