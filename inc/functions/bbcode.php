@@ -106,6 +106,17 @@
 			}
 		});
 
+		$builder = new JBBCode\CodeDefinitionBuilder('br', '<br />');
+		$builder->setParseContent(false);
+		$builder->setBodyValidator(new class implements JBBCode\InputValidator
+		{
+			function validate($input)
+			{
+				return $input === '';
+			}
+		});
+		$parser->addCodeDefinition($builder->build());
+
 		return $parser;
 	}
 
