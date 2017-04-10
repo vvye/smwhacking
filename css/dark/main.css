@@ -217,6 +217,27 @@ ul.bbcode-list li {
     font-size: 1rem;
 }
 
+.bbcode-progress-bar {
+    display: inline-block;
+    border: 1px solid #aaa;
+    border-radius: 1.5px;
+}
+
+.bbcode-progress-bar > div {
+    max-width: 100%;
+    background-color: #478fd7;
+    display: inline-block;
+    white-space: nowrap;
+    overflow-x: visible;
+}
+
+.bbcode-progress-bar > div > span {
+    padding-left: 0.5rem;
+    color: white;
+    text-shadow: 0 1px 0 black, 0 -1px 0 black, 1px 0 0 black, -1px 0 0 black,
+    -1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, 1px -1px 0 black;
+}
+
 .fa {
     font-size: 14px !important;
 }

@@ -87,7 +87,7 @@
 			{
 				$attr = $el->getAttribute()['simg'];
 
-				$content = "";
+				$content = '';
 				foreach ($el->getChildren() as $child)
 				{
 					$content .= $child->getAsText();
@@ -98,11 +98,48 @@
 				{
 					return $el->getAsBBCode();
 				}
-				else
+
+				return '<img src="' . $content . '" style="width: ' . $matches[1] . 'px; height: ' . $matches[2]
+					. 'px;" />';
+
+			}
+		});
+
+		$parser->addCodeDefinition(new class extends JBBCode\CodeDefinition
+		{
+			public function __construct()
+			{
+				parent::__construct();
+				$this->setTagName("progress");
+				$this->useOption = true;
+				$this->parseContent = false;
+			}
+
+
+			public function asHtml(JBBCode\ElementNode $el)
+			{
+				$attr = $el->getAttribute()['progress'];
+
+				$content = '';
+				foreach ($el->getChildren() as $child)
 				{
-					return '<img src="' . $content . '" style="width: ' . $matches[1] . 'px; height: ' . $matches[2]
-						. 'px;" />';
+					$content .= $child->getAsText() . ' ';
 				}
+
+				$foundMatch = preg_match('/^(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/i', $attr, $matches);
+				if (!$foundMatch)
+				{
+					return $el->getAsBBCode();
+				}
+
+				$width = $matches[1];
+				makeBetween($width, 40, 500);
+				$percentage = $matches[2];
+				makeBetween($percentage, 0, 100);
+
+				return '<div class="bbcode-progress-bar" style="width: ' . $width . 'px;"><div style="width: '
+					. $percentage . '%;"><span>' . $content . $percentage . '%</span></div></div>';
+
 			}
 		});
 
