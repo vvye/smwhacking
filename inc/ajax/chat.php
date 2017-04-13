@@ -5,6 +5,7 @@
 	require_once __DIR__ . '/../functions/database.php';
 	require_once __DIR__ . '/../functions/session.php';
 	require_once __DIR__ . '/../functions/chat.php';
+	require_once __DIR__ . '/../functions/misc.php';
 
 	require_once __DIR__ . '/../config/ajax.php';
 
@@ -21,17 +22,20 @@
 	{
 		if (!isLoggedIn() || isBanned())
 		{
+			logMessage('banned or not logged in');
 			die();
 		}
 
 		if (isset($_SESSION['lastRequestTime']) && $_SESSION['lastRequestTime'] > time() - CHAT_REFRESH_COOLDOWN_TIME)
 		{
+			logMessage('cooldown still active');
 			die();
 		}
 		$_SESSION['lastRequestTime'] = time();
 
 		if (!isset($_GET['last_id']))
 		{
+			logMessage('last id not set');
 			die();
 		}
 		$lastId = (int)$_GET['last_id'] * 1;

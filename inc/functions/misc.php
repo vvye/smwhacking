@@ -73,6 +73,28 @@
 	}
 
 
+	function logMessage($msg)
+	{
+		$logFilename = __DIR__ . '/../../log.txt';
+		$logFile = fopen($logFilename, 'a');
+
+		$callingFunctionName = debug_backtrace()[1]['function'];
+
+		fwrite($logFile, date(DEFAULT_DATE_FORMAT) . "\t");
+		fwrite($logFile, ($_SESSION['username'] ?? getClientIp()) . "\t");
+		fwrite($logFile, $callingFunctionName . "\t");
+		fwrite($logFile, $msg . "\r\n");
+
+		fclose($logFile);
+	}
+
+
+	function getClientIp()
+	{
+		return $_SERVER['REMOTE_ADDR'];
+	}
+
+
 	function renderMessage($msg)
 	{
 		renderTemplate('message', [
