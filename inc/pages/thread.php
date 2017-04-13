@@ -18,7 +18,7 @@
 	{
 		if (!isset($_GET['id']))
 		{
-			include __DIR__ . '/404.php';
+			include __DIR__ . '/error.php';
 			break;
 		}
 		$threadId = $_GET['id'];
@@ -27,7 +27,7 @@
 
 		if ($thread === null)
 		{
-			include __DIR__ . '/404.php';
+			include __DIR__ . '/error.php';
 			break;
 		}
 
