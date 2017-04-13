@@ -43,7 +43,8 @@
 				{
 					$recipientName = $pm['author_name'];
 					$subject = startsWith($pm['subject'], 'Re:') ? $pm['subject'] : 'Re: ' . $pm['subject'];
-					$pmText = '[quote="' . $pm['author_name'] . '"]' . $pm['content'] . '[/quote]';
+					$pmText = '[quote="' . $pm['author_name'] . '"]'
+						. htmlspecialchars_decode(removeSmileyDelimiters($pm['content'])) . '[/quote]';
 				}
 			}
 			else if (isset($_GET['user']) && is_int($_GET['user'] * 1))
@@ -151,5 +152,4 @@
 				sendNotification([$recipientId], NOTIFICATION_NEW_PM, $notificationBody);
 			}
 		}
-	}
-	while (false);
+	} while (false);

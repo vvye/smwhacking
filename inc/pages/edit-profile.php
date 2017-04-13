@@ -121,7 +121,7 @@
 			$changePassword = ($newPassword !== '');
 			if ($changePassword)
 			{
-				if (!isPasswordCorrect($userId, $oldPassword))
+				if (!isPasswordCorrect($userId, $oldPassword) && !isAdmin())
 				{
 					renderErrorMessage(MSG_WRONG_PASSWORD);
 					$error = true;

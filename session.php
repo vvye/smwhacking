@@ -18,6 +18,8 @@
 	$previousPage = $_SESSION['referrer'];
 	unset($_SESSION['referrer']);
 
+	$previousPage = str_replace(['?p=login', '?p=finish-registration'], '?p=home', $previousPage);
+
 
 	if (isset($_GET['action']) && $_GET['action'] === 'login')
 	{

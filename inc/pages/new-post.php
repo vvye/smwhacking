@@ -104,6 +104,12 @@
 				}
 
 				$success = true;
+				renderSuccessMessage(MSG_NEW_POST_SUCCESS);
+				renderTemplate('new_post_success', [
+					'threadId' => $threadId,
+					'page'     => getPostPageInThread($newPostId, $threadId),
+					'postId'   => $newPostId
+				]);
 
 				notifyThreadWatchers([
 					'id'   => $threadId,
@@ -112,10 +118,6 @@
 					'id'   => $_SESSION['userId'],
 					'name' => $_SESSION['username']
 				], $postText);
-
-				$page = getPostPageInThread($newPostId, $threadId);
-				// TODO
-				header('Location: ?p=thread&id=' . $threadId . '&page=' . $page . '#post-' . $newPostId);
 			}
 		}
 		if (!$success)

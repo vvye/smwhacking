@@ -18,7 +18,7 @@
 				</td>
 				<td class="min-posts">
 					<input type="number" name="min-posts-<?= $rank['id'] ?>" value="<?= $rank['min_posts'] ?>"
-					       min="0" />
+						   min="0" />
 				</td>
 				<td>
 					<?php if ($rank['has_image']): ?>
@@ -28,16 +28,16 @@
 					<?php endif; ?>
 					<div class="custom-checkbox-group">
 						<input type="checkbox" class="custom-checkbox" name="change-image-<?= $rank['id'] ?>"
-						       id="change-image-<?= $rank['id'] ?>" />
+							   id="change-image-<?= $rank['id'] ?>" />
 						<label class="custom-checkbox-label" for="change-image-<?= $rank['id'] ?>"> Bild ändern</label>
 					</div>
 					<div>
 						<div id="edit-image-box-<?= $rank['id'] ?>">
 							<input type="file" class="file-input" name="image-<?= $rank['id'] ?>"
-							       id="image-<?= $rank['id'] ?>" />
+								   id="image-<?= $rank['id'] ?>" />
 							<div class="custom-checkbox-group">
 								<input type="checkbox" class="custom-checkbox" name="delete-image-<?= $rank['id'] ?>"
-								       id="delete-image-<?= $rank['id'] ?>" />
+									   id="delete-image-<?= $rank['id'] ?>" />
 								<label class="custom-checkbox-label" for="delete-image-<?= $rank['id'] ?>"> Bild
 									löschen</label>
 							</div>
@@ -55,9 +55,9 @@
 <script type="text/javascript" src="js/fileInput.js"></script>
 <script type="text/javascript">
 
-	var numRanks = <?= $numRanks ?>;
+    var numRanks = <?= $numRanks ?>;
 
-	// what
+	/* what */
 	/*
 	 fileInput('file-input', {
 	 buttonText: 'Durchsuchen&hellip;',
@@ -86,10 +86,10 @@
 	 }
 	 */
 
-	document.getElementById('add-rank').onclick = function () {
-		var k = ++numRanks;
-		document.getElementById('rank-list').innerHTML += '<tr><td class="name"><input type="text" name="name-' + k + '" value="" /></td><td class="min-posts"><input type="number" name="min-posts-' + k + '" value="" min="0" /></td><td><div><em>Kein Bild</em><br /><div class="custom-checkbox-group"><input type="checkbox" class="custom-checkbox" name="change-image-' + k + '" id="change-image-' + k + '" /><label class="custom-checkbox-label" for="change-image-' + k + '"> Bild ändern</label></div><div><div id="edit-image-box-' + k + '"><input type="file" class="file-input" name="image-' + k + '" id="image-' + k + '" /><div class="custom-checkbox-group"><input type="checkbox" class="custom-checkbox" name="delete-image-' + k + '"		id="delete-image-' + k + '" /><label class="custom-checkbox-label" for="delete-image-' + k + '"> Bild löschen</label></div></div></div></td></tr>';
-	}
+    document.getElementById('add-rank').onclick = function () {
+        var k = ++numRanks;
+        document.getElementById('rank-list').innerHTML += '<tr><td class="name"><input type="text" name="name-' + k + '" value="" /></td><td class="min-posts"><input type="number" name="min-posts-' + k + '" value="" min="0" /></td><td><div><em>Kein Bild</em><br /><div class="custom-checkbox-group"><input type="checkbox" class="custom-checkbox" name="change-image-' + k + '" id="change-image-' + k + '" /><label class="custom-checkbox-label" for="change-image-' + k + '"> Bild ändern</label></div><div><div id="edit-image-box-' + k + '"><input type="file" class="file-input" name="image-' + k + '" id="image-' + k + '" /><div class="custom-checkbox-group"><input type="checkbox" class="custom-checkbox" name="delete-image-' + k + '"		id="delete-image-' + k + '" /><label class="custom-checkbox-label" for="delete-image-' + k + '"> Bild löschen</label></div></div></div></td></tr>';
+    }
 
 
 </script>

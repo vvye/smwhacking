@@ -9,3 +9,4 @@ notification_token
 inc/last_medal_update_time
 files/
 minify
+log.txt

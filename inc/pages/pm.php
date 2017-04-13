@@ -111,7 +111,7 @@
 					'pms'    => $pms
 				]);
 
-				renderPagination('?p=pm', $page, $numPages);
+				renderPagination('?p=pm&outbox', $page, $numPages);
 			}
 		}
 

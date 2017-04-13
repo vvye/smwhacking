@@ -12,6 +12,12 @@
 		</tr>
 		<tr>
 			<td colspan="2">
+				Wenn du deine Zugangsdaten vergessen hast, wende dich an
+				<a href="mailto:info@smwhacking.de">info@smwhacking.de</a>.
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<div class="custom-checkbox-group">
 					<input type="checkbox" class="custom-checkbox" name="remember-me" id="remember-me" />
 					<label class="custom-checkbox-label" for="remember-me">beim nächsten Mal automatisch

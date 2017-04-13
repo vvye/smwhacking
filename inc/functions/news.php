@@ -33,5 +33,5 @@
 			return $text;
 		}
 
-		return substr($text, 0, NEWS_POST_TRUNCATE_LENGTH) . '&hellip;';
+		return truncatePreservingHtml($text, NEWS_POST_TRUNCATE_LENGTH);
 	}
