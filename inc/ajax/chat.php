@@ -20,12 +20,6 @@
 
 	function updateMessages()
 	{
-		if (!isLoggedIn() || isBanned())
-		{
-			logMessage('banned or not logged in');
-			die();
-		}
-
 		if (isset($_SESSION['lastRequestTime']) && $_SESSION['lastRequestTime'] > time() - CHAT_REFRESH_COOLDOWN_TIME)
 		{
 			logMessage('cooldown still active');
