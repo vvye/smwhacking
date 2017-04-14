@@ -112,7 +112,7 @@
 		}
 		else
 		{
-			include __DIR__ . '/../pages/404.php';
+			include __DIR__ . '/../pages/error.php';
 		}
 	}
 
