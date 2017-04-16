@@ -135,6 +135,10 @@
 		'Dateiablage');
 
 
+	define('CAPTION_SECRET',
+		'XXX');
+
+
 	define('CAPTION_USERS',
 		'Mitglieder');
 

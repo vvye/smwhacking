@@ -21,9 +21,12 @@
 
 
 	function renderMenu()
-	{
+	{		
 		$menuItems = MENU_ITEMS;
-
+		
+		echo '<script type="text/javascript" src="js/secretcode.js"></script>';
+		
+		echo '<div id="main-menu">';
 		echo '<input type="checkbox" class="menu-toggle" id="main-menu-toggle">';
 		echo '<label for="main-menu-toggle" class="menu-toggle-label"><h2><span>☰</span> Menü</h2></label>';
 		echo '<nav>';
@@ -34,6 +37,7 @@
 		}
 		echo '</ul>';
 		echo '</nav>';
+		echo '</div>';
 	}
 
 
@@ -57,12 +61,14 @@
 			$active = false;
 		}
 
-		$caption = isset($item['caption']) ? $item['caption'] : '';
+		$caption = isset($item['caption']) ? $item['caption'] : '';		
+		$secret = isset($item['secret']) ? $item['secret'] : false;
 
 		renderTemplate('menu_item', [
 			'active'  => $active,
 			'link'    => $link,
-			'caption' => $caption
+			'caption' => $caption,
+			'secret'  => $secret
 		]);
 	}
 
