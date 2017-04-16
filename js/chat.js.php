@@ -71,7 +71,7 @@ session_start();
 
     function addMessage(message) {
 
-        var largeAvatar = isAllUppercase(message.content);
+        var largeAvatar = isYelling(message.content);
 
         var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
             + '<div class="chat-sidebar">'
@@ -93,9 +93,9 @@ session_start();
     }
 
 
-    function isAllUppercase(str) {
+    function isYelling(str) {
 
-        return str === str.toUpperCase() && str !== str.toLowerCase();
+        return str.length > 3 && str === str.toUpperCase() && str !== str.toLowerCase();
 
     }
 
@@ -206,6 +206,7 @@ session_start();
         initSpoilerButtons();
     }
 
+
     function setupDeleteLinks() {
 
         var deleteLinks = document.getElementsByClassName('delete');
@@ -221,18 +222,20 @@ session_start();
 
     }
 
+
     function setupLargeAvatars() {
 
         var avatars = document.getElementsByClassName('avatar');
         for (var i = 0; i < avatars.length; i++) {
             var avatar = avatars[i];
             var message = avatar.parentNode.nextElementSibling.nextElementSibling.innerText;
-            if (isAllUppercase(message)) {
+            if (isYelling(message)) {
                 avatar.className += ' large';
             }
         }
 
     }
+
 
     function deleteMessage(id) {
 
