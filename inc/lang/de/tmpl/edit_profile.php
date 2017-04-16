@@ -334,7 +334,7 @@
         noFileText: 'Keine Datei ausgewählt.'
     });
 
-    // avatar checkboxes
+	/* avatar checkboxes */
     var editAvatarBox = document.getElementById('edit-avatar');
     var avatarInput = document.getElementById('avatar');
     var changeAvatarCheckbox = document.getElementById('change-avatar');
@@ -348,7 +348,7 @@
         avatarInput.style.display = deleteAvatarCheckbox.checked ? 'none' : '';
     })();
 
-    // medal checkboxes
+	/* medal checkboxes */
     var medalCheckboxes = document.querySelectorAll('input[name*="favorite"]');
     var limit = <?= MAX_FAVORITE_MEDALS ?>;
     for (var i = 0; i < medalCheckboxes.length; i++) {
