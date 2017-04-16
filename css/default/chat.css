@@ -93,6 +93,10 @@ button#send:disabled:hover,
     max-width: 2rem;
 }
 
+.chat .chat-message .chat-sidebar .avatar.large {
+    transform: scale(1.75) rotate(5deg);
+}
+
 .chat .chat-message .chat-topbar {
     margin-bottom: 0.3rem;
     font-size: 0.8rem;

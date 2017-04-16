@@ -25,6 +25,7 @@ session_start();
 	<?php endif; ?>
 
     setupDeleteLinks();
+    setupLargeAvatars();
     resizeMessageList();
     scrollToLastMessage();
 
@@ -70,9 +71,11 @@ session_start();
 
     function addMessage(message) {
 
+        var largeAvatar = isAllUppercase(message.content);
+
         var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
             + '<div class="chat-sidebar">'
-            + '<img class="avatar" src="{avatar_url}" />'
+            + '<img class="avatar' + (largeAvatar ? ' large' : '') + '" src="{avatar_url}" />'
             + '</div>'
             + '<div class="chat-topbar">'
             + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
@@ -84,7 +87,15 @@ session_start();
             + '<div class="chat-message-content">{content}</div>'
             + '<div class="clearfix"></div>'
             + '</div>';
+
         container.innerHTML += nano(messageTemplate, message);
+
+    }
+
+
+    function isAllUppercase(str) {
+
+        return str === str.toUpperCase() && str !== str.toLowerCase();
 
     }
 
@@ -206,6 +217,19 @@ session_start();
                     deleteMessage(id);
                 }
             })(i);
+        }
+
+    }
+
+    function setupLargeAvatars() {
+
+        var avatars = document.getElementsByClassName('avatar');
+        for (var i = 0; i < avatars.length; i++) {
+            var avatar = avatars[i];
+            var message = avatar.parentNode.nextElementSibling.nextElementSibling.innerText;
+            if (isAllUppercase(message)) {
+                avatar.className += ' large';
+            }
         }
 
     }
