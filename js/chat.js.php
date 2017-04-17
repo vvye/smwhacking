@@ -25,6 +25,7 @@ session_start();
 	<?php endif; ?>
 
     setupDeleteLinks();
+    setupLargeAvatars();
     resizeMessageList();
     scrollToLastMessage();
 
@@ -70,9 +71,11 @@ session_start();
 
     function addMessage(message) {
 
+        var largeAvatar = isYelling(message.content);
+
         var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
             + '<div class="chat-sidebar">'
-            + '<img class="avatar" src="{avatar_url}" />'
+            + '<img class="avatar' + (largeAvatar ? ' large' : '') + '" src="{avatar_url}" />'
             + '</div>'
             + '<div class="chat-topbar">'
             + '<a href="?p=user&id={author_id}" class="username">{author_name}</a>'
@@ -84,7 +87,15 @@ session_start();
             + '<div class="chat-message-content">{content}</div>'
             + '<div class="clearfix"></div>'
             + '</div>';
+
         container.innerHTML += nano(messageTemplate, message);
+
+    }
+
+
+    function isYelling(str) {
+
+        return str.length > 3 && str === str.toUpperCase() && str !== str.toLowerCase();
 
     }
 
@@ -195,6 +206,7 @@ session_start();
         initSpoilerButtons();
     }
 
+
     function setupDeleteLinks() {
 
         var deleteLinks = document.getElementsByClassName('delete');
@@ -209,6 +221,21 @@ session_start();
         }
 
     }
+
+
+    function setupLargeAvatars() {
+
+        var avatars = document.getElementsByClassName('avatar');
+        for (var i = 0; i < avatars.length; i++) {
+            var avatar = avatars[i];
+            var message = avatar.parentNode.nextElementSibling.nextElementSibling.innerText;
+            if (isYelling(message)) {
+                avatar.className += ' large';
+            }
+        }
+
+    }
+
 
     function deleteMessage(id) {
 

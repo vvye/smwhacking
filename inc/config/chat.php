@@ -9,4 +9,5 @@
 	define('AVATAR_EASTER_EGGS', [
 		'/\bf(?:ü|ue)rst\b/i' => 'fuersten',
 		'/\bpenis\b/i'        => 'carefully-cropped',
+		'/^schwul\.$/'        => 'lgbt'
 	]);
