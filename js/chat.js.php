@@ -127,6 +127,7 @@ session_start();
 
     function deactivateRefreshButton() {
 
+        console.log('hm');
         refreshButton.setAttribute('disabled', 'disabled');
         refreshIcon.classList.add('fa-spin');
 
