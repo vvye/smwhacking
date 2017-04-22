@@ -87,6 +87,8 @@
 
 		?>
 
+		<script type="text/javascript" src="js/secret_code.js"></script>
+
 	</body>
 
 </html>

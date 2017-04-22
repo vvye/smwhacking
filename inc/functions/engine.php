@@ -22,54 +22,50 @@
 
 	function renderMenu()
 	{
-		$menuItems = MENU_ITEMS;
+		$menuItems = prepareMenuItemsForTemplate(MENU_ITEMS);
 
-		echo '<script type="text/javascript" src="js/secret_code.js"></script>';
-
-		echo '<div id="main-menu">';
-		echo '<input type="checkbox" class="menu-toggle" id="main-menu-toggle">';
-		echo '<label for="main-menu-toggle" class="menu-toggle-label"><h2><span>☰</span> Menü</h2></label>';
-		echo '<nav>';
-		echo '<ul>';
-		foreach ($menuItems as $item)
-		{
-			renderMenuItem($item);
-		}
-		echo '</ul>';
-		echo '</nav>';
-		echo '</div>';
+		renderTemplate('menu', [
+			'menuItems' => $menuItems
+		]);
 	}
 
 
-	function renderMenuItem($item)
+	function prepareMenuItemsForTemplate($menuItems)
 	{
-		if (isset($item['page']))
+		$menuItemsForTemplate = [];
+
+		foreach ($menuItems as $item)
 		{
-			if (isset($item['subpage']))
+			if (isset($item['page']))
 			{
-				$link = '?p=' . $item['page'] . '&s=' . $item['subpage'];
+				if (isset($item['subpage']))
+				{
+					$link = '?p=' . $item['page'] . '&s=' . $item['subpage'];
+				}
+				else
+				{
+					$link = '?p=' . $item['page'];
+				}
+				$active = isMenuItemActive($item);
 			}
 			else
 			{
-				$link = '?p=' . $item['page'];
+				$link = isset($item['link']) ? $item['link'] : '';
+				$active = false;
 			}
-			$active = isMenuItemActive($item);
-		}
-		else
-		{
-			$link = isset($item['link']) ? $item['link'] : '';
-			$active = false;
+
+			$caption = $item['caption'] ?? '';
+			$secret = $item['secret'] ?? false;
+
+			$menuItemsForTemplate[] = [
+				'active'  => $active,
+				'link'    => $link,
+				'caption' => $caption,
+				'secret'  => $secret
+			];
 		}
 
-		$caption = $item['caption'] ?? '';
-		$secret = $item['secret'] ?? false;
-
-		renderTemplate('menu_item', [
-			'active'  => $active,
-			'link'    => $link,
-			'caption' => $caption,
-			'secret'  => $secret
-		]);
+		return $menuItemsForTemplate;
 	}
 
 
