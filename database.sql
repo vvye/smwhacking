@@ -290,27 +290,27 @@ ALTER TABLE `threads`
   AUTO_INCREMENT = 1145;
 ALTER TABLE `users`
   MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 613;  
+  AUTO_INCREMENT = 613;
 
-  
+
 CREATE TABLE `secrets` (
-  `id`             INT(11)      NOT NULL,
-  `name`           VARCHAR(511) NOT NULL,
-  `is_link`        TINYINT(1)   NOT NULL,  
-  `content`        TEXT         NOT NULL
+  `id`      INT(11)      NOT NULL,
+  `name`    VARCHAR(511) NOT NULL,
+  `is_link` TINYINT(1)   NOT NULL,
+  `content` TEXT         NOT NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;  
+  DEFAULT CHARSET = utf8;
 
 ALTER TABLE `secrets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `name` (`name`(255));
-  
+
 ALTER TABLE `secrets`
   MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 10;
-  
-  
+  AUTO_INCREMENT = 1;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;

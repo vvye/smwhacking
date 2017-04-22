@@ -1,18 +1,15 @@
 <?php
+
 	require_once __DIR__ . '/../config/misc.php';
+
 
 	function getAllSecrets()
 	{
 		global $database;
 
-		$secrets = $database->query('
-			SELECT secrets.id,
-				secrets.name,
-				secrets.is_link,
-				secrets.content
-			FROM secrets
-			ORDER BY secrets.id ASC
-		');
+		$secrets = $database->select('secrets', '*', [
+			'ORDER' => 'id ASC'
+		]);
 
 		return $secrets;
 	}
@@ -20,16 +17,11 @@
 
 	function getSecret($secretId)
 	{
-		global $database;				
+		global $database;
 
-		$secrets = $database->query('
-			SELECT secrets.id,
-				secrets.name,
-				secrets.is_link,
-				secrets.content
-			FROM secrets
-			WHERE secrets.id = ' . $database->quote($secretId) . ';
-		')->fetchAll();
+		$secrets = $database->select('secrets', '*', [
+			'id' => $secretId
+		]);
 
 		if (count($secrets) !== 1 || $secrets[0]['id'] == '')
 		{
