@@ -95,6 +95,12 @@
 	}
 
 
+	function isCelebrationTime()
+	{
+		return date('n') == '5' && (date('j') >= 23 && date('j') <= 28);
+	}
+
+
 	function renderMessage($msg)
 	{
 		renderTemplate('message', [

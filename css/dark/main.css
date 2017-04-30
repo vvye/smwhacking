@@ -38,6 +38,10 @@ body {
     text-shadow: 0 0 1px black, 0 0 5px black, 0 0 10px black;
 }
 
+.banner.celebration {
+    background-image: url('../../img/banner/celebration.png');
+}
+
 .grid {
     display: flex;
     flex-direction: row;

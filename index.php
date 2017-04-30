@@ -22,6 +22,7 @@
 	handlePersistentLogin();
 
 	$theme = getTheme();
+	$celebrationCssClass = isCelebrationTime() ? 'celebration' : '';
 
 	updateLastActivityTime();
 
@@ -60,7 +61,7 @@
 	<body>
 
 		<header>
-			<div class="banner">
+			<div class="banner <?= $celebrationCssClass; ?>">
 				<h1><a href="?p=home"><img src="img/logo.png" alt="smwhacking.de" /></a></h1>
 				<p>die deutschsprachige Seite übers SMW-Hacken</p>
 			</div>
