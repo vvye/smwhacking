@@ -22,14 +22,12 @@
 	{
 		if (isset($_SESSION['lastRequestTime']) && $_SESSION['lastRequestTime'] > time() - CHAT_REFRESH_COOLDOWN_TIME)
 		{
-			logMessage('cooldown still active');
 			die();
 		}
 		$_SESSION['lastRequestTime'] = time();
 
 		if (!isset($_GET['last_id']))
 		{
-			logMessage('last id not set');
 			die();
 		}
 		$lastId = (int)$_GET['last_id'] * 1;
