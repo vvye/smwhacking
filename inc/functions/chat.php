@@ -113,6 +113,11 @@
 			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
 			$messages[$key]['can_delete'] = isLoggedIn()
 				&& (isAdmin() || $message['author_id'] === $_SESSION['userId']);
+
+			if ($messages[$key]['author_id'] * 1 === CHAT_BOT_USER_ID)
+			{
+				$messages[$key]['author_name'] = CHAT_BOT_USER_NAME;
+			}
 		}
 
 		return $messages;
@@ -247,8 +252,7 @@
 	{
 		global $database;
 
-		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database)
-		{
+		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database) {
 
 			$matchedUsername = $match[1];
 			$possibleUsernames = [];
@@ -275,4 +279,31 @@
 		}, $text);
 
 		return $text;
+	}
+
+
+	function handleBotMessage($content)
+	{
+		if (stristr($content, 'aktiv'))
+		{
+			createBotMessage('[b]AKTIVITÄT![/b]');
+		}
+	}
+
+
+	function createBotMessage($content)
+	{
+		global $database;
+
+		$postTime = time();
+		$content = delimitSmileys(htmlspecialchars($content));
+
+		$database->insert('chat_messages', [
+			'id'        => null,
+			'author'    => CHAT_BOT_USER_ID,
+			'post_time' => $postTime,
+			'content'   => $content,
+			'deleted'   => 0
+		]);
+
 	}

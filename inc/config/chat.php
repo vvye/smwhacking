@@ -11,3 +11,7 @@
 		'/\bpenis\b/i'        => 'carefully-cropped',
 		'/^schwul\.$/'        => 'lgbt'
 	]);
+
+	define('CHAT_BOT_USER_ID', 0);
+
+	define('CHAT_BOT_USER_NAME', 'Bot');

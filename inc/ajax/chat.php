@@ -72,6 +72,8 @@
 
 		createMessage($content);
 
+		handleBotMessage($content);
+
 		$messages = getRecentChatMessages($lastId, true);
 		$messages['deletedMessages'] = getDeletedMessages($lastId - MAX_CHAT_MESSAGES, $lastId);
 
