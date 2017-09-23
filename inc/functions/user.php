@@ -188,10 +188,13 @@
 			'threads.name(thread_name)',
 			'forums.view_powerlevel'
 		], [
-			'author'       => $userId,
-			'thread_id[!]' => 0,
-			'ORDER'        => 'post_time DESC',
-			'LIMIT'        => 1
+			'AND'   => [
+				'author'          => $userId,
+				'posts.deleted'   => 0,
+				'threads.deleted' => 0
+			],
+			'ORDER' => 'post_time DESC',
+			'LIMIT' => 1
 		]);
 
 		if (count($posts) !== 1)
