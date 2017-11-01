@@ -288,15 +288,23 @@
 		{
 			createBotMessage('[b]AKTIVITÄT![/b]');
 		}
+		if ($content === '@Bot history')
+		{
+			createBotMessage(getRandomMessage(), true);
+		}
 	}
 
 
-	function createBotMessage($content)
+	function createBotMessage($content, $raw = false)
 	{
 		global $database;
 
 		$postTime = time();
-		$content = delimitSmileys(htmlspecialchars($content));
+
+		if (!$raw)
+		{
+			$content = delimitSmileys(htmlspecialchars($content));
+		}
 
 		$database->insert('chat_messages', [
 			'id'        => null,
@@ -306,4 +314,45 @@
 			'deleted'   => 0
 		]);
 
+	}
+
+
+	function getRandomMessage()
+	{
+		global $database;
+
+		$id = getRandomMessageId();
+
+		$messages = $database->select('chat_messages', [
+			'[>]users' => ['author' => 'id']
+		], [
+			'chat_messages.id',
+			'chat_messages.author(author_id)',
+			'users.name(author_name)',
+			'chat_messages.post_time',
+			'chat_messages.content',
+		], [
+			'chat_messages.id' => '' . $id
+		]);
+		$message = $messages[0];
+
+		return '[b][url="http://www.smwhacking.de?p=user&id=' . $message['author_id'] . '"]' . $message['author_name']
+			. '[/url][/b] ('
+			. date(DEFAULT_DATE_FORMAT, $message['post_time']) . '):[br][/br]'
+			. $message['content'];
+	}
+
+
+	function getRandomMessageId()
+	{
+		global $database;
+
+		return $database->query('
+			SELECT id
+			FROM (SELECT id FROM chat_messages WHERE deleted = 0) AS r1
+			JOIN (SELECT (RAND() * (SELECT MAX(id) FROM (SELECT id FROM chat_messages WHERE deleted = 0) AS dummy)) AS id2) AS r2
+			WHERE r1.id >= r2.id2
+			ORDER BY r1.id ASC
+			LIMIT 1
+		')->fetch()['id'];
 	}
