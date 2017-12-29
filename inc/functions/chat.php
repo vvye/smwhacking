@@ -288,7 +288,7 @@
 		{
 			createBotMessage('[b]AKTIVITÄT![/b]');
 		}
-		if ($content === '@Bot history')
+		if (trim($content) === '@Bot history')
 		{
 			createBotMessage(getRandomMessage(), true);
 		}
