@@ -38,8 +38,12 @@ body {
     text-shadow: 0 0 1px black, 0 0 5px black, 0 0 10px black;
 }
 
-.banner.celebration {
+.banner.anniversary {
     background-image: url('../../img/banner/anniversary.png');
+}
+
+.banner.new-years {
+    background-image: url('../../img/banner/newYears.png');
 }
 
 .grid {
