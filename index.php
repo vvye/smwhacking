@@ -22,7 +22,7 @@
 	handlePersistentLogin();
 
 	$theme = getTheme();
-	$celebrationCssClass = isCelebrationTime() ? 'celebration' : '';
+	$celebrationCssClass = getCelebrationCssClass();
 
 	updateLastActivityTime();
 

@@ -79,9 +79,19 @@
 	}
 
 
-	function isCelebrationTime()
+	function getCelebrationCssClass()
 	{
-		return date('n') == '5' && (date('j') >= 23 && date('j') <= 28);
+		if (date('n') == '5' && date('j') >= 23 && date('j') <= 28)
+		{
+			return 'anniversary';
+		}
+
+		if (date('n') == '1' && date('j') <= 7)
+		{
+			return 'new-years';
+		}
+
+		return '';
 	}
 
 

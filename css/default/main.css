@@ -38,8 +38,12 @@ body {
     text-shadow: 0 0 1px black, 0 0 5px black, 0 0 10px black;
 }
 
-.banner.celebration {
-    background-image: url('../../img/banner/celebration.png');
+.banner.anniversary {
+    background-image: url('../../img/banner/anniversary.png');
+}
+
+.banner.new-years {
+    background-image: url('../../img/banner/newYears.png');
 }
 
 .grid {
@@ -115,7 +119,7 @@ nav li.active a {
 }
 
 nav li.secret-locked a {
-	display: none;
+    display: none;
 }
 
 nav li.secret-unlocked a {
