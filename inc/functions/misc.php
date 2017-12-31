@@ -81,6 +81,8 @@
 
 	function getCelebrationCssClass()
 	{
+		date_default_timezone_set('Europe/Berlin'); // why is this needed
+
 		if (date('n') == '5' && date('j') >= 23 && date('j') <= 28)
 		{
 			return 'anniversary';
