@@ -26,6 +26,9 @@
 			'page'    => 'chat',
 			'caption' => CAPTION_CHAT,
 		], [
+			'link'    => 'https://discord.gg/yFHEmTx',
+			'caption' => CAPTION_DISCORD,
+		], [
 			'page'         => 'files',
 			'caption'      => CAPTION_FILES,
 			'relatedPages' => ['upload'],

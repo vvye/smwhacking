@@ -131,6 +131,10 @@
 		'Chat');
 
 
+	define('CAPTION_DISCORD',
+		'Discord');
+
+
 	define('CAPTION_FILES',
 		'Dateiablage');
 
