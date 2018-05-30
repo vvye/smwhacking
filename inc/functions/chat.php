@@ -252,7 +252,8 @@
 	{
 		global $database;
 
-		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database) {
+		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database)
+		{
 
 			$matchedUsername = $match[1];
 			$possibleUsernames = [];
@@ -336,10 +337,17 @@
 		]);
 		$message = $messages[0];
 
-		return '[b][url="http://www.smwhacking.de?p=user&id=' . $message['author_id'] . '"]' . $message['author_name']
-			. '[/url][/b] ('
-			. date(DEFAULT_DATE_FORMAT, $message['post_time']) . '):[br][/br]'
-			. $message['content'];
+		$messageId = $message['id'];
+		$page = getMessagePage($message['id']);
+		$authorId = $message['author_id'];
+		$authorName = $message['author_name'];
+		$postTime = $message['post_time'];
+		$content = $message['content'];
+
+		return '[b][url="' . WEBSITE_URL . '/?p=user&id=' . $authorId . '"]' . $authorName . '[/url][/b] ([url="'
+			. WEBSITE_URL . '/?p=chat-archive&page=' . $page . '#message-' . $messageId . '"]'
+			. date(DEFAULT_DATE_FORMAT, $postTime) . '[/url]):[br][/br] ' . $content;
+
 	}
 
 
@@ -355,4 +363,19 @@
 			ORDER BY r1.id ASC
 			LIMIT 1
 		')->fetch()['id'];
+	}
+
+
+	function getMessagePage($messageId)
+	{
+		global $database;
+
+		$numMessagesUpTo = $database->count('chat_messages', [
+			'AND' => [
+				'id[<=]'  => $messageId,
+				'deleted' => 0
+			]
+		]);
+
+		return ceil($numMessagesUpTo / INIT_CHAT_MESSAGES);
 	}
