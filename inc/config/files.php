@@ -6,5 +6,6 @@
 		'jpeg',
 		'gif',
 		'bmp',
-		'txt'
+		'txt',
+		'pdf'
 	]);
