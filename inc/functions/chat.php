@@ -165,7 +165,7 @@
 			'author'    => $_SESSION['userId'],
 			'post_time' => $postTime,
 			'content'   => $content,
-			'deleted'   => 0
+			'deleted'   => (trim($content) === '@Bot history') ? 1 : 0
 		]);
 	}
 
