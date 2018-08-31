@@ -72,8 +72,9 @@ session_start();
     function addMessage(message) {
 
         var largeAvatar = isYelling(message.content);
+        var tinyMessage = message.content.substr(0, 3) === '@Bot';
 
-        var messageTemplate = '<div class="chat-message" id="message-{id}" data-id="{id}">'
+        var messageTemplate = '<div class="chat-message' + (tinyMessage ? ' tiny' : '') + '" id="message-{id}" data-id="{id}">'
             + '<div class="chat-sidebar">'
             + '<img class="avatar' + (largeAvatar ? ' large' : '') + '" src="{avatar_url}" />'
             + '</div>'
@@ -243,8 +244,8 @@ session_start();
         if (doDelete) {
             nanoajax.ajax({
                 url: 'inc/ajax/chat.php?action=delete'
-                + '&id=' + id
-                + '&token=' + '<?= getCsrfToken() ?>'
+                    + '&id=' + id
+                    + '&token=' + '<?= getCsrfToken() ?>'
             }, function (status) {
 
                 if (status === 403) {
@@ -276,7 +277,7 @@ session_start();
 
         nanoajax.ajax({
             url: 'inc/ajax/chat.php?action=update_messages'
-            + '&last_id=' + getLastMessageId()
+                + '&last_id=' + getLastMessageId()
         }, function (status, response) {
 
             showCheckmark();
@@ -364,8 +365,8 @@ session_start();
             url: 'inc/ajax/chat.php?action=post_message',
             method: 'POST',
             body: 'content=' + encodeURIComponent(messageContent.value)
-            + '&last_id=' + getLastMessageId()
-            + '&token=' + '<?= getCsrfToken() ?>'
+                + '&last_id=' + getLastMessageId()
+                + '&token=' + '<?= getCsrfToken() ?>'
         }, function (status, response) {
 
             if (status === 429) {

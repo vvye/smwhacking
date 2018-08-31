@@ -229,3 +229,28 @@ button#send {
 .chat-bar .chat-message .chat-message-content iframe {
     display: none;
 }
+
+.chat-message.tiny {
+    height: 1.7rem;
+    overflow-y: hidden;
+    line-height: 1rem;
+}
+
+.chat-message.tiny .avatar {
+    height: 1rem;
+    margin-top: 0;
+}
+
+.chat-message.tiny .chat-topbar {
+    float: left;
+}
+
+.chat-message.tiny .username {
+    font-size: 0.8rem !important;
+}
+
+.chat-message.tiny .chat-message-content {
+    float: left;
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+}
