@@ -72,7 +72,7 @@ session_start();
     function addMessage(message) {
 
         var largeAvatar = isYelling(message.content);
-        var tinyMessage = message.content.substr(0, 3) === '@Bot';
+        var tinyMessage = message.content.substr(0, 4) === '@Bot';
 
         var messageTemplate = '<div class="chat-message' + (tinyMessage ? ' tiny' : '') + '" id="message-{id}" data-id="{id}">'
             + '<div class="chat-sidebar">'
