@@ -2,6 +2,8 @@
 
 	require_once __DIR__ . '/avatar.php';
 	require_once __DIR__ . '/bbcode.php';
+	require_once __DIR__ . '/user.php';
+	require_once __DIR__ . '/register.php';
 
 	require_once __DIR__ . '/../config/chat.php';
 	require_once __DIR__ . '/../config/bbcode.php';
@@ -285,13 +287,24 @@
 
 	function handleBotMessage($content)
 	{
+		$content = trim($content);
+
 		if (stristr($content, 'aktiv'))
 		{
 			createBotMessage('[b]AKTIVITÄT![/b]');
 		}
-		if (trim($content) === '@Bot history')
+		if ($content === '@Bot history')
 		{
 			createBotMessage(getRandomMessage(), true);
+		}
+		$matches = [];
+		if (preg_match('/^@Bot history (' . VALID_USERNAME_REGEX . ')$/', $content, $matches))
+		{
+			if (usernameExists($matches[1]))
+			{
+				$userId = getUserIdByName($matches[1]);
+				createBotMessage(getRandomMessage($userId), true);
+			}
 		}
 	}
 
@@ -318,11 +331,11 @@
 	}
 
 
-	function getRandomMessage()
+	function getRandomMessage($userId = null)
 	{
 		global $database;
 
-		$id = getRandomMessageId();
+		$id = getRandomMessageId($userId);
 
 		$messages = $database->select('chat_messages', [
 			'[>]users' => ['author' => 'id']
@@ -351,18 +364,27 @@
 	}
 
 
-	function getRandomMessageId()
+	function getRandomMessageId($userId = null)
 	{
 		global $database;
 
-		return $database->query('
+		$messageQuery = 'SELECT id FROM chat_messages WHERE deleted = 0';
+
+		if ($userId !== null)
+		{
+			$messageQuery .= ' AND author = ' . ((int)$userId);
+		}
+
+		$query = '
 			SELECT id
-			FROM (SELECT id FROM chat_messages WHERE deleted = 0) AS r1
+			FROM (' . $messageQuery . ') AS r1
 			JOIN (SELECT (RAND() * (SELECT MAX(id) FROM (SELECT id FROM chat_messages WHERE deleted = 0) AS dummy)) AS id2) AS r2
 			WHERE r1.id >= r2.id2
 			ORDER BY r1.id ASC
 			LIMIT 1
-		')->fetch()['id'];
+		';
+
+		return $database->query($query)->fetch()['id'];
 	}
 
 
