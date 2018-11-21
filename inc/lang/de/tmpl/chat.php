@@ -20,7 +20,8 @@
 
 		<?php foreach ($messages as $message): ?>
 
-			<div class="chat-message" id="message-<?= $message['id'] ?>" data-id="<?= $message['id'] ?>">
+			<div class="chat-message<?= startsWith($message['content'], '@Bot') ? ' tiny' : '' ?>"
+			     id="message-<?= $message['id'] ?>" data-id="<?= $message['id'] ?>">
 				<div class="chat-sidebar">
 					<img class="avatar" src="<?= $message['avatar_url'] ?>" />
 				</div>
