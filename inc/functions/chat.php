@@ -306,6 +306,15 @@
 				createBotMessage(getRandomMessage($userId), true);
 			}
 		}
+		$matches = [];
+		if (preg_match('/^@Bot imitate (' . VALID_USERNAME_REGEX . ')$/', $content, $matches))
+		{
+			if (usernameExists($matches[1]))
+			{
+				$userId = getUserIdByName($matches[1]);
+				createBotMessage(generateMarkovMessageByUser($userId));
+			}
+		}
 	}
 
 
@@ -361,6 +370,43 @@
 			. WEBSITE_URL . '/?p=chat-archive&page=' . $page . '#message-' . $messageId . '"]'
 			. date(DEFAULT_DATE_FORMAT, $postTime) . '[/url]):[br][/br] ' . $content;
 
+	}
+
+
+	function generateMarkovMessageByUser($userId)
+	{
+		global $database;
+
+		$words = explode(' ', join(' ', $database->select('chat_messages', 'content', [
+			'AND' => [
+				'author'      => $userId,
+				'content[!~]' => '@Bot'
+			]
+		])));
+
+		$followers = [];
+		for ($i = 0; $i < count($words) - 1; $i++)
+		{
+			$word = $words[$i];
+			if (!isset($followers[$word]))
+			{
+				$followers[$word] = [];
+			}
+			$followers[$word][] = $words[$i + 1];
+		}
+
+		$startingWord = $words[array_rand($words)];
+		$newWords = [$startingWord];
+		$currentWord = $startingWord;
+		for ($i = 0; $i < 50; $i++)
+		{
+			$possibleFollowers = $followers[$currentWord];
+			$follower = $possibleFollowers[array_rand($possibleFollowers)];
+			$newWords[] = $follower;
+			$currentWord = $follower;
+		}
+
+		return join(' ', $newWords);
 	}
 
 
