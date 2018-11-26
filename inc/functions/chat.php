@@ -377,12 +377,12 @@
 	{
 		global $database;
 
-		$words = explode(' ', join(' ', $database->select('chat_messages', 'content', [
+		$words = explode(' ', strip_tags(join(' ', $database->select('chat_messages', 'content', [
 			'AND' => [
 				'author'      => $userId,
 				'content[!~]' => '@Bot'
 			]
-		])));
+		]))));
 
 		$followers = [];
 		for ($i = 0; $i < count($words) - 1; $i++)
