@@ -32,7 +32,7 @@
 				users.name AS author_name,
 				threads_read.last_read_time
 			FROM threads
-			LEFT JOIN posts ON threads.id = posts.thread
+			LEFT JOIN posts ON threads.id = posts.thread AND threads.creation_time = posts.post_time
 			LEFT JOIN users ON posts.author = users.id
 			LEFT JOIN threads_read ON threads.id = threads_read.thread AND ' . $readCondition . '
 			WHERE threads.forum = ' . $database->quote($forumId) . '
