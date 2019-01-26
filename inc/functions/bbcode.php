@@ -33,7 +33,7 @@
 		$builder = new JBBCode\CodeDefinitionBuilder('ispoiler', '<div class="inline-spoiler"><div class="inner">{param}</div></div>');
 		$parser->addCodeDefinition($builder->build());
 
-		$builder = new JBBCode\CodeDefinitionBuilder('code', '<div class="code"><span class="head">Code</span><div class="box">{param}</div></div>');
+		$builder = new JBBCode\CodeDefinitionBuilder('code', '<div class="code"><span class="head">Code</span><div class="box"><pre>{param}</pre></div></div>');
 		$builder->setParseContent(false);
 		$parser->addCodeDefinition($builder->build());
 
