@@ -1,5 +1,6 @@
 .idea
 img/avatars/
+!img/avatars/default.png
 inc/tmp/
 inc/local_db_config.php
 inc/config/database.php
