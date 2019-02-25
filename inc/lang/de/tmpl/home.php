@@ -31,7 +31,7 @@
 		<a href="?p=forum&id=<?= NEWS_FORUM_ID ?>">(alle ansehen)</a>
 
 		<?php if ($numNews === 0): ?>
-			<em>Es gibt noch keine Ankündigungen.</em>
+			<div><em>Es gibt noch keine Ankündigungen.</em></div>
 		<?php endif; ?>
 
 		<?php foreach ($news as $newsArticle): ?>
