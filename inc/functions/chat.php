@@ -244,7 +244,6 @@
 		}
 
 		$message['content'] = truncateChatMessage($message['content']);
-		$message = processMessages([$message])[0];
 
 		renderTemplate('chat_bar', [
 			'message' => $message
