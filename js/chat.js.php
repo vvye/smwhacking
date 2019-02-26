@@ -112,6 +112,9 @@ session_start();
     function getLastMessageId() {
 
         var messages = getMessages();
+        if (messages.length === 0) {
+            return 0;
+        }
         return messages[messages.length - 1].dataset.id;
 
     }

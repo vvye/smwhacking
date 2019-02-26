@@ -100,14 +100,19 @@
 			'LIMIT'   => 1
 		]);
 
-		processMessages($messages);
+		$messages = processMessages($messages);
 
-		return $messages[0];
+		return $messages[0] ?? null;
 	}
 
 
 	function processMessages($messages)
 	{
+		if (empty($messages))
+		{
+			return [];
+		}
+
 		foreach ($messages as $key => $message)
 		{
 			$messages[$key]['content'] = linkifyMentions(parseBBCode($message['content']));
@@ -233,6 +238,11 @@
 		}
 
 		$message = getLatestChatMessage();
+		if ($message === null)
+		{
+			return;
+		}
+
 		$message['content'] = truncateChatMessage($message['content']);
 		$message = processMessages([$message])[0];
 
@@ -254,8 +264,7 @@
 	{
 		global $database;
 
-		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database)
-		{
+		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database) {
 
 			$matchedUsername = $match[1];
 			$possibleUsernames = [];

@@ -31,6 +31,10 @@
 			die();
 		}
 		$lastId = (int)$_GET['last_id'] * 1;
+		if ($lastId === 0)
+		{
+			$lastId = null;
+		}
 
 		$messages = getRecentChatMessages($lastId, true);
 		$messages['deletedMessages'] = getDeletedMessages($lastId - MAX_CHAT_MESSAGES, $lastId);
