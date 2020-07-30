@@ -40,11 +40,11 @@
 			{
 				if (isset($item['subpage']))
 				{
-					$link = '?p=' . $item['page'] . '&s=' . $item['subpage'];
+					$link = '/?p=' . $item['page'] . '&s=' . $item['subpage'];
 				}
 				else
 				{
-					$link = '?p=' . $item['page'];
+					$link = '/?p=' . $item['page'];
 				}
 				$active = isMenuItemActive($item);
 			}
