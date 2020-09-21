@@ -40,7 +40,7 @@
 		<tr>
 			<td>
 				<h3><?= SECURITY_QUESTION ?></h3>
-				<p>Beanwtorte die Frage, um zu beweisen, dass du ein Mensch bist.<br />
+				<p>Beantworte die Frage, um zu beweisen, dass du ein Mensch bist.<br />
 					Wenn du Probleme beim Beantworten der Frage hast, wende dich an info@smwhacking.de.</p>
 			</td>
 			<td>
