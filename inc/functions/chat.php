@@ -301,6 +301,11 @@
 		{
 			createBotMessage('[b]AKTIVITÄT![/b]');
 		}
+		if (stristr($content, 'guter bot'))
+		{
+			// "smiling face with smiling eyes" emoji
+			createBotMessage('😊');
+		}
 		if ($content === '@Bot history')
 		{
 			createBotMessage(getRandomMessage(), true);
