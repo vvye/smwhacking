@@ -1,3 +1,3 @@
 <?php
 
-	define('NOTIFICATION_SENDER_ADDRESS', 'info@smwhacking.de');
+	define('NOTIFICATION_SENDER_ADDRESS', 'noreply@smwhacking.de');
