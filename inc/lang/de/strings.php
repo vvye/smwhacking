@@ -78,10 +78,9 @@
 
 
 	define('MSG_REGISTER_SUCCESS',
-		'<h2>Registrierung abschließen</h2>'
-		. '<p>Im Moment kannst du die Registrierung aus technischen Gründen nicht slebst abschließen. '
-		. 'Bitte schreibe eine Mail an <a href="mailto:info@smwhacking.de">info@smwhacking.de</a>, '
-		. 'um deinen Account freischalten zu lassen.</p>');
+		'Alles klar! Wir haben dir eine Mail geschickt. '
+		. 'Klicke auf den Link in der Mail, um die Registrierung abzuschließen.'
+		. '<br />Wenn du keine Mail bekommen hast, wende dich an info@smwhacking.de.');
 
 
 	define('MSG_NONE',
