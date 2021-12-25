@@ -118,8 +118,7 @@
 			$messages[$key]['content'] = linkifyMentions(parseBBCode($message['content']));
 			$messages[$key]['avatar_url'] = getAvatarUrlFromMessage($message);
 			$messages[$key]['post_time'] = date(DEFAULT_DATE_FORMAT, $message['post_time']);
-			$messages[$key]['can_delete'] = isLoggedIn()
-				&& (isAdmin() || $message['author_id'] === $_SESSION['userId']);
+			$messages[$key]['can_delete'] = isLoggedIn() && (isAdmin() || $message['author_id'] === $_SESSION['userId']);
 
 			if ($messages[$key]['author_id'] * 1 === CHAT_BOT_USER_ID)
 			{
@@ -219,8 +218,7 @@
 			}
 		}
 
-		return hasAvatar($message['author_id']) ? 'img/avatars/' . $message['author_id'] . '.png' :
-			'img/avatars/default.png';
+		return hasAvatar($message['author_id']) ? 'img/avatars/' . $message['author_id'] . '.png' : 'img/avatars/default.png';
 	}
 
 
@@ -263,7 +261,8 @@
 	{
 		global $database;
 
-		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database) {
+		$text = preg_replace_callback('/@(' . VALID_USERNAME_REGEX . ')/', function ($match) use ($database)
+		{
 
 			$matchedUsername = $match[1];
 			$possibleUsernames = [];
@@ -281,8 +280,7 @@
 
 			if ($user !== null && $user !== false && !empty($user))
 			{
-				return '@' . '<a href="?p=user&id=' . $user['id'] . '">' . $user['name'] . '</a>'
-					. substr($matchedUsername, strlen($user['name']));
+				return '@' . '<a href="?p=user&id=' . $user['id'] . '">' . $user['name'] . '</a>' . substr($matchedUsername, strlen($user['name']));
 			}
 
 			return $match[0];
@@ -320,12 +318,13 @@
 			}
 		}
 		$matches = [];
-		if (preg_match('/^@Bot imitate (' . VALID_USERNAME_REGEX . ')$/', $content, $matches))
+		if (preg_match('/^@Bot imitate (' . VALID_USERNAME_REGEX . ')( \| ([a-zA-Z0-9-_.,!?]+))?$/', $content, $matches))
 		{
 			if (usernameExists($matches[1]))
 			{
 				$userId = getUserIdByName($matches[1]);
-				createBotMessage(generateMarkovMessageByUser($userId));
+				$startingWord = $matches[3] ?? null;
+				createBotMessage(generateMarkovMessageByUser($userId, $startingWord));
 			}
 		}
 	}
@@ -379,14 +378,12 @@
 		$postTime = $message['post_time'];
 		$content = $message['content'];
 
-		return '[b][url="' . WEBSITE_URL . '/?p=user&id=' . $authorId . '"]' . $authorName . '[/url][/b] ([url="'
-			. WEBSITE_URL . '/?p=chat-archive&page=' . $page . '#message-' . $messageId . '"]'
-			. date(DEFAULT_DATE_FORMAT, $postTime) . '[/url]):[br][/br] ' . $content;
+		return '[b][url="' . WEBSITE_URL . '/?p=user&id=' . $authorId . '"]' . $authorName . '[/url][/b] ([url="' . WEBSITE_URL . '/?p=chat-archive&page=' . $page . '#message-' . $messageId . '"]' . date(DEFAULT_DATE_FORMAT, $postTime) . '[/url]):[br][/br] ' . $content;
 
 	}
 
 
-	function generateMarkovMessageByUser($userId)
+	function generateMarkovMessageByUser($userId, $startingWord = null)
 	{
 		global $database;
 
@@ -408,12 +405,21 @@
 			$followers[$word][] = $words[$i + 1];
 		}
 
-		$startingWord = $words[array_rand($words)];
+		if ($startingWord === null || trim($startingWord) === '' || !in_array(trim($startingWord), $words))
+		{
+			$startingWord = $words[array_rand($words)];
+		}
+
 		$newWords = [$startingWord];
 		$currentWord = $startingWord;
-		for ($i = 0; $i < 50; $i++)
+
+		while (count($newWords) < 50)
 		{
-			$possibleFollowers = $followers[$currentWord];
+			$possibleFollowers = $followers[$currentWord] ?? [];
+			if (empty($possibleFollowers))
+			{
+				break;
+			}
 			$follower = $possibleFollowers[array_rand($possibleFollowers)];
 			$newWords[] = $follower;
 			$currentWord = $follower;
