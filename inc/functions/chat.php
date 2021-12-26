@@ -318,7 +318,7 @@
 			}
 		}
 		$matches = [];
-		if (preg_match('/^@Bot imitate (' . VALID_USERNAME_REGEX . ')( \| ([a-zA-Z0-9-_.,!?]+))?$/', $content, $matches))
+		if (preg_match('/^@Bot imitate (' . VALID_USERNAME_REGEX . ')(: ([a-zA-Z0-9-_.,!?]+))?$/', $content, $matches))
 		{
 			if (usernameExists($matches[1]))
 			{
